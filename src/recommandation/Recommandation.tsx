@@ -46,7 +46,7 @@ const Recommandation: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <Stepper currentStep={1} />
+            <Stepper currentStep={2} />
             <Box mt={5} p={5} pt={10} maxW="1000px" mx="auto" textAlign="center" borderRadius="md" boxShadow="md" bg="white">
                 <TwoColumnLayout />
                 <DetailsToggle />
