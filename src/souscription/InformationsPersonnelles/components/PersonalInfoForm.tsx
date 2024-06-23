@@ -15,10 +15,6 @@ import {
   AlertDialogOverlay,
   Input,
   Select,
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  CloseButton,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { WarningIcon } from '@chakra-ui/icons';
@@ -63,11 +59,10 @@ const PersonalInfoForm: React.FC = () => {
   });
 
   const [isAlertOpen, setIsAlertOpen] = useState(false);
-  const [isInvalidInput, setIsInvalidInput] = useState(false);
   const onClose = () => setIsAlertOpen(false);
   const cancelRef = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
-  const { uuid, updateResponse, getResponse } = useUuid();
+  const { updateResponse, getResponse } = useUuid();
 
   useEffect(() => {
     const fetchResponse = async () => {
