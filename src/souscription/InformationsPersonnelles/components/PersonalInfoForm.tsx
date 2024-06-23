@@ -6,7 +6,7 @@ import {
     Box,
     Text,
     Button,
-  HStack,
+    VStack,
     AlertDialog,
     AlertDialogBody,
     AlertDialogFooter,
@@ -15,7 +15,7 @@ import {
     AlertDialogOverlay,
     Input,
     Select,
-    VStack,
+    HStack,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { WarningIcon } from '@chakra-ui/icons';
@@ -63,16 +63,16 @@ const PersonalInfoForm: React.FC = () => {
     const onClose = () => setIsAlertOpen(false);
     const cancelRef = useRef<HTMLButtonElement>(null);
     const navigate = useNavigate();
-    const { updateResponse, getResponse } = useUuid();
+    const { uuid, updateResponse, getResponse } = useUuid();
 
     useEffect(() => {
         const fetchResponse = async () => {
-            const civilite = await getResponse(1);
-            const dateDeNaissance = await getResponse(2);
-            const nom = await getResponse(3);
-            const prenom = await getResponse(4);
-            const paysDeNaissance = await getResponse(5);
-            const lieuDeNaissance = await getResponse(6);
+            const civilite = await getResponse(27); // 'civilite' is step 27
+            const dateDeNaissance = await getResponse(28); // 'dateDeNaissance' is step 28
+            const nom = await getResponse(29); // 'nom' is step 29
+            const prenom = await getResponse(30); // 'prenom' is step 30
+            const paysDeNaissance = await getResponse(31); // 'paysDeNaissance' is step 31
+            const lieuDeNaissance = await getResponse(32); // 'lieuDeNaissance' is step 32
 
             setFormValues({
                 civilite: civilite || '',
@@ -116,15 +116,49 @@ const PersonalInfoForm: React.FC = () => {
         return !Object.values(newErrors).some((error) => error);
     };
 
+    const saveDataToDatabase = async (data: { [key: string]: string }) => {
+        try {
+            const response = await fetch(`https://wrzduukskbcqvxtqevpr.supabase.co/rest/v1/form_responses?id=eq.${uuid}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': 'YOUR_SUPABASE_API_KEY', // Replace with your actual Supabase API key
+                    'Authorization': `Bearer YOUR_SUPABASE_API_KEY` // Replace with your actual Supabase API key
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to save data');
+            }
+
+            const result = await response.json();
+            console.log('Data saved:', result);
+        } catch (error) {
+            console.error('Error saving data:', error);
+        }
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (validateForm()) {
-            await updateResponse(1, formValues.civilite);
-            await updateResponse(2, formValues.dateDeNaissance);
-            await updateResponse(3, formValues.nom);
-            await updateResponse(4, formValues.prenom);
-            await updateResponse(5, formValues.paysDeNaissance);
-            await updateResponse(6, formValues.lieuDeNaissance);
+            await updateResponse(27, formValues.civilite);
+            await updateResponse(28, formValues.dateDeNaissance);
+            await updateResponse(29, formValues.nom);
+            await updateResponse(30, formValues.prenom);
+            await updateResponse(31, formValues.paysDeNaissance);
+            await updateResponse(32, formValues.lieuDeNaissance);
+
+            // Save data to the database
+            await saveDataToDatabase({
+                step27: formValues.civilite,
+                step28: formValues.dateDeNaissance,
+                step29: formValues.nom,
+                step30: formValues.prenom,
+                step31: formValues.paysDeNaissance,
+                step32: formValues.lieuDeNaissance,
+            });
+
             navigate('/next-step'); // Replace with the actual next step
         } else {
             setIsAlertOpen(true);
@@ -133,7 +167,7 @@ const PersonalInfoForm: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-      <Stepper currentStep={1} />
+            <Stepper currentStep={1} />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Veuillez entrer vos informations personnelles
@@ -144,21 +178,29 @@ const PersonalInfoForm: React.FC = () => {
                         <HStack justifyContent="center" mb={6}>
                             <Button
                                 type="button"
-                                onClick={() => handleCiviliteChange('Monsieur')}
-                                isActive={formValues.civilite === 'Monsieur'}
-                                colorScheme={formValues.civilite === 'Monsieur' ? 'green' : 'gray'}
-                                borderColor={formValues.civilite === 'Monsieur' ? 'green.400' : 'gray.200'}
                                 variant="outline"
+                                size="lg"
+                                colorScheme={formValues.civilite === 'Monsieur' ? 'green' : 'gray'}
+                                onClick={() => handleCiviliteChange('Monsieur')}
+                                px={10}
+                                py={6}
+                                textAlign="center"
+                                _hover={{ bg: 'gray.200' }}
+                                borderColor={formValues.civilite === 'Monsieur' ? 'green.400' : 'gray.200'}
                             >
                                 Monsieur
                             </Button>
                             <Button
                                 type="button"
-                                onClick={() => handleCiviliteChange('Madame')}
-                                isActive={formValues.civilite === 'Madame'}
-                                colorScheme={formValues.civilite === 'Madame' ? 'green' : 'gray'}
-                                borderColor={formValues.civilite === 'Madame' ? 'green.400' : 'gray.200'}
                                 variant="outline"
+                                size="lg"
+                                colorScheme={formValues.civilite === 'Madame' ? 'green' : 'gray'}
+                                onClick={() => handleCiviliteChange('Madame')}
+                                px={10}
+                                py={6}
+                                textAlign="center"
+                                _hover={{ bg: 'gray.200' }}
+                                borderColor={formValues.civilite === 'Madame' ? 'green.400' : 'gray.200'}
                             >
                                 Madame
                             </Button>
@@ -177,29 +219,29 @@ const PersonalInfoForm: React.FC = () => {
                         />
                     </Box>
 
-                    <Box>
-                        <Text fontSize="md" mb={2}>Nom</Text>
-                        <Input
-                            type="text"
-                            name="nom"
-                            value={formValues.nom}
-                            onChange={handleInputChange}
-                            isInvalid={errors.nom}
-                            mb={4}
-                        />
-                    </Box>
+                    <HStack spacing={4} mb={4}>
+                        <Box flex="1">
+                            <Text fontSize="md" mb={2}>Nom</Text>
+                            <Input
+                                type="text"
+                                name="nom"
+                                value={formValues.nom}
+                                onChange={handleInputChange}
+                                isInvalid={errors.nom}
+                            />
+                        </Box>
 
-                    <Box>
-                        <Text fontSize="md" mb={2}>Prénom</Text>
-                        <Input
-                            type="text"
-                            name="prenom"
-                            value={formValues.prenom}
-                            onChange={handleInputChange}
-                            isInvalid={errors.prenom}
-                            mb={4}
-                        />
-                    </Box>
+                        <Box flex="1">
+                            <Text fontSize="md" mb={2}>Prénom</Text>
+                            <Input
+                                type="text"
+                                name="prenom"
+                                value={formValues.prenom}
+                                onChange={handleInputChange}
+                                isInvalid={errors.prenom}
+                            />
+                        </Box>
+                    </HStack>
 
                     <Box>
                         <Text fontSize="md" mb={2}>Pays de naissance</Text>
