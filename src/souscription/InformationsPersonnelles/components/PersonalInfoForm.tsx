@@ -16,6 +16,9 @@ import {
     Input,
     Select,
     HStack,
+    useStyleConfig,
+    InputProps,
+    SelectProps,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { WarningIcon } from '@chakra-ui/icons';
@@ -39,6 +42,16 @@ const theme = extendTheme({
         },
     },
 });
+
+const CustomInput: React.FC<InputProps> = (props) => {
+    const styles = useStyleConfig("CustomInput");
+    return <Input sx={styles} {...props} />;
+};
+
+const CustomSelect: React.FC<SelectProps> = (props) => {
+    const styles = useStyleConfig("CustomInput");
+    return <Select sx={styles} {...props} />;
+};
 
 const PersonalInfoForm: React.FC = () => {
     const [formValues, setFormValues] = useState({
@@ -209,7 +222,7 @@ const PersonalInfoForm: React.FC = () => {
 
                     <Box>
                         <Text fontSize="md" mb={2}>Date de naissance</Text>
-                        <Input
+                        <CustomInput
                             type="date"
                             name="dateDeNaissance"
                             value={formValues.dateDeNaissance}
@@ -222,7 +235,7 @@ const PersonalInfoForm: React.FC = () => {
                     <HStack spacing={4} mb={4}>
                         <Box flex="1">
                             <Text fontSize="md" mb={2}>Nom</Text>
-                            <Input
+                            <CustomInput
                                 type="text"
                                 name="nom"
                                 value={formValues.nom}
@@ -233,7 +246,7 @@ const PersonalInfoForm: React.FC = () => {
 
                         <Box flex="1">
                             <Text fontSize="md" mb={2}>Prénom</Text>
-                            <Input
+                            <CustomInput
                                 type="text"
                                 name="prenom"
                                 value={formValues.prenom}
@@ -245,7 +258,7 @@ const PersonalInfoForm: React.FC = () => {
 
                     <Box>
                         <Text fontSize="md" mb={2}>Pays de naissance</Text>
-                        <Select
+                        <CustomSelect
                             name="paysDeNaissance"
                             value={formValues.paysDeNaissance}
                             onChange={handleInputChange}
@@ -256,12 +269,12 @@ const PersonalInfoForm: React.FC = () => {
                             <option value="france">France</option>
                             <option value="usa">USA</option>
                             {/* Add other countries as needed */}
-                        </Select>
+                        </CustomSelect>
                     </Box>
 
                     <Box>
                         <Text fontSize="md" mb={2}>Lieu de naissance</Text>
-                        <Input
+                        <CustomInput
                             type="text"
                             name="lieuDeNaissance"
                             value={formValues.lieuDeNaissance}
