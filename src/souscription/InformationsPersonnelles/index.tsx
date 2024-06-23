@@ -1,7 +1,6 @@
 // src/pages/Souscription.tsx
 import React from 'react';
-import { ChakraProvider, extendTheme, Box} from '@chakra-ui/react';
-import Stepper from './../../components/Stepper';
+import { ChakraProvider, extendTheme} from '@chakra-ui/react';
 import PersonalInfoForm from './components/PersonalInfoForm';
 
 const theme = extendTheme({
@@ -30,10 +29,7 @@ const Souscription: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <Stepper currentStep={2} />
-            <Box mt={5} p={5} pt={10} maxW="1000px" mx="auto" textAlign="center" borderRadius="md" boxShadow="md" bg="white">
                 <PersonalInfoForm/>
-            </Box>
         </ChakraProvider>
     );
 };

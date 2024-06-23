@@ -19,7 +19,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { WarningIcon } from '@chakra-ui/icons';
 import { useUuid } from './../../../context/UuidContext';
-import StepperWithSubStepCounter from './../../../components/StepperWithSubStepCounter';
+import Stepper from '../../../components/Stepper';
 
 const theme = extendTheme({
   colors: {
@@ -132,7 +132,7 @@ const PersonalInfoForm: React.FC = () => {
 
   return (
     <ChakraProvider theme={theme}>
-      <StepperWithSubStepCounter currentStep={1} currentSubStep={1} totalSubSteps={24} title="Informations Personnelles" />
+      <Stepper currentStep={1} />
       <Box p={5} maxW="1000px" mx="auto">
         <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
           Veuillez entrer vos informations personnelles
