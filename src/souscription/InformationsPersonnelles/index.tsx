@@ -2,6 +2,7 @@
 import React from 'react';
 import { ChakraProvider, extendTheme, Box} from '@chakra-ui/react';
 import Stepper from './../../components/Stepper';
+import PersonalInfoForm from './components/PersonalInfoForm';
 
 const theme = extendTheme({
     colors: {
@@ -31,7 +32,7 @@ const Souscription: React.FC = () => {
         <ChakraProvider theme={theme}>
             <Stepper currentStep={2} />
             <Box mt={5} p={5} pt={10} maxW="1000px" mx="auto" textAlign="center" borderRadius="md" boxShadow="md" bg="white">
-
+                <PersonalInfoForm/>
             </Box>
         </ChakraProvider>
     );

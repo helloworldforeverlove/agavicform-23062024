@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChakraProvider, extendTheme, Box, HStack, Button, Icon, Text } from '@chakra-ui/react';
 import { FaPhone } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const theme = extendTheme({
   colors: {
@@ -25,12 +26,14 @@ const theme = extendTheme({
 });
 
 const ActionButtons: React.FC = () => {
+  const navigate = useNavigate();
+
   const handleNext = () => {
-    // Add your next button handler logic here
+    navigate('/informations-personnelles');
   };
 
-  const navigate = (value: number) => {
-    // Add your navigate logic here
+  const handleNavigate = (value: number) => {
+    navigate(value);
   };
 
   return (
@@ -40,7 +43,7 @@ const ActionButtons: React.FC = () => {
           <Button
             colorScheme="gray"
             variant="outline"
-            onClick={() => navigate(-1)}
+            onClick={() => handleNavigate(-1)}
             px={6}
             py={6}
             size="lg"
