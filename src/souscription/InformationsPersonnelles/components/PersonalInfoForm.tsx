@@ -109,6 +109,9 @@ const PersonalInfoForm: React.FC = () => {
         lieuDeNaissance: '',
         situationFamiliale: '',
         capaciteJuridique: '',
+        nationalite: '',
+        paysNationalite: '',
+        connuYomoni: '',
     });
 
     const [errors, setErrors] = useState({
@@ -120,6 +123,9 @@ const PersonalInfoForm: React.FC = () => {
         lieuDeNaissance: false,
         situationFamiliale: false,
         capaciteJuridique: false,
+        nationalite: false,
+        paysNationalite: false,
+        connuYomoni: false,
     });
 
     const [isAlertOpen, setIsAlertOpen] = useState(false);
@@ -138,6 +144,9 @@ const PersonalInfoForm: React.FC = () => {
             const lieuDeNaissance = await getResponse(31); // 'lieuDeNaissance' is step 31
             const situationFamiliale = await getResponse(32); // 'situationFamiliale' is step 32
             const capaciteJuridique = await getResponse(33); // 'capaciteJuridique' is step 33
+            const nationalite = await getResponse(34); // 'nationalite' is step 34
+            const paysNationalite = await getResponse(35); // 'paysNationalite' is step 35
+            const connuYomoni = await getResponse(36); // 'connuYomoni' is step 36
 
             setFormValues({
                 civilite: civilite || '',
@@ -148,6 +157,9 @@ const PersonalInfoForm: React.FC = () => {
                 lieuDeNaissance: lieuDeNaissance || '',
                 situationFamiliale: situationFamiliale || '',
                 capaciteJuridique: capaciteJuridique || '',
+                nationalite: nationalite || '',
+                paysNationalite: paysNationalite || '',
+                connuYomoni: connuYomoni || '',
             });
         };
 
@@ -179,6 +191,9 @@ const PersonalInfoForm: React.FC = () => {
             lieuDeNaissance: formValues.lieuDeNaissance === '',
             situationFamiliale: formValues.situationFamiliale === '',
             capaciteJuridique: formValues.capaciteJuridique === '',
+            nationalite: formValues.nationalite === '',
+            paysNationalite: formValues.paysNationalite === '',
+            connuYomoni: formValues.connuYomoni === '',
         };
 
         setErrors(newErrors);
@@ -219,6 +234,9 @@ const PersonalInfoForm: React.FC = () => {
             await updateResponse(31, formValues.lieuDeNaissance);
             await updateResponse(32, formValues.situationFamiliale);
             await updateResponse(33, formValues.capaciteJuridique);
+            await updateResponse(34, formValues.nationalite);
+            await updateResponse(35, formValues.paysNationalite);
+            await updateResponse(36, formValues.connuYomoni);
 
             // Save data to the database
             await saveDataToDatabase({
@@ -230,6 +248,9 @@ const PersonalInfoForm: React.FC = () => {
                 step31: formValues.lieuDeNaissance,
                 step32: formValues.situationFamiliale,
                 step33: formValues.capaciteJuridique,
+                step34: formValues.nationalite,
+                step35: formValues.paysNationalite,
+                step36: formValues.connuYomoni,
             });
 
             navigate('/next-step'); // Replace with the actual next step
@@ -428,6 +449,89 @@ const PersonalInfoForm: React.FC = () => {
                             </FormControl>
                         </VStack>
                     </HStack>
+
+                    <Box>
+                        <Text fontSize="md" mb={2}>Nationalité / Résident américain(e)</Text>
+                        <Text mb={2}>Êtes-vous résident(e) américain(e) ou possédez-vous la nationalité américaine ?</Text>
+                        <HStack justifyContent="center" mb={6}>
+                            <Button
+                                type="button"
+                                variant="outline"
+                                size="lg"
+                                colorScheme={formValues.nationalite === 'Non' ? 'green' : 'gray'}
+                                onClick={() => setFormValues({ ...formValues, nationalite: 'Non' })}
+                                px={10}
+                                py={6}
+                                textAlign="center"
+                                _hover={{ bg: 'gray.200' }}
+                                borderColor={formValues.nationalite === 'Non' ? 'green.400' : 'gray.200'}
+                            >
+                                Non
+                            </Button>
+                            <Button
+                                type="button"
+                                variant="outline"
+                                size="lg"
+                                colorScheme={formValues.nationalite === 'Oui' ? 'green' : 'gray'}
+                                onClick={() => setFormValues({ ...formValues, nationalite: 'Oui' })}
+                                px={10}
+                                py={6}
+                                textAlign="center"
+                                _hover={{ bg: 'gray.200' }}
+                                borderColor={formValues.nationalite === 'Oui' ? 'green.400' : 'gray.200'}
+                            >
+                                Oui
+                            </Button>
+                        </HStack>
+                    </Box>
+
+                    <FormControl isInvalid={errors.paysNationalite}>
+                        <Text fontSize="md" mb={2}>Pays de nationalité</Text>
+                        <CustomSelect
+                            name="paysNationalite"
+                            value={formValues.paysNationalite}
+                            onChange={handleInputChange}
+                            mb={4}
+                        >
+                            <option value="">Veuillez sélectionner</option>
+                            <option value="france">France</option>
+                            <option value="usa">USA</option>
+                            {/* Add other countries as needed */}
+                        </CustomSelect>
+                        {errors.paysNationalite && (
+                            <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                <AlertIcon color="orange.400" />
+                                <AlertDescription color="orange.600">Veuillez sélectionner un pays de nationalité.</AlertDescription>
+                            </Alert>
+                        )}
+                    </FormControl>
+
+                    <FormControl isInvalid={errors.connuYomoni}>
+                        <Text fontSize="md" mb={2}>Comment avez-vous connu Yomoni ?</Text>
+                        <CustomSelect
+                            name="connuYomoni"
+                            value={formValues.connuYomoni}
+                            onChange={handleInputChange}
+                            mb={4}
+                        >
+                            <option value="">Veuillez sélectionner</option>
+                            <option value="Articles de presse">Articles de presse</option>
+                            <option value="Publicité Presse">Publicité Presse</option>
+                            <option value="Publicité Affichage">Publicité Affichage</option>
+                            <option value="Publicité Internet">Publicité Internet</option>
+                            <option value="Site spécialisé en épargne">Site spécialisé en épargne</option>
+                            <option value="Connaissance">Connaissance</option>
+                            <option value="Moteur de recherche">Moteur de recherche</option>
+                            <option value="Réseaux sociaux, Podcasts">Réseaux sociaux, Podcasts</option>
+                            <option value="Télévision">Télévision</option>
+                        </CustomSelect>
+                        {errors.connuYomoni && (
+                            <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                <AlertIcon color="orange.400" />
+                                <AlertDescription color="orange.600">Veuillez sélectionner une option pour Comment avez-vous connu Yomoni ?.</AlertDescription>
+                            </Alert>
+                        )}
+                    </FormControl>
                 </VStack>
 
                 <Box mt={8} display="flex" justifyContent="space-between">
