@@ -361,17 +361,12 @@ const PersonalInfoForm: React.FC = () => {
                         <VStack flex={1} align="stretch">
                             <FormControl isInvalid={errors.paysDeNaissance}>
                                 <Text fontSize="md" mb={2}>Pays de naissance</Text>
-                                <CustomSelect
+                                <CountriesDropdown
                                     name="paysDeNaissance"
                                     value={formValues.paysDeNaissance}
                                     onChange={handleInputChange}
                                     mb={4}
-                                >
-                                    <option value="">Veuillez sélectionner</option>
-                                    <option value="france">France</option>
-                                    <option value="usa">USA</option>
-                                    {/* Add other countries as needed */}
-                                </CustomSelect>
+                                />
                                 {errors.paysDeNaissance && (
                                     <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
                                         <AlertIcon color="orange.400" />
