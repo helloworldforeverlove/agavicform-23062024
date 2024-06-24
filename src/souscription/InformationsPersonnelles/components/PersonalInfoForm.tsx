@@ -24,7 +24,7 @@ import {
     AlertDescription,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import { WarningIcon } from '@chakra-ui/icons';
+import { WarningIcon, InfoIcon } from '@chakra-ui/icons';
 import { useUuid } from './../../../context/UuidContext';
 import Stepper from '../../../components/Stepper';
 
@@ -131,7 +131,7 @@ const PersonalInfoForm: React.FC = () => {
     useEffect(() => {
         const fetchResponse = async () => {
             const civilite = await getResponse(27); // 'civilite' is step 27
-            const dateDeNaissance = await getResponse(28); // 'dateDeNaissance' is step 28
+            const dateDeNaissance = await getResponse(5); // 'dateDeNaissance' is step 5
             const nom = await getResponse(29); // 'nom' is step 29
             const prenom = await getResponse(30); // 'prenom' is step 30
             const paysDeNaissance = await getResponse(31); // 'paysDeNaissance' is step 31
@@ -212,7 +212,7 @@ const PersonalInfoForm: React.FC = () => {
         e.preventDefault();
         if (validateForm()) {
             await updateResponse(27, formValues.civilite);
-            await updateResponse(28, formValues.dateDeNaissance);
+            await updateResponse(5, formValues.dateDeNaissance);
             await updateResponse(29, formValues.nom);
             await updateResponse(30, formValues.prenom);
             await updateResponse(31, formValues.paysDeNaissance);
@@ -223,7 +223,7 @@ const PersonalInfoForm: React.FC = () => {
             // Save data to the database
             await saveDataToDatabase({
                 step27: formValues.civilite,
-                step28: formValues.dateDeNaissance,
+                step5: formValues.dateDeNaissance,
                 step29: formValues.nom,
                 step30: formValues.prenom,
                 step31: formValues.paysDeNaissance,
@@ -289,6 +289,10 @@ const PersonalInfoForm: React.FC = () => {
                             onChange={handleInputChange}
                             mb={4}
                         />
+                        <Alert status="info" mt={2} backgroundColor="blue.100" borderRadius="md">
+                            <AlertIcon color="blue.400" />
+                            <AlertDescription color="blue.600">Vous pouvez modifier cette information à l'étape 2.</AlertDescription>
+                        </Alert>
                         {errors.dateDeNaissance && (
                             <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
                                 <AlertIcon color="orange.400" />
@@ -306,12 +310,10 @@ const PersonalInfoForm: React.FC = () => {
                                 value={formValues.nom}
                                 onChange={handleInputChange}
                             />
-                            {errors.nom && (
-                                <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
-                                    <AlertIcon color="orange.400" />
-                                    <AlertDescription color="orange.600">Le nom doit être écrit en entier comme sur votre pièce d'identité.</AlertDescription>
-                                </Alert>
-                            )}
+                            <Alert status="warning" mt={2} backgroundColor="green.100" borderRadius="md">
+                                <AlertIcon color="green.400" />
+                                <AlertDescription color="green.600">Le nom doit être écrit en entier comme sur votre pièce d'identité.</AlertDescription>
+                            </Alert>
                         </FormControl>
 
                         <FormControl isInvalid={errors.prenom}>
@@ -322,12 +324,10 @@ const PersonalInfoForm: React.FC = () => {
                                 value={formValues.prenom}
                                 onChange={handleInputChange}
                             />
-                            {errors.prenom && (
-                                <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
-                                    <AlertIcon color="orange.400" />
-                                    <AlertDescription color="orange.600">Uniquement le 1er prénom de votre pièce d'identité.</AlertDescription>
-                                </Alert>
-                            )}
+                            <Alert status="warning" mt={2} backgroundColor="green.100" borderRadius="md">
+                                <AlertIcon color="green.400" />
+                                <AlertDescription color="green.600">Uniquement le 1er prénom de votre pièce d'identité. (aller jusqu'à la virgule) </AlertDescription>
+                            </Alert>
                         </FormControl>
                     </HStack>
 
@@ -362,12 +362,10 @@ const PersonalInfoForm: React.FC = () => {
                                 onChange={handleInputChange}
                                 mb={4}
                             />
-                            {errors.lieuDeNaissance && (
-                                <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
-                                    <AlertIcon color="orange.400" />
-                                    <AlertDescription color="orange.600">Le lieu de naissance doit être orthographié comme sur votre pièce d'identité.</AlertDescription>
-                                </Alert>
-                            )}
+                            <Alert status="warning" mt={2} backgroundColor="green.100" borderRadius="md">
+                                <AlertIcon color="green.400" />
+                                <AlertDescription color="green.600">Le lieu de naissance doit être orthographié comme sur votre pièce d'identité.</AlertDescription>
+                            </Alert>
                         </FormControl>
                     </HStack>
 
