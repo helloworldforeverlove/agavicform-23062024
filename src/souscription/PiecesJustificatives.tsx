@@ -25,6 +25,7 @@ import {
     TabPanels,
     Tab,
     TabPanel,
+    Input,
 } from '@chakra-ui/react';
 import { FaIdCard, FaHome, FaUniversity } from 'react-icons/fa';
 import { FcManager } from 'react-icons/fc';
@@ -92,8 +93,12 @@ const PiecesJustificatives: React.FC = () => {
 
     const handleNextStep = () => setStep(step + 1);
 
-    const handleFileUpload = () => {
-        setFirstUploadCompleted(true);
+    const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files?.length) {
+            // Handle file upload logic here, e.g., uploading to a server or updating state
+            console.log('Uploaded file:', event.target.files[0]);
+            setFirstUploadCompleted(true);
+        }
     };
 
     const handleShowSecondUpload = () => {
@@ -162,31 +167,39 @@ const PiecesJustificatives: React.FC = () => {
                         {step === 2 && (
                             <>
                                 <VStack spacing={4} align="start">
-                                <Tabs isFitted variant="enclosed">
-                                    <TabList mb="1em">
-                                        <Tab>PIÈCE D'IDENTITÉ</Tab>
-                                        <Tab>PASSEPORT</Tab>
-                                    </TabList>
-                                    <TabPanels>
-                                        <TabPanel>
-                                            <HStack spacing={4}>
-                                        <VStack flex={1} align="stretch">
-                                            <Text fontSize="md" mb={2}>CNI recto</Text>
-                                            <Button variant="outline" width="100%" onClick={handleFileUpload}>SÉLECTIONNER MON FICHIER</Button>
-                                        </VStack>
-                                        <VStack flex={1} align="stretch">
-                                            <Text fontSize="md" mb={2}>CNI verso</Text>
-                                            <Button variant="outline" width="100%" onClick={handleFileUpload}>SÉLECTIONNER MON FICHIER</Button>
-                                        </VStack>
-                                        </HStack>
-                                        </TabPanel>
-                                        <TabPanel>
-                                            <Text fontSize="md" mb={2}>Passeport</Text>
-                                            <Button variant="outline" width="100%">SÉLECTIONNER MON FICHIER</Button>
-                                        </TabPanel>
-                                    </TabPanels>
-                                </Tabs>
-                                    <Button variant="outline" width="100%" onClick={handleFileUpload}>SÉLECTIONNER MON FICHIER</Button>
+                                    <Tabs isFitted variant="enclosed">
+                                        <TabList mb="1em">
+                                            <Tab>PIÈCE D'IDENTITÉ</Tab>
+                                            <Tab>PASSEPORT</Tab>
+                                        </TabList>
+                                        <TabPanels>
+                                            <TabPanel>
+                                                <HStack spacing={4}>
+                                                    <VStack flex={1} align="stretch">
+                                                        <Text fontSize="md" mb={2}>CNI recto</Text>
+                                                        <Button as="label" variant="outline" width="100%">
+                                                            SÉLECTIONNER MON FICHIER
+                                                            <Input type="file" display="none" onChange={handleFileUpload} />
+                                                        </Button>
+                                                    </VStack>
+                                                    <VStack flex={1} align="stretch">
+                                                        <Text fontSize="md" mb={2}>CNI verso</Text>
+                                                        <Button as="label" variant="outline" width="100%">
+                                                            SÉLECTIONNER MON FICHIER
+                                                            <Input type="file" display="none" onChange={handleFileUpload} />
+                                                        </Button>
+                                                    </VStack>
+                                                </HStack>
+                                            </TabPanel>
+                                            <TabPanel>
+                                                <Text fontSize="md" mb={2}>Passeport</Text>
+                                                <Button as="label" variant="outline" width="100%">
+                                                    SÉLECTIONNER MON FICHIER
+                                                    <Input type="file" display="none" onChange={handleFileUpload} />
+                                                </Button>
+                                            </TabPanel>
+                                        </TabPanels>
+                                    </Tabs>
                                 </VStack>
 
                                 {firstUploadCompleted && (
@@ -206,17 +219,26 @@ const PiecesJustificatives: React.FC = () => {
                                                     <HStack spacing={4}>
                                                         <VStack flex={1} align="stretch">
                                                             <Text fontSize="md" mb={2}>CNI recto</Text>
-                                                            <Button variant="outline" width="100%">SÉLECTIONNER MON FICHIER</Button>
+                                                            <Button as="label" variant="outline" width="100%">
+                                                                SÉLECTIONNER MON FICHIER
+                                                                <Input type="file" display="none" onChange={handleFileUpload} />
+                                                            </Button>
                                                         </VStack>
                                                         <VStack flex={1} align="stretch">
                                                             <Text fontSize="md" mb={2}>CNI verso</Text>
-                                                            <Button variant="outline" width="100%">SÉLECTIONNER MON FICHIER</Button>
+                                                            <Button as="label" variant="outline" width="100%">
+                                                                SÉLECTIONNER MON FICHIER
+                                                                <Input type="file" display="none" onChange={handleFileUpload} />
+                                                            </Button>
                                                         </VStack>
                                                     </HStack>
                                                 </TabPanel>
                                                 <TabPanel>
                                                     <Text fontSize="md" mb={2}>Passeport</Text>
-                                                    <Button variant="outline" width="100%">SÉLECTIONNER MON FICHIER</Button>
+                                                    <Button as="label" variant="outline" width="100%">
+                                                        SÉLECTIONNER MON FICHIER
+                                                        <Input type="file" display="none" onChange={handleFileUpload} />
+                                                    </Button>
                                                 </TabPanel>
                                             </TabPanels>
                                         </Tabs>
