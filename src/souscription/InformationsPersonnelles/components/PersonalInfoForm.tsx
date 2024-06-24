@@ -35,21 +35,64 @@ const theme = extendTheme({
         orange: '#FF8C00',
         green: {
             400: '#38A169',
+            500: '#2F855A',
         },
         blue: {
             400: '#3182CE',
+        },
+    },
+    components: {
+        CustomInput: {
+            baseStyle: {
+                borderColor: 'gray.200',
+                _hover: {
+                    borderColor: 'gray.500',
+                },
+                _focus: {
+                    borderColor: 'gray.500',
+                    boxShadow: '0 0 0 1px gray.500',
+                },
+            },
         },
     },
 });
 
 const CustomInput: React.FC<InputProps> = (props) => {
     const styles = useStyleConfig("CustomInput");
-    return <Input sx={styles} {...props} />;
+    const filledStyles = props.value ? {
+        borderColor: 'green.500',
+        color: 'green.500',
+        boxShadow: '0 0 0 1px green.500',
+    } : {};
+
+    return (
+        <Input
+            sx={{
+                ...styles,
+                ...filledStyles,
+            }}
+            {...props}
+        />
+    );
 };
 
 const CustomSelect: React.FC<SelectProps> = (props) => {
     const styles = useStyleConfig("CustomInput");
-    return <Select sx={styles} {...props} />;
+    const filledStyles = props.value ? {
+        borderColor: 'green.500',
+        color: 'green.500',
+        boxShadow: '0 0 0 1px green.500',
+    } : {};
+
+    return (
+        <Select
+            sx={{
+                ...styles,
+                ...filledStyles,
+            }}
+            {...props}
+        />
+    );
 };
 
 const PersonalInfoForm: React.FC = () => {
