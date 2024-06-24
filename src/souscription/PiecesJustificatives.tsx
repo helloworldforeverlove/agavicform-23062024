@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     ChakraProvider,
     extendTheme,
@@ -19,8 +19,10 @@ import {
     Alert,
     AlertIcon,
     AlertDescription,
+    CloseButton,
 } from '@chakra-ui/react';
 import { FaIdCard, FaHome, FaUniversity } from 'react-icons/fa';
+import { FcManager } from 'react-icons/fc';
 
 const theme = extendTheme({
     colors: {
@@ -31,7 +33,10 @@ const theme = extendTheme({
         },
         white: '#FFFFFF',
         blue: '#3182CE',
-        orange: '#FF8C00',
+        green: {
+            100: '#C6F6D5',
+            400: '#48BB78',
+        },
     },
     components: {
         FileUploadButton: {
@@ -48,8 +53,13 @@ const theme = extendTheme({
                 transition: 'all 0.2s',
                 borderRadius: 'md',
                 padding: 4,
-                width: '120px',
-                height: '120px',
+                width: '140px',
+                height: '140px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                textAlign: 'center',
             },
         },
     },
@@ -62,7 +72,7 @@ const FileUploadButton: React.FC<{ label: string, icon: React.ElementType, onCli
         <Button variant="outline" sx={styles} onClick={onClick}>
             <VStack spacing={2}>
                 <Icon as={icon} w={8} h={8} />
-                <Text>{label}</Text>
+                <Text fontSize="sm" textAlign="center" whiteSpace="normal">{label}</Text>
             </VStack>
         </Button>
     );
@@ -90,35 +100,38 @@ const PiecesJustificatives: React.FC = () => {
                 </HStack>
             </Box>
 
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isOpen={isOpen} onClose={onClose} size="lg">
                 <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>
+                <ModalContent borderRadius="md" boxShadow="lg">
+                    <ModalHeader display="flex" justifyContent="space-between" alignItems="center" bg="green.100" color="white" borderTopRadius="md">
                         <HStack>
-                            <Icon as={FaIdCard} />
-                            <Text>PIÈCE D'IDENTITÉ</Text>
+                            <Icon as={FcManager} w={6} h={6} />
+                            <Text ml={2}>PIÈCE D'IDENTITÉ</Text>
                         </HStack>
+                        <CloseButton color="white" onClick={onClose} size="lg" />
                     </ModalHeader>
-                    <ModalBody>
-                        <Alert status="warning" mb={2}>
-                            <AlertIcon />
-                            <AlertDescription>La pièce d'identité doit être EN COULEUR.</AlertDescription>
-                        </Alert>
-                        <Alert status="warning" mb={2}>
-                            <AlertIcon />
-                            <AlertDescription>La pièce d'identité doit être ENTIERE (non coupée et pas de doigt visible).</AlertDescription>
-                        </Alert>
-                        <Alert status="warning" mb={2}>
-                            <AlertIcon />
-                            <AlertDescription>La pièce d'identité doit comprendre le RECTO et le VERSO (avec la page SIGNATURE pour le passeport).</AlertDescription>
-                        </Alert>
-                        <Alert status="warning" mb={2}>
-                            <AlertIcon />
-                            <AlertDescription>La pièce d'identité doit être EN COURS DE VALIDITÉ.</AlertDescription>
-                        </Alert>
+                    <ModalBody p={6}>
+                        <VStack spacing={4} align="start">
+                            <Alert status="warning" borderRadius="md" bg="green.100">
+                                <AlertIcon />
+                                <AlertDescription>La pièce d'identité doit être <strong>EN COULEUR</strong>.</AlertDescription>
+                            </Alert>
+                            <Alert status="warning" borderRadius="md" bg="green.100">
+                                <AlertIcon />
+                                <AlertDescription>La pièce d'identité doit être <strong>ENTIÈRE</strong> (non coupée et pas de doigt visible).</AlertDescription>
+                            </Alert>
+                            <Alert status="warning" borderRadius="md" bg="green.100">
+                                <AlertIcon />
+                                <AlertDescription>La pièce d'identité doit comprendre le <strong>RECTO</strong> et le <strong>VERSO</strong> (avec la page SIGNATURE pour le passeport).</AlertDescription>
+                            </Alert>
+                            <Alert status="warning" borderRadius="md" bg="green.100">
+                                <AlertIcon />
+                                <AlertDescription>La pièce d'identité doit être <strong>EN COURS DE VALIDITÉ</strong>.</AlertDescription>
+                            </Alert>
+                        </VStack>
                     </ModalBody>
                     <ModalFooter>
-                        <Button colorScheme="orange" onClick={onClose}>J'AI LU ET COMPRIS</Button>
+                        <Button colorScheme="green" onClick={onClose} width="100%">J'AI LU ET COMPRIS</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
