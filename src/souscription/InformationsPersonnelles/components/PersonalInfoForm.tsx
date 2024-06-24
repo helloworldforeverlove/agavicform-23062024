@@ -27,6 +27,7 @@ import { useNavigate } from 'react-router-dom';
 import { WarningIcon } from '@chakra-ui/icons';
 import { useUuid } from './../../../context/UuidContext';
 import Stepper from '../../../components/Stepper';
+import CountriesDropdown from './CountriesDropdown';
 
 const theme = extendTheme({
     colors: {
@@ -487,17 +488,12 @@ const PersonalInfoForm: React.FC = () => {
 
                     <FormControl isInvalid={errors.paysNationalite}>
                         <Text fontSize="md" mb={2}>Pays de nationalité</Text>
-                        <CustomSelect
+                        <CountriesDropdown
                             name="paysNationalite"
                             value={formValues.paysNationalite}
                             onChange={handleInputChange}
                             mb={4}
-                        >
-                            <option value="">Veuillez sélectionner</option>
-                            <option value="france">France</option>
-                            <option value="usa">USA</option>
-                            {/* Add other countries as needed */}
-                        </CustomSelect>
+                        />
                         {errors.paysNationalite && (
                             <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
                                 <AlertIcon color="orange.400" />
