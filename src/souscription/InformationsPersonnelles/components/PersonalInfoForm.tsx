@@ -162,6 +162,16 @@ const PersonalInfoForm: React.FC = () => {
     const cancelRef = useRef<HTMLButtonElement>(null);
     const navigate = useNavigate();
     const { uuid, updateResponse, getResponse } = useUuid();
+    const formatPhoneNumber = (value: string): string => {
+        // Remove all non-digit characters
+        const cleaned = ('' + value).replace(/\D/g, '');
+        // Match the cleaned input and format it
+        const match = cleaned.match(/^(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/);
+        if (match) {
+            return `${match[1]} ${match[2]} ${match[3]} ${match[4]} ${match[5]}`;
+        }
+        return value;
+    };    
 
     useEffect(() => {
         const fetchResponse = async () => {
@@ -209,7 +219,7 @@ const PersonalInfoForm: React.FC = () => {
                 city: city || '',
                 paysAdresse: paysAdresse || '',
                 email: email || '',
-                phoneNumber: phoneNumber || '',
+                phoneNumber: phoneNumber ? formatPhoneNumber(phoneNumber) : '',
                 vousEtes: vousEtes || '',
                 tns: tns || '',
                 secteurActivite: secteurActivite || '',
@@ -225,17 +235,13 @@ const PersonalInfoForm: React.FC = () => {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        setFormValues({
-            ...formValues,
-            [name]: value,
-        });
-    };
 
-    const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const formattedPhoneNumber = e.target.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1 ');
+        // Format phone number if the field is phoneNumber
+        const formattedValue = name === 'phoneNumber' ? formatPhoneNumber(value) : value;
+
         setFormValues({
             ...formValues,
-            phoneNumber: formattedPhoneNumber,
+            [name]: formattedValue,
         });
     };
 
@@ -703,9 +709,9 @@ const PersonalInfoForm: React.FC = () => {
                                     <Text fontSize="md" mb={2}>Numéro de téléphone mobile</Text>
                                     <CustomInput
                                         name="phoneNumber"
-                                        placeholder="06 12 34 56 78"
+                                        placeholder="06 10 00 00 00"
                                         value={formValues.phoneNumber}
-                                        onChange={handlePhoneNumberChange}
+                                        onChange={handleInputChange}
                                     />
                                 </FormControl>
                             </HStack>
