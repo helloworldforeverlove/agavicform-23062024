@@ -113,6 +113,11 @@ const PersonalInfoForm: React.FC = () => {
         nationalite: '',
         paysNationalite: '',
         connuYomoni: '',
+        street: '',
+        additionalInfo: '',
+        postalCode: '',
+        city: '',
+        paysAdresse: '',
     });
 
     const [errors, setErrors] = useState({
@@ -127,6 +132,10 @@ const PersonalInfoForm: React.FC = () => {
         nationalite: false,
         paysNationalite: false,
         connuYomoni: false,
+        street: false,
+        postalCode: false,
+        city: false,
+        paysAdresse: false,
     });
 
     const [isAlertOpen, setIsAlertOpen] = useState(false);
@@ -148,6 +157,11 @@ const PersonalInfoForm: React.FC = () => {
             const nationalite = await getResponse(34); // 'nationalite' is step 34
             const paysNationalite = await getResponse(35); // 'paysNationalite' is step 35
             const connuYomoni = await getResponse(36); // 'connuYomoni' is step 36
+            const street = await getResponse(37); // 'street' is step 37
+            const additionalInfo = await getResponse(38); // 'additionalInfo' is step 38
+            const postalCode = await getResponse(39); // 'postalCode' is step 39
+            const city = await getResponse(40); // 'city' is step 40
+            const paysAdresse = await getResponse(41); // 'paysAdresse' is step 41
 
             setFormValues({
                 civilite: civilite || '',
@@ -161,6 +175,11 @@ const PersonalInfoForm: React.FC = () => {
                 nationalite: nationalite || '',
                 paysNationalite: paysNationalite || '',
                 connuYomoni: connuYomoni || '',
+                street: street || '',
+                additionalInfo: additionalInfo || '',
+                postalCode: postalCode || '',
+                city: city || '',
+                paysAdresse: paysAdresse || '',
             });
         };
 
@@ -195,6 +214,10 @@ const PersonalInfoForm: React.FC = () => {
             nationalite: formValues.nationalite === '',
             paysNationalite: formValues.paysNationalite === '',
             connuYomoni: formValues.connuYomoni === '',
+            street: formValues.street === '',
+            postalCode: formValues.postalCode === '',
+            city: formValues.city === '',
+            paysAdresse: formValues.paysAdresse === '',
         };
 
         setErrors(newErrors);
@@ -238,6 +261,11 @@ const PersonalInfoForm: React.FC = () => {
             await updateResponse(34, formValues.nationalite);
             await updateResponse(35, formValues.paysNationalite);
             await updateResponse(36, formValues.connuYomoni);
+            await updateResponse(37, formValues.street);
+            await updateResponse(38, formValues.additionalInfo);
+            await updateResponse(39, formValues.postalCode);
+            await updateResponse(40, formValues.city);
+            await updateResponse(41, formValues.paysAdresse);
 
             // Save data to the database
             await saveDataToDatabase({
@@ -252,6 +280,11 @@ const PersonalInfoForm: React.FC = () => {
                 step34: formValues.nationalite,
                 step35: formValues.paysNationalite,
                 step36: formValues.connuYomoni,
+                step37: formValues.street,
+                step38: formValues.additionalInfo,
+                step39: formValues.postalCode,
+                step40: formValues.city,
+                step41: formValues.paysAdresse,
             });
 
             navigate('/next-step'); // Replace with the actual next step
@@ -523,6 +556,65 @@ const PersonalInfoForm: React.FC = () => {
                             </Alert>
                         )}
                     </FormControl>
+
+                    <Box mt={8}>
+                        <Text fontSize="lg" fontWeight="bold" mb={4}>Votre adresse fiscale</Text>
+                        <VStack spacing={4} align="stretch">
+                            <HStack spacing={4}>
+                                <FormControl isInvalid={errors.street}>
+                                    <Text fontSize="md" mb={2}>Numéro et nom de rue</Text>
+                                    <CustomInput
+                                        name="street"
+                                        placeholder="Indiquez un lieu"
+                                        value={formValues.street}
+                                        onChange={handleInputChange}
+                                    />
+                                </FormControl>
+                                <FormControl>
+                                    <Text fontSize="md" mb={2}>Informations complémentaires</Text>
+                                    <CustomInput
+                                        name="additionalInfo"
+                                        placeholder="FACULTATIF"
+                                        value={formValues.additionalInfo}
+                                        onChange={handleInputChange}
+                                    />
+                                </FormControl>
+                            </HStack>
+                            <HStack spacing={4}>
+                                <FormControl isInvalid={errors.postalCode}>
+                                    <Text fontSize="md" mb={2}>Code postal</Text>
+                                    <CustomInput
+                                        name="postalCode"
+                                        value={formValues.postalCode}
+                                        onChange={handleInputChange}
+                                    />
+                                </FormControl>
+                                <FormControl isInvalid={errors.city}>
+                                    <Text fontSize="md" mb={2}>Ville</Text>
+                                    <CustomInput
+                                        name="city"
+                                        placeholder="Recherchez le nom de la ville"
+                                        value={formValues.city}
+                                        onChange={handleInputChange}
+                                    />
+                                </FormControl>
+                            </HStack>
+                            <FormControl isInvalid={errors.paysAdresse}>
+                                <Text fontSize="md" mb={2}>Pays</Text>
+                                <CountriesDropdown
+                                    name="paysAdresse"
+                                    value={formValues.paysAdresse}
+                                    onChange={handleInputChange}
+                                />
+                                {errors.paysAdresse && (
+                                    <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                        <AlertIcon color="orange.400" />
+                                        <AlertDescription color="orange.600">Veuillez sélectionner un pays.</AlertDescription>
+                                    </Alert>
+                                )}
+                            </FormControl>
+                        </VStack>
+                    </Box>
                 </VStack>
 
                 <Box mt={8} display="flex" justifyContent="space-between">
