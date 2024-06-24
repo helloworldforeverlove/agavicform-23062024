@@ -132,12 +132,12 @@ const PersonalInfoForm: React.FC = () => {
         const fetchResponse = async () => {
             const civilite = await getResponse(27); // 'civilite' is step 27
             const dateDeNaissance = await getResponse(5); // 'dateDeNaissance' is step 5
-            const nom = await getResponse(29); // 'nom' is step 29
-            const prenom = await getResponse(30); // 'prenom' is step 30
-            const paysDeNaissance = await getResponse(31); // 'paysDeNaissance' is step 31
-            const lieuDeNaissance = await getResponse(32); // 'lieuDeNaissance' is step 32
-            const situationFamiliale = await getResponse(33); // 'situationFamiliale' is step 33
-            const capaciteJuridique = await getResponse(34); // 'capaciteJuridique' is step 34
+            const nom = await getResponse(28); // 'nom' is step 28
+            const prenom = await getResponse(29); // 'prenom' is step 29
+            const paysDeNaissance = await getResponse(30); // 'paysDeNaissance' is step 30
+            const lieuDeNaissance = await getResponse(31); // 'lieuDeNaissance' is step 31
+            const situationFamiliale = await getResponse(32); // 'situationFamiliale' is step 32
+            const capaciteJuridique = await getResponse(33); // 'capaciteJuridique' is step 33
 
             setFormValues({
                 civilite: civilite || '',
@@ -213,23 +213,23 @@ const PersonalInfoForm: React.FC = () => {
         if (validateForm()) {
             await updateResponse(27, formValues.civilite);
             await updateResponse(5, formValues.dateDeNaissance);
-            await updateResponse(29, formValues.nom);
-            await updateResponse(30, formValues.prenom);
-            await updateResponse(31, formValues.paysDeNaissance);
-            await updateResponse(32, formValues.lieuDeNaissance);
-            await updateResponse(33, formValues.situationFamiliale);
-            await updateResponse(34, formValues.capaciteJuridique);
+            await updateResponse(28, formValues.nom);
+            await updateResponse(29, formValues.prenom);
+            await updateResponse(30, formValues.paysDeNaissance);
+            await updateResponse(31, formValues.lieuDeNaissance);
+            await updateResponse(32, formValues.situationFamiliale);
+            await updateResponse(33, formValues.capaciteJuridique);
 
             // Save data to the database
             await saveDataToDatabase({
                 step27: formValues.civilite,
                 step5: formValues.dateDeNaissance,
-                step29: formValues.nom,
-                step30: formValues.prenom,
-                step31: formValues.paysDeNaissance,
-                step32: formValues.lieuDeNaissance,
-                step33: formValues.situationFamiliale,
-                step34: formValues.capaciteJuridique,
+                step28: formValues.nom,
+                step29: formValues.prenom,
+                step30: formValues.paysDeNaissance,
+                step31: formValues.lieuDeNaissance,
+                step32: formValues.situationFamiliale,
+                step33: formValues.capaciteJuridique,
             });
 
             navigate('/next-step'); // Replace with the actual next step
