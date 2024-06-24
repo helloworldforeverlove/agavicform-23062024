@@ -1,4 +1,3 @@
-// src/pages/PersonalInfoForm.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import {
     ChakraProvider,
@@ -61,6 +60,8 @@ const PersonalInfoForm: React.FC = () => {
         prenom: '',
         paysDeNaissance: '',
         lieuDeNaissance: '',
+        situationFamiliale: '',
+        capaciteJuridique: '',
     });
 
     const [errors, setErrors] = useState({
@@ -70,6 +71,8 @@ const PersonalInfoForm: React.FC = () => {
         prenom: false,
         paysDeNaissance: false,
         lieuDeNaissance: false,
+        situationFamiliale: false,
+        capaciteJuridique: false,
     });
 
     const [isAlertOpen, setIsAlertOpen] = useState(false);
@@ -86,6 +89,8 @@ const PersonalInfoForm: React.FC = () => {
             const prenom = await getResponse(30); // 'prenom' is step 30
             const paysDeNaissance = await getResponse(31); // 'paysDeNaissance' is step 31
             const lieuDeNaissance = await getResponse(32); // 'lieuDeNaissance' is step 32
+            const situationFamiliale = await getResponse(33); // 'situationFamiliale' is step 33
+            const capaciteJuridique = await getResponse(34); // 'capaciteJuridique' is step 34
 
             setFormValues({
                 civilite: civilite || '',
@@ -94,6 +99,8 @@ const PersonalInfoForm: React.FC = () => {
                 prenom: prenom || '',
                 paysDeNaissance: paysDeNaissance || '',
                 lieuDeNaissance: lieuDeNaissance || '',
+                situationFamiliale: situationFamiliale || '',
+                capaciteJuridique: capaciteJuridique || '',
             });
         };
 
@@ -123,6 +130,8 @@ const PersonalInfoForm: React.FC = () => {
             prenom: formValues.prenom === '',
             paysDeNaissance: formValues.paysDeNaissance === '',
             lieuDeNaissance: formValues.lieuDeNaissance === '',
+            situationFamiliale: formValues.situationFamiliale === '',
+            capaciteJuridique: formValues.capaciteJuridique === '',
         };
 
         setErrors(newErrors);
@@ -161,6 +170,8 @@ const PersonalInfoForm: React.FC = () => {
             await updateResponse(30, formValues.prenom);
             await updateResponse(31, formValues.paysDeNaissance);
             await updateResponse(32, formValues.lieuDeNaissance);
+            await updateResponse(33, formValues.situationFamiliale);
+            await updateResponse(34, formValues.capaciteJuridique);
 
             // Save data to the database
             await saveDataToDatabase({
@@ -170,6 +181,8 @@ const PersonalInfoForm: React.FC = () => {
                 step30: formValues.prenom,
                 step31: formValues.paysDeNaissance,
                 step32: formValues.lieuDeNaissance,
+                step33: formValues.situationFamiliale,
+                step34: formValues.capaciteJuridique,
             });
 
             navigate('/next-step'); // Replace with the actual next step
@@ -256,33 +269,69 @@ const PersonalInfoForm: React.FC = () => {
                         </Box>
                     </HStack>
 
-                    <Box>
-                        <Text fontSize="md" mb={2}>Pays de naissance</Text>
-                        <CustomSelect
-                            name="paysDeNaissance"
-                            value={formValues.paysDeNaissance}
-                            onChange={handleInputChange}
-                            isInvalid={errors.paysDeNaissance}
-                            mb={4}
-                        >
-                            <option value="">Veuillez sélectionner</option>
-                            <option value="france">France</option>
-                            <option value="usa">USA</option>
-                            {/* Add other countries as needed */}
-                        </CustomSelect>
-                    </Box>
+                    <HStack spacing={4} mb={4}>
+                        <Box flex="1">
+                            <Text fontSize="md" mb={2}>Pays de naissance</Text>
+                            <CustomSelect
+                                name="paysDeNaissance"
+                                value={formValues.paysDeNaissance}
+                                onChange={handleInputChange}
+                                isInvalid={errors.paysDeNaissance}
+                                mb={4}
+                            >
+                                <option value="">Veuillez sélectionner</option>
+                                <option value="france">France</option>
+                                <option value="usa">USA</option>
+                                {/* Add other countries as needed */}
+                            </CustomSelect>
+                        </Box>
 
-                    <Box>
-                        <Text fontSize="md" mb={2}>Lieu de naissance</Text>
-                        <CustomInput
-                            type="text"
-                            name="lieuDeNaissance"
-                            value={formValues.lieuDeNaissance}
-                            onChange={handleInputChange}
-                            isInvalid={errors.lieuDeNaissance}
-                            mb={4}
-                        />
-                    </Box>
+                        <Box flex="1">
+                            <Text fontSize="md" mb={2}>Lieu de naissance</Text>
+                            <CustomInput
+                                type="text"
+                                name="lieuDeNaissance"
+                                value={formValues.lieuDeNaissance}
+                                onChange={handleInputChange}
+                                isInvalid={errors.lieuDeNaissance}
+                                mb={4}
+                            />
+                        </Box>
+                    </HStack>
+
+                    <HStack spacing={4} mb={4}>
+                        <Box flex="1">
+                            <Text fontSize="md" mb={2}>Situation familiale</Text>
+                            <CustomSelect
+                                name="situationFamiliale"
+                                value={formValues.situationFamiliale}
+                                onChange={handleInputChange}
+                                isInvalid={errors.situationFamiliale}
+                                mb={4}
+                            >
+                                <option value="">Veuillez sélectionner</option>
+                                <option value="single">Célibataire</option>
+                                <option value="married">Marié(e)</option>
+                                {/* Add other options as needed */}
+                            </CustomSelect>
+                        </Box>
+
+                        <Box flex="1">
+                            <Text fontSize="md" mb={2}>Capacité juridique</Text>
+                            <CustomSelect
+                                name="capaciteJuridique"
+                                value={formValues.capaciteJuridique}
+                                onChange={handleInputChange}
+                                isInvalid={errors.capaciteJuridique}
+                                mb={4}
+                            >
+                                <option value="">Veuillez sélectionner</option>
+                                <option value="full">Pleine capacité</option>
+                                <option value="limited">Capacité limitée</option>
+                                {/* Add other options as needed */}
+                            </CustomSelect>
+                        </Box>
+                    </HStack>
                 </VStack>
 
                 <Box mt={8} display="flex" justifyContent="space-between">
