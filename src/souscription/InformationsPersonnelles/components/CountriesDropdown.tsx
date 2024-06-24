@@ -1,5 +1,5 @@
 import React from 'react';
-import { Select, SelectProps } from '@chakra-ui/react';
+import { Select, SelectProps, useStyleConfig } from '@chakra-ui/react';
 
 const countries = [
     "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", 
@@ -30,11 +30,24 @@ const countries = [
 ];
 
 const CountriesDropdown: React.FC<SelectProps> = (props) => {
+    const styles = useStyleConfig("CustomInput");
+    const filledStyles = props.value ? {
+        borderColor: 'green.500',
+        color: 'green.500',
+        boxShadow: '0 0 0 1px green.500',
+    } : {};
+
     return (
-        <Select {...props}>
+        <Select
+            sx={{
+                ...styles,
+                ...filledStyles,
+            }}
+            {...props}
+        >
             <option value="">Veuillez sélectionner</option>
             {countries.map((country) => (
-                <option key={country} value={country.toLowerCase()}>{country}</option>
+                <option key={country} value={country}>{country}</option>
             ))}
         </Select>
     );
