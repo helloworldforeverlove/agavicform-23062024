@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     ChakraProvider,
     extendTheme,
@@ -20,6 +20,11 @@ import {
     AlertIcon,
     AlertDescription,
     CloseButton,
+    Tabs,
+    TabList,
+    TabPanels,
+    Tab,
+    TabPanel,
 } from '@chakra-ui/react';
 import { FaIdCard, FaHome, FaUniversity } from 'react-icons/fa';
 import { FcManager } from 'react-icons/fc';
@@ -36,6 +41,7 @@ const theme = extendTheme({
         green: {
             100: '#C6F6D5',
             400: '#48BB78',
+            900: '#22543D',
         },
     },
     components: {
@@ -80,6 +86,9 @@ const FileUploadButton: React.FC<{ label: string, icon: React.ElementType, onCli
 
 const PiecesJustificatives: React.FC = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [step, setStep] = useState(1);
+
+    const handleNextStep = () => setStep(step + 1);
 
     return (
         <ChakraProvider theme={theme}>
@@ -90,7 +99,7 @@ const PiecesJustificatives: React.FC = () => {
                 <Text fontSize="md" mb={4} textAlign="center">
                     Veuillez joindre les pièces justificatives ci-dessous (numérisées ou photographiées en vous servant de votre mobile). Vous pouvez revenir à tout moment pour finaliser votre parcours. Vos pièces sont sauvegardées. Poids maximum de 3Mo pour les fichiers PDF.
                 </Text>
-                <Box bg="blue.900" color="white" px={4} py={1} borderRadius="md" mb={6} maxW="fit-content">
+                <Box bg="green.900" color="white" px={4} py={1} borderRadius="md" mb={6} maxW="fit-content">
                     <Text>HBKJ GG</Text>
                 </Box>
                 <HStack spacing={6} justifyContent="center">
@@ -100,10 +109,10 @@ const PiecesJustificatives: React.FC = () => {
                 </HStack>
             </Box>
 
-            <Modal isOpen={isOpen} onClose={onClose} size="lg">
+            <Modal isOpen={isOpen} onClose={onClose} size="xl">
                 <ModalOverlay />
                 <ModalContent borderRadius="md" boxShadow="lg">
-                    <ModalHeader display="flex" justifyContent="space-between" alignItems="center" bg="green.100" color="white" borderTopRadius="md">
+                    <ModalHeader display="flex" justifyContent="space-between" alignItems="center" bg="green.900" color="white" borderTopRadius="md">
                         <HStack>
                             <Icon as={FcManager} w={6} h={6} />
                             <Text ml={2}>PIÈCE D'IDENTITÉ</Text>
@@ -111,27 +120,70 @@ const PiecesJustificatives: React.FC = () => {
                         <CloseButton color="white" onClick={onClose} size="lg" />
                     </ModalHeader>
                     <ModalBody p={6}>
-                        <VStack spacing={4} align="start">
-                            <Alert status="warning" borderRadius="md" bg="green.100">
-                                <AlertIcon />
-                                <AlertDescription>La pièce d'identité doit être <strong>EN COULEUR</strong>.</AlertDescription>
-                            </Alert>
-                            <Alert status="warning" borderRadius="md" bg="green.100">
-                                <AlertIcon />
-                                <AlertDescription>La pièce d'identité doit être <strong>ENTIÈRE</strong> (non coupée et pas de doigt visible).</AlertDescription>
-                            </Alert>
-                            <Alert status="warning" borderRadius="md" bg="green.100">
-                                <AlertIcon />
-                                <AlertDescription>La pièce d'identité doit comprendre le <strong>RECTO</strong> et le <strong>VERSO</strong> (avec la page SIGNATURE pour le passeport).</AlertDescription>
-                            </Alert>
-                            <Alert status="warning" borderRadius="md" bg="green.100">
-                                <AlertIcon />
-                                <AlertDescription>La pièce d'identité doit être <strong>EN COURS DE VALIDITÉ</strong>.</AlertDescription>
-                            </Alert>
-                        </VStack>
+                        {step === 1 && (
+                            <VStack spacing={4} align="start">
+                                <Alert status="info" borderRadius="md" bg="green.100">
+                                    <AlertIcon />
+                                    <AlertDescription>La pièce d'identité doit être <strong>EN COULEUR</strong>.</AlertDescription>
+                                </Alert>
+                                <Alert status="info" borderRadius="md" bg="green.100">
+                                    <AlertIcon />
+                                    <AlertDescription>La pièce d'identité doit être <strong>ENTIÈRE</strong> (non coupée et pas de doigt visible).</AlertDescription>
+                                </Alert>
+                                <Alert status="info" borderRadius="md" bg="green.100">
+                                    <AlertIcon />
+                                    <AlertDescription>La première pièce d'identité doit être <strong>EN COURS DE VALIDITÉ</strong>.</AlertDescription>
+                                </Alert>
+                                <Alert status="info" borderRadius="md" bg="green.100">
+                                    <AlertIcon />
+                                    <AlertDescription>La pièce d'identité doit comprendre le <strong>RECTO et le VERSO</strong>.</AlertDescription>
+                                </Alert>
+                                <Alert status="info" borderRadius="md" bg="green.100">
+                                    <AlertIcon />
+                                    <AlertDescription>Vous pouvez déposer un fichier unique contenant à la fois le recto et le verso de la carte nationale d'identité (CNI) en tant que "CNI recto".</AlertDescription>
+                                </Alert>
+                                <Alert status="info" borderRadius="md" bg="green.100">
+                                    <AlertIcon />
+                                    <AlertDescription>Le passeport doit comprendre la <strong>page SIGNATURE</strong> avec la <strong>page PHOTO</strong>.</AlertDescription>
+                                </Alert>
+                            </VStack>
+                        )}
+
+                        {step === 2 && (
+                            <VStack spacing={4} align="start">
+                                <Tabs isFitted variant="enclosed">
+                                    <TabList mb="1em">
+                                        <Tab>PIÈCE D'IDENTITÉ</Tab>
+                                        <Tab>PASSEPORT</Tab>
+                                    </TabList>
+                                    <TabPanels>
+                                        <TabPanel>
+                                            <HStack spacing={4}>
+                                                <VStack flex={1} align="stretch">
+                                                    <Text fontSize="md" mb={2}>CNI recto</Text>
+                                                    <Button variant="outline" width="100%">SÉLECTIONNER MON FICHIER</Button>
+                                                </VStack>
+                                                <VStack flex={1} align="stretch">
+                                                    <Text fontSize="md" mb={2}>CNI verso</Text>
+                                                    <Button variant="outline" width="100%">SÉLECTIONNER MON FICHIER</Button>
+                                                </VStack>
+                                            </HStack>
+                                        </TabPanel>
+                                        <TabPanel>
+                                            <Text fontSize="md" mb={2}>Passeport</Text>
+                                            <Button variant="outline" width="100%">SÉLECTIONNER MON FICHIER</Button>
+                                        </TabPanel>
+                                    </TabPanels>
+                                </Tabs>
+                            </VStack>
+                        )}
                     </ModalBody>
                     <ModalFooter>
-                        <Button colorScheme="green" onClick={onClose} width="100%">J'AI LU ET COMPRIS</Button>
+                        {step === 1 ? (
+                            <Button colorScheme="green" onClick={handleNextStep} width="100%">J'AI LU ET COMPRIS</Button>
+                        ) : (
+                            <Button colorScheme="green" onClick={onClose} width="100%">FERMER</Button>
+                        )}
                     </ModalFooter>
                 </ModalContent>
             </Modal>
