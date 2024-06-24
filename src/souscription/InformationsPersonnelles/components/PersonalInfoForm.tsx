@@ -18,6 +18,10 @@ import {
     useStyleConfig,
     InputProps,
     SelectProps,
+    FormControl,
+    Alert,
+    AlertIcon,
+    AlertDescription,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { WarningIcon } from '@chakra-ui/icons';
@@ -276,50 +280,64 @@ const PersonalInfoForm: React.FC = () => {
                         </HStack>
                     </Box>
 
-                    <Box>
+                    <FormControl isInvalid={errors.dateDeNaissance}>
                         <Text fontSize="md" mb={2}>Date de naissance</Text>
                         <CustomInput
                             type="date"
                             name="dateDeNaissance"
                             value={formValues.dateDeNaissance}
                             onChange={handleInputChange}
-                            isInvalid={errors.dateDeNaissance}
                             mb={4}
                         />
-                    </Box>
+                        {errors.dateDeNaissance && (
+                            <Alert status="warning" mt={2}>
+                                <AlertIcon />
+                                <AlertDescription>Veuillez entrer une date de naissance.</AlertDescription>
+                            </Alert>
+                        )}
+                    </FormControl>
 
                     <HStack spacing={4} mb={4}>
-                        <Box flex="1">
+                        <FormControl isInvalid={errors.nom}>
                             <Text fontSize="md" mb={2}>Nom</Text>
                             <CustomInput
                                 type="text"
                                 name="nom"
                                 value={formValues.nom}
                                 onChange={handleInputChange}
-                                isInvalid={errors.nom}
                             />
-                        </Box>
+                            {errors.nom && (
+                                <Alert status="warning" mt={2}>
+                                    <AlertIcon />
+                                    <AlertDescription>Le nom doit être écrit en entier comme sur votre pièce d'identité.</AlertDescription>
+                                </Alert>
+                            )}
+                        </FormControl>
 
-                        <Box flex="1">
+                        <FormControl isInvalid={errors.prenom}>
                             <Text fontSize="md" mb={2}>Prénom</Text>
                             <CustomInput
                                 type="text"
                                 name="prenom"
                                 value={formValues.prenom}
                                 onChange={handleInputChange}
-                                isInvalid={errors.prenom}
                             />
-                        </Box>
+                            {errors.prenom && (
+                                <Alert status="warning" mt={2}>
+                                    <AlertIcon />
+                                    <AlertDescription>Uniquement le 1er prénom de votre pièce d'identité.</AlertDescription>
+                                </Alert>
+                            )}
+                        </FormControl>
                     </HStack>
 
                     <HStack spacing={4} mb={4}>
-                        <Box flex="1">
+                        <FormControl isInvalid={errors.paysDeNaissance}>
                             <Text fontSize="md" mb={2}>Pays de naissance</Text>
                             <CustomSelect
                                 name="paysDeNaissance"
                                 value={formValues.paysDeNaissance}
                                 onChange={handleInputChange}
-                                isInvalid={errors.paysDeNaissance}
                                 mb={4}
                             >
                                 <option value="">Veuillez sélectionner</option>
@@ -327,29 +345,39 @@ const PersonalInfoForm: React.FC = () => {
                                 <option value="usa">USA</option>
                                 {/* Add other countries as needed */}
                             </CustomSelect>
-                        </Box>
+                            {errors.paysDeNaissance && (
+                                <Alert status="warning" mt={2}>
+                                    <AlertIcon />
+                                    <AlertDescription>Veuillez sélectionner un pays de naissance.</AlertDescription>
+                                </Alert>
+                            )}
+                        </FormControl>
 
-                        <Box flex="1">
+                        <FormControl isInvalid={errors.lieuDeNaissance}>
                             <Text fontSize="md" mb={2}>Lieu de naissance</Text>
                             <CustomInput
                                 type="text"
                                 name="lieuDeNaissance"
                                 value={formValues.lieuDeNaissance}
                                 onChange={handleInputChange}
-                                isInvalid={errors.lieuDeNaissance}
                                 mb={4}
                             />
-                        </Box>
+                            {errors.lieuDeNaissance && (
+                                <Alert status="warning" mt={2}>
+                                    <AlertIcon />
+                                    <AlertDescription>Le lieu de naissance doit être orthographié comme sur votre pièce d'identité.</AlertDescription>
+                                </Alert>
+                            )}
+                        </FormControl>
                     </HStack>
 
                     <HStack spacing={4} mb={4}>
-                        <Box flex="1">
+                        <FormControl isInvalid={errors.situationFamiliale}>
                             <Text fontSize="md" mb={2}>Situation familiale</Text>
                             <CustomSelect
                                 name="situationFamiliale"
                                 value={formValues.situationFamiliale}
                                 onChange={handleInputChange}
-                                isInvalid={errors.situationFamiliale}
                                 mb={4}
                             >
                                 <option value="">Veuillez sélectionner</option>
@@ -357,15 +385,20 @@ const PersonalInfoForm: React.FC = () => {
                                 <option value="married">Marié(e)</option>
                                 {/* Add other options as needed */}
                             </CustomSelect>
-                        </Box>
+                            {errors.situationFamiliale && (
+                                <Alert status="warning" mt={2}>
+                                    <AlertIcon />
+                                    <AlertDescription>Veuillez sélectionner une situation familiale.</AlertDescription>
+                                </Alert>
+                            )}
+                        </FormControl>
 
-                        <Box flex="1">
+                        <FormControl isInvalid={errors.capaciteJuridique}>
                             <Text fontSize="md" mb={2}>Capacité juridique</Text>
                             <CustomSelect
                                 name="capaciteJuridique"
                                 value={formValues.capaciteJuridique}
                                 onChange={handleInputChange}
-                                isInvalid={errors.capaciteJuridique}
                                 mb={4}
                             >
                                 <option value="">Veuillez sélectionner</option>
@@ -373,7 +406,13 @@ const PersonalInfoForm: React.FC = () => {
                                 <option value="limited">Capacité limitée</option>
                                 {/* Add other options as needed */}
                             </CustomSelect>
-                        </Box>
+                            {errors.capaciteJuridique && (
+                                <Alert status="warning" mt={2}>
+                                    <AlertIcon />
+                                    <AlertDescription>Veuillez sélectionner une capacité juridique.</AlertDescription>
+                                </Alert>
+                            )}
+                        </FormControl>
                     </HStack>
                 </VStack>
 
