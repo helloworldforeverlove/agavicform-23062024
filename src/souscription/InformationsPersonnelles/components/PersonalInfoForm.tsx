@@ -24,7 +24,7 @@ import {
     AlertDescription,
     Tooltip,
 } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { WarningIcon } from '@chakra-ui/icons';
 import { useUuid } from './../../../context/UuidContext';
 import Stepper from '../../../components/Stepper';
@@ -418,7 +418,11 @@ const PersonalInfoForm: React.FC = () => {
                         />
                         <Alert status="info" mt={2} backgroundColor="blue.100" borderRadius="md">
                             <AlertIcon color="blue.400" />
-                            <AlertDescription color="blue.600">Vous pouvez modifier cette information à l'étape 2.</AlertDescription>
+                            <AlertDescription color="blue.600">
+                                <Link to="/quel-est-votre-date-de-naissance">
+                                    Vous pouvez modifier cette information à l'étape 5.
+                                </Link>
+                            </AlertDescription>
                         </Alert>
                         {errors.dateDeNaissance && (
                             <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
@@ -525,7 +529,9 @@ const PersonalInfoForm: React.FC = () => {
                                     </Alert>
                                 )}
                             </FormControl>
+                        </VStack>
 
+                        <VStack flex={1} align="stretch">
                             <FormControl isInvalid={errors.capaciteJuridique}>
                                 <Text fontSize="md" mb={2}>Capacité juridique</Text>
                                 <CustomSelect
