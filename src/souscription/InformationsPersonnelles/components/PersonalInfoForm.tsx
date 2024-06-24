@@ -22,6 +22,7 @@ import {
     Alert,
     AlertIcon,
     AlertDescription,
+    Tooltip,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { WarningIcon } from '@chakra-ui/icons';
@@ -227,6 +228,14 @@ const PersonalInfoForm: React.FC = () => {
         setFormValues({
             ...formValues,
             [name]: value,
+        });
+    };
+
+    const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const formattedPhoneNumber = e.target.value.replace(/\D/g, '').replace(/(\d{2})(?=\d)/g, '$1 ');
+        setFormValues({
+            ...formValues,
+            phoneNumber: formattedPhoneNumber,
         });
     };
 
@@ -516,9 +525,7 @@ const PersonalInfoForm: React.FC = () => {
                                     </Alert>
                                 )}
                             </FormControl>
-                        </VStack>
 
-                        <VStack flex={1} align="stretch">
                             <FormControl isInvalid={errors.capaciteJuridique}>
                                 <Text fontSize="md" mb={2}>Capacité juridique</Text>
                                 <CustomSelect
@@ -692,7 +699,7 @@ const PersonalInfoForm: React.FC = () => {
                                         name="phoneNumber"
                                         placeholder="06 12 34 56 78"
                                         value={formValues.phoneNumber}
-                                        onChange={handleInputChange}
+                                        onChange={handlePhoneNumberChange}
                                     />
                                 </FormControl>
                             </HStack>
@@ -712,11 +719,11 @@ const PersonalInfoForm: React.FC = () => {
                                         mb={4}
                                     >
                                         <option value="">Veuillez sélectionner</option>
-                                        <option value="Salarié(e)">Salarié(e)</option>
-                                        <option value="Indépendant(e)">Indépendant(e)</option>
-                                        <option value="Étudiant(e)">Étudiant(e)</option>
+                                        <option value="Actif(ve)">Actif(ve)</option>
+                                        <option value="Demandeur d'emploi">Demandeur d'emploi</option>
+                                        <option value="Etudiant(e)">Etudiant(e)</option>
                                         <option value="Retraité(e)">Retraité(e)</option>
-                                        <option value="Sans emploi">Sans emploi</option>
+                                        <option value="Autre inactif(ve)">Autre inactif(ve)</option>
                                     </CustomSelect>
                                     {errors.vousEtes && (
                                         <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
@@ -727,7 +734,12 @@ const PersonalInfoForm: React.FC = () => {
                                 </FormControl>
 
                                 <FormControl isInvalid={errors.tns}>
-                                    <Text fontSize="md" mb={2}>Êtes-vous Travailleur Non Salarié (TNS) ?</Text>
+                                    <Text fontSize="md" mb={2}>
+                                        Êtes-vous Travailleur Non Salarié (TNS) ?
+                                        <Tooltip label="Si vous êtes Auto-entrepreneur, en Entreprise individuelle (EIRL), en EURL, en SARL avec gérant majoritaire ou dans le cas de professions libérales et assimilées.">
+                                            <span> <i className="info-icon">i</i> </span>
+                                        </Tooltip>
+                                    </Text>
                                     <HStack justifyContent="center" mb={4}>
                                         <Button
                                             type="button"
@@ -776,14 +788,34 @@ const PersonalInfoForm: React.FC = () => {
                                         mb={4}
                                     >
                                         <option value="">Veuillez sélectionner</option>
-                                        <option value="Agriculture">Agriculture</option>
-                                        <option value="Industrie">Industrie</option>
-                                        <option value="Construction">Construction</option>
-                                        <option value="Commerce">Commerce</option>
-                                        <option value="Transports">Transports</option>
-                                        <option value="Services">Services</option>
-                                        <option value="Administration">Administration</option>
-                                        <option value="Autre">Autre</option>
+                                        <option value="Administration publique, Education, Formation">Administration publique, Education, Formation</option>
+                                        <option value="Aéronautique">Aéronautique</option>
+                                        <option value="Agroalimentaire">Agroalimentaire</option>
+                                        <option value="Audiovisuel">Audiovisuel</option>
+                                        <option value="Automobile">Automobile</option>
+                                        <option value="Banque, Assurance, Finance">Banque, Assurance, Finance</option>
+                                        <option value="Bois, Papier, Carton, Imprimerie">Bois, Papier, Carton, Imprimerie</option>
+                                        <option value="Chimie, Parachimie">Chimie, Parachimie</option>
+                                        <option value="Commerce de détail">Commerce de détail</option>
+                                        <option value="Commerce de l'art">Commerce de l'art</option>
+                                        <option value="Commerce du jeu">Commerce du jeu</option>
+                                        <option value="Communication, Documentation, Information, Marketing">Communication, Documentation, Information, Marketing</option>
+                                        <option value="Défense, Sécurité">Défense, Sécurité</option>
+                                        <option value="Electronique, Electricité">Electronique, Electricité</option>
+                                        <option value="Energie, Armement, Marchés publics">Energie, Armement, Marchés publics</option>
+                                        <option value="Etudes, Conseil">Etudes, Conseil</option>
+                                        <option value="Grande distribution">Grande distribution</option>
+                                        <option value="Immobilier, Bâtiment, Travaux Publics">Immobilier, Bâtiment, Travaux Publics</option>
+                                        <option value="Informatique">Informatique</option>
+                                        <option value="Justice, profession réglementée">Justice, profession réglementée</option>
+                                        <option value="Mécanique">Mécanique</option>
+                                        <option value="Métallurgie">Métallurgie</option>
+                                        <option value="Négoce, Import export">Négoce, Import export</option>
+                                        <option value="Restauration, Hébergement">Restauration, Hébergement</option>
+                                        <option value="Santé">Santé</option>
+                                        <option value="Sport">Sport</option>
+                                        <option value="Télécommunications">Télécommunications</option>
+                                        <option value="Transport, Logistique">Transport, Logistique</option>
                                     </CustomSelect>
                                     {errors.secteurActivite && (
                                         <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
@@ -802,14 +834,24 @@ const PersonalInfoForm: React.FC = () => {
                                         mb={4}
                                     >
                                         <option value="">Veuillez sélectionner</option>
-                                        <option value="Cadres">Cadres</option>
-                                        <option value="Professions intermédiaires">Professions intermédiaires</option>
-                                        <option value="Employés">Employés</option>
-                                        <option value="Ouvriers">Ouvriers</option>
-                                        <option value="Retraités">Retraités</option>
-                                        <option value="Étudiants">Étudiants</option>
-                                        <option value="Sans emploi">Sans emploi</option>
-                                        <option value="Autres">Autres</option>
+                                        <option value="Agriculteurs exploitants">Agriculteurs exploitants</option>
+                                        <option value="Artisans">Artisans</option>
+                                        <option value="Commerçants et assimilés">Commerçants et assimilés</option>
+                                        <option value="Chefs d'entreprise de 10 salariés ou plus">Chefs d'entreprise de 10 salariés ou plus</option>
+                                        <option value="Professions libérales et assimilés">Professions libérales et assimilés</option>
+                                        <option value="Cadres de la fonction publique, professions intellectuelles et artistiques">Cadres de la fonction publique, professions intellectuelles et artistiques</option>
+                                        <option value="Cadres d'entreprise">Cadres d'entreprise</option>
+                                        <option value="Professions intermédiaires de l'enseignement, de la santé, de la fonction publique et assimilés">Professions intermédiaires de l'enseignement, de la santé, de la fonction publique et assimilés</option>
+                                        <option value="Professions intermédiaires administratives et commerciales des entreprises">Professions intermédiaires administratives et commerciales des entreprises</option>
+                                        <option value="Techniciens">Techniciens</option>
+                                        <option value="Contremaîtres, agents de maîtrise">Contremaîtres, agents de maîtrise</option>
+                                        <option value="Employés de la fonction publique">Employés de la fonction publique</option>
+                                        <option value="Employés administratifs d'entreprise">Employés administratifs d'entreprise</option>
+                                        <option value="Employés de commerce">Employés de commerce</option>
+                                        <option value="Personnels des services directs aux particuliers">Personnels des services directs aux particuliers</option>
+                                        <option value="Ouvriers qualifiés">Ouvriers qualifiés</option>
+                                        <option value="Ouvriers non qualifiés">Ouvriers non qualifiés</option>
+                                        <option value="Ouvriers agricoles">Ouvriers agricoles</option>
                                     </CustomSelect>
                                     {errors.categorieSocioPro && (
                                         <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
