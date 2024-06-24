@@ -388,9 +388,13 @@ const PersonalInfoForm: React.FC = () => {
                                     mb={4}
                                 >
                                     <option value="">Veuillez sélectionner</option>
-                                    <option value="single">Célibataire</option>
-                                    <option value="married">Marié(e)</option>
-                                    {/* Add other options as needed */}
+                                    <option value="Célibataire">Célibataire</option>
+                                    <option value="Divorcé(e)">Divorcé(e)</option>
+                                    <option value="Marié(e)">Marié(e)</option>
+                                    <option value="Séparé(e)">Séparé(e)</option>
+                                    <option value="Union autre">Union autre</option>
+                                    <option value="Veuf(ve)">Veuf(ve)</option>
+                                    <option value="Pacsé(e)">Pacsé(e)</option>
                                 </CustomSelect>
                                 {errors.situationFamiliale && (
                                     <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
@@ -411,9 +415,9 @@ const PersonalInfoForm: React.FC = () => {
                                     mb={4}
                                 >
                                     <option value="">Veuillez sélectionner</option>
-                                    <option value="full">Pleine capacité</option>
-                                    <option value="limited">Capacité limitée</option>
-                                    {/* Add other options as needed */}
+                                    <option value="Majeur capable">Majeur capable</option>
+                                    <option value="Majeur sous tutelle">Majeur sous tutelle</option>
+                                    <option value="Majeur sous curatelle">Majeur sous curatelle</option>
                                 </CustomSelect>
                                 {errors.capaciteJuridique && (
                                     <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
