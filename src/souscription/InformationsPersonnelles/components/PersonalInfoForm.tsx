@@ -290,9 +290,9 @@ const PersonalInfoForm: React.FC = () => {
                             mb={4}
                         />
                         {errors.dateDeNaissance && (
-                            <Alert status="warning" mt={2}>
-                                <AlertIcon />
-                                <AlertDescription>Veuillez entrer une date de naissance.</AlertDescription>
+                            <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                <AlertIcon color="orange.400" />
+                                <AlertDescription color="orange.600">Veuillez entrer une date de naissance.</AlertDescription>
                             </Alert>
                         )}
                     </FormControl>
@@ -307,9 +307,9 @@ const PersonalInfoForm: React.FC = () => {
                                 onChange={handleInputChange}
                             />
                             {errors.nom && (
-                                <Alert status="warning" mt={2}>
-                                    <AlertIcon />
-                                    <AlertDescription>Le nom doit être écrit en entier comme sur votre pièce d'identité.</AlertDescription>
+                                <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                    <AlertIcon color="orange.400" />
+                                    <AlertDescription color="orange.600">Le nom doit être écrit en entier comme sur votre pièce d'identité.</AlertDescription>
                                 </Alert>
                             )}
                         </FormControl>
@@ -323,9 +323,9 @@ const PersonalInfoForm: React.FC = () => {
                                 onChange={handleInputChange}
                             />
                             {errors.prenom && (
-                                <Alert status="warning" mt={2}>
-                                    <AlertIcon />
-                                    <AlertDescription>Uniquement le 1er prénom de votre pièce d'identité.</AlertDescription>
+                                <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                    <AlertIcon color="orange.400" />
+                                    <AlertDescription color="orange.600">Uniquement le 1er prénom de votre pièce d'identité.</AlertDescription>
                                 </Alert>
                             )}
                         </FormControl>
@@ -346,9 +346,9 @@ const PersonalInfoForm: React.FC = () => {
                                 {/* Add other countries as needed */}
                             </CustomSelect>
                             {errors.paysDeNaissance && (
-                                <Alert status="warning" mt={2}>
-                                    <AlertIcon />
-                                    <AlertDescription>Veuillez sélectionner un pays de naissance.</AlertDescription>
+                                <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                    <AlertIcon color="orange.400" />
+                                    <AlertDescription color="orange.600">Veuillez sélectionner un pays de naissance.</AlertDescription>
                                 </Alert>
                             )}
                         </FormControl>
@@ -363,9 +363,9 @@ const PersonalInfoForm: React.FC = () => {
                                 mb={4}
                             />
                             {errors.lieuDeNaissance && (
-                                <Alert status="warning" mt={2}>
-                                    <AlertIcon />
-                                    <AlertDescription>Le lieu de naissance doit être orthographié comme sur votre pièce d'identité.</AlertDescription>
+                                <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                    <AlertIcon color="orange.400" />
+                                    <AlertDescription color="orange.600">Le lieu de naissance doit être orthographié comme sur votre pièce d'identité.</AlertDescription>
                                 </Alert>
                             )}
                         </FormControl>
@@ -386,9 +386,9 @@ const PersonalInfoForm: React.FC = () => {
                                 {/* Add other options as needed */}
                             </CustomSelect>
                             {errors.situationFamiliale && (
-                                <Alert status="warning" mt={2}>
-                                    <AlertIcon />
-                                    <AlertDescription>Veuillez sélectionner une situation familiale.</AlertDescription>
+                                <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                    <AlertIcon color="orange.400" />
+                                    <AlertDescription color="orange.600">Veuillez sélectionner une situation familiale.</AlertDescription>
                                 </Alert>
                             )}
                         </FormControl>
@@ -407,9 +407,9 @@ const PersonalInfoForm: React.FC = () => {
                                 {/* Add other options as needed */}
                             </CustomSelect>
                             {errors.capaciteJuridique && (
-                                <Alert status="warning" mt={2}>
-                                    <AlertIcon />
-                                    <AlertDescription>Veuillez sélectionner une capacité juridique.</AlertDescription>
+                                <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                    <AlertIcon color="orange.400" />
+                                    <AlertDescription color="orange.600">Veuillez sélectionner une capacité juridique.</AlertDescription>
                                 </Alert>
                             )}
                         </FormControl>
