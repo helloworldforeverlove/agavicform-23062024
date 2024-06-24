@@ -24,7 +24,7 @@ import {
     AlertDescription,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import { WarningIcon, InfoIcon } from '@chakra-ui/icons';
+import { WarningIcon } from '@chakra-ui/icons';
 import { useUuid } from './../../../context/UuidContext';
 import Stepper from '../../../components/Stepper';
 
@@ -301,116 +301,128 @@ const PersonalInfoForm: React.FC = () => {
                         )}
                     </FormControl>
 
-                    <HStack spacing={4} mb={4}>
-                        <FormControl isInvalid={errors.nom}>
-                            <Text fontSize="md" mb={2}>Nom</Text>
-                            <CustomInput
-                                type="text"
-                                name="nom"
-                                value={formValues.nom}
-                                onChange={handleInputChange}
-                            />
-                            <Alert status="warning" mt={2} backgroundColor="green.100" borderRadius="md">
-                                <AlertIcon color="green.400" />
-                                <AlertDescription color="green.600">Le nom doit être écrit en entier comme sur votre pièce d'identité.</AlertDescription>
-                            </Alert>
-                        </FormControl>
+                    <HStack spacing={4} mb={4} alignItems="start">
+                        <VStack flex={1} align="stretch">
+                            <FormControl isInvalid={errors.nom}>
+                                <Text fontSize="md" mb={2}>Nom</Text>
+                                <CustomInput
+                                    type="text"
+                                    name="nom"
+                                    value={formValues.nom}
+                                    onChange={handleInputChange}
+                                />
+                                <Alert status="warning" mt={2} backgroundColor="green.100" borderRadius="md">
+                                    <AlertIcon color="green.400" />
+                                    <AlertDescription color="green.600">Le nom doit être écrit en entier comme sur votre pièce d'identité.</AlertDescription>
+                                </Alert>
+                            </FormControl>
+                        </VStack>
 
-                        <FormControl isInvalid={errors.prenom}>
-                            <Text fontSize="md" mb={2}>Prénom</Text>
-                            <CustomInput
-                                type="text"
-                                name="prenom"
-                                value={formValues.prenom}
-                                onChange={handleInputChange}
-                            />
-                            <Alert status="warning" mt={2} backgroundColor="green.100" borderRadius="md">
-                                <AlertIcon color="green.400" />
-                                <AlertDescription color="green.600">Uniquement le 1er prénom de votre pièce d'identité. (aller jusqu'à la virgule) </AlertDescription>
-                            </Alert>
-                        </FormControl>
+                        <VStack flex={1} align="stretch">
+                            <FormControl isInvalid={errors.prenom}>
+                                <Text fontSize="md" mb={2}>Prénom</Text>
+                                <CustomInput
+                                    type="text"
+                                    name="prenom"
+                                    value={formValues.prenom}
+                                    onChange={handleInputChange}
+                                />
+                                <Alert status="warning" mt={2} backgroundColor="green.100" borderRadius="md">
+                                    <AlertIcon color="green.400" />
+                                    <AlertDescription color="green.600">Uniquement le 1er prénom de votre pièce d'identité.</AlertDescription>
+                                </Alert>
+                            </FormControl>
+                        </VStack>
                     </HStack>
 
-                    <HStack spacing={4} mb={4}>
-                        <FormControl isInvalid={errors.paysDeNaissance}>
-                            <Text fontSize="md" mb={2}>Pays de naissance</Text>
-                            <CustomSelect
-                                name="paysDeNaissance"
-                                value={formValues.paysDeNaissance}
-                                onChange={handleInputChange}
-                                mb={4}
-                            >
-                                <option value="">Veuillez sélectionner</option>
-                                <option value="france">France</option>
-                                <option value="usa">USA</option>
-                                {/* Add other countries as needed */}
-                            </CustomSelect>
-                            {errors.paysDeNaissance && (
-                                <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
-                                    <AlertIcon color="orange.400" />
-                                    <AlertDescription color="orange.600">Veuillez sélectionner un pays de naissance.</AlertDescription>
-                                </Alert>
-                            )}
-                        </FormControl>
+                    <HStack spacing={4} mb={4} alignItems="start">
+                        <VStack flex={1} align="stretch">
+                            <FormControl isInvalid={errors.paysDeNaissance}>
+                                <Text fontSize="md" mb={2}>Pays de naissance</Text>
+                                <CustomSelect
+                                    name="paysDeNaissance"
+                                    value={formValues.paysDeNaissance}
+                                    onChange={handleInputChange}
+                                    mb={4}
+                                >
+                                    <option value="">Veuillez sélectionner</option>
+                                    <option value="france">France</option>
+                                    <option value="usa">USA</option>
+                                    {/* Add other countries as needed */}
+                                </CustomSelect>
+                                {errors.paysDeNaissance && (
+                                    <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                        <AlertIcon color="orange.400" />
+                                        <AlertDescription color="orange.600">Veuillez sélectionner un pays de naissance.</AlertDescription>
+                                    </Alert>
+                                )}
+                            </FormControl>
+                        </VStack>
 
-                        <FormControl isInvalid={errors.lieuDeNaissance}>
-                            <Text fontSize="md" mb={2}>Lieu de naissance</Text>
-                            <CustomInput
-                                type="text"
-                                name="lieuDeNaissance"
-                                value={formValues.lieuDeNaissance}
-                                onChange={handleInputChange}
-                                mb={4}
-                            />
-                            <Alert status="warning" mt={2} backgroundColor="green.100" borderRadius="md">
-                                <AlertIcon color="green.400" />
-                                <AlertDescription color="green.600">Le lieu de naissance doit être orthographié comme sur votre pièce d'identité.</AlertDescription>
-                            </Alert>
-                        </FormControl>
+                        <VStack flex={1} align="stretch">
+                            <FormControl isInvalid={errors.lieuDeNaissance}>
+                                <Text fontSize="md" mb={2}>Lieu de naissance</Text>
+                                <CustomInput
+                                    type="text"
+                                    name="lieuDeNaissance"
+                                    value={formValues.lieuDeNaissance}
+                                    onChange={handleInputChange}
+                                    mb={4}
+                                />
+                                <Alert status="warning" mt={2} backgroundColor="green.100" borderRadius="md">
+                                    <AlertIcon color="green.400" />
+                                    <AlertDescription color="green.600">Le lieu de naissance doit être orthographié comme sur votre pièce d'identité.</AlertDescription>
+                                </Alert>
+                            </FormControl>
+                        </VStack>
                     </HStack>
 
-                    <HStack spacing={4} mb={4}>
-                        <FormControl isInvalid={errors.situationFamiliale}>
-                            <Text fontSize="md" mb={2}>Situation familiale</Text>
-                            <CustomSelect
-                                name="situationFamiliale"
-                                value={formValues.situationFamiliale}
-                                onChange={handleInputChange}
-                                mb={4}
-                            >
-                                <option value="">Veuillez sélectionner</option>
-                                <option value="single">Célibataire</option>
-                                <option value="married">Marié(e)</option>
-                                {/* Add other options as needed */}
-                            </CustomSelect>
-                            {errors.situationFamiliale && (
-                                <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
-                                    <AlertIcon color="orange.400" />
-                                    <AlertDescription color="orange.600">Veuillez sélectionner une situation familiale.</AlertDescription>
-                                </Alert>
-                            )}
-                        </FormControl>
+                    <HStack spacing={4} mb={4} alignItems="start">
+                        <VStack flex={1} align="stretch">
+                            <FormControl isInvalid={errors.situationFamiliale}>
+                                <Text fontSize="md" mb={2}>Situation familiale</Text>
+                                <CustomSelect
+                                    name="situationFamiliale"
+                                    value={formValues.situationFamiliale}
+                                    onChange={handleInputChange}
+                                    mb={4}
+                                >
+                                    <option value="">Veuillez sélectionner</option>
+                                    <option value="single">Célibataire</option>
+                                    <option value="married">Marié(e)</option>
+                                    {/* Add other options as needed */}
+                                </CustomSelect>
+                                {errors.situationFamiliale && (
+                                    <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                        <AlertIcon color="orange.400" />
+                                        <AlertDescription color="orange.600">Veuillez sélectionner une situation familiale.</AlertDescription>
+                                    </Alert>
+                                )}
+                            </FormControl>
+                        </VStack>
 
-                        <FormControl isInvalid={errors.capaciteJuridique}>
-                            <Text fontSize="md" mb={2}>Capacité juridique</Text>
-                            <CustomSelect
-                                name="capaciteJuridique"
-                                value={formValues.capaciteJuridique}
-                                onChange={handleInputChange}
-                                mb={4}
-                            >
-                                <option value="">Veuillez sélectionner</option>
-                                <option value="full">Pleine capacité</option>
-                                <option value="limited">Capacité limitée</option>
-                                {/* Add other options as needed */}
-                            </CustomSelect>
-                            {errors.capaciteJuridique && (
-                                <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
-                                    <AlertIcon color="orange.400" />
-                                    <AlertDescription color="orange.600">Veuillez sélectionner une capacité juridique.</AlertDescription>
-                                </Alert>
-                            )}
-                        </FormControl>
+                        <VStack flex={1} align="stretch">
+                            <FormControl isInvalid={errors.capaciteJuridique}>
+                                <Text fontSize="md" mb={2}>Capacité juridique</Text>
+                                <CustomSelect
+                                    name="capaciteJuridique"
+                                    value={formValues.capaciteJuridique}
+                                    onChange={handleInputChange}
+                                    mb={4}
+                                >
+                                    <option value="">Veuillez sélectionner</option>
+                                    <option value="full">Pleine capacité</option>
+                                    <option value="limited">Capacité limitée</option>
+                                    {/* Add other options as needed */}
+                                </CustomSelect>
+                                {errors.capaciteJuridique && (
+                                    <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                        <AlertIcon color="orange.400" />
+                                        <AlertDescription color="orange.600">Veuillez sélectionner une capacité juridique.</AlertDescription>
+                                    </Alert>
+                                )}
+                            </FormControl>
+                        </VStack>
                     </HStack>
                 </VStack>
 
