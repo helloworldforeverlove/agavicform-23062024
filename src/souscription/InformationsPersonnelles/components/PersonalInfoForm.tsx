@@ -335,7 +335,7 @@ const PersonalInfoForm: React.FC = () => {
             await updateResponse(48, formValues.dirigeantSocieteCotee);
             await updateResponse(49, formValues.fonctionPolitiquementExposee);
             await updateResponse(50, formValues.entourageFonctionPolitiquementExposee);
-
+    
             // Save data to the database
             await saveDataToDatabase({
                 step27: formValues.civilite,
@@ -364,8 +364,8 @@ const PersonalInfoForm: React.FC = () => {
                 step49: formValues.fonctionPolitiquementExposee,
                 step50: formValues.entourageFonctionPolitiquementExposee,
             });
-
-            navigate('/next-step'); // Replace with the actual next step
+    
+            navigate('/pieces-justificatives'); // Replace with the actual next step
         } else {
             setIsAlertOpen(true);
         }
