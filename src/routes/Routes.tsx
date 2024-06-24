@@ -1,4 +1,3 @@
-// src/routes/Routes.js
 import React from 'react';
 import { Route, Routes as Switch } from 'react-router-dom';
 
@@ -34,7 +33,8 @@ import CreationCompte from '../pages/CreationCompte';
 import NotificationPreferences from '../pages/25NotificationPreferences';
 import CombinedRiskScoreComponent from '../pages/26CombinedRiskScoreComponent';
 import Recommandation from '../recommandation/Recommandation';
-import InformationsPersonnelles from '../souscription/InformationsPersonnelles/index'; // Import the new component
+import InformationsPersonnelles from '../souscription/InformationsPersonnelles/index'; 
+import PiecesJustificatives from '../souscription/PiecesJustificatives'; // Import the new component
 
 export const routes = [
   { path: '/', name: 'Home', component: <Home />, hidden: true },
@@ -68,7 +68,8 @@ export const routes = [
   { path: '/notification-preferences', name: 'NotificationPreferences', component: <NotificationPreferences />, hidden: true },
   { path: '/combined-risk-score', name: 'CombinedRiskScoreComponent', component: <CombinedRiskScoreComponent />, hidden: true },
   { path: '/recommandation', name: 'Recommandation', component: <Recommandation />, hidden: true },
-  { path: '/informations-personnelles', name: 'InformationsPersonnelles', component: <InformationsPersonnelles />, hidden: true }, // Add the new route
+  { path: '/informations-personnelles', name: 'InformationsPersonnelles', component: <InformationsPersonnelles />, hidden: true },
+  { path: '/pieces-justificatives', name: 'PiecesJustificatives', component: <PiecesJustificatives />, hidden: true }, // Add the new route
 ];
 
 const Routes: React.FC = () => {
