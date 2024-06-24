@@ -87,8 +87,18 @@ const FileUploadButton: React.FC<{ label: string, icon: React.ElementType, onCli
 const PiecesJustificatives: React.FC = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [step, setStep] = useState(1);
+    const [firstUploadCompleted, setFirstUploadCompleted] = useState(false);
+    const [showSecondUpload, setShowSecondUpload] = useState(false);
 
     const handleNextStep = () => setStep(step + 1);
+
+    const handleFileUpload = () => {
+        setFirstUploadCompleted(true);
+    };
+
+    const handleShowSecondUpload = () => {
+        setShowSecondUpload(true);
+    };
 
     return (
         <ChakraProvider theme={theme}>
@@ -150,7 +160,8 @@ const PiecesJustificatives: React.FC = () => {
                         )}
 
                         {step === 2 && (
-                            <VStack spacing={4} align="start">
+                            <>
+                                <VStack spacing={4} align="start">
                                 <Tabs isFitted variant="enclosed">
                                     <TabList mb="1em">
                                         <Tab>PIÈCE D'IDENTITÉ</Tab>
@@ -159,15 +170,15 @@ const PiecesJustificatives: React.FC = () => {
                                     <TabPanels>
                                         <TabPanel>
                                             <HStack spacing={4}>
-                                                <VStack flex={1} align="stretch">
-                                                    <Text fontSize="md" mb={2}>CNI recto</Text>
-                                                    <Button variant="outline" width="100%">SÉLECTIONNER MON FICHIER</Button>
-                                                </VStack>
-                                                <VStack flex={1} align="stretch">
-                                                    <Text fontSize="md" mb={2}>CNI verso</Text>
-                                                    <Button variant="outline" width="100%">SÉLECTIONNER MON FICHIER</Button>
-                                                </VStack>
-                                            </HStack>
+                                        <VStack flex={1} align="stretch">
+                                            <Text fontSize="md" mb={2}>CNI recto</Text>
+                                            <Button variant="outline" width="100%" onClick={handleFileUpload}>SÉLECTIONNER MON FICHIER</Button>
+                                        </VStack>
+                                        <VStack flex={1} align="stretch">
+                                            <Text fontSize="md" mb={2}>CNI verso</Text>
+                                            <Button variant="outline" width="100%" onClick={handleFileUpload}>SÉLECTIONNER MON FICHIER</Button>
+                                        </VStack>
+                                        </HStack>
                                         </TabPanel>
                                         <TabPanel>
                                             <Text fontSize="md" mb={2}>Passeport</Text>
@@ -175,7 +186,43 @@ const PiecesJustificatives: React.FC = () => {
                                         </TabPanel>
                                     </TabPanels>
                                 </Tabs>
-                            </VStack>
+                                    <Button variant="outline" width="100%" onClick={handleFileUpload}>SÉLECTIONNER MON FICHIER</Button>
+                                </VStack>
+
+                                {firstUploadCompleted && (
+                                    <Button mt={4} colorScheme="green" onClick={handleShowSecondUpload}>Ajouter une deuxième pièce d'identité</Button>
+                                )}
+
+                                {showSecondUpload && (
+                                    <VStack spacing={4} align="start" mt={6}>
+                                        <Text fontSize="lg" fontWeight="bold">Deuxième Pièce d'Identité</Text>
+                                        <Tabs isFitted variant="enclosed">
+                                            <TabList mb="1em">
+                                                <Tab>PIÈCE D'IDENTITÉ</Tab>
+                                                <Tab>PASSEPORT</Tab>
+                                            </TabList>
+                                            <TabPanels>
+                                                <TabPanel>
+                                                    <HStack spacing={4}>
+                                                        <VStack flex={1} align="stretch">
+                                                            <Text fontSize="md" mb={2}>CNI recto</Text>
+                                                            <Button variant="outline" width="100%">SÉLECTIONNER MON FICHIER</Button>
+                                                        </VStack>
+                                                        <VStack flex={1} align="stretch">
+                                                            <Text fontSize="md" mb={2}>CNI verso</Text>
+                                                            <Button variant="outline" width="100%">SÉLECTIONNER MON FICHIER</Button>
+                                                        </VStack>
+                                                    </HStack>
+                                                </TabPanel>
+                                                <TabPanel>
+                                                    <Text fontSize="md" mb={2}>Passeport</Text>
+                                                    <Button variant="outline" width="100%">SÉLECTIONNER MON FICHIER</Button>
+                                                </TabPanel>
+                                            </TabPanels>
+                                        </Tabs>
+                                    </VStack>
+                                )}
+                            </>
                         )}
                     </ModalBody>
                     <ModalFooter>
