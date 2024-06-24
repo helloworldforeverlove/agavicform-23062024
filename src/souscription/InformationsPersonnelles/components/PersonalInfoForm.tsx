@@ -118,6 +118,15 @@ const PersonalInfoForm: React.FC = () => {
         postalCode: '',
         city: '',
         paysAdresse: '',
+        email: '',
+        phoneNumber: '',
+        vousEtes: '',
+        tns: '',
+        secteurActivite: '',
+        categorieSocioPro: '',
+        dirigeantSocieteCotee: '',
+        fonctionPolitiquementExposee: '',
+        entourageFonctionPolitiquementExposee: '',
     });
 
     const [errors, setErrors] = useState({
@@ -136,6 +145,15 @@ const PersonalInfoForm: React.FC = () => {
         postalCode: false,
         city: false,
         paysAdresse: false,
+        email: false,
+        phoneNumber: false,
+        vousEtes: false,
+        tns: false,
+        secteurActivite: false,
+        categorieSocioPro: false,
+        dirigeantSocieteCotee: false,
+        fonctionPolitiquementExposee: false,
+        entourageFonctionPolitiquementExposee: false,
     });
 
     const [isAlertOpen, setIsAlertOpen] = useState(false);
@@ -162,6 +180,15 @@ const PersonalInfoForm: React.FC = () => {
             const postalCode = await getResponse(39); // 'postalCode' is step 39
             const city = await getResponse(40); // 'city' is step 40
             const paysAdresse = await getResponse(41); // 'paysAdresse' is step 41
+            const email = await getResponse(42); // 'email' is step 42
+            const phoneNumber = await getResponse(43); // 'phoneNumber' is step 43
+            const vousEtes = await getResponse(44); // 'vousEtes' is step 44
+            const tns = await getResponse(45); // 'tns' is step 45
+            const secteurActivite = await getResponse(46); // 'secteurActivite' is step 46
+            const categorieSocioPro = await getResponse(47); // 'categorieSocioPro' is step 47
+            const dirigeantSocieteCotee = await getResponse(48); // 'dirigeantSocieteCotee' is step 48
+            const fonctionPolitiquementExposee = await getResponse(49); // 'fonctionPolitiquementExposee' is step 49
+            const entourageFonctionPolitiquementExposee = await getResponse(50); // 'entourageFonctionPolitiquementExposee' is step 50
 
             setFormValues({
                 civilite: civilite || '',
@@ -180,6 +207,15 @@ const PersonalInfoForm: React.FC = () => {
                 postalCode: postalCode || '',
                 city: city || '',
                 paysAdresse: paysAdresse || '',
+                email: email || '',
+                phoneNumber: phoneNumber || '',
+                vousEtes: vousEtes || '',
+                tns: tns || '',
+                secteurActivite: secteurActivite || '',
+                categorieSocioPro: categorieSocioPro || '',
+                dirigeantSocieteCotee: dirigeantSocieteCotee || '',
+                fonctionPolitiquementExposee: fonctionPolitiquementExposee || '',
+                entourageFonctionPolitiquementExposee: entourageFonctionPolitiquementExposee || '',
             });
         };
 
@@ -218,6 +254,15 @@ const PersonalInfoForm: React.FC = () => {
             postalCode: formValues.postalCode === '',
             city: formValues.city === '',
             paysAdresse: formValues.paysAdresse === '',
+            email: formValues.email === '',
+            phoneNumber: formValues.phoneNumber === '',
+            vousEtes: formValues.vousEtes === '',
+            tns: formValues.tns === '',
+            secteurActivite: formValues.secteurActivite === '',
+            categorieSocioPro: formValues.categorieSocioPro === '',
+            dirigeantSocieteCotee: formValues.dirigeantSocieteCotee === '',
+            fonctionPolitiquementExposee: formValues.fonctionPolitiquementExposee === '',
+            entourageFonctionPolitiquementExposee: formValues.entourageFonctionPolitiquementExposee === '',
         };
 
         setErrors(newErrors);
@@ -266,6 +311,15 @@ const PersonalInfoForm: React.FC = () => {
             await updateResponse(39, formValues.postalCode);
             await updateResponse(40, formValues.city);
             await updateResponse(41, formValues.paysAdresse);
+            await updateResponse(42, formValues.email);
+            await updateResponse(43, formValues.phoneNumber);
+            await updateResponse(44, formValues.vousEtes);
+            await updateResponse(45, formValues.tns);
+            await updateResponse(46, formValues.secteurActivite);
+            await updateResponse(47, formValues.categorieSocioPro);
+            await updateResponse(48, formValues.dirigeantSocieteCotee);
+            await updateResponse(49, formValues.fonctionPolitiquementExposee);
+            await updateResponse(50, formValues.entourageFonctionPolitiquementExposee);
 
             // Save data to the database
             await saveDataToDatabase({
@@ -285,6 +339,15 @@ const PersonalInfoForm: React.FC = () => {
                 step39: formValues.postalCode,
                 step40: formValues.city,
                 step41: formValues.paysAdresse,
+                step42: formValues.email,
+                step43: formValues.phoneNumber,
+                step44: formValues.vousEtes,
+                step45: formValues.tns,
+                step46: formValues.secteurActivite,
+                step47: formValues.categorieSocioPro,
+                step48: formValues.dirigeantSocieteCotee,
+                step49: formValues.fonctionPolitiquementExposee,
+                step50: formValues.entourageFonctionPolitiquementExposee,
             });
 
             navigate('/next-step'); // Replace with the actual next step
@@ -605,11 +668,275 @@ const PersonalInfoForm: React.FC = () => {
                                     name="paysAdresse"
                                     value={formValues.paysAdresse}
                                     onChange={handleInputChange}
+                                    mb={4}
                                 />
-                                {errors.paysAdresse && (
+                            </FormControl>
+                        </VStack>
+                    </Box>
+
+                    <Box mt={8}>
+                        <Text fontSize="lg" fontWeight="bold" mb={4}>Informations de contact</Text>
+                        <VStack spacing={4} align="stretch">
+                            <HStack spacing={4}>
+                                <FormControl isInvalid={errors.email}>
+                                    <Text fontSize="md" mb={2}>Adresse e-mail</Text>
+                                    <CustomInput
+                                        name="email"
+                                        value={formValues.email}
+                                        onChange={handleInputChange}
+                                    />
+                                </FormControl>
+                                <FormControl isInvalid={errors.phoneNumber}>
+                                    <Text fontSize="md" mb={2}>Numéro de téléphone mobile</Text>
+                                    <CustomInput
+                                        name="phoneNumber"
+                                        placeholder="06 12 34 56 78"
+                                        value={formValues.phoneNumber}
+                                        onChange={handleInputChange}
+                                    />
+                                </FormControl>
+                            </HStack>
+                        </VStack>
+                    </Box>
+
+                    <Box mt={8}>
+                        <Text fontSize="lg" fontWeight="bold" mb={4}>Situation professionnelle</Text>
+                        <VStack spacing={4} align="stretch">
+                            <HStack spacing={4}>
+                                <FormControl isInvalid={errors.vousEtes}>
+                                    <Text fontSize="md" mb={2}>Vous êtes</Text>
+                                    <CustomSelect
+                                        name="vousEtes"
+                                        value={formValues.vousEtes}
+                                        onChange={handleInputChange}
+                                        mb={4}
+                                    >
+                                        <option value="">Veuillez sélectionner</option>
+                                        <option value="Salarié(e)">Salarié(e)</option>
+                                        <option value="Indépendant(e)">Indépendant(e)</option>
+                                        <option value="Étudiant(e)">Étudiant(e)</option>
+                                        <option value="Retraité(e)">Retraité(e)</option>
+                                        <option value="Sans emploi">Sans emploi</option>
+                                    </CustomSelect>
+                                    {errors.vousEtes && (
+                                        <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                            <AlertIcon color="orange.400" />
+                                            <AlertDescription color="orange.600">Veuillez sélectionner une option pour "Vous êtes".</AlertDescription>
+                                        </Alert>
+                                    )}
+                                </FormControl>
+
+                                <FormControl isInvalid={errors.tns}>
+                                    <Text fontSize="md" mb={2}>Êtes-vous Travailleur Non Salarié (TNS) ?</Text>
+                                    <HStack justifyContent="center" mb={4}>
+                                        <Button
+                                            type="button"
+                                            variant="outline"
+                                            size="lg"
+                                            colorScheme={formValues.tns === 'Non' ? 'green' : 'gray'}
+                                            onClick={() => setFormValues({ ...formValues, tns: 'Non' })}
+                                            px={10}
+                                            py={6}
+                                            textAlign="center"
+                                            _hover={{ bg: 'gray.200' }}
+                                            borderColor={formValues.tns === 'Non' ? 'green.400' : 'gray.200'}
+                                        >
+                                            Non
+                                        </Button>
+                                        <Button
+                                            type="button"
+                                            variant="outline"
+                                            size="lg"
+                                            colorScheme={formValues.tns === 'Oui' ? 'green' : 'gray'}
+                                            onClick={() => setFormValues({ ...formValues, tns: 'Oui' })}
+                                            px={10}
+                                            py={6}
+                                            textAlign="center"
+                                            _hover={{ bg: 'gray.200' }}
+                                            borderColor={formValues.tns === 'Oui' ? 'green.400' : 'gray.200'}
+                                        >
+                                            Oui
+                                        </Button>
+                                    </HStack>
+                                    {errors.tns && (
+                                        <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                            <AlertIcon color="orange.400" />
+                                            <AlertDescription color="orange.600">Veuillez sélectionner une option pour "Êtes-vous Travailleur Non Salarié (TNS) ?".</AlertDescription>
+                                        </Alert>
+                                    )}
+                                </FormControl>
+                            </HStack>
+                            <HStack spacing={4}>
+                                <FormControl isInvalid={errors.secteurActivite}>
+                                    <Text fontSize="md" mb={2}>Secteur d'activité</Text>
+                                    <CustomSelect
+                                        name="secteurActivite"
+                                        value={formValues.secteurActivite}
+                                        onChange={handleInputChange}
+                                        mb={4}
+                                    >
+                                        <option value="">Veuillez sélectionner</option>
+                                        <option value="Agriculture">Agriculture</option>
+                                        <option value="Industrie">Industrie</option>
+                                        <option value="Construction">Construction</option>
+                                        <option value="Commerce">Commerce</option>
+                                        <option value="Transports">Transports</option>
+                                        <option value="Services">Services</option>
+                                        <option value="Administration">Administration</option>
+                                        <option value="Autre">Autre</option>
+                                    </CustomSelect>
+                                    {errors.secteurActivite && (
+                                        <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                            <AlertIcon color="orange.400" />
+                                            <AlertDescription color="orange.600">Veuillez sélectionner une option pour "Secteur d'activité".</AlertDescription>
+                                        </Alert>
+                                    )}
+                                </FormControl>
+
+                                <FormControl isInvalid={errors.categorieSocioPro}>
+                                    <Text fontSize="md" mb={2}>Catégorie socio-professionnelle</Text>
+                                    <CustomSelect
+                                        name="categorieSocioPro"
+                                        value={formValues.categorieSocioPro}
+                                        onChange={handleInputChange}
+                                        mb={4}
+                                    >
+                                        <option value="">Veuillez sélectionner</option>
+                                        <option value="Cadres">Cadres</option>
+                                        <option value="Professions intermédiaires">Professions intermédiaires</option>
+                                        <option value="Employés">Employés</option>
+                                        <option value="Ouvriers">Ouvriers</option>
+                                        <option value="Retraités">Retraités</option>
+                                        <option value="Étudiants">Étudiants</option>
+                                        <option value="Sans emploi">Sans emploi</option>
+                                        <option value="Autres">Autres</option>
+                                    </CustomSelect>
+                                    {errors.categorieSocioPro && (
+                                        <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                            <AlertIcon color="orange.400" />
+                                            <AlertDescription color="orange.600">Veuillez sélectionner une option pour "Catégorie socio-professionnelle".</AlertDescription>
+                                        </Alert>
+                                    )}
+                                </FormControl>
+                            </HStack>
+
+                            <FormControl isInvalid={errors.dirigeantSocieteCotee}>
+                                <Text fontSize="md" mb={2}>Êtes-vous dirigeant ou salarié d'une société cotée ?</Text>
+                                <HStack justifyContent="center" mb={4}>
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="lg"
+                                        colorScheme={formValues.dirigeantSocieteCotee === 'Non' ? 'green' : 'gray'}
+                                        onClick={() => setFormValues({ ...formValues, dirigeantSocieteCotee: 'Non' })}
+                                        px={10}
+                                        py={6}
+                                        textAlign="center"
+                                        _hover={{ bg: 'gray.200' }}
+                                        borderColor={formValues.dirigeantSocieteCotee === 'Non' ? 'green.400' : 'gray.200'}
+                                    >
+                                        Non
+                                    </Button>
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="lg"
+                                        colorScheme={formValues.dirigeantSocieteCotee === 'Oui' ? 'green' : 'gray'}
+                                        onClick={() => setFormValues({ ...formValues, dirigeantSocieteCotee: 'Oui' })}
+                                        px={10}
+                                        py={6}
+                                        textAlign="center"
+                                        _hover={{ bg: 'gray.200' }}
+                                        borderColor={formValues.dirigeantSocieteCotee === 'Oui' ? 'green.400' : 'gray.200'}
+                                    >
+                                        Oui
+                                    </Button>
+                                </HStack>
+                                {errors.dirigeantSocieteCotee && (
                                     <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
                                         <AlertIcon color="orange.400" />
-                                        <AlertDescription color="orange.600">Veuillez sélectionner un pays.</AlertDescription>
+                                        <AlertDescription color="orange.600">Veuillez sélectionner une option pour "Êtes-vous dirigeant ou salarié d'une société cotée ?".</AlertDescription>
+                                    </Alert>
+                                )}
+                            </FormControl>
+
+                            <FormControl isInvalid={errors.fonctionPolitiquementExposee}>
+                                <Text fontSize="lg" mb={2}>Exercez-vous ou avez-vous exercé une fonction politiquement exposée ?</Text>
+                                <Text mb={2}>Par exemple : ministre, ambassadeur, parlementaire, administrateur d'une entreprise publique...</Text>
+                                <HStack justifyContent="center" mb={4}>
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="lg"
+                                        colorScheme={formValues.fonctionPolitiquementExposee === 'Non' ? 'green' : 'gray'}
+                                        onClick={() => setFormValues({ ...formValues, fonctionPolitiquementExposee: 'Non' })}
+                                        px={10}
+                                        py={6}
+                                        textAlign="center"
+                                        _hover={{ bg: 'gray.200' }}
+                                        borderColor={formValues.fonctionPolitiquementExposee === 'Non' ? 'green.400' : 'gray.200'}
+                                    >
+                                        Non
+                                    </Button>
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="lg"
+                                        colorScheme={formValues.fonctionPolitiquementExposee === 'Oui' ? 'green' : 'gray'}
+                                        onClick={() => setFormValues({ ...formValues, fonctionPolitiquementExposee: 'Oui' })}
+                                        px={10}
+                                        py={6}
+                                        textAlign="center"
+                                        _hover={{ bg: 'gray.200' }}
+                                        borderColor={formValues.fonctionPolitiquementExposee === 'Oui' ? 'green.400' : 'gray.200'}
+                                    >
+                                        Oui
+                                    </Button>
+                                </HStack>
+                                {errors.fonctionPolitiquementExposee && (
+                                    <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                        <AlertIcon color="orange.400" />
+                                        <AlertDescription color="orange.600">Veuillez sélectionner une option pour "Exercez-vous ou avez-vous exercé une fonction politiquement exposée ?".</AlertDescription>
+                                    </Alert>
+                                )}
+                            </FormControl>
+
+                            <FormControl isInvalid={errors.entourageFonctionPolitiquementExposee}>
+                                <Text fontSize="lg" mb={2}>Une personne de votre entourage exerce-t-elle ou a-t-elle exercé depuis moins d'un an une fonction politiquement exposée ?</Text>
+                                <HStack justifyContent="center" mb={4}>
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="lg"
+                                        colorScheme={formValues.entourageFonctionPolitiquementExposee === 'Non' ? 'green' : 'gray'}
+                                        onClick={() => setFormValues({ ...formValues, entourageFonctionPolitiquementExposee: 'Non' })}
+                                        px={10}
+                                        py={6}
+                                        textAlign="center"
+                                        _hover={{ bg: 'gray.200' }}
+                                        borderColor={formValues.entourageFonctionPolitiquementExposee === 'Non' ? 'green.400' : 'gray.200'}
+                                    >
+                                        Non
+                                    </Button>
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="lg"
+                                        colorScheme={formValues.entourageFonctionPolitiquementExposee === 'Oui' ? 'green' : 'gray'}
+                                        onClick={() => setFormValues({ ...formValues, entourageFonctionPolitiquementExposee: 'Oui' })}
+                                        px={10}
+                                        py={6}
+                                        textAlign="center"
+                                        _hover={{ bg: 'gray.200' }}
+                                        borderColor={formValues.entourageFonctionPolitiquementExposee === 'Oui' ? 'green.400' : 'gray.200'}
+                                    >
+                                        Oui
+                                    </Button>
+                                </HStack>
+                                {errors.entourageFonctionPolitiquementExposee && (
+                                    <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
+                                        <AlertIcon color="orange.400" />
+                                        <AlertDescription color="orange.600">Veuillez sélectionner une option pour "Une personne de votre entourage exerce-t-elle ou a-t-elle exercé depuis moins d'un an une fonction politiquement exposée ?".</AlertDescription>
                                     </Alert>
                                 )}
                             </FormControl>
