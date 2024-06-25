@@ -30,6 +30,7 @@ import {
 } from '@chakra-ui/react';
 import { FaIdCard, FaHome, FaUniversity, FaPassport, FaMobileAlt, FaFileUpload } from 'react-icons/fa';
 import { FcManager } from 'react-icons/fc';
+import BankDetailsForm from './BankDetailsForm';
 
 const theme = extendTheme({
     colors: {
@@ -397,6 +398,7 @@ const PiecesJustificatives: React.FC = () => {
                     </ModalBody>
                 </ModalContent>
             </Modal>
+            <BankDetailsForm/>
         </ChakraProvider>
     );
 };
