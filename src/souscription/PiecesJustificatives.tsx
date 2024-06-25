@@ -26,8 +26,9 @@ import {
     Tab,
     TabPanel,
     Input,
+    Checkbox,
 } from '@chakra-ui/react';
-import { FaIdCard, FaHome, FaUniversity, FaPassport, FaMobileAlt } from 'react-icons/fa';
+import { FaIdCard, FaHome, FaUniversity, FaPassport, FaMobileAlt, FaFileUpload } from 'react-icons/fa';
 import { FcManager } from 'react-icons/fc';
 
 const theme = extendTheme({
@@ -105,9 +106,12 @@ const FileUploadButton: React.FC<{ label: string, icon: React.ElementType, onCli
 
 const PiecesJustificatives: React.FC = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const { isOpen: isMobileOpen, onOpen: onMobileOpen, onClose: onMobileClose } = useDisclosure();
+    const { isOpen: isDomicileOpen, onOpen: onDomicileOpen, onClose: onDomicileClose } = useDisclosure();
     const [step, setStep] = useState(1);
     const [firstUploadCompleted, setFirstUploadCompleted] = useState(false);
     const [showSecondUpload, setShowSecondUpload] = useState(false);
+    const [isHosted, setIsHosted] = useState(false);
 
     const handleNextStep = () => setStep(step + 1);
 
@@ -137,8 +141,8 @@ const PiecesJustificatives: React.FC = () => {
                 </Box>
                 <HStack spacing={6} justifyContent="center">
                     <FileUploadButton label="Pièce d'identité" icon={FaIdCard} onClick={onOpen} />
-                    <FileUploadButton label="Facture de mobile" icon={FaMobileAlt} onClick={() => { }} />
-                    <FileUploadButton label="Justificatif de domicile" icon={FaHome} onClick={() => { }} />
+                    <FileUploadButton label="Facture de mobile" icon={FaMobileAlt} onClick={onMobileOpen} />
+                    <FileUploadButton label="Justificatif de domicile" icon={FaHome} onClick={onDomicileOpen} />
                     <FileUploadButton label="RIB compte courant" icon={FaUniversity} onClick={() => { }} />
                 </HStack>
             </Box>
@@ -293,6 +297,78 @@ const PiecesJustificatives: React.FC = () => {
                             <Button colorScheme="green" onClick={onClose} width="100%">FERMER</Button>
                         )}
                     </ModalFooter>
+                </ModalContent>
+            </Modal>
+
+            <Modal isOpen={isMobileOpen} onClose={onMobileClose} size="xl">
+                <ModalOverlay />
+                <ModalContent borderRadius="md" boxShadow="lg">
+                    <ModalHeader display="flex" justifyContent="space-between" alignItems="center" bg="green.900" color="white" borderTopRadius="md">
+                        <HStack>
+                            <Icon as={FaMobileAlt} w={6} h={6} />
+                            <Text ml={2}>FACTURE DE MOBILE</Text>
+                        </HStack>
+                        <CloseButton color="white" onClick={onMobileClose} size="lg" />
+                    </ModalHeader>
+                    <ModalBody p={6} textAlign="center">
+                        <Text fontSize="md" mb={4}>Vous avez indiqué le numéro de téléphone suivant :</Text>
+                        <Text fontSize="3xl" fontWeight="bold" mb={4}>07 70 70 70 80</Text>
+                        <Button colorScheme="orange" size="lg" mb={4}>C'EST LE BON NUMÉRO</Button>
+                        <Text fontSize="sm">Vous pouvez le modifier sur l’étape précédente.</Text>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
+
+            <Modal isOpen={isDomicileOpen} onClose={onDomicileClose} size="xl">
+                <ModalOverlay />
+                <ModalContent borderRadius="md" boxShadow="lg">
+                    <ModalHeader display="flex" justifyContent="space-between" alignItems="center" bg="green.900" color="white" borderTopRadius="md">
+                        <HStack>
+                            <Icon as={FaHome} w={6} h={6} />
+                            <Text ml={2}>JUSTIFICATIF DE DOMICILE</Text>
+                        </HStack>
+                        <CloseButton color="white" onClick={onDomicileClose} size="lg" />
+                    </ModalHeader>
+                    <ModalBody p={6}>
+                        <VStack spacing={4} align="start">
+                            <Text>Votre justificatif doit être à votre nom et à l'adresse indiquée lors de la souscription : <strong>3 Allée de la Croix des Hêtres, 35700 Rennes</strong></Text>
+                            <Checkbox onChange={(e) => setIsHosted(e.target.checked)}>Je suis hébergé par un tiers qui ne porte pas le même nom de famille que moi</Checkbox>
+                            {isHosted && (
+                                <>
+                                    <Text fontWeight="bold" textTransform="uppercase">Pièce d'identité de l'hébergeur</Text>
+                                    <Checkbox>L'hébergeur est un résident étranger (hors communauté européenne), je dois fournir une copie de son titre de séjour et de son passeport.</Checkbox>
+                                    <HStack spacing={3}>
+                                        <Button variant="outline" width="100%">Carte d'identité européenne</Button>
+                                        <Button variant="outline" width="100%">Passeport européen</Button>
+                                    </HStack>
+                                    <Text fontWeight="bold" textTransform="uppercase">Attestation rédigée datée et signée de l'hébergeur</Text>
+                                    <HStack spacing={3} alignItems="center">
+                                        <Icon as={FaFileUpload} />
+                                        <Text>Téléchargez un exemple d’attestation d’hébergement à compléter</Text>
+                                    </HStack>
+                                    <Text>Attestation Hébergeur</Text>
+                                    <Button as="label" variant="outline" width="100%">
+                                        SÉLECTIONNER MON FICHIER
+                                        <Input type="file" display="none" onChange={handleFileUpload} />
+                                    </Button>
+                                </>
+                            )}
+                            <Text fontWeight="bold">JUSTIFICATIFS DE <strong>MOINS DE 3 MOIS</strong></Text>
+                            <VStack spacing={3} align="stretch" width="100%">
+                                <Button variant="outline" width="100%">Facture d’énergie, internet, câble, téléphonie fixe ou mobile</Button>
+                                <Button variant="outline" width="100%">Bulletin de salaire</Button>
+                                <Button variant="outline" width="100%">Quittance de loyer d’un professionnel de l’immobilier</Button>
+                                <Button variant="outline" width="100%">Attestation de détention d’un contrat EDF (avec QR code)</Button>
+                            </VStack>
+                            <Text fontWeight="bold">JUSTIFICATIFS DE <strong>MOINS DE 12 MOIS</strong></Text>
+                            <VStack spacing={3} align="stretch" width="100%">
+                                <Button variant="outline" width="100%">Échéancier d’un fournisseur d’énergie</Button>
+                                <Button variant="outline" width="100%">Dernier avis d’impôt sur le revenu</Button>
+                                <Button variant="outline" width="100%">Dernier avis de taxe d’habitation</Button>
+                                <Button variant="outline" width="100%">Attestation d’un contrat d’assurance habitation</Button>
+                            </VStack>
+                        </VStack>
+                    </ModalBody>
                 </ModalContent>
             </Modal>
         </ChakraProvider>
