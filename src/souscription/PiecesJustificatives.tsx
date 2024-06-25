@@ -27,7 +27,7 @@ import {
     TabPanel,
     Input,
 } from '@chakra-ui/react';
-import { FaIdCard, FaHome, FaUniversity } from 'react-icons/fa';
+import { FaIdCard, FaHome, FaUniversity, FaPassport, FaMobileAlt } from 'react-icons/fa';
 import { FcManager } from 'react-icons/fc';
 
 const theme = extendTheme({
@@ -41,11 +41,29 @@ const theme = extendTheme({
         blue: '#3182CE',
         green: {
             100: '#C6F6D5',
+            200: '#9AE6B4',
             400: '#48BB78',
             900: '#22543D',
         },
     },
     components: {
+        Tabs: {
+            variants: {
+                enclosed: {
+                    tab: {
+                        _selected: {
+                            bg: 'green.100',
+                            color: 'green.900',
+                            borderColor: 'green.200',
+                            borderBottom: '2px solid',
+                        },
+                        _focus: {
+                            boxShadow: 'none',
+                        },
+                    },
+                },
+            },
+        },
         FileUploadButton: {
             baseStyle: {
                 borderColor: 'gray.200',
@@ -119,6 +137,7 @@ const PiecesJustificatives: React.FC = () => {
                 </Box>
                 <HStack spacing={6} justifyContent="center">
                     <FileUploadButton label="Pièce d'identité" icon={FaIdCard} onClick={onOpen} />
+                    <FileUploadButton label="Facture de mobile" icon={FaMobileAlt} onClick={() => { }} />
                     <FileUploadButton label="Justificatif de domicile" icon={FaHome} onClick={() => { }} />
                     <FileUploadButton label="RIB compte courant" icon={FaUniversity} onClick={() => { }} />
                 </HStack>
@@ -169,8 +188,18 @@ const PiecesJustificatives: React.FC = () => {
                                 <VStack spacing={4} align="start">
                                     <Tabs isFitted variant="enclosed">
                                         <TabList mb="1em">
-                                            <Tab>PIÈCE D'IDENTITÉ</Tab>
-                                            <Tab>PASSEPORT</Tab>
+                                            <Tab _selected={{ bg: 'green.100' }}>
+                                                <HStack spacing={2}>
+                                                    <Icon as={FaIdCard} />
+                                                    <Text>PIÈCE D'IDENTITÉ</Text>
+                                                </HStack>
+                                            </Tab>
+                                            <Tab _selected={{ bg: 'green.100' }}>
+                                                <HStack spacing={2}>
+                                                    <Icon as={FaPassport} />
+                                                    <Text>PASSEPORT</Text>
+                                                </HStack>
+                                            </Tab>
                                         </TabList>
                                         <TabPanels>
                                             <TabPanel>
@@ -211,8 +240,18 @@ const PiecesJustificatives: React.FC = () => {
                                         <Text fontSize="lg" fontWeight="bold">Deuxième Pièce d'Identité</Text>
                                         <Tabs isFitted variant="enclosed">
                                             <TabList mb="1em">
-                                                <Tab>PIÈCE D'IDENTITÉ</Tab>
-                                                <Tab>PASSEPORT</Tab>
+                                                <Tab _selected={{ bg: 'green.100' }}>
+                                                    <HStack spacing={2}>
+                                                        <Icon as={FaIdCard} />
+                                                        <Text>PIÈCE D'IDENTITÉ</Text>
+                                                    </HStack>
+                                                </Tab>
+                                                <Tab _selected={{ bg: 'green.100' }}>
+                                                    <HStack spacing={2}>
+                                                        <Icon as={FaPassport} />
+                                                        <Text>PASSEPORT</Text>
+                                                    </HStack>
+                                                </Tab>
                                             </TabList>
                                             <TabPanels>
                                                 <TabPanel>
