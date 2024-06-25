@@ -15,6 +15,7 @@ import {
     InputLeftAddon,
     useStyleConfig,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const theme = extendTheme({
     colors: {
@@ -81,6 +82,12 @@ const BankDetailsForm: React.FC = () => {
     const [recurringDeposit, setRecurringDeposit] = useState(100);
     const [isRecurring, setIsRecurring] = useState(true);
     const [isReferral, setIsReferral] = useState(false);
+    const navigate = useNavigate();
+
+    const handleSubmit = () => {
+        // Handle form submission logic here
+        console.log('Form submitted');
+    };
 
     return (
         <ChakraProvider theme={theme}>
@@ -187,6 +194,28 @@ const BankDetailsForm: React.FC = () => {
                         </FormControl>
                     )}
                 </Section>
+
+                <Box mt={8} display="flex" justifyContent="space-between">
+                    <Button
+                        colorScheme="gray"
+                        variant="outline"
+                        onClick={() => navigate(-1)}
+                        px={6}
+                        py={6}
+                        size="lg"
+                    >
+                        Retour
+                    </Button>
+                    <Button
+                        colorScheme="green"
+                        onClick={handleSubmit}
+                        px={6}
+                        py={6}
+                        size="lg"
+                    >
+                        Suivant
+                    </Button>
+                </Box>
             </Box>
         </ChakraProvider>
     );
