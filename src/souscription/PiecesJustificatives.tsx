@@ -108,6 +108,7 @@ const PiecesJustificatives: React.FC = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { isOpen: isMobileOpen, onOpen: onMobileOpen, onClose: onMobileClose } = useDisclosure();
     const { isOpen: isDomicileOpen, onOpen: onDomicileOpen, onClose: onDomicileClose } = useDisclosure();
+    const { isOpen: isRIBOpen, onOpen: onRIBOpen, onClose: onRIBClose } = useDisclosure();
     const [step, setStep] = useState(1);
     const [firstUploadCompleted, setFirstUploadCompleted] = useState(false);
     const [showSecondUpload, setShowSecondUpload] = useState(false);
@@ -143,7 +144,7 @@ const PiecesJustificatives: React.FC = () => {
                     <FileUploadButton label="Pièce d'identité" icon={FaIdCard} onClick={onOpen} />
                     <FileUploadButton label="Facture de mobile" icon={FaMobileAlt} onClick={onMobileOpen} />
                     <FileUploadButton label="Justificatif de domicile" icon={FaHome} onClick={onDomicileOpen} />
-                    <FileUploadButton label="RIB compte courant" icon={FaUniversity} onClick={() => { }} />
+                    <FileUploadButton label="RIB compte courant" icon={FaUniversity} onClick={onRIBOpen} />
                 </HStack>
             </Box>
 
@@ -367,6 +368,31 @@ const PiecesJustificatives: React.FC = () => {
                                 <Button variant="outline" width="100%">Dernier avis de taxe d’habitation</Button>
                                 <Button variant="outline" width="100%">Attestation d’un contrat d’assurance habitation</Button>
                             </VStack>
+                        </VStack>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
+
+            <Modal isOpen={isRIBOpen} onClose={onRIBClose} size="xl">
+                <ModalOverlay />
+                <ModalContent borderRadius="md" boxShadow="lg">
+                    <ModalHeader display="flex" justifyContent="space-between" alignItems="center" bg="green.900" color="white" borderTopRadius="md">
+                        <HStack>
+                            <Icon as={FaUniversity} w={6} h={6} />
+                            <Text ml={2}>RIB COMPTE COURANT</Text>
+                        </HStack>
+                        <CloseButton color="white" onClick={onRIBClose} size="lg" />
+                    </ModalHeader>
+                    <ModalBody p={6}>
+                        <VStack spacing={4} align="start">
+                            <Text>Le RIB doit être à votre nom et comporter le logo de l’établissement bancaire.</Text>
+                            <Text>Le RIB doit correspondre au compte qui sera utilisé pour votre versement initial.</Text>
+                            <Text>Le RIB doit correspondre à <strong>un compte courant</strong>, il ne peut pas s'agir de votre Livret A ou autre compte sur livret.</Text>
+                            <Text fontWeight="bold" mt={4}>Merci de fournir un RIB</Text>
+                            <Button as="label" variant="outline" width="100%">
+                                SÉLECTIONNER MON FICHIER
+                                <Input type="file" display="none" onChange={handleFileUpload} />
+                            </Button>
                         </VStack>
                     </ModalBody>
                 </ModalContent>
