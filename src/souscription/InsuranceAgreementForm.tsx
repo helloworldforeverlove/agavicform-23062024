@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     ChakraProvider,
     extendTheme,
@@ -6,10 +6,20 @@ import {
     Text,
     VStack,
     Checkbox,
-    useStyleConfig,
     Badge,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    IconButton,
+    HStack,
+    useDisclosure,
+    useStyleConfig
 } from '@chakra-ui/react';
-import EpargneModal from './EpargneModal'; // Import the EpargneModal component
+import { FaTimes } from 'react-icons/fa';
+import EpargneModal from './EpargneModal';  // Make sure to import EpargneModal
 
 const theme = extendTheme({
     colors: {
@@ -25,29 +35,6 @@ const theme = extendTheme({
             200: '#9AE6B4',
             400: '#48BB78',
             900: '#22543D',
-        },
-    },
-    components: {
-        Section: {
-            baseStyle: {
-                borderRadius: 'md',
-                p: 4,
-                mb: 4,
-            },
-            variants: {
-                navy: {
-                    bg: 'navy',
-                    color: 'white',
-                },
-                green: {
-                    bg: 'green.100',
-                    border: '1px',
-                    borderColor: 'green.400',
-                },
-                gray: {
-                    bg: 'gray.100',
-                },
-            },
         },
     },
 });
@@ -74,16 +61,21 @@ const Section: React.FC<SectionProps> = ({ title, variant, children }) => {
 const InsuranceAgreementForm: React.FC = () => {
     const [agreedToTerms, setAgreedToTerms] = useState(false);
     const [acknowledgedInfo, setAcknowledgedInfo] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [isEpargneModalOpen, setEpargneModalOpen] = useState(false);
+    const [isPdfModalOpen, setPdfModalOpen] = useState(false);
 
-    const handleCheckboxChange = (setChecked: React.Dispatch<React.SetStateAction<boolean>>) => (
+    const handleCheckboxChange = (setChecked: React.Dispatch<React.SetStateAction<boolean>>, openModal?: () => void) => (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
         setChecked(event.target.checked);
+        if (event.target.checked && openModal) {
+            openModal();
+        }
     };
 
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
+    const openPdfModal = () => setPdfModalOpen(true);
+    const closePdfModal = () => setPdfModalOpen(false);
 
     return (
         <ChakraProvider theme={theme}>
@@ -93,7 +85,7 @@ const InsuranceAgreementForm: React.FC = () => {
                         C'est la dernière étape ! Afin de finaliser l'ouverture de votre compte Yomoni, veuillez cocher les conditions générales ci-dessous, puis signer électroniquement votre contrat.
                     </Text>
                     <VStack align="start" spacing={3}>
-                        <Checkbox isChecked={agreedToTerms} onChange={handleCheckboxChange(setAgreedToTerms)}>
+                        <Checkbox isChecked={agreedToTerms} onChange={handleCheckboxChange(setAgreedToTerms, openPdfModal)}>
                             Je prends connaissance des Conditions Générales de Signature Electronique, du Document d'Informations Clés du contrat, de la Notice et du Règlement du mandat d'arbitrage.
                         </Checkbox>
                         <Checkbox isChecked={acknowledgedInfo} onChange={handleCheckboxChange(setAcknowledgedInfo)}>
@@ -101,18 +93,44 @@ const InsuranceAgreementForm: React.FC = () => {
                         </Checkbox>
                     </VStack>
                     <Badge
-                        colorScheme="blue"
+                        colorScheme="green"
                         variant="solid"
                         mt={4}
                         cursor="pointer"
-                        onClick={openModal}
+                        onClick={() => setEpargneModalOpen(true)}
                     >
                         Voir mon projet
                     </Badge>
                 </Section>
             </Box>
 
-            <EpargneModal isOpen={isModalOpen} onClose={closeModal} />
+            <EpargneModal isOpen={isEpargneModalOpen} onClose={() => setEpargneModalOpen(false)} />
+
+            <Modal isOpen={isPdfModalOpen} onClose={closePdfModal} isCentered size="full">
+                <ModalOverlay />
+                <ModalContent borderRadius="md" boxShadow="lg">
+                    <ModalHeader textAlign="center" fontSize="lg" fontWeight="bold">
+                        <HStack justifyContent="space-between">
+                            <Box flex="1" />
+                            <Text>Conditions Générales</Text>
+                            <IconButton
+                                icon={<FaTimes />}
+                                aria-label="Close"
+                                variant="ghost"
+                                onClick={closePdfModal}
+                            />
+                        </HStack>
+                    </ModalHeader>
+                    <ModalBody>
+                        <iframe
+                            src="/path/to/your/pdf/file.pdf"
+                            width="100%"
+                            height="600px"
+                        >
+                        </iframe>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
         </ChakraProvider>
     );
 };
