@@ -7,7 +7,9 @@ import {
     VStack,
     Checkbox,
     useStyleConfig,
+    Badge,
 } from '@chakra-ui/react';
+import EpargneModal from './EpargneModal'; // Import the EpargneModal component
 
 const theme = extendTheme({
     colors: {
@@ -72,12 +74,16 @@ const Section: React.FC<SectionProps> = ({ title, variant, children }) => {
 const InsuranceAgreementForm: React.FC = () => {
     const [agreedToTerms, setAgreedToTerms] = useState(false);
     const [acknowledgedInfo, setAcknowledgedInfo] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleCheckboxChange = (setChecked: React.Dispatch<React.SetStateAction<boolean>>) => (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
         setChecked(event.target.checked);
     };
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
 
     return (
         <ChakraProvider theme={theme}>
@@ -94,8 +100,19 @@ const InsuranceAgreementForm: React.FC = () => {
                             Je reconnais que Yomoni m'a communiqué les <Text as="u" color="blue.500">informations détaillées</Text> sur chaque support en unités de compte disponibles sur le contrat Yomoni Vie.
                         </Checkbox>
                     </VStack>
+                    <Badge
+                        colorScheme="blue"
+                        variant="solid"
+                        mt={4}
+                        cursor="pointer"
+                        onClick={openModal}
+                    >
+                        Voir mon projet
+                    </Badge>
                 </Section>
             </Box>
+
+            <EpargneModal isOpen={isModalOpen} onClose={closeModal} />
         </ChakraProvider>
     );
 };
