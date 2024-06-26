@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     ChakraProvider,
     extendTheme,
@@ -12,14 +12,19 @@ import {
     ModalContent,
     ModalHeader,
     ModalBody,
-    ModalFooter,
     IconButton,
     HStack,
+    Button,
+    Spinner,
     useDisclosure,
     useStyleConfig
 } from '@chakra-ui/react';
 import { FaTimes } from 'react-icons/fa';
-import EpargneModal from './EpargneModal';  // Make sure to import EpargneModal
+import EpargneModal from './EpargneModal';
+import * as pdfjsLib from 'pdfjs-dist/build/pdf';
+import 'pdfjs-dist/build/pdf.worker.entry';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
 const theme = extendTheme({
     colors: {
@@ -61,9 +66,12 @@ const Section: React.FC<SectionProps> = ({ title, variant, children }) => {
 const InsuranceAgreementForm: React.FC = () => {
     const [agreedToTerms, setAgreedToTerms] = useState(false);
     const [acknowledgedInfo, setAcknowledgedInfo] = useState(false);
-    const { isOpen, onOpen, onClose } = useDisclosure();
     const [isEpargneModalOpen, setEpargneModalOpen] = useState(false);
     const [isPdfModalOpen, setPdfModalOpen] = useState(false);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const [numPages, setNumPages] = useState<number | null>(null);
+    const [pageNumber, setPageNumber] = useState(1);
+    const [loading, setLoading] = useState(true);
 
     const handleCheckboxChange = (setChecked: React.Dispatch<React.SetStateAction<boolean>>, openModal?: () => void) => (
         event: React.ChangeEvent<HTMLInputElement>
@@ -76,6 +84,43 @@ const InsuranceAgreementForm: React.FC = () => {
 
     const openPdfModal = () => setPdfModalOpen(true);
     const closePdfModal = () => setPdfModalOpen(false);
+
+    useEffect(() => {
+        const loadingTask = pdfjsLib.getDocument('/conditions.pdf');
+        loadingTask.promise.then((pdf) => {
+            setNumPages(pdf.numPages);
+            setLoading(false);
+
+            // Render the first page
+            renderPage(pdf, pageNumber);
+        });
+    }, [pageNumber]);
+
+    const renderPage = (pdf: any, pageNum: number) => {
+        pdf.getPage(pageNum).then((page: any) => {
+            const viewport = page.getViewport({ scale: 1.5 });
+            const canvas = canvasRef.current;
+            if (canvas) {
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                const renderContext = {
+                    canvasContext: context,
+                    viewport: viewport,
+                };
+                page.render(renderContext);
+            }
+        });
+    };
+
+    const nextPage = () => {
+        setPageNumber((prevPageNumber) => Math.min(prevPageNumber + 1, numPages || 1));
+    };
+
+    const prevPage = () => {
+        setPageNumber((prevPageNumber) => Math.max(prevPageNumber - 1, 1));
+    };
 
     return (
         <ChakraProvider theme={theme}>
@@ -122,12 +167,21 @@ const InsuranceAgreementForm: React.FC = () => {
                         </HStack>
                     </ModalHeader>
                     <ModalBody>
-                        <iframe
-                            src="/path/to/your/pdf/file.pdf"
-                            width="100%"
-                            height="600px"
-                        >
-                        </iframe>
+                        {loading ? (
+                            <Spinner />
+                        ) : (
+                            <>
+                                <canvas ref={canvasRef} />
+                                <Box display="flex" justifyContent="space-between" mt={4}>
+                                    <Button onClick={prevPage} disabled={pageNumber <= 1}>
+                                        Précédente
+                                    </Button>
+                                    <Button onClick={nextPage} disabled={pageNumber >= (numPages || 1)}>
+                                        Suivante
+                                    </Button>
+                                </Box>
+                            </>
+                        )}
                     </ModalBody>
                 </ModalContent>
             </Modal>

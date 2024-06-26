@@ -14,9 +14,11 @@ import {
     ModalHeader,
     ModalBody,
     ModalFooter,
-    CloseButton,
 } from '@chakra-ui/react';
 import { FaTimes } from 'react-icons/fa';
+
+// Remove the CloseButton import
+// import { CloseButton } from '@chakra-ui/react';
 
 const theme = extendTheme({
     colors: {
