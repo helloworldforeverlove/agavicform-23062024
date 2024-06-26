@@ -156,6 +156,7 @@ const PiecesJustificatives: React.FC = () => {
     const { isOpen: isDomicileOpen, onOpen: onDomicileOpen, onClose: onDomicileClose } = useDisclosure();
     const { isOpen: isRIBOpen, onOpen: onRIBOpen, onClose: onRIBClose } = useDisclosure();
     const [step, setStep] = useState(1);
+    const [mobileStep, setMobileStep] = useState(1);
     const [firstUploadCompleted, setFirstUploadCompleted] = useState(false);
     const [showSecondUpload, setShowSecondUpload] = useState(false);
     const [isHosted, setIsHosted] = useState(false);
@@ -163,13 +164,15 @@ const PiecesJustificatives: React.FC = () => {
     const [recurringDeposit, setRecurringDeposit] = useState(100);
     const [isRecurring, setIsRecurring] = useState(true);
     const [isReferral, setIsReferral] = useState(false);
+    const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const navigate = useNavigate();
 
     const handleNextStep = () => setStep(step + 1);
 
+    const handleMobileNextStep = () => setMobileStep(mobileStep + 1);
+
     const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files?.length) {
-            // Handle file upload logic here, e.g., uploading to a server or updating state
             console.log('Uploaded file:', event.target.files[0]);
             setFirstUploadCompleted(true);
         }
@@ -179,9 +182,13 @@ const PiecesJustificatives: React.FC = () => {
         setShowSecondUpload(true);
     };
 
+    const handleOptionSelect = (option: string) => {
+        setSelectedOption(option);
+    };
+
     const handleSubmit = () => {
-        // Handle form submission logic here
         console.log('Form submitted');
+        navigate('/insurance-agreement');
     };
 
     return (
@@ -367,12 +374,53 @@ const PiecesJustificatives: React.FC = () => {
                         </HStack>
                         <CloseButton color="white" onClick={onMobileClose} size="lg" />
                     </ModalHeader>
-                    <ModalBody p={6} textAlign="center">
-                        <Text fontSize="md" mb={4}>Vous avez indiqué le numéro de téléphone suivant :</Text>
-                        <Text fontSize="3xl" fontWeight="bold" mb={4}>07 70 70 70 80</Text>
-                        <Button colorScheme="orange" size="lg" mb={4}>C'EST LE BON NUMÉRO</Button>
-                        <Text fontSize="sm">Vous pouvez le modifier sur l’étape précédente.</Text>
+                    <ModalBody p={6}>
+                        {mobileStep === 1 && (
+                            <VStack spacing={4} align="start">
+                                <Text>La facture doit être à votre nom et correspondre au numéro renseigné lors de la souscription : <strong>06 06 06 06 06</strong></Text>
+                                <Text>Si vous n’avez pas de facture à votre nom, vous pouvez simplement nous fournir une attestation sur papier libre et la scanner ou la prendre en photo avec votre smartphone.</Text>
+                                <Text>Voir un exemple</Text>
+                                <Text>La facture doit dater de moins de 3 mois.</Text>
+                                <Button mt={4} colorScheme="green" onClick={handleMobileNextStep}>Sélectionner une option</Button>
+                            </VStack>
+                        )}
+
+                        {mobileStep === 2 && (
+                            <VStack spacing={4} align="start">
+                                <HStack spacing={4}>
+                                    <Button
+                                        variant={selectedOption === 'facture' ? 'solid' : 'outline'}
+                                        colorScheme={selectedOption === 'facture' ? 'green' : 'gray'}
+                                        onClick={() => handleOptionSelect('facture')}
+                                    >
+                                        Facture à mon nom
+                                    </Button>
+                                    <Button
+                                        variant={selectedOption === 'attestation' ? 'solid' : 'outline'}
+                                        colorScheme={selectedOption === 'attestation' ? 'green' : 'gray'}
+                                        onClick={() => handleOptionSelect('attestation')}
+                                    >
+                                        Attestation
+                                    </Button>
+                                </HStack>
+                                {selectedOption === 'facture' && (
+                                    <Button as="label" variant="outline" width="100%" mt={4}>
+                                        SÉLECTIONNER MON FICHIER
+                                        <Input type="file" display="none" onChange={handleFileUpload} />
+                                    </Button>
+                                )}
+                                {selectedOption === 'attestation' && (
+                                    <Button as="label" variant="outline" width="100%" mt={4}>
+                                        SÉLECTIONNER MON FICHIER
+                                        <Input type="file" display="none" onChange={handleFileUpload} />
+                                    </Button>
+                                )}
+                            </VStack>
+                        )}
                     </ModalBody>
+                    <ModalFooter>
+                        <Button colorScheme="green" onClick={onMobileClose} width="100%">FERMER</Button>
+                    </ModalFooter>
                 </ModalContent>
             </Modal>
 
