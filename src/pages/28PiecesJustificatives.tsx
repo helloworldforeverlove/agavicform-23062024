@@ -38,7 +38,7 @@ import { FcManager } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
 import Stepper from '../components/Stepper';
 import { useUuid } from '../context/UuidContext';
-import { supabase } from '../supabaseClient'; // Make sure to import your Supabase client
+import { supabase } from '../supabaseClient';
 
 const theme = extendTheme({
     colors: {
@@ -166,8 +166,10 @@ const PiecesJustificatives: React.FC = () => {
     const [isRecurring, setIsRecurring] = useState(true);
     const [isReferral, setIsReferral] = useState(false);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const [selectedIdentity, setSelectedIdentity] = useState<string | null>(null);
+    const [selectedDomicile, setSelectedDomicile] = useState<string | null>(null);
     const navigate = useNavigate();
-    const { uuid, getResponse } = useUuid(); 
+    const { uuid, getResponse } = useUuid();
 
     const handleNextStep = () => setStep(step + 1);
 
@@ -188,9 +190,16 @@ const PiecesJustificatives: React.FC = () => {
         setSelectedOption(option);
     };
 
+    const handleIdentitySelect = (option: string) => {
+        setSelectedIdentity(option);
+    };
+
+    const handleDomicileSelect = (option: string) => {
+        setSelectedDomicile(option);
+    };
+
     const handleSubmit = async () => {
         console.log('Form submitted');
-        // Navigate to /insurance-agreement after saving the data
         const { error } = await supabase
             .from('form_responses')
             .update({
@@ -208,6 +217,9 @@ const PiecesJustificatives: React.FC = () => {
                 step62: formValues.step62,
                 step63: formValues.step63,
                 step64: formValues.step64,
+                step65: selectedOption,
+                step66: selectedIdentity,
+                step67: selectedDomicile,
             })
             .eq('id', uuid);
 
@@ -234,6 +246,9 @@ const PiecesJustificatives: React.FC = () => {
             const step62 = await getResponse(62);
             const step63 = await getResponse(63);
             const step64 = await getResponse(64);
+            const step65 = await getResponse(65);
+            const step66 = await getResponse(66);
+            const step67 = await getResponse(67);
 
             setFormValues({
                 step51: step51 || '',
@@ -250,6 +265,9 @@ const PiecesJustificatives: React.FC = () => {
                 step62: step62 || '',
                 step63: step63 || '',
                 step64: step64 || '',
+                step65: step65 || '',
+                step66: step66 || '',
+                step67: step67 || '',
             });
         };
 
@@ -271,6 +289,9 @@ const PiecesJustificatives: React.FC = () => {
         step62: '',
         step63: '',
         step64: '',
+        step65: '',
+        step66: '',
+        step67: '',
     });
 
     return (
@@ -339,13 +360,13 @@ const PiecesJustificatives: React.FC = () => {
                                 <VStack spacing={4} align="start">
                                     <Tabs isFitted variant="enclosed">
                                         <TabList mb="1em">
-                                            <Tab _selected={{ bg: 'green.100' }}>
+                                            <Tab _selected={{ bg: 'green.100' }} onClick={() => handleIdentitySelect('piece_identite')}>
                                                 <HStack spacing={2}>
                                                     <Icon as={FaIdCard} />
                                                     <Text>PIÈCE D'IDENTITÉ</Text>
                                                 </HStack>
                                             </Tab>
-                                            <Tab _selected={{ bg: 'green.100' }}>
+                                            <Tab _selected={{ bg: 'green.100' }} onClick={() => handleIdentitySelect('passeport')}>
                                                 <HStack spacing={2}>
                                                     <Icon as={FaPassport} />
                                                     <Text>PASSEPORT</Text>
@@ -543,17 +564,33 @@ const PiecesJustificatives: React.FC = () => {
                             )}
                             <Text fontWeight="bold">JUSTIFICATIFS DE <strong>MOINS DE 3 MOIS</strong></Text>
                             <VStack spacing={3} align="stretch" width="100%">
-                                <Button variant="outline" width="100%">Facture d’énergie, internet, câble, téléphonie fixe ou mobile</Button>
-                                <Button variant="outline" width="100%">Bulletin de salaire</Button>
-                                <Button variant="outline" width="100%">Quittance de loyer d’un professionnel de l’immobilier</Button>
-                                <Button variant="outline" width="100%">Attestation de détention d’un contrat EDF (avec QR code)</Button>
+                                <Button variant="outline" width="100%" onClick={() => handleDomicileSelect('energie')}>
+                                    Facture d’énergie, internet, câble, téléphonie fixe ou mobile
+                                </Button>
+                                <Button variant="outline" width="100%" onClick={() => handleDomicileSelect('bulletin_salaire')}>
+                                    Bulletin de salaire
+                                </Button>
+                                <Button variant="outline" width="100%" onClick={() => handleDomicileSelect('quittance_loyer')}>
+                                    Quittance de loyer d’un professionnel de l’immobilier
+                                </Button>
+                                <Button variant="outline" width="100%" onClick={() => handleDomicileSelect('contrat_edf')}>
+                                    Attestation de détention d’un contrat EDF (avec QR code)
+                                </Button>
                             </VStack>
                             <Text fontWeight="bold">JUSTIFICATIFS DE <strong>MOINS DE 12 MOIS</strong></Text>
                             <VStack spacing={3} align="stretch" width="100%">
-                                <Button variant="outline" width="100%">Échéancier d’un fournisseur d’énergie</Button>
-                                <Button variant="outline" width="100%">Dernier avis d’impôt sur le revenu</Button>
-                                <Button variant="outline" width="100%">Dernier avis de taxe d’habitation</Button>
-                                <Button variant="outline" width="100%">Attestation d’un contrat d’assurance habitation</Button>
+                                <Button variant="outline" width="100%" onClick={() => handleDomicileSelect('echeancier_energie')}>
+                                    Échéancier d’un fournisseur d’énergie
+                                </Button>
+                                <Button variant="outline" width="100%" onClick={() => handleDomicileSelect('impot_revenu')}>
+                                    Dernier avis d’impôt sur le revenu
+                                </Button>
+                                <Button variant="outline" width="100%" onClick={() => handleDomicileSelect('taxe_habitation')}>
+                                    Dernier avis de taxe d’habitation
+                                </Button>
+                                <Button variant="outline" width="100%" onClick={() => handleDomicileSelect('assurance_habitation')}>
+                                    Attestation d’un contrat d’assurance habitation
+                                </Button>
                             </VStack>
                         </VStack>
                     </ModalBody>
