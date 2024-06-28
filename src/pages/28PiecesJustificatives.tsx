@@ -1,4 +1,4 @@
-import React, { useState, ReactNode } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 import {
     ChakraProvider,
     extendTheme,
@@ -33,10 +33,12 @@ import {
     InputGroup,
     InputLeftAddon,
 } from '@chakra-ui/react';
-import { FaIdCard, FaHome, FaUniversity, FaPassport, FaMobileAlt, FaFileUpload } from 'react-icons/fa';
+import { FaIdCard, FaHome, FaUniversity, FaMobileAlt, FaFileUpload, FaPassport } from 'react-icons/fa';
 import { FcManager } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
 import Stepper from '../components/Stepper';
+import { useUuid } from '../context/UuidContext';
+import { supabase } from '../supabaseClient'; // Make sure to import your Supabase client
 
 const theme = extendTheme({
     colors: {
@@ -161,12 +163,11 @@ const PiecesJustificatives: React.FC = () => {
     const [firstUploadCompleted, setFirstUploadCompleted] = useState(false);
     const [showSecondUpload, setShowSecondUpload] = useState(false);
     const [isHosted, setIsHosted] = useState(false);
-    const [initialDeposit, setInitialDeposit] = useState(5000);
-    const [recurringDeposit, setRecurringDeposit] = useState(100);
     const [isRecurring, setIsRecurring] = useState(true);
     const [isReferral, setIsReferral] = useState(false);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const navigate = useNavigate();
+    const { uuid, getResponse } = useUuid(); 
 
     const handleNextStep = () => setStep(step + 1);
 
@@ -187,14 +188,94 @@ const PiecesJustificatives: React.FC = () => {
         setSelectedOption(option);
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         console.log('Form submitted');
-        navigate('/insurance-agreement');
+        // Navigate to /insurance-agreement after saving the data
+        const { error } = await supabase
+            .from('form_responses')
+            .update({
+                step51: formValues.step51,
+                step52: formValues.step52,
+                step53: formValues.step53,
+                step54: formValues.step54,
+                step55: formValues.step55,
+                step56: formValues.step56,
+                step57: formValues.step57,
+                step58: formValues.step58,
+                step59: formValues.step59,
+                step60: formValues.step60,
+                step61: formValues.step61,
+                step62: formValues.step62,
+                step63: formValues.step63,
+                step64: formValues.step64,
+            })
+            .eq('id', uuid);
+
+        if (error) {
+            console.error('Error updating form responses:', error);
+        } else {
+            navigate('/insurance-agreement');
+        }
     };
+
+    useEffect(() => {
+        const fetchResponse = async () => {
+            const step51 = await getResponse(51);
+            const step52 = await getResponse(52);
+            const step53 = await getResponse(53);
+            const step54 = await getResponse(54);
+            const step55 = await getResponse(55);
+            const step56 = await getResponse(56);
+            const step57 = await getResponse(57);
+            const step58 = await getResponse(58);
+            const step59 = await getResponse(59);
+            const step60 = await getResponse(60);
+            const step61 = await getResponse(61);
+            const step62 = await getResponse(62);
+            const step63 = await getResponse(63);
+            const step64 = await getResponse(64);
+
+            setFormValues({
+                step51: step51 || '',
+                step52: step52 || '',
+                step53: step53 || '',
+                step54: step54 || '',
+                step55: step55 || '',
+                step56: step56 || '',
+                step57: step57 || '',
+                step58: step58 || '',
+                step59: step59 || '',
+                step60: step60 || '',
+                step61: step61 || '',
+                step62: step62 || '',
+                step63: step63 || '',
+                step64: step64 || '',
+            });
+        };
+
+        fetchResponse();
+    }, [getResponse]);
+
+    const [formValues, setFormValues] = useState({
+        step51: '',
+        step52: '',
+        step53: '',
+        step54: '',
+        step55: '',
+        step56: '',
+        step57: '',
+        step58: '',
+        step59: '',
+        step60: '',
+        step61: '',
+        step62: '',
+        step63: '',
+        step64: '',
+    });
 
     return (
         <ChakraProvider theme={theme}>
-            <Stepper currentStep={4}/>
+            <Stepper currentStep={4} />
             <Box p={5} maxW="800px" mx="auto" borderWidth={1} borderRadius="md" borderColor="gray.200">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     PIÈCES JUSTIFICATIVES
@@ -508,7 +589,7 @@ const PiecesJustificatives: React.FC = () => {
                 <Section title="SAISIE DE VOS COORDONNÉES BANCAIRES" variant="navy">
                     <FormControl id="iban">
                         <FormLabel>Votre IBAN</FormLabel>
-                        <Input type="text" />
+                        <Input type="text" value={formValues.step51} onChange={(e) => setFormValues({ ...formValues, step51: e.target.value })} />
                     </FormControl>
                 </Section>
 
@@ -517,7 +598,7 @@ const PiecesJustificatives: React.FC = () => {
                         <FormLabel>Montant initial</FormLabel>
                         <InputGroup>
                             <InputLeftAddon children="€" />
-                            <Input type="number" value={initialDeposit} onChange={(e) => setInitialDeposit(parseInt(e.target.value, 10))} />
+                            <Input type="number" value={formValues.step52} onChange={(e) => setFormValues({ ...formValues, step52: e.target.value })} />
                         </InputGroup>
                         <Text mt={2} color="gray.600">
                             Ce montant sera prélevé dans quelques jours, dès la validation de votre dossier. Assurez-vous d’avoir les fonds nécessaires sur ce compte au moment de la présentation du prélèvement. Pour modifier ce montant, il est indispensable de <Text as="u" color="blue.500">revoir votre projet</Text>.
@@ -543,7 +624,7 @@ const PiecesJustificatives: React.FC = () => {
                                 <FormLabel>Montant à prélever</FormLabel>
                                 <InputGroup>
                                     <InputLeftAddon children="€" />
-                                    <Input type="number" value={recurringDeposit} onChange={(e) => setRecurringDeposit(parseInt(e.target.value, 10))} />
+                                    <Input type="number" value={formValues.step53} onChange={(e) => setFormValues({ ...formValues, step53: e.target.value })} />
                                 </InputGroup>
                             </FormControl>
                             <Text mt={2} color="gray.600">
@@ -551,7 +632,7 @@ const PiecesJustificatives: React.FC = () => {
                             </Text>
                             <FormControl id="frequency">
                                 <FormLabel>Fréquence du prélèvement</FormLabel>
-                                <Select placeholder="Veuillez sélectionner">
+                                <Select placeholder="Veuillez sélectionner" value={formValues.step54} onChange={(e) => setFormValues({ ...formValues, step54: e.target.value })}>
                                     <option value="monthly">Par mois</option>
                                     <option value="quarterly">Par trimestre</option>
                                     <option value="semester">Par semestre</option>
@@ -560,7 +641,7 @@ const PiecesJustificatives: React.FC = () => {
                             </FormControl>
                             <FormControl id="day">
                                 <FormLabel>Jour du prélèvement</FormLabel>
-                                <Select placeholder="Veuillez sélectionner">
+                                <Select placeholder="Veuillez sélectionner" value={formValues.step55} onChange={(e) => setFormValues({ ...formValues, step55: e.target.value })}>
                                     <option value="1">1er</option>
                                     <option value="8">8</option>
                                     <option value="20">20</option>
@@ -576,7 +657,7 @@ const PiecesJustificatives: React.FC = () => {
                     </Text>
                     <FormControl id="source-of-funds" mt={4}>
                         <FormLabel>Origine des capitaux confiés</FormLabel>
-                        <Select placeholder="Veuillez sélectionner">
+                        <Select placeholder="Veuillez sélectionner" value={formValues.step56} onChange={(e) => setFormValues({ ...formValues, step56: e.target.value })}>
                             <option value="savings">Épargne déjà constituée (dont revenus)</option>
                             <option value="property-sale">Cession de bien</option>
                             <option value="inheritance">Héritage/Donation</option>
@@ -603,7 +684,7 @@ const PiecesJustificatives: React.FC = () => {
                     {isReferral && (
                         <FormControl id="referral-code" mt={4}>
                             <FormLabel>Renseignez votre code ci-dessous</FormLabel>
-                            <Input type="text" />
+                            <Input type="text" value={formValues.step57} onChange={(e) => setFormValues({ ...formValues, step57: e.target.value })} />
                         </FormControl>
                     )}
                 </Section>
