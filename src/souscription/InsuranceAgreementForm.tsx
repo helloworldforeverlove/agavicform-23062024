@@ -117,7 +117,7 @@ const InsuranceAgreementForm: React.FC = () => {
                             />
                         </HStack>
                     </ModalHeader>
-                    <ModalBody>
+                    <ModalBody p={0} height="calc(100vh - 100px)">
                         <iframe
                             src="https://wrzduukskbcqvxtqevpr.supabase.co/storage/v1/object/public/pdf/conditions.pdf?t=2024-06-27T20%3A41%3A38.178Z"
                             width="100%"

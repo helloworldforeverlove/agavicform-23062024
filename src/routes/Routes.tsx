@@ -35,7 +35,7 @@ import CombinedRiskScoreComponent from '../pages/26CombinedRiskScoreComponent';
 import Recommandation from '../recommandation/Recommandation';
 import InformationsPersonnelles from '../souscription/InformationsPersonnelles/index'; 
 import PiecesJustificatives from '../souscription/PiecesJustificatives'; // Import the new component
-import PdfViewer from '../souscription/PdfViewer'; // Import the new component
+import InsuranceAgreementForm from '../souscription/InsuranceAgreementForm';
 
 export const routes = [
     { path: '/', name: 'Home', component: <Home />, hidden: true },
@@ -71,7 +71,7 @@ export const routes = [
   { path: '/recommandation', name: 'Recommandation', component: <Recommandation />, hidden: true },
   { path: '/informations-personnelles', name: 'InformationsPersonnelles', component: <InformationsPersonnelles />, hidden: true },
   { path: '/pieces-justificatives', name: 'PiecesJustificatives', component: <PiecesJustificatives />, hidden: true }, 
-  { path: '/insurance-agreement', name: 'InsuranceAgreement', component: <PdfViewer />, hidden: true },
+  { path: '/insurance-agreement', name: 'InsuranceAgreement', component: <InsuranceAgreementForm />, hidden: true },
 ];
 
 const Routes: React.FC = () => {
