@@ -373,7 +373,7 @@ const PersonalInfoForm: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <Stepper currentStep={1} />
+            <Stepper currentStep={3} />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Veuillez entrer vos informations personnelles
