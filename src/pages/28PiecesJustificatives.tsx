@@ -269,10 +269,9 @@ const PiecesJustificatives: React.FC = () => {
                 step66: step66 || '',
                 step67: step67 || '',
             });
-
-            setSelectedOption(step65 || null);
-            setSelectedIdentity(step66 || null);
-            setSelectedDomicile(step67 || null);
+            setSelectedOption(step65 || '');
+            setSelectedIdentity(step66 || '');
+            setSelectedDomicile(step67 || '');
         };
 
         fetchResponse();
@@ -568,31 +567,71 @@ const PiecesJustificatives: React.FC = () => {
                             )}
                             <Text fontWeight="bold">JUSTIFICATIFS DE <strong>MOINS DE 3 MOIS</strong></Text>
                             <VStack spacing={3} align="stretch" width="100%">
-                                <Button variant="outline" width="100%" onClick={() => handleDomicileSelect('energie')}>
+                                <Button
+                                    variant={selectedDomicile === 'energie' ? 'solid' : 'outline'}
+                                    colorScheme={selectedDomicile === 'energie' ? 'green' : 'gray'}
+                                    onClick={() => handleDomicileSelect('energie')}
+                                    bg={selectedDomicile === 'energie' ? 'green.100' : 'transparent'}
+                                >
                                     Facture d’énergie, internet, câble, téléphonie fixe ou mobile
                                 </Button>
-                                <Button variant="outline" width="100%" onClick={() => handleDomicileSelect('bulletin_salaire')}>
+                                <Button
+                                    variant={selectedDomicile === 'bulletin_salaire' ? 'solid' : 'outline'}
+                                    colorScheme={selectedDomicile === 'bulletin_salaire' ? 'green' : 'gray'}
+                                    onClick={() => handleDomicileSelect('bulletin_salaire')}
+                                    bg={selectedDomicile === 'bulletin_salaire' ? 'green.100' : 'transparent'}
+                                >
                                     Bulletin de salaire
                                 </Button>
-                                <Button variant="outline" width="100%" onClick={() => handleDomicileSelect('quittance_loyer')}>
+                                <Button
+                                    variant={selectedDomicile === 'quittance_loyer' ? 'solid' : 'outline'}
+                                    colorScheme={selectedDomicile === 'quittance_loyer' ? 'green' : 'gray'}
+                                    onClick={() => handleDomicileSelect('quittance_loyer')}
+                                    bg={selectedDomicile === 'quittance_loyer' ? 'green.100' : 'transparent'}
+                                >
                                     Quittance de loyer d’un professionnel de l’immobilier
                                 </Button>
-                                <Button variant="outline" width="100%" onClick={() => handleDomicileSelect('contrat_edf')}>
+                                <Button
+                                    variant={selectedDomicile === 'contrat_edf' ? 'solid' : 'outline'}
+                                    colorScheme={selectedDomicile === 'contrat_edf' ? 'green' : 'gray'}
+                                    onClick={() => handleDomicileSelect('contrat_edf')}
+                                    bg={selectedDomicile === 'contrat_edf' ? 'green.100' : 'transparent'}
+                                >
                                     Attestation de détention d’un contrat EDF (avec QR code)
                                 </Button>
                             </VStack>
                             <Text fontWeight="bold">JUSTIFICATIFS DE <strong>MOINS DE 12 MOIS</strong></Text>
                             <VStack spacing={3} align="stretch" width="100%">
-                                <Button variant="outline" width="100%" onClick={() => handleDomicileSelect('echeancier_energie')}>
+                                <Button
+                                    variant={selectedDomicile === 'echeancier_energie' ? 'solid' : 'outline'}
+                                    colorScheme={selectedDomicile === 'echeancier_energie' ? 'green' : 'gray'}
+                                    onClick={() => handleDomicileSelect('echeancier_energie')}
+                                    bg={selectedDomicile === 'echeancier_energie' ? 'green.100' : 'transparent'}
+                                >
                                     Échéancier d’un fournisseur d’énergie
                                 </Button>
-                                <Button variant="outline" width="100%" onClick={() => handleDomicileSelect('impot_revenu')}>
+                                <Button
+                                    variant={selectedDomicile === 'impot_revenu' ? 'solid' : 'outline'}
+                                    colorScheme={selectedDomicile === 'impot_revenu' ? 'green' : 'gray'}
+                                    onClick={() => handleDomicileSelect('impot_revenu')}
+                                    bg={selectedDomicile === 'impot_revenu' ? 'green.100' : 'transparent'}
+                                >
                                     Dernier avis d’impôt sur le revenu
                                 </Button>
-                                <Button variant="outline" width="100%" onClick={() => handleDomicileSelect('taxe_habitation')}>
+                                <Button
+                                    variant={selectedDomicile === 'taxe_habitation' ? 'solid' : 'outline'}
+                                    colorScheme={selectedDomicile === 'taxe_habitation' ? 'green' : 'gray'}
+                                    onClick={() => handleDomicileSelect('taxe_habitation')}
+                                    bg={selectedDomicile === 'taxe_habitation' ? 'green.100' : 'transparent'}
+                                >
                                     Dernier avis de taxe d’habitation
                                 </Button>
-                                <Button variant="outline" width="100%" onClick={() => handleDomicileSelect('assurance_habitation')}>
+                                <Button
+                                    variant={selectedDomicile === 'assurance_habitation' ? 'solid' : 'outline'}
+                                    colorScheme={selectedDomicile === 'assurance_habitation' ? 'green' : 'gray'}
+                                    onClick={() => handleDomicileSelect('assurance_habitation')}
+                                    bg={selectedDomicile === 'assurance_habitation' ? 'green.100' : 'transparent'}
+                                >
                                     Attestation d’un contrat d’assurance habitation
                                 </Button>
                             </VStack>
