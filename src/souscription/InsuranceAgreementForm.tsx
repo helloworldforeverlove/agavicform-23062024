@@ -80,11 +80,16 @@ const InsuranceAgreementForm: React.FC = () => {
                         C'est la dernière étape ! Afin de finaliser l'ouverture de votre compte Yomoni, veuillez cocher les conditions générales ci-dessous, puis signer électroniquement votre contrat.
                     </Text>
                     <VStack align="start" spacing={3}>
-                        <Checkbox isChecked={agreedToTerms} onChange={handleCheckboxChange(setAgreedToTerms, onOpen)}>
-                            Je prends connaissance des Conditions Générales de Signature Electronique, du Document d'Informations Clés du contrat, de la Notice et du Règlement du mandat d'arbitrage.
+                        <Checkbox isChecked={agreedToTerms} onChange={handleCheckboxChange(setAgreedToTerms)}>
+                            Je prends connaissance des{' '}
+                            <Box as="span" color="blue.500" textDecoration="underline" cursor="pointer" onClick={onOpen}>
+                                Conditions Générales
+                            </Box>
+                            {' '}de Signature Electronique, du Document d'Informations Clés du contrat, de la Notice et du Règlement du mandat d'arbitrage.
                         </Checkbox>
                         <Checkbox isChecked={acknowledgedInfo} onChange={handleCheckboxChange(setAcknowledgedInfo)}>
-                            Je reconnais que Yomoni m'a communiqué les <Text as="u" color="blue.500">informations détaillées</Text> sur chaque support en unités de compte disponibles sur le contrat Yomoni Vie.
+                            Je reconnais que Yomoni m'a communiqué les{' '}
+                            <Text as="u" color="blue.500">informations détaillées</Text> sur chaque support en unités de compte disponibles sur le contrat Yomoni Vie.
                         </Checkbox>
                     </VStack>
                     <Badge
@@ -118,11 +123,11 @@ const InsuranceAgreementForm: React.FC = () => {
                     </ModalHeader>
                     <ModalBody p={0} height="calc(100vh - 4rem)">
                         <iframe
-                            title="conditions"
                             src="https://wrzduukskbcqvxtqevpr.supabase.co/storage/v1/object/public/pdf/conditions.pdf?t=2024-06-27T20%3A41%3A38.178Z"
                             width="100%"
                             height="100%"
                             style={{ border: 'none' }}
+                            title="Conditions Générales"
                         ></iframe>
                     </ModalBody>
                 </ModalContent>
