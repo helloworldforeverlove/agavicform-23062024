@@ -35,7 +35,7 @@ import CombinedRiskScoreComponent from '../pages/26CombinedRiskScoreComponent';
 import Recommandation from '../recommandation/Recommandation';
 import InformationsPersonnelles from '../souscription/InformationsPersonnelles/index'; 
 import PiecesJustificatives from '../pages/28PiecesJustificatives'; // Import the new component
-import InsuranceAgreementForm from '../souscription/InsuranceAgreementForm';
+import InsuranceAgreementForm from '../pages/29InsuranceAgreementForm';
 
 export const routes = [
     { path: '/', name: 'Home', component: <Home />, hidden: true },
