@@ -14,7 +14,6 @@ import {
     ModalBody,
     IconButton,
     HStack,
-    Button,
     useDisclosure,
     useStyleConfig
 } from '@chakra-ui/react';
@@ -104,7 +103,7 @@ const InsuranceAgreementForm: React.FC = () => {
 
             <Modal isOpen={isOpen} onClose={onClose} isCentered size="full">
                 <ModalOverlay />
-                <ModalContent borderRadius="md" boxShadow="lg">
+                <ModalContent borderRadius="md" boxShadow="lg" height="100vh">
                     <ModalHeader textAlign="center" fontSize="lg" fontWeight="bold">
                         <HStack justifyContent="space-between">
                             <Box flex="1" />
@@ -117,8 +116,9 @@ const InsuranceAgreementForm: React.FC = () => {
                             />
                         </HStack>
                     </ModalHeader>
-                    <ModalBody p={0} height="calc(100vh - 100px)">
+                    <ModalBody p={0} height="calc(100vh - 4rem)">
                         <iframe
+                            title="conditions"
                             src="https://wrzduukskbcqvxtqevpr.supabase.co/storage/v1/object/public/pdf/conditions.pdf?t=2024-06-27T20%3A41%3A38.178Z"
                             width="100%"
                             height="100%"
