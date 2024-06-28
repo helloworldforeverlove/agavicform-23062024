@@ -36,6 +36,7 @@ import {
 import { FaIdCard, FaHome, FaUniversity, FaPassport, FaMobileAlt, FaFileUpload } from 'react-icons/fa';
 import { FcManager } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
+import Stepper from '../components/Stepper';
 
 const theme = extendTheme({
     colors: {
@@ -193,6 +194,7 @@ const PiecesJustificatives: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
+            <Stepper currentStep={4}/>
             <Box p={5} maxW="800px" mx="auto" borderWidth={1} borderRadius="md" borderColor="gray.200">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     PIÈCES JUSTIFICATIVES

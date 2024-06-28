@@ -20,6 +20,7 @@ import {
     useStyleConfig,
 } from '@chakra-ui/react';
 import { FaTimes } from 'react-icons/fa';
+import Stepper from '../components/Stepper';
 
 const theme = extendTheme({
     colors: {
@@ -73,6 +74,7 @@ const InsuranceAgreementForm: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
+            <Stepper currentStep={5}/>
             <Box p={5} maxW="800px" mx="auto">
                 <Section title="Ouverture d’une Assurance-vie avec un mandat d’arbitrage en profil" variant="gray">
                     <Text mb={4}>
