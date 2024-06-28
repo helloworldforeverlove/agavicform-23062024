@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import {
     ChakraProvider,
     extendTheme,
@@ -15,16 +15,11 @@ import {
     IconButton,
     HStack,
     Button,
-    Spinner,
     useDisclosure,
     useStyleConfig
 } from '@chakra-ui/react';
 import { FaTimes } from 'react-icons/fa';
 import EpargneModal from './EpargneModal';
-import * as pdfjsLib from 'pdfjs-dist/build/pdf';
-import 'pdfjs-dist/build/pdf.worker.entry';
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
 const theme = extendTheme({
     colors: {
@@ -67,11 +62,7 @@ const InsuranceAgreementForm: React.FC = () => {
     const [agreedToTerms, setAgreedToTerms] = useState(false);
     const [acknowledgedInfo, setAcknowledgedInfo] = useState(false);
     const [isEpargneModalOpen, setEpargneModalOpen] = useState(false);
-    const [isPdfModalOpen, setPdfModalOpen] = useState(false);
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [numPages, setNumPages] = useState<number | null>(null);
-    const [pageNumber, setPageNumber] = useState(1);
-    const [loading, setLoading] = useState(true);
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     const handleCheckboxChange = (setChecked: React.Dispatch<React.SetStateAction<boolean>>, openModal?: () => void) => (
         event: React.ChangeEvent<HTMLInputElement>
@@ -82,46 +73,6 @@ const InsuranceAgreementForm: React.FC = () => {
         }
     };
 
-    const openPdfModal = () => setPdfModalOpen(true);
-    const closePdfModal = () => setPdfModalOpen(false);
-
-    useEffect(() => {
-        const loadingTask = pdfjsLib.getDocument('/conditions.pdf');
-        loadingTask.promise.then((pdf) => {
-            setNumPages(pdf.numPages);
-            setLoading(false);
-
-            // Render the first page
-            renderPage(pdf, pageNumber);
-        });
-    }, [pageNumber]);
-
-    const renderPage = (pdf: any, pageNum: number) => {
-        pdf.getPage(pageNum).then((page: any) => {
-            const viewport = page.getViewport({ scale: 1.5 });
-            const canvas = canvasRef.current;
-            if (canvas) {
-                const context = canvas.getContext('2d');
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-
-                const renderContext = {
-                    canvasContext: context,
-                    viewport: viewport,
-                };
-                page.render(renderContext);
-            }
-        });
-    };
-
-    const nextPage = () => {
-        setPageNumber((prevPageNumber) => Math.min(prevPageNumber + 1, numPages || 1));
-    };
-
-    const prevPage = () => {
-        setPageNumber((prevPageNumber) => Math.max(prevPageNumber - 1, 1));
-    };
-
     return (
         <ChakraProvider theme={theme}>
             <Box p={5} maxW="800px" mx="auto">
@@ -130,7 +81,7 @@ const InsuranceAgreementForm: React.FC = () => {
                         C'est la dernière étape ! Afin de finaliser l'ouverture de votre compte Yomoni, veuillez cocher les conditions générales ci-dessous, puis signer électroniquement votre contrat.
                     </Text>
                     <VStack align="start" spacing={3}>
-                        <Checkbox isChecked={agreedToTerms} onChange={handleCheckboxChange(setAgreedToTerms, openPdfModal)}>
+                        <Checkbox isChecked={agreedToTerms} onChange={handleCheckboxChange(setAgreedToTerms, onOpen)}>
                             Je prends connaissance des Conditions Générales de Signature Electronique, du Document d'Informations Clés du contrat, de la Notice et du Règlement du mandat d'arbitrage.
                         </Checkbox>
                         <Checkbox isChecked={acknowledgedInfo} onChange={handleCheckboxChange(setAcknowledgedInfo)}>
@@ -151,7 +102,7 @@ const InsuranceAgreementForm: React.FC = () => {
 
             <EpargneModal isOpen={isEpargneModalOpen} onClose={() => setEpargneModalOpen(false)} />
 
-            <Modal isOpen={isPdfModalOpen} onClose={closePdfModal} isCentered size="full">
+            <Modal isOpen={isOpen} onClose={onClose} isCentered size="full">
                 <ModalOverlay />
                 <ModalContent borderRadius="md" boxShadow="lg">
                     <ModalHeader textAlign="center" fontSize="lg" fontWeight="bold">
@@ -162,26 +113,17 @@ const InsuranceAgreementForm: React.FC = () => {
                                 icon={<FaTimes />}
                                 aria-label="Close"
                                 variant="ghost"
-                                onClick={closePdfModal}
+                                onClick={onClose}
                             />
                         </HStack>
                     </ModalHeader>
                     <ModalBody>
-                        {loading ? (
-                            <Spinner />
-                        ) : (
-                            <>
-                                <canvas ref={canvasRef} />
-                                <Box display="flex" justifyContent="space-between" mt={4}>
-                                    <Button onClick={prevPage} disabled={pageNumber <= 1}>
-                                        Précédente
-                                    </Button>
-                                    <Button onClick={nextPage} disabled={pageNumber >= (numPages || 1)}>
-                                        Suivante
-                                    </Button>
-                                </Box>
-                            </>
-                        )}
+                        <iframe
+                            src="https://wrzduukskbcqvxtqevpr.supabase.co/storage/v1/object/public/pdf/conditions.pdf?t=2024-06-27T20%3A41%3A38.178Z"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 'none' }}
+                        ></iframe>
                     </ModalBody>
                 </ModalContent>
             </Modal>
