@@ -79,19 +79,25 @@ const InsuranceAgreementForm: React.FC = () => {
                     <Text mb={4}>
                         C'est la dernière étape ! Afin de finaliser l'ouverture de votre compte Yomoni, veuillez cocher les conditions générales ci-dessous, puis signer électroniquement votre contrat.
                     </Text>
-                    <VStack align="start" spacing={3}>
-                        <Checkbox isChecked={agreedToTerms} onChange={handleCheckboxChange(setAgreedToTerms)}>
-                            Je prends connaissance des{' '}
-                            <Box as="span" color="blue.500" textDecoration="underline" cursor="pointer" onClick={onOpen}>
-                                Conditions Générales
-                            </Box>
-                            {' '}de Signature Electronique, du Document d'Informations Clés du contrat, de la Notice et du Règlement du mandat d'arbitrage.
-                        </Checkbox>
-                        <Checkbox isChecked={acknowledgedInfo} onChange={handleCheckboxChange(setAcknowledgedInfo)}>
-                            Je reconnais que Yomoni m'a communiqué les{' '}
-                            <Text as="u" color="blue.500">informations détaillées</Text> sur chaque support en unités de compte disponibles sur le contrat Yomoni Vie.
-                        </Checkbox>
-                    </VStack>
+            <VStack align="start" spacing={3}>
+                <Checkbox 
+                    isChecked={agreedToTerms} 
+                    onChange={handleCheckboxChange(setAgreedToTerms)}
+                >
+                    Je prends connaissance des{' '}
+                    <Box as="span" color="blue.500" textDecoration="underline" cursor="pointer" onClick={onOpen}>
+                        Conditions Générales
+                    </Box>
+                    {' '}de Signature Electronique, du Document d'Informations Clés du contrat, de la Notice et du Règlement du mandat d'arbitrage.
+                </Checkbox>
+                <Checkbox 
+                    isChecked={acknowledgedInfo} 
+                    onChange={handleCheckboxChange(setAcknowledgedInfo)}
+                >
+                    Je reconnais que Yomoni m'a communiqué les{' '}
+                    <Text as="u" color="blue.500">informations détaillées</Text> sur chaque support en unités de compte disponibles sur le contrat Yomoni Vie.
+                </Checkbox>
+            </VStack>
                     <Badge
                         colorScheme="green"
                         variant="solid"
