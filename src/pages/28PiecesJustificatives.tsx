@@ -361,7 +361,7 @@ const PiecesJustificatives: React.FC = () => {
                         {step === 2 && (
                             <>
                                 <VStack spacing={4} align="start">
-                                    <Tabs isFitted variant="enclosed">
+                                    <Tabs isFitted variant="enclosed" index={selectedIdentity === 'piece_identite' ? 0 : 1}>
                                         <TabList mb="1em">
                                             <Tab _selected={{ bg: 'green.100' }} onClick={() => handleIdentitySelect('piece_identite')}>
                                                 <HStack spacing={2}>
