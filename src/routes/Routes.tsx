@@ -34,7 +34,7 @@ import NotificationPreferences from '../pages/25NotificationPreferences';
 import CombinedRiskScoreComponent from '../pages/26CombinedRiskScoreComponent';
 import Recommandation from '../recommandation/Recommandation';
 import InformationsPersonnelles from '../souscription/InformationsPersonnelles/index'; 
-import PiecesJustificatives from '../souscription/PiecesJustificatives'; // Import the new component
+import PiecesJustificatives from '../pages/28PiecesJustificatives'; // Import the new component
 import InsuranceAgreementForm from '../souscription/InsuranceAgreementForm';
 
 export const routes = [
