@@ -269,6 +269,10 @@ const PiecesJustificatives: React.FC = () => {
                 step66: step66 || '',
                 step67: step67 || '',
             });
+
+            setSelectedOption(step65 || null);
+            setSelectedIdentity(step66 || null);
+            setSelectedDomicile(step67 || null);
         };
 
         fetchResponse();
