@@ -578,69 +578,93 @@ const PiecesJustificatives: React.FC = () => {
                             <Text fontWeight="bold">JUSTIFICATIFS DE <strong>MOINS DE 3 MOIS</strong></Text>
                             <VStack spacing={3} align="stretch" width="100%">
                                 <Button
-                                    variant={selectedDomicile === 'energie' ? 'solid' : 'outline'}
+                                    variant="outline"
                                     colorScheme={selectedDomicile === 'energie' ? 'green' : 'gray'}
                                     onClick={() => handleDomicileSelect('energie')}
-                                    bg={selectedDomicile === 'energie' ? 'green.100' : 'transparent'}
+                                    borderColor={selectedDomicile === 'energie' ? 'green.400' : 'gray.200'}
+                                    color={selectedDomicile === 'energie' ? 'green.500' : 'inherit'}
+                                    _hover={{ borderColor: 'green.300', color: 'green.500' }}
+                                    bg="transparent"
                                 >
                                     Facture d’énergie, internet, câble, téléphonie fixe ou mobile
                                 </Button>
                                 <Button
-                                    variant={selectedDomicile === 'bulletin_salaire' ? 'solid' : 'outline'}
+                                    variant="outline"
                                     colorScheme={selectedDomicile === 'bulletin_salaire' ? 'green' : 'gray'}
                                     onClick={() => handleDomicileSelect('bulletin_salaire')}
-                                    bg={selectedDomicile === 'bulletin_salaire' ? 'green.100' : 'transparent'}
+                                    borderColor={selectedDomicile === 'bulletin_salaire' ? 'green.400' : 'gray.200'}
+                                    color={selectedDomicile === 'bulletin_salaire' ? 'green.500' : 'inherit'}
+                                    _hover={{ borderColor: 'green.300', color: 'green.500' }}
+                                    bg="transparent"
                                 >
                                     Bulletin de salaire
                                 </Button>
                                 <Button
-                                    variant={selectedDomicile === 'quittance_loyer' ? 'solid' : 'outline'}
+                                    variant="outline"
                                     colorScheme={selectedDomicile === 'quittance_loyer' ? 'green' : 'gray'}
                                     onClick={() => handleDomicileSelect('quittance_loyer')}
-                                    bg={selectedDomicile === 'quittance_loyer' ? 'green.100' : 'transparent'}
+                                    borderColor={selectedDomicile === 'quittance_loyer' ? 'green.400' : 'gray.200'}
+                                    color={selectedDomicile === 'quittance_loyer' ? 'green.500' : 'inherit'}
+                                    _hover={{ borderColor: 'green.300', color: 'green.500' }}
+                                    bg="transparent"
                                 >
                                     Quittance de loyer d’un professionnel de l’immobilier
                                 </Button>
                                 <Button
-                                    variant={selectedDomicile === 'contrat_edf' ? 'solid' : 'outline'}
+                                    variant="outline"
                                     colorScheme={selectedDomicile === 'contrat_edf' ? 'green' : 'gray'}
                                     onClick={() => handleDomicileSelect('contrat_edf')}
-                                    bg={selectedDomicile === 'contrat_edf' ? 'green.100' : 'transparent'}
+                                    borderColor={selectedDomicile === 'contrat_edf' ? 'green.400' : 'gray.200'}
+                                    color={selectedDomicile === 'contrat_edf' ? 'green.500' : 'inherit'}
+                                    _hover={{ borderColor: 'green.300', color: 'green.500' }}
+                                    bg="transparent"
                                 >
                                     Attestation de détention d’un contrat EDF (avec QR code)
                                 </Button>
                             </VStack>
-                            <Text fontWeight="bold">JUSTIFICATIFS DE <strong>MOINS DE 12 MOIS</strong></Text>
+                            <Text fontWeight="bold" textAlign="center">JUSTIFICATIFS DE <strong>MOINS DE 12 MOIS</strong></Text>
                             <VStack spacing={3} align="stretch" width="100%">
                                 <Button
-                                    variant={selectedDomicile === 'echeancier_energie' ? 'solid' : 'outline'}
+                                    variant="outline"
                                     colorScheme={selectedDomicile === 'echeancier_energie' ? 'green' : 'gray'}
                                     onClick={() => handleDomicileSelect('echeancier_energie')}
-                                    bg={selectedDomicile === 'echeancier_energie' ? 'green.100' : 'transparent'}
+                                    borderColor={selectedDomicile === 'echeancier_energie' ? 'green.400' : 'gray.200'}
+                                    color={selectedDomicile === 'echeancier_energie' ? 'green.500' : 'inherit'}
+                                    _hover={{ borderColor: 'green.300', color: 'green.500' }}
+                                    bg="transparent"
                                 >
                                     Échéancier d’un fournisseur d’énergie
                                 </Button>
                                 <Button
-                                    variant={selectedDomicile === 'impot_revenu' ? 'solid' : 'outline'}
+                                    variant="outline"
                                     colorScheme={selectedDomicile === 'impot_revenu' ? 'green' : 'gray'}
                                     onClick={() => handleDomicileSelect('impot_revenu')}
-                                    bg={selectedDomicile === 'impot_revenu' ? 'green.100' : 'transparent'}
+                                    borderColor={selectedDomicile === 'impot_revenu' ? 'green.400' : 'gray.200'}
+                                    color={selectedDomicile === 'impot_revenu' ? 'green.500' : 'inherit'}
+                                    _hover={{ borderColor: 'green.300', color: 'green.500' }}
+                                    bg="transparent"
                                 >
                                     Dernier avis d’impôt sur le revenu
                                 </Button>
                                 <Button
-                                    variant={selectedDomicile === 'taxe_habitation' ? 'solid' : 'outline'}
+                                    variant="outline"
                                     colorScheme={selectedDomicile === 'taxe_habitation' ? 'green' : 'gray'}
                                     onClick={() => handleDomicileSelect('taxe_habitation')}
-                                    bg={selectedDomicile === 'taxe_habitation' ? 'green.100' : 'transparent'}
+                                    borderColor={selectedDomicile === 'taxe_habitation' ? 'green.400' : 'gray.200'}
+                                    color={selectedDomicile === 'taxe_habitation' ? 'green.500' : 'inherit'}
+                                    _hover={{ borderColor: 'green.300', color: 'green.500' }}
+                                    bg="transparent"
                                 >
                                     Dernier avis de taxe d’habitation
                                 </Button>
                                 <Button
-                                    variant={selectedDomicile === 'assurance_habitation' ? 'solid' : 'outline'}
+                                    variant="outline"
                                     colorScheme={selectedDomicile === 'assurance_habitation' ? 'green' : 'gray'}
                                     onClick={() => handleDomicileSelect('assurance_habitation')}
-                                    bg={selectedDomicile === 'assurance_habitation' ? 'green.100' : 'transparent'}
+                                    borderColor={selectedDomicile === 'assurance_habitation' ? 'green.400' : 'gray.200'}
+                                    color={selectedDomicile === 'assurance_habitation' ? 'green.500' : 'inherit'}
+                                    _hover={{ borderColor: 'green.300', color: 'green.500' }}
+                                    bg="transparent"
                                 >
                                     Attestation d’un contrat d’assurance habitation
                                 </Button>
