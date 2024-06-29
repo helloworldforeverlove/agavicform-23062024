@@ -160,6 +160,7 @@ const PiecesJustificatives: React.FC = () => {
     const { isOpen: isRIBOpen, onOpen: onRIBOpen, onClose: onRIBClose } = useDisclosure();
     const [step, setStep] = useState(1);
     const [mobileStep, setMobileStep] = useState(1);
+    // eslint-disable-next-line
     const [firstUploadCompleted, setFirstUploadCompleted] = useState(false);
     const [showSecondUpload, setShowSecondUpload] = useState(false);
     const [isHosted, setIsHosted] = useState(false);
@@ -168,6 +169,7 @@ const PiecesJustificatives: React.FC = () => {
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const [selectedIdentity, setSelectedIdentity] = useState<string | null>(null);
     const [selectedDomicile, setSelectedDomicile] = useState<string | null>(null);
+    const [ribUrl, setRibUrl] = useState<string | null>(null);
     const navigate = useNavigate();
     const { uuid, getResponse } = useUuid();
 
@@ -175,12 +177,28 @@ const PiecesJustificatives: React.FC = () => {
 
     const handleMobileNextStep = () => setMobileStep(mobileStep + 1);
 
-    const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files?.length) {
-            console.log('Uploaded file:', event.target.files[0]);
-            setFirstUploadCompleted(true);
+            const file = event.target.files[0];
+            const { error } = await supabase.storage
+                .from('rib-compte-courant')
+                .upload(`public/${uuid}/${file.name}`, file);
+    
+            if (error) {
+                console.error('Error uploading file:', error);
+            } else {
+                const { data } = supabase.storage
+                    .from('rib-compte-courant')
+                    .getPublicUrl(`public/${uuid}/${file.name}`);
+    
+                if (data) {
+                    setRibUrl(data.publicUrl);
+                } else {
+                    console.error('Error getting public URL');
+                }
+            }
         }
-    };
+    };    
 
     const handleShowSecondUpload = () => {
         setShowSecondUpload(true);
@@ -210,7 +228,7 @@ const PiecesJustificatives: React.FC = () => {
                 step55: formValues.step55,
                 step56: formValues.step56,
                 step57: formValues.step57,
-                step58: isReferral ? 'yes' : 'no',  // Update step58 here
+                step58: isReferral,
                 step59: formValues.step59,
                 step60: formValues.step60,
                 step61: formValues.step61,
@@ -220,6 +238,7 @@ const PiecesJustificatives: React.FC = () => {
                 step65: selectedOption,
                 step66: selectedIdentity,
                 step67: selectedDomicile,
+                step68: ribUrl, // assuming this is the step column for RIB URL
             })
             .eq('id', uuid);
 
@@ -239,7 +258,7 @@ const PiecesJustificatives: React.FC = () => {
             const step55 = await getResponse(55);
             const step56 = await getResponse(56);
             const step57 = await getResponse(57);
-            const step58 = await getResponse(58);  // Fetch step58 response
+            const step58 = await getResponse(58);
             const step59 = await getResponse(59);
             const step60 = await getResponse(60);
             const step61 = await getResponse(61);
@@ -249,6 +268,7 @@ const PiecesJustificatives: React.FC = () => {
             const step65 = await getResponse(65);
             const step66 = await getResponse(66);
             const step67 = await getResponse(67);
+            const step68 = await getResponse(68);
 
             setFormValues({
                 step51: step51 || '',
@@ -258,6 +278,7 @@ const PiecesJustificatives: React.FC = () => {
                 step55: step55 || '',
                 step56: step56 || '',
                 step57: step57 || '',
+                step58: step58 || '',
                 step59: step59 || '',
                 step60: step60 || '',
                 step61: step61 || '',
@@ -267,11 +288,13 @@ const PiecesJustificatives: React.FC = () => {
                 step65: step65 || '',
                 step66: step66 || '',
                 step67: step67 || '',
+                step68: step68 || '',
             });
             setSelectedOption(step65 || '');
             setSelectedIdentity(step66 || '');
             setSelectedDomicile(step67 || '');
-            setIsReferral(step58 === 'yes');  // Set isReferral state
+            setRibUrl(step68 || '');
+            setIsReferral(step58 === 'true');
         };
 
         fetchResponse();
@@ -285,6 +308,7 @@ const PiecesJustificatives: React.FC = () => {
         step55: '',
         step56: '',
         step57: '',
+        step58: '',
         step59: '',
         step60: '',
         step61: '',
@@ -294,6 +318,7 @@ const PiecesJustificatives: React.FC = () => {
         step65: '',
         step66: '',
         step67: '',
+        step68: '',
     });
 
     return (
@@ -693,6 +718,19 @@ const PiecesJustificatives: React.FC = () => {
                                 SÉLECTIONNER MON FICHIER
                                 <Input type="file" display="none" onChange={handleFileUpload} />
                             </Button>
+                            {ribUrl && (
+                                <FormControl id="rib-url" mt={4}>
+                                    <FormLabel textAlign="center">URL du fichier RIB</FormLabel>
+                                    <Input
+                                        type="text"
+                                        value={ribUrl}
+                                        isReadOnly
+                                        textAlign="center"
+                                        borderColor="green.400"
+                                        color="green.500"
+                                    />
+                                </FormControl>
+                            )}
                         </VStack>
                     </ModalBody>
                 </ModalContent>
