@@ -26,12 +26,12 @@ import {
     Tab,
     TabPanel,
     Input,
+    InputRightAddon,
+    InputGroup,
     Checkbox,
     Select,
     FormControl,
     FormLabel,
-    InputGroup,
-    InputLeftAddon,
 } from '@chakra-ui/react';
 import { FaIdCard, FaHome, FaUniversity, FaMobileAlt, FaFileUpload, FaPassport } from 'react-icons/fa';
 import { FcManager } from 'react-icons/fc';
@@ -676,27 +676,46 @@ const PiecesJustificatives: React.FC = () => {
             </Modal>
 
             <Box p={5} maxW="1000px" mx="auto">
-                <Section title="SAISIE DE VOS COORDONNÉES BANCAIRES" >
+                <Section title="SAISIE DE VOS COORDONNÉES BANCAIRES">
                     <FormControl id="iban">
                         <FormLabel textAlign="center">Votre IBAN</FormLabel>
-                        <Input type="text" value={formValues.step51} onChange={(e) => setFormValues({ ...formValues, step51: e.target.value })} />
+                        <Input
+                            type="text"
+                            value={formValues.step51}
+                            onChange={(e) => setFormValues({ ...formValues, step51: e.target.value })}
+                            textAlign="center"
+                            borderColor={formValues.step51 ? 'green.400' : 'gray.200'}
+                            _hover={{ borderColor: formValues.step51 ? 'green.500' : 'gray.300' }}
+                        />
                     </FormControl>
                 </Section>
 
                 <Section title="MISE EN PLACE DE VOTRE VERSEMENT INITIAL">
                     <FormControl id="initial-deposit">
                         <FormLabel textAlign="center">Montant initial</FormLabel>
-                        <InputGroup>
-                            <InputLeftAddon children="€" />
-                            <Input type="number" value={formValues.step52} onChange={(e) => setFormValues({ ...formValues, step52: e.target.value })} />
-                        </InputGroup>
-                        <Text mt={2} color="gray.600">
+                        <Box justifyContent="center" mb={6} maxWidth={400} mx="auto">
+                            <InputGroup size="lg" width="auto">
+                                <Input
+                                    type="number"
+                                    min={0}
+                                    value={formValues.step52}
+                                    onChange={(e) => setFormValues({ ...formValues, step52: e.target.value })}
+                                    placeholder="Entrez une valeur"
+                                    size="lg"
+                                    textAlign="center"
+                                    borderColor={formValues.step52 ? 'green.400' : 'gray.200'}
+                                    _hover={{ borderColor: formValues.step52 ? 'green.500' : 'gray.300' }}
+                                />
+                                <InputRightAddon children="€" />
+                            </InputGroup>
+                        </Box>
+                        <Text mt={2} color="gray.600" textAlign="center">
                             Ce montant sera prélevé dans quelques jours, dès la validation de votre dossier. Assurez-vous d’avoir les fonds nécessaires sur ce compte au moment de la présentation du prélèvement. Pour modifier ce montant, il est indispensable de <Text as="u" color="blue.500">revoir votre projet</Text>.
                         </Text>
                     </FormControl>
                 </Section>
 
-                <Section title="MISE EN PLACE DE VOS VERSEMENTS PROGRAMMÉS" >
+                <Section title="MISE EN PLACE DE VOS VERSEMENTS PROGRAMMÉS">
                     <FormControl id="recurring-deposit-switch">
                         <FormLabel textAlign="center">Souhaitez-vous mettre en place des versements programmés ?</FormLabel>
                         <HStack justifyContent="center" spacing={4}>
@@ -727,15 +746,27 @@ const PiecesJustificatives: React.FC = () => {
                         </HStack>
                     </FormControl>
                     {isRecurring && (
-                        <VStack spacing={4} mt={4} align="start">
+                        <VStack spacing={4} mt={4}>
                             <FormControl id="recurring-deposit">
                                 <FormLabel textAlign="center">Montant à prélever</FormLabel>
-                                <InputGroup>
-                                    <InputLeftAddon children="€" />
-                                    <Input type="number" value={formValues.step53} onChange={(e) => setFormValues({ ...formValues, step53: e.target.value })} />
-                                </InputGroup>
+                                <Box justifyContent="center" mb={6} maxWidth={400} mx="auto">
+                                    <InputGroup size="lg" width="auto">
+                                        <Input
+                                            type="number"
+                                            min={0}
+                                            value={formValues.step53}
+                                            onChange={(e) => setFormValues({ ...formValues, step53: e.target.value })}
+                                            placeholder="Entrez une valeur"
+                                            size="lg"
+                                            textAlign="center"
+                                            borderColor={formValues.step53 ? 'green.400' : 'gray.200'}
+                                            _hover={{ borderColor: formValues.step53 ? 'green.500' : 'gray.300' }}
+                                        />
+                                        <InputRightAddon children="€" />
+                                    </InputGroup>
+                                </Box>
                             </FormControl>
-                            <Text mt={2} color="gray.600">
+                            <Text mt={2} color="gray.600" textAlign="center">
                                 Ce montant sera prélevé sur votre compte selon la fréquence et à la date que vous avez indiqués ci-dessous. Votre prélèvement programmé s'activera à l'issue d'une période de 30 jours après l'ouverture de votre contrat correspondant à la période légale de renonciation.
                             </Text>
                             <FormControl id="frequency">
@@ -759,8 +790,8 @@ const PiecesJustificatives: React.FC = () => {
                     )}
                 </Section>
 
-                <Section title="VÉRIFICATIONS RÉGLEMENTAIRES" >
-                    <Text>
+                <Section title="VÉRIFICATIONS RÉGLEMENTAIRES">
+                    <Text textAlign="center">
                         Afin de lutter contre le blanchiment de capitaux et le financement du terrorisme, nous avons besoin de quelques informations supplémentaires
                     </Text>
                     <FormControl id="source-of-funds" mt={4}>
@@ -783,8 +814,8 @@ const PiecesJustificatives: React.FC = () => {
                         <HStack justifyContent="center" spacing={4}>
                             <Button
                                 variant="outline"
-                                colorScheme={isReferral ? 'gray' : 'green'}
-                                borderColor={isReferral ? 'gray.200' : 'green.400'}
+                                colorScheme={!isReferral ? 'green' : 'gray'}
+                                borderColor={!isReferral ? 'green.400' : 'gray.200'}
                                 onClick={() => setIsReferral(false)}
                                 px={10}
                                 py={6}
