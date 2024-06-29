@@ -123,7 +123,7 @@ const theme = extendTheme({
 
 interface SectionProps {
     title: string;
-    variant: string;
+    variant?: string;
     children: ReactNode;
 }
 
@@ -132,7 +132,7 @@ const Section: React.FC<SectionProps> = ({ title, variant, children }) => {
 
     return (
         <Box sx={styles}>
-            <Text fontSize="lg" fontWeight="bold" mb={2}>
+            <Text fontSize="lg" fontWeight="bold" mb={2} textAlign="center">
                 {title}
             </Text>
             {children}
@@ -300,14 +300,14 @@ const PiecesJustificatives: React.FC = () => {
     return (
         <ChakraProvider theme={theme}>
             <Stepper currentStep={4} />
-            <Box p={5} maxW="800px" mx="auto" borderWidth={1} borderRadius="md" borderColor="gray.200">
+            <Box p={5} maxW="1000px" mx="auto" borderWidth={1} borderRadius="md" borderColor="gray.200">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     PIÈCES JUSTIFICATIVES
                 </Text>
                 <Text fontSize="md" mb={4} textAlign="center">
                     Veuillez joindre les pièces justificatives ci-dessous (numérisées ou photographiées en vous servant de votre mobile). Vous pouvez revenir à tout moment pour finaliser votre parcours. Vos pièces sont sauvegardées. Poids maximum de 3Mo pour les fichiers PDF.
                 </Text>
-                <Box bg="green.900" color="white" px={4} py={1} borderRadius="md" mb={6} maxW="fit-content">
+                <Box bg="green.900" color="white" px={4} py={1} borderRadius="md" mb={6} maxW="fit-content" mx="auto">
                     <Text>HBKJ GG</Text>
                 </Box>
                 <HStack spacing={6} justifyContent="center">
@@ -496,16 +496,26 @@ const PiecesJustificatives: React.FC = () => {
                             <VStack spacing={4} align="start">
                                 <HStack spacing={4}>
                                     <Button
-                                        variant={selectedOption === 'facture' ? 'solid' : 'outline'}
+                                        variant="outline"
                                         colorScheme={selectedOption === 'facture' ? 'green' : 'gray'}
+                                        borderColor={selectedOption === 'facture' ? 'green.400' : 'gray.200'}
                                         onClick={() => handleOptionSelect('facture')}
+                                        px={10}
+                                        py={6}
+                                        size="lg"
+                                        _hover={{ bg: 'gray.200' }}
                                     >
                                         Facture à mon nom
                                     </Button>
                                     <Button
-                                        variant={selectedOption === 'attestation' ? 'solid' : 'outline'}
+                                        variant="outline"
                                         colorScheme={selectedOption === 'attestation' ? 'green' : 'gray'}
+                                        borderColor={selectedOption === 'attestation' ? 'green.400' : 'gray.200'}
                                         onClick={() => handleOptionSelect('attestation')}
+                                        px={10}
+                                        py={6}
+                                        size="lg"
+                                        _hover={{ bg: 'gray.200' }}
                                     >
                                         Attestation
                                     </Button>
@@ -665,17 +675,17 @@ const PiecesJustificatives: React.FC = () => {
                 </ModalContent>
             </Modal>
 
-            <Box p={5} maxW="800px" mx="auto">
-                <Section title="SAISIE DE VOS COORDONNÉES BANCAIRES" variant="navy">
+            <Box p={5} maxW="1000px" mx="auto">
+                <Section title="SAISIE DE VOS COORDONNÉES BANCAIRES" >
                     <FormControl id="iban">
-                        <FormLabel>Votre IBAN</FormLabel>
+                        <FormLabel textAlign="center">Votre IBAN</FormLabel>
                         <Input type="text" value={formValues.step51} onChange={(e) => setFormValues({ ...formValues, step51: e.target.value })} />
                     </FormControl>
                 </Section>
 
-                <Section title="MISE EN PLACE DE VOTRE VERSEMENT INITIAL" variant="green">
+                <Section title="MISE EN PLACE DE VOTRE VERSEMENT INITIAL">
                     <FormControl id="initial-deposit">
-                        <FormLabel>Montant initial</FormLabel>
+                        <FormLabel textAlign="center">Montant initial</FormLabel>
                         <InputGroup>
                             <InputLeftAddon children="€" />
                             <Input type="number" value={formValues.step52} onChange={(e) => setFormValues({ ...formValues, step52: e.target.value })} />
@@ -686,14 +696,32 @@ const PiecesJustificatives: React.FC = () => {
                     </FormControl>
                 </Section>
 
-                <Section title="MISE EN PLACE DE VOS VERSEMENTS PROGRAMMÉS" variant="navy">
+                <Section title="MISE EN PLACE DE VOS VERSEMENTS PROGRAMMÉS" >
                     <FormControl id="recurring-deposit-switch">
-                        <FormLabel>Souhaitez-vous mettre en place des versements programmés ?</FormLabel>
-                        <HStack spacing={4}>
-                            <Button onClick={() => setIsRecurring(false)} variant={isRecurring ? 'outline' : 'solid'}>
+                        <FormLabel textAlign="center">Souhaitez-vous mettre en place des versements programmés ?</FormLabel>
+                        <HStack justifyContent="center" spacing={4}>
+                            <Button
+                                variant="outline"
+                                colorScheme={isRecurring ? 'gray' : 'green'}
+                                borderColor={isRecurring ? 'gray.200' : 'green.400'}
+                                onClick={() => setIsRecurring(false)}
+                                px={10}
+                                py={6}
+                                size="lg"
+                                _hover={{ bg: 'gray.200' }}
+                            >
                                 Non
                             </Button>
-                            <Button onClick={() => setIsRecurring(true)} variant={isRecurring ? 'solid' : 'outline'}>
+                            <Button
+                                variant="outline"
+                                colorScheme={isRecurring ? 'green' : 'gray'}
+                                borderColor={isRecurring ? 'green.400' : 'gray.200'}
+                                onClick={() => setIsRecurring(true)}
+                                px={10}
+                                py={6}
+                                size="lg"
+                                _hover={{ bg: 'gray.200' }}
+                            >
                                 Oui
                             </Button>
                         </HStack>
@@ -701,7 +729,7 @@ const PiecesJustificatives: React.FC = () => {
                     {isRecurring && (
                         <VStack spacing={4} mt={4} align="start">
                             <FormControl id="recurring-deposit">
-                                <FormLabel>Montant à prélever</FormLabel>
+                                <FormLabel textAlign="center">Montant à prélever</FormLabel>
                                 <InputGroup>
                                     <InputLeftAddon children="€" />
                                     <Input type="number" value={formValues.step53} onChange={(e) => setFormValues({ ...formValues, step53: e.target.value })} />
@@ -711,7 +739,7 @@ const PiecesJustificatives: React.FC = () => {
                                 Ce montant sera prélevé sur votre compte selon la fréquence et à la date que vous avez indiqués ci-dessous. Votre prélèvement programmé s'activera à l'issue d'une période de 30 jours après l'ouverture de votre contrat correspondant à la période légale de renonciation.
                             </Text>
                             <FormControl id="frequency">
-                                <FormLabel>Fréquence du prélèvement</FormLabel>
+                                <FormLabel textAlign="center">Fréquence du prélèvement</FormLabel>
                                 <Select placeholder="Veuillez sélectionner" value={formValues.step54} onChange={(e) => setFormValues({ ...formValues, step54: e.target.value })}>
                                     <option value="monthly">Par mois</option>
                                     <option value="quarterly">Par trimestre</option>
@@ -720,7 +748,7 @@ const PiecesJustificatives: React.FC = () => {
                                 </Select>
                             </FormControl>
                             <FormControl id="day">
-                                <FormLabel>Jour du prélèvement</FormLabel>
+                                <FormLabel textAlign="center">Jour du prélèvement</FormLabel>
                                 <Select placeholder="Veuillez sélectionner" value={formValues.step55} onChange={(e) => setFormValues({ ...formValues, step55: e.target.value })}>
                                     <option value="1">1er</option>
                                     <option value="8">8</option>
@@ -731,12 +759,12 @@ const PiecesJustificatives: React.FC = () => {
                     )}
                 </Section>
 
-                <Section title="VÉRIFICATIONS RÉGLEMENTAIRES" variant="navy">
+                <Section title="VÉRIFICATIONS RÉGLEMENTAIRES" >
                     <Text>
                         Afin de lutter contre le blanchiment de capitaux et le financement du terrorisme, nous avons besoin de quelques informations supplémentaires
                     </Text>
                     <FormControl id="source-of-funds" mt={4}>
-                        <FormLabel>Origine des capitaux confiés</FormLabel>
+                        <FormLabel textAlign="center">Origine des capitaux confiés</FormLabel>
                         <Select placeholder="Veuillez sélectionner" value={formValues.step56} onChange={(e) => setFormValues({ ...formValues, step56: e.target.value })}>
                             <option value="savings">Épargne déjà constituée (dont revenus)</option>
                             <option value="property-sale">Cession de bien</option>
@@ -751,19 +779,37 @@ const PiecesJustificatives: React.FC = () => {
 
                 <Section title="PARRAINAGE OU OFFRE SPÉCIALE" variant="gray">
                     <FormControl id="referral-switch">
-                        <FormLabel>Venez vous dans le cadre d’un parrainage ou d’une offre spéciale ?</FormLabel>
-                        <HStack spacing={4}>
-                            <Button onClick={() => setIsReferral(false)} variant={isReferral ? 'outline' : 'solid'}>
+                        <FormLabel textAlign="center">Venez vous dans le cadre d’un parrainage ou d’une offre spéciale ?</FormLabel>
+                        <HStack justifyContent="center" spacing={4}>
+                            <Button
+                                variant="outline"
+                                colorScheme={isReferral ? 'gray' : 'green'}
+                                borderColor={isReferral ? 'gray.200' : 'green.400'}
+                                onClick={() => setIsReferral(false)}
+                                px={10}
+                                py={6}
+                                size="lg"
+                                _hover={{ bg: 'gray.200' }}
+                            >
                                 Non
                             </Button>
-                            <Button onClick={() => setIsReferral(true)} variant={isReferral ? 'solid' : 'outline'}>
+                            <Button
+                                variant="outline"
+                                colorScheme={isReferral ? 'green' : 'gray'}
+                                borderColor={isReferral ? 'green.400' : 'gray.200'}
+                                onClick={() => setIsReferral(true)}
+                                px={10}
+                                py={6}
+                                size="lg"
+                                _hover={{ bg: 'gray.200' }}
+                            >
                                 Oui
                             </Button>
                         </HStack>
                     </FormControl>
                     {isReferral && (
                         <FormControl id="referral-code" mt={4}>
-                            <FormLabel>Renseignez votre code ci-dessous</FormLabel>
+                            <FormLabel textAlign="center">Renseignez votre code ci-dessous</FormLabel>
                             <Input type="text" value={formValues.step57} onChange={(e) => setFormValues({ ...formValues, step57: e.target.value })} />
                         </FormControl>
                     )}
