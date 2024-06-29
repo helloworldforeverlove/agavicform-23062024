@@ -39,6 +39,7 @@ import { useNavigate } from 'react-router-dom';
 import Stepper from '../components/Stepper';
 import { useUuid } from '../context/UuidContext';
 import { supabase } from '../supabaseClient';
+import { v4 as uuidv4 } from 'uuid';
 
 const theme = extendTheme({
     colors: {
@@ -181,16 +182,17 @@ const PiecesJustificatives: React.FC = () => {
     const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>, bucket: string, setUrl: React.Dispatch<React.SetStateAction<string | null>>) => {
         if (event.target.files?.length) {
             const file = event.target.files[0];
+            const uniqueFileName = `${uuidv4()}-${file.name}`;
             const { error } = await supabase.storage
                 .from(bucket)
-                .upload(`public/${uuid}/${file.name}`, file);
+                .upload(`public/${uuid}/${uniqueFileName}`, file);
     
             if (error) {
                 console.error('Error uploading file:', error);
             } else {
                 const { data } = supabase.storage
                     .from(bucket)
-                    .getPublicUrl(`public/${uuid}/${file.name}`);
+                    .getPublicUrl(`public/${uuid}/${uniqueFileName}`);
     
                 if (data) {
                     setUrl(data.publicUrl);
