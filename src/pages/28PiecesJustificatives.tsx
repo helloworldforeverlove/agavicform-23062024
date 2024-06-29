@@ -210,7 +210,7 @@ const PiecesJustificatives: React.FC = () => {
                 step55: formValues.step55,
                 step56: formValues.step56,
                 step57: formValues.step57,
-                step58: formValues.step58,
+                step58: isReferral ? 'yes' : 'no',  // Update step58 here
                 step59: formValues.step59,
                 step60: formValues.step60,
                 step61: formValues.step61,
@@ -239,7 +239,7 @@ const PiecesJustificatives: React.FC = () => {
             const step55 = await getResponse(55);
             const step56 = await getResponse(56);
             const step57 = await getResponse(57);
-            const step58 = await getResponse(58);
+            const step58 = await getResponse(58);  // Fetch step58 response
             const step59 = await getResponse(59);
             const step60 = await getResponse(60);
             const step61 = await getResponse(61);
@@ -258,7 +258,6 @@ const PiecesJustificatives: React.FC = () => {
                 step55: step55 || '',
                 step56: step56 || '',
                 step57: step57 || '',
-                step58: step58 || '',
                 step59: step59 || '',
                 step60: step60 || '',
                 step61: step61 || '',
@@ -272,6 +271,7 @@ const PiecesJustificatives: React.FC = () => {
             setSelectedOption(step65 || '');
             setSelectedIdentity(step66 || '');
             setSelectedDomicile(step67 || '');
+            setIsReferral(step58 === 'yes');  // Set isReferral state
         };
 
         fetchResponse();
@@ -285,7 +285,6 @@ const PiecesJustificatives: React.FC = () => {
         step55: '',
         step56: '',
         step57: '',
-        step58: '',
         step59: '',
         step60: '',
         step61: '',
@@ -575,7 +574,7 @@ const PiecesJustificatives: React.FC = () => {
                                     </Button>
                                 </>
                             )}
-                            <Text fontWeight="bold">JUSTIFICATIFS DE <strong>MOINS DE 3 MOIS</strong></Text>
+                            <Text fontWeight="bold" textAlign="center">JUSTIFICATIFS DE <strong>MOINS DE 3 MOIS</strong></Text>
                             <VStack spacing={3} align="stretch" width="100%">
                                 <Button
                                     variant="outline"
