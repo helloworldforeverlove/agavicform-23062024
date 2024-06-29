@@ -170,6 +170,7 @@ const PiecesJustificatives: React.FC = () => {
     const [selectedIdentity, setSelectedIdentity] = useState<string | null>(null);
     const [selectedDomicile, setSelectedDomicile] = useState<string | null>(null);
     const [ribUrl, setRibUrl] = useState<string | null>(null);
+    const [mobileBillUrl, setMobileBillUrl] = useState<string | null>(null);
     const navigate = useNavigate();
     const { uuid, getResponse } = useUuid();
 
@@ -177,28 +178,28 @@ const PiecesJustificatives: React.FC = () => {
 
     const handleMobileNextStep = () => setMobileStep(mobileStep + 1);
 
-    const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>, bucket: string, setUrl: React.Dispatch<React.SetStateAction<string | null>>) => {
         if (event.target.files?.length) {
             const file = event.target.files[0];
             const { error } = await supabase.storage
-                .from('rib-compte-courant')
+                .from(bucket)
                 .upload(`public/${uuid}/${file.name}`, file);
     
             if (error) {
                 console.error('Error uploading file:', error);
             } else {
                 const { data } = supabase.storage
-                    .from('rib-compte-courant')
+                    .from(bucket)
                     .getPublicUrl(`public/${uuid}/${file.name}`);
     
                 if (data) {
-                    setRibUrl(data.publicUrl);
+                    setUrl(data.publicUrl);
                 } else {
                     console.error('Error getting public URL');
                 }
             }
         }
-    };    
+    };
 
     const handleShowSecondUpload = () => {
         setShowSecondUpload(true);
@@ -238,7 +239,8 @@ const PiecesJustificatives: React.FC = () => {
                 step65: selectedOption,
                 step66: selectedIdentity,
                 step67: selectedDomicile,
-                step68: ribUrl, // assuming this is the step column for RIB URL
+                step68: ribUrl, // Column for RIB URL
+                step69: mobileBillUrl, // Column for mobile bill URL
             })
             .eq('id', uuid);
 
@@ -269,6 +271,7 @@ const PiecesJustificatives: React.FC = () => {
             const step66 = await getResponse(66);
             const step67 = await getResponse(67);
             const step68 = await getResponse(68);
+            const step69 = await getResponse(69);
 
             setFormValues({
                 step51: step51 || '',
@@ -289,11 +292,13 @@ const PiecesJustificatives: React.FC = () => {
                 step66: step66 || '',
                 step67: step67 || '',
                 step68: step68 || '',
+                step69: step69 || '',
             });
             setSelectedOption(step65 || '');
             setSelectedIdentity(step66 || '');
             setSelectedDomicile(step67 || '');
             setRibUrl(step68 || '');
+            setMobileBillUrl(step69 || '');
             setIsReferral(step58 === 'true');
         };
 
@@ -319,6 +324,7 @@ const PiecesJustificatives: React.FC = () => {
         step66: '',
         step67: '',
         step68: '',
+        step69: '',
     });
 
     return (
@@ -545,16 +551,46 @@ const PiecesJustificatives: React.FC = () => {
                                     </Button>
                                 </HStack>
                                 {selectedOption === 'facture' && (
-                                    <Button as="label" variant="outline" width="100%" mt={4}>
-                                        SÉLECTIONNER MON FICHIER
-                                        <Input type="file" display="none" onChange={handleFileUpload} />
-                                    </Button>
+                                    <>
+                                        <Button as="label" variant="outline" width="100%" mt={4}>
+                                            SÉLECTIONNER MON FICHIER
+                                            <Input type="file" display="none" onChange={(e) => handleFileUpload(e, 'facture-de-mobile', setMobileBillUrl)} />
+                                        </Button>
+                                        {mobileBillUrl && (
+                                            <FormControl id="mobile-bill-url" mt={4}>
+                                                <FormLabel textAlign="center">URL du fichier facture mobile</FormLabel>
+                                                <Input
+                                                    type="text"
+                                                    value={mobileBillUrl}
+                                                    isReadOnly
+                                                    textAlign="center"
+                                                    borderColor="green.400"
+                                                    color="green.500"
+                                                />
+                                            </FormControl>
+                                        )}
+                                    </>
                                 )}
                                 {selectedOption === 'attestation' && (
-                                    <Button as="label" variant="outline" width="100%" mt={4}>
-                                        SÉLECTIONNER MON FICHIER
-                                        <Input type="file" display="none" onChange={handleFileUpload} />
-                                    </Button>
+                                    <>
+                                        <Button as="label" variant="outline" width="100%" mt={4}>
+                                            SÉLECTIONNER MON FICHIER
+                                            <Input type="file" display="none" onChange={(e) => handleFileUpload(e, 'facture-de-mobile', setMobileBillUrl)} />
+                                        </Button>
+                                        {mobileBillUrl && (
+                                            <FormControl id="mobile-bill-url" mt={4}>
+                                                <FormLabel textAlign="center">URL du fichier facture mobile</FormLabel>
+                                                <Input
+                                                    type="text"
+                                                    value={mobileBillUrl}
+                                                    isReadOnly
+                                                    textAlign="center"
+                                                    borderColor="green.400"
+                                                    color="green.500"
+                                                />
+                                            </FormControl>
+                                        )}
+                                    </>
                                 )}
                             </VStack>
                         )}
@@ -716,7 +752,7 @@ const PiecesJustificatives: React.FC = () => {
                             <Text fontWeight="bold" mt={4}>Merci de fournir un RIB</Text>
                             <Button as="label" variant="outline" width="100%">
                                 SÉLECTIONNER MON FICHIER
-                                <Input type="file" display="none" onChange={handleFileUpload} />
+                                <Input type="file" display="none" onChange={(e) => handleFileUpload(e, 'rib-compte-courant', setRibUrl)} />
                             </Button>
                             {ribUrl && (
                                 <FormControl id="rib-url" mt={4}>
