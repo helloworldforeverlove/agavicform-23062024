@@ -686,6 +686,7 @@ const PiecesJustificatives: React.FC = () => {
                             textAlign="center"
                             borderColor={formValues.step51 ? 'green.400' : 'gray.200'}
                             _hover={{ borderColor: formValues.step51 ? 'green.500' : 'gray.300' }}
+                            color={formValues.step51 ? 'green.500' : 'inherit'}
                         />
                     </FormControl>
                 </Section>
@@ -705,6 +706,7 @@ const PiecesJustificatives: React.FC = () => {
                                     textAlign="center"
                                     borderColor={formValues.step52 ? 'green.400' : 'gray.200'}
                                     _hover={{ borderColor: formValues.step52 ? 'green.500' : 'gray.300' }}
+                                    color={formValues.step52 ? 'green.500' : 'inherit'}
                                 />
                                 <InputRightAddon children="€" />
                             </InputGroup>
@@ -721,8 +723,8 @@ const PiecesJustificatives: React.FC = () => {
                         <HStack justifyContent="center" spacing={4}>
                             <Button
                                 variant="outline"
-                                colorScheme={isRecurring ? 'gray' : 'green'}
-                                borderColor={isRecurring ? 'gray.200' : 'green.400'}
+                                colorScheme={!isRecurring ? 'green' : 'gray'}
+                                borderColor={!isRecurring ? 'green.400' : 'gray.200'}
                                 onClick={() => setIsRecurring(false)}
                                 px={10}
                                 py={6}
@@ -761,6 +763,7 @@ const PiecesJustificatives: React.FC = () => {
                                             textAlign="center"
                                             borderColor={formValues.step53 ? 'green.400' : 'gray.200'}
                                             _hover={{ borderColor: formValues.step53 ? 'green.500' : 'gray.300' }}
+                                            color={formValues.step53 ? 'green.500' : 'inherit'}
                                         />
                                         <InputRightAddon children="€" />
                                     </InputGroup>
@@ -771,7 +774,14 @@ const PiecesJustificatives: React.FC = () => {
                             </Text>
                             <FormControl id="frequency">
                                 <FormLabel textAlign="center">Fréquence du prélèvement</FormLabel>
-                                <Select placeholder="Veuillez sélectionner" value={formValues.step54} onChange={(e) => setFormValues({ ...formValues, step54: e.target.value })}>
+                                <Select
+                                    placeholder="Veuillez sélectionner"
+                                    value={formValues.step54}
+                                    onChange={(e) => setFormValues({ ...formValues, step54: e.target.value })}
+                                    borderColor={formValues.step54 ? 'green.400' : 'gray.200'}
+                                    color={formValues.step54 ? 'green.500' : 'inherit'}
+                                    _hover={{ borderColor: formValues.step54 ? 'green.500' : 'gray.300' }}
+                                >
                                     <option value="monthly">Par mois</option>
                                     <option value="quarterly">Par trimestre</option>
                                     <option value="semester">Par semestre</option>
@@ -780,7 +790,14 @@ const PiecesJustificatives: React.FC = () => {
                             </FormControl>
                             <FormControl id="day">
                                 <FormLabel textAlign="center">Jour du prélèvement</FormLabel>
-                                <Select placeholder="Veuillez sélectionner" value={formValues.step55} onChange={(e) => setFormValues({ ...formValues, step55: e.target.value })}>
+                                <Select
+                                    placeholder="Veuillez sélectionner"
+                                    value={formValues.step55}
+                                    onChange={(e) => setFormValues({ ...formValues, step55: e.target.value })}
+                                    borderColor={formValues.step55 ? 'green.400' : 'gray.200'}
+                                    color={formValues.step55 ? 'green.500' : 'inherit'}
+                                    _hover={{ borderColor: formValues.step55 ? 'green.500' : 'gray.300' }}
+                                >
                                     <option value="1">1er</option>
                                     <option value="8">8</option>
                                     <option value="20">20</option>
@@ -796,7 +813,14 @@ const PiecesJustificatives: React.FC = () => {
                     </Text>
                     <FormControl id="source-of-funds" mt={4}>
                         <FormLabel textAlign="center">Origine des capitaux confiés</FormLabel>
-                        <Select placeholder="Veuillez sélectionner" value={formValues.step56} onChange={(e) => setFormValues({ ...formValues, step56: e.target.value })}>
+                        <Select
+                            placeholder="Veuillez sélectionner"
+                            value={formValues.step56}
+                            onChange={(e) => setFormValues({ ...formValues, step56: e.target.value })}
+                            borderColor={formValues.step56 ? 'green.400' : 'gray.200'}
+                            color={formValues.step56 ? 'green.500' : 'inherit'}
+                            _hover={{ borderColor: formValues.step56 ? 'green.500' : 'gray.300' }}
+                        >
                             <option value="savings">Épargne déjà constituée (dont revenus)</option>
                             <option value="property-sale">Cession de bien</option>
                             <option value="inheritance">Héritage/Donation</option>
@@ -841,7 +865,15 @@ const PiecesJustificatives: React.FC = () => {
                     {isReferral && (
                         <FormControl id="referral-code" mt={4}>
                             <FormLabel textAlign="center">Renseignez votre code ci-dessous</FormLabel>
-                            <Input type="text" value={formValues.step57} onChange={(e) => setFormValues({ ...formValues, step57: e.target.value })} />
+                            <Input
+                                type="text"
+                                value={formValues.step57}
+                                onChange={(e) => setFormValues({ ...formValues, step57: e.target.value })}
+                                textAlign="center"
+                                borderColor={formValues.step57 ? 'green.400' : 'gray.200'}
+                                _hover={{ borderColor: formValues.step57 ? 'green.500' : 'gray.300' }}
+                                color={formValues.step57 ? 'green.500' : 'inherit'}
+                            />
                         </FormControl>
                     )}
                 </Section>
