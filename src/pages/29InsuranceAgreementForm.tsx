@@ -20,7 +20,6 @@ import {
 } from '@chakra-ui/react';
 import { FaTimes, FaEye } from 'react-icons/fa';
 import Stepper from '../components/Stepper';
-import { useNavigate } from 'react-router-dom';
 import { useUuid } from '../context/UuidContext';
 import { supabase } from '../supabaseClient';
 
@@ -88,6 +87,7 @@ const InsuranceAgreementForm: React.FC = () => {
     const [agreedToTerms, setAgreedToTerms] = useState(false);
     const [acknowledgedInfo, setAcknowledgedInfo] = useState(false);
     const [isEpargneModalOpen, setEpargneModalOpen] = useState(false);
+    const [showPdf, setShowPdf] = useState(false); // Nouvel état pour contrôler l'affichage du PDF
     const [projectData, setProjectData] = useState({
         step2: '',
         step3: '',
@@ -101,7 +101,6 @@ const InsuranceAgreementForm: React.FC = () => {
         onOpen: onInfoModalOpen,
         onClose: onInfoModalClose,
     } = useDisclosure();
-    const navigate = useNavigate();
     const { uuid, getResponse } = useUuid();
 
     useEffect(() => {
@@ -145,7 +144,7 @@ const InsuranceAgreementForm: React.FC = () => {
         if (error) {
             console.error('Error updating form responses:', error);
         } else {
-            navigate('/next-step'); // Remplacez '/next-step' par le chemin réel de la prochaine étape
+            setShowPdf(true); // Afficher la fenêtre PDF après la soumission
         }
     };
 
@@ -232,6 +231,18 @@ const InsuranceAgreementForm: React.FC = () => {
                 >
                     Soumettre
                 </Button>
+
+                {showPdf && (
+                    <Box mt={4}>
+                        <iframe
+                            src="https://wrzduukskbcqvxtqevpr.supabase.co/storage/v1/object/public/pdf/conditions.pdf?t=2024-06-27T20%3A41%3A38.178Z"
+                            width="100%"
+                            height="600px"
+                            style={{ border: 'none' }}
+                            title="Conditions Générales"
+                        ></iframe>
+                    </Box>
+                )}
             </Box>
 
             <Modal isOpen={isEpargneModalOpen} onClose={() => setEpargneModalOpen(false)} isCentered>
