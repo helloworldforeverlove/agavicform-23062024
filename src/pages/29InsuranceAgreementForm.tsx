@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     ChakraProvider,
     extendTheme,
@@ -21,6 +21,9 @@ import {
 } from '@chakra-ui/react';
 import { FaTimes } from 'react-icons/fa';
 import Stepper from '../components/Stepper';
+import { useNavigate } from 'react-router-dom';
+import { useUuid } from '../context/UuidContext';
+import { supabase } from '../supabaseClient';
 
 const theme = extendTheme({
     colors: {
@@ -62,19 +65,39 @@ const InsuranceAgreementForm: React.FC = () => {
     const [acknowledgedInfo, setAcknowledgedInfo] = useState(false);
     const [isEpargneModalOpen, setEpargneModalOpen] = useState(false);
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const navigate = useNavigate();
+    const { uuid, getResponse } = useUuid();
 
-    const handleCheckboxChange = (setChecked: React.Dispatch<React.SetStateAction<boolean>>, openModal?: () => void) => (
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        setChecked(event.target.checked);
-        if (event.target.checked && openModal) {
-            openModal();
+    useEffect(() => {
+        const fetchResponse = async () => {
+            const step73 = await getResponse(73);
+            const step74 = await getResponse(74);
+            setAgreedToTerms(step73 === 'true');
+            setAcknowledgedInfo(step74 === 'true');
+        };
+
+        fetchResponse();
+    }, [getResponse]);
+
+    const handleSubmit = async () => {
+        const { error } = await supabase
+            .from('form_responses')
+            .update({
+                step73: agreedToTerms,
+                step74: acknowledgedInfo,
+            })
+            .eq('id', uuid);
+
+        if (error) {
+            console.error('Error updating form responses:', error);
+        } else {
+            navigate('/next-step'); // Remplacez '/next-step' par le chemin réel de la prochaine étape
         }
     };
 
     return (
         <ChakraProvider theme={theme}>
-            <Stepper currentStep={5}/>
+            <Stepper currentStep={5} />
             <Box p={5} maxW="800px" mx="auto">
                 <Section title="Ouverture d’une Assurance-vie avec un mandat d’arbitrage en profil" variant="gray">
                     <Text mb={4}>
@@ -83,20 +106,24 @@ const InsuranceAgreementForm: React.FC = () => {
                     <VStack align="start" spacing={3}>
                         <Checkbox
                             isChecked={agreedToTerms}
-                            onChange={handleCheckboxChange(setAgreedToTerms)}
+                            onChange={(e) => setAgreedToTerms(e.target.checked)}
                         >
-                            Je prends connaissance des{' '}
-                            <Box as="span" color="blue.500" textDecoration="underline" cursor="pointer" onClick={onOpen}>
-                                Conditions Générales
-                            </Box>
-                            {' '}de Signature Electronique, du Document d'Informations Clés du contrat, de la Notice et du Règlement du mandat d'arbitrage.
+                            <span onClick={(e) => e.stopPropagation()}>
+                                Je prends connaissance des{' '}
+                                <Box as="span" color="blue.500" textDecoration="underline" cursor="pointer" onClick={onOpen}>
+                                    Conditions Générales
+                                </Box>
+                                {' '}de Signature Electronique, du Document d'Informations Clés du contrat, de la Notice et du Règlement du mandat d'arbitrage.
+                            </span>
                         </Checkbox>
                         <Checkbox
                             isChecked={acknowledgedInfo}
-                            onChange={handleCheckboxChange(setAcknowledgedInfo)}
+                            onChange={(e) => setAcknowledgedInfo(e.target.checked)}
                         >
-                            Je reconnais que Yomoni m'a communiqué les{' '}
-                            <Text as="u" color="blue.500">informations détaillées</Text> sur chaque support en unités de compte disponibles sur le contrat Yomoni Vie.
+                            <span onClick={(e) => e.stopPropagation()}>
+                                Je reconnais que Yomoni m'a communiqué les{' '}
+                                <Text as="u" color="blue.500">informations détaillées</Text> sur chaque support en unités de compte disponibles sur le contrat Yomoni Vie.
+                            </span>
                         </Checkbox>
                     </VStack>
                     <Badge
@@ -109,6 +136,14 @@ const InsuranceAgreementForm: React.FC = () => {
                         Voir mon projet
                     </Badge>
                 </Section>
+                <Button
+                    colorScheme="green"
+                    mt={4}
+                    onClick={handleSubmit}
+                    isDisabled={!agreedToTerms || !acknowledgedInfo}
+                >
+                    Soumettre
+                </Button>
             </Box>
 
             <Modal isOpen={isEpargneModalOpen} onClose={() => setEpargneModalOpen(false)} isCentered>
