@@ -188,14 +188,14 @@ const PiecesJustificatives: React.FC = () => {
             const { error } = await supabase.storage
                 .from('facture-de-mobile') // Assurez-vous que ce bucket existe dans votre Supabase
                 .upload(`public/${uuid}/${uniqueFileName}`, file);
-    
+
             if (error) {
                 console.error('Error uploading file:', error);
             } else {
                 const { data } = supabase.storage
                     .from('facture-de-mobile') // Assurez-vous que ce bucket existe dans votre Supabase
                     .getPublicUrl(`public/${uuid}/${uniqueFileName}`);
-    
+
                 if (data) {
                     setMobileUrl(data.publicUrl);
                 } else {
@@ -203,7 +203,7 @@ const PiecesJustificatives: React.FC = () => {
                 }
             }
         }
-    };    
+    };
 
     const handleRIBFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files?.length) {
@@ -212,14 +212,14 @@ const PiecesJustificatives: React.FC = () => {
             const { error } = await supabase.storage
                 .from('rib-compte-courant')
                 .upload(`public/${uuid}/${uniqueFileName}`, file);
-    
+
             if (error) {
                 console.error('Error uploading file:', error);
             } else {
                 const { data } = supabase.storage
                     .from('rib-compte-courant')
                     .getPublicUrl(`public/${uuid}/${uniqueFileName}`);
-    
+
                 if (data) {
                     setRibUrl(data.publicUrl);
                 } else {
@@ -236,14 +236,14 @@ const PiecesJustificatives: React.FC = () => {
             const { error } = await supabase.storage
                 .from('justificatif-domicile') // Assurez-vous que ce bucket existe dans votre Supabase
                 .upload(`public/${uuid}/${uniqueFileName}`, file);
-    
+
             if (error) {
                 console.error('Error uploading file:', error);
             } else {
                 const { data } = supabase.storage
                     .from('justificatif-domicile') // Assurez-vous que ce bucket existe dans votre Supabase
                     .getPublicUrl(`public/${uuid}/${uniqueFileName}`);
-    
+
                 if (data) {
                     setDomicileUrl(data.publicUrl);
                 } else {
@@ -652,6 +652,10 @@ const PiecesJustificatives: React.FC = () => {
                         <CloseButton color="white" onClick={onDomicileClose} size="lg" />
                     </ModalHeader>
                     <ModalBody p={6}>
+                        <Button as="label" variant="outline" width="100%">
+                            SÉLECTIONNER MON FICHIER
+                            <Input type="file" display="none" onChange={handleDomicileFileUpload} />
+                        </Button>
                         <VStack spacing={4} align="start">
                             <Text>Votre justificatif doit être à votre nom et à l'adresse indiquée lors de la souscription : <strong>3 Allée de la Croix des Hêtres, 35700 Rennes</strong></Text>
                             <Checkbox onChange={(e) => setIsHosted(e.target.checked)}>Je suis hébergé par un tiers qui ne porte pas le même nom de famille que moi</Checkbox>
@@ -769,6 +773,22 @@ const PiecesJustificatives: React.FC = () => {
                                     Attestation d’un contrat d’assurance habitation
                                 </Button>
                             </VStack>
+                            {domicileUrl && (
+                                <VStack>
+                                    <FormControl id="domicile-url" mt={4}>
+                                        <FormLabel textAlign="center">URL du fichier de domicile</FormLabel>
+                                        <Input
+                                            type="text"
+                                            value={domicileUrl}
+                                            isReadOnly
+                                            textAlign="center"
+                                            borderColor="green.400"
+                                            color="green.500"
+                                        />
+                                    </FormControl>
+                                    <img src={domicileUrl} alt="Justificatif de domicile" width="100%" />
+                                </VStack>
+                            )}
                         </VStack>
                     </ModalBody>
                 </ModalContent>
