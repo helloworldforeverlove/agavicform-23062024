@@ -379,7 +379,6 @@ const PiecesJustificatives: React.FC = () => {
         }
     };
 
-
     const handlePassportFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files?.length) {
             const file = event.target.files[0];
@@ -534,6 +533,9 @@ const PiecesJustificatives: React.FC = () => {
             const step71 = await getResponse(71);
             const step72 = await getResponse(72);
             const step75 = await getResponse(75);
+            const step76 = await getResponse(76); // Ajout de ces lignes
+            const step77 = await getResponse(77); // Ajout de ces lignes
+            const step78 = await getResponse(78); // Ajout de ces lignes
 
             setFormValues({
                 step51: step51 || '',
@@ -559,6 +561,9 @@ const PiecesJustificatives: React.FC = () => {
                 step71: step71 || '',
                 step72: step72 || '',
                 step75: step75 || '',
+                step76: step76 || '',
+                step77: step77 || '',
+                step78: step78 || '',
             });
             setSelectedOption(step65 || '');
             setSelectedIdentity(step66 || '');
@@ -569,6 +574,9 @@ const PiecesJustificatives: React.FC = () => {
             setCniRectoUrl(step71 || '');
             setCniVersoUrl(step72 || '');
             setDomicileUrl(step75 || '');
+            setPassportEuropeUrl(step76 || ''); // Ajout de ces lignes
+            setIdentityEuropeRectoUrl(step77 || ''); // Ajout de ces lignes
+            setIdentityEuropeVersoUrl(step78 || ''); // Ajout de ces lignes
             setIsReferral(step58 === 'true');
         };
 
@@ -599,6 +607,9 @@ const PiecesJustificatives: React.FC = () => {
         step71: '',
         step72: '',
         step75: '',
+        step76: '',
+        step77: '',
+        step78: '',
     });
 
     return (
