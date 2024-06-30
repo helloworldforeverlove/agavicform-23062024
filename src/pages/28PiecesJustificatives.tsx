@@ -32,6 +32,7 @@ import {
     Select,
     FormControl,
     FormLabel,
+    Image
 } from '@chakra-ui/react';
 import { FaIdCard, FaHome, FaUniversity, FaMobileAlt, FaFileUpload, FaPassport } from 'react-icons/fa';
 import { FcManager } from 'react-icons/fc';
@@ -184,14 +185,14 @@ const PiecesJustificatives: React.FC = () => {
             const file = event.target.files[0];
             const uniqueFileName = `${uuidv4()}-${file.name}`;
             const { error } = await supabase.storage
-                .from('facture-mobile')
+                .from('facture-de-mobile') // Assurez-vous que ce bucket existe dans votre Supabase
                 .upload(`public/${uuid}/${uniqueFileName}`, file);
     
             if (error) {
                 console.error('Error uploading file:', error);
             } else {
                 const { data } = supabase.storage
-                    .from('facture-mobile')
+                    .from('facture-de-mobile') // Assurez-vous que ce bucket existe dans votre Supabase
                     .getPublicUrl(`public/${uuid}/${uniqueFileName}`);
     
                 if (data) {
@@ -201,7 +202,7 @@ const PiecesJustificatives: React.FC = () => {
                 }
             }
         }
-    };
+    };    
 
     const handleRIBFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files?.length) {
@@ -589,17 +590,22 @@ const PiecesJustificatives: React.FC = () => {
                                     </Button>
                                 )}
                                 {mobileUrl && (
-                                    <FormControl id="mobile-url" mt={4}>
-                                        <FormLabel textAlign="center">URL du fichier mobile</FormLabel>
-                                        <Input
-                                            type="text"
-                                            value={mobileUrl}
-                                            isReadOnly
-                                            textAlign="center"
-                                            borderColor="green.400"
-                                            color="green.500"
-                                        />
-                                    </FormControl>
+                                    <>
+                                        <FormControl id="mobile-url" mt={4}>
+                                            <FormLabel textAlign="center">URL du fichier mobile</FormLabel>
+                                            <Input
+                                                type="text"
+                                                value={mobileUrl}
+                                                isReadOnly
+                                                textAlign="center"
+                                                borderColor="green.400"
+                                                color="green.500"
+                                            />
+                                        </FormControl>
+                                        <Box mt={4}>
+                                            <Image src={mobileUrl} alt="Facture Mobile" />
+                                        </Box>
+                                    </>
                                 )}
                             </VStack>
                         )}
@@ -640,7 +646,7 @@ const PiecesJustificatives: React.FC = () => {
                                     <Text>Attestation Hébergeur</Text>
                                     <Button as="label" variant="outline" width="100%">
                                         SÉLECTIONNER MON FICHIER
-                                        <Input type="file" display="none" onChange={(event) => handleMobileFileUpload(event)} />
+                                        <Input type="file" display="none" onChange={handleMobileFileUpload} />
                                     </Button>
                                 </>
                             )}
@@ -764,17 +770,22 @@ const PiecesJustificatives: React.FC = () => {
                                 <Input type="file" display="none" onChange={handleRIBFileUpload} />
                             </Button>
                             {ribUrl && (
-                                <FormControl id="rib-url" mt={4}>
-                                    <FormLabel textAlign="center">URL du fichier RIB</FormLabel>
-                                    <Input
-                                        type="text"
-                                        value={ribUrl}
-                                        isReadOnly
-                                        textAlign="center"
-                                        borderColor="green.400"
-                                        color="green.500"
-                                    />
-                                </FormControl>
+                                <>
+                                    <FormControl id="rib-url" mt={4}>
+                                        <FormLabel textAlign="center">URL du fichier RIB</FormLabel>
+                                        <Input
+                                            type="text"
+                                            value={ribUrl}
+                                            isReadOnly
+                                            textAlign="center"
+                                            borderColor="green.400"
+                                            color="green.500"
+                                        />
+                                    </FormControl>
+                                    <Box mt={4}>
+                                        <Image src={ribUrl} alt="RIB Compte Courant" />
+                                    </Box>
+                                </>
                             )}
                         </VStack>
                     </ModalBody>
