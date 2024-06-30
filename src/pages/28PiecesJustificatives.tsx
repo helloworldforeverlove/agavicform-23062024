@@ -29,11 +29,13 @@ import {
     InputRightAddon,
     InputGroup,
     Checkbox,
+    CheckboxProps,
     Select,
     FormControl,
     FormLabel,
     Image,
-    IconButton
+    IconButton,
+    useColorModeValue,
 } from '@chakra-ui/react';
 import { RiPassExpiredLine } from "react-icons/ri";
 import { FcViewDetails } from "react-icons/fc";
@@ -142,6 +144,23 @@ const Section: React.FC<SectionProps> = ({ title, variant, children }) => {
             </Text>
             {children}
         </Box>
+    );
+};
+
+const CustomCheckbox = (props: CheckboxProps) => {
+    const checkedColor = useColorModeValue("green.300", "green.100");
+
+    return (
+        <Checkbox
+            {...props}
+            colorScheme="green"
+            iconColor="white"
+            borderColor="gray.300"
+            _checked={{
+                bg: checkedColor,
+                borderColor: checkedColor,
+            }}
+        />
     );
 };
 
@@ -918,7 +937,12 @@ const PiecesJustificatives: React.FC = () => {
                             <Text textAlign="center">
                                 Votre justificatif doit être à votre nom et à l'adresse indiquée lors de la souscription : <strong>3 Allée de la Croix des Hêtres, 35700 Rennes</strong>
                             </Text>
-                            <Checkbox onChange={(e) => setIsHosted(e.target.checked)}>Je suis hébergé par un tiers qui ne porte pas le même nom de famille que moi</Checkbox>
+                            <CustomCheckbox
+                                borderRadius={5}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setIsHosted(e.target.checked)}
+                            >
+                                Je suis hébergé par un tiers qui ne porte pas le même nom de famille que moi
+                            </CustomCheckbox>
                             {isHosted && (
                                 <VStack spacing={4} align="center" width="100%">
                                     <Text fontWeight="bold" textTransform="uppercase" textAlign="center">Pièce d'identité de l'hébergeur</Text>
@@ -927,7 +951,7 @@ const PiecesJustificatives: React.FC = () => {
                                     <Text fontWeight="bold" textTransform="uppercase" mt={4} textAlign="center">Ma Pièce d'identité</Text>
                                     <VStack spacing={4} align="stretch" width="100%">
                                         <Button as="label" variant="outline" width="60%" mx="auto">
-                                        <Icon as={FcViewDetails} /> CNI RECTO
+                                            <Icon as={FcViewDetails} /> CNI RECTO
                                             <Input type="file" display="none" onChange={handleIdentityEuropeRectoFileUpload} />
                                         </Button>
                                         {identityEuropeRectoUrl && (
@@ -936,7 +960,7 @@ const PiecesJustificatives: React.FC = () => {
                                             </Box>
                                         )}
                                         <Button as="label" variant="outline" width="60%" mx="auto">
-                                        <Icon as={FcViewDetails} /> CNI VERSO
+                                            <Icon as={FcViewDetails} /> CNI VERSO
                                             <Input type="file" display="none" onChange={handleIdentityEuropeVersoFileUpload} />
                                         </Button>
                                         {identityEuropeVersoUrl && (
@@ -949,7 +973,7 @@ const PiecesJustificatives: React.FC = () => {
                                     <Text fontWeight="bold" textTransform="uppercase" mt={4} textAlign="center">Mon passeport</Text>
                                     <VStack spacing={4} align="stretch" width="100%">
                                         <Button as="label" variant="outline" width="60%" mx="auto">
-                                        <Icon color="red" as={RiPassExpiredLine} /> PASSEPORT
+                                            <Icon color="red" as={RiPassExpiredLine} /> PASSEPORT
                                             <Input type="file" display="none" onChange={handlePassportEuropeFileUpload} />
                                         </Button>
                                         {passportEuropeUrl && (
@@ -961,7 +985,7 @@ const PiecesJustificatives: React.FC = () => {
 
                                     <Text fontWeight="bold" textTransform="uppercase" mt={4} textAlign="center">Attestation rédigée datée et signée de l'hébergeur</Text>
                                     <Button as="label" variant="outline" width="60%" mx="auto" mt={4}>
-                                    <Icon color="blue.200" as={FaPaperclip} /> MON ATTESTATION D'HEBERGEMENT
+                                        <Icon color="blue.200" as={FaPaperclip} /> MON ATTESTATION D'HEBERGEMENT
                                         <Input type="file" display="none" onChange={handleAttestationHebergementFileUpload} />
                                     </Button>
                                     <HStack p={3} borderRadius={5} bgColor="green.100" spacing={3} alignItems="center" justifyContent="center">
