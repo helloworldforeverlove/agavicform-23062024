@@ -35,7 +35,9 @@ import {
     Image,
     IconButton
 } from '@chakra-ui/react';
-import { FaIdCard, FaTimes, FaHome, FaUniversity, FaMobileAlt, FaFileUpload, FaPassport } from 'react-icons/fa';
+import { RiPassExpiredLine } from "react-icons/ri";
+import { FcViewDetails } from "react-icons/fc";
+import { FaPaperclip, FaIdCard, FaTimes, FaHome, FaUniversity, FaMobileAlt, FaFileUpload, FaPassport } from 'react-icons/fa';
 import { FcManager } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
 import Stepper from '../components/Stepper';
@@ -908,70 +910,70 @@ const PiecesJustificatives: React.FC = () => {
                         <CloseButton color="white" onClick={onDomicileClose} size="lg" />
                     </ModalHeader>
                     <ModalBody p={6}>
-                        <Button as="label" variant="outline" width="100%">
-                            SÉLECTIONNER MON FICHIER
-                            <Input type="file" display="none" onChange={handleDomicileFileUpload} />
-                        </Button>
-                        <VStack spacing={4} align="start">
-                            <Text>Votre justificatif doit être à votre nom et à l'adresse indiquée lors de la souscription : <strong>3 Allée de la Croix des Hêtres, 35700 Rennes</strong></Text>
+                        <VStack spacing={4} align="center" width="100%">
+                            <Button as="label" variant="outline" width="60%">
+                                SÉLECTIONNER MON FICHIER
+                                <Input type="file" display="none" onChange={handleDomicileFileUpload} />
+                            </Button>
+                            <Text textAlign="center">
+                                Votre justificatif doit être à votre nom et à l'adresse indiquée lors de la souscription : <strong>3 Allée de la Croix des Hêtres, 35700 Rennes</strong>
+                            </Text>
                             <Checkbox onChange={(e) => setIsHosted(e.target.checked)}>Je suis hébergé par un tiers qui ne porte pas le même nom de famille que moi</Checkbox>
                             {isHosted && (
-                                <>
-                                    <Text fontWeight="bold" textTransform="uppercase">Pièce d'identité de l'hébergeur</Text>
+                                <VStack spacing={4} align="center" width="100%">
+                                    <Text fontWeight="bold" textTransform="uppercase" textAlign="center">Pièce d'identité de l'hébergeur</Text>
                                     <Checkbox>L'hébergeur est un résident étranger (hors communauté européenne), je dois fournir une copie de son titre de séjour et de son passeport.</Checkbox>
 
-                                    <Text fontWeight="bold" textTransform="uppercase" mt={4}>Ma Pièce d'identité</Text>
-                                    <VStack spacing={4} align="stretch">
-                                        <Text fontSize="md" mb={2}>CNI recto</Text>
-                                        <Button as="label" variant="outline" width="100%">
-                                            SÉLECTIONNER MON FICHIER
+                                    <Text fontWeight="bold" textTransform="uppercase" mt={4} textAlign="center">Ma Pièce d'identité</Text>
+                                    <VStack spacing={4} align="stretch" width="100%">
+                                        <Button as="label" variant="outline" width="60%" mx="auto">
+                                        <Icon as={FcViewDetails} /> CNI RECTO
                                             <Input type="file" display="none" onChange={handleIdentityEuropeRectoFileUpload} />
                                         </Button>
                                         {identityEuropeRectoUrl && (
-                                            <Box mt={4}>
+                                            <Box mt={4} mx="auto">
                                                 <Image src={identityEuropeRectoUrl} alt="Carte d'identité européenne recto" />
                                             </Box>
                                         )}
-                                        <Text fontSize="md" mb={2} mt={4}>CNI verso</Text>
-                                        <Button as="label" variant="outline" width="100%">
-                                            SÉLECTIONNER MON FICHIER
+                                        <Button as="label" variant="outline" width="60%" mx="auto">
+                                        <Icon as={FcViewDetails} /> CNI VERSO
                                             <Input type="file" display="none" onChange={handleIdentityEuropeVersoFileUpload} />
                                         </Button>
                                         {identityEuropeVersoUrl && (
-                                            <Box mt={4}>
+                                            <Box mt={4} mx="auto">
                                                 <Image src={identityEuropeVersoUrl} alt="Carte d'identité européenne verso" />
                                             </Box>
                                         )}
                                     </VStack>
 
-                                    <Text fontWeight="bold" textTransform="uppercase" mt={4}>Mon passeport</Text>
-                                    <VStack spacing={4} align="stretch">
-                                        <Button as="label" variant="outline" width="100%">
-                                            SÉLECTIONNER MON FICHIER PASSEPORT
+                                    <Text fontWeight="bold" textTransform="uppercase" mt={4} textAlign="center">Mon passeport</Text>
+                                    <VStack spacing={4} align="stretch" width="100%">
+                                        <Button as="label" variant="outline" width="60%" mx="auto">
+                                        <Icon color="red" as={RiPassExpiredLine} /> PASSEPORT
                                             <Input type="file" display="none" onChange={handlePassportEuropeFileUpload} />
                                         </Button>
                                         {passportEuropeUrl && (
-                                            <Box mt={4}>
+                                            <Box mt={4} mx="auto">
                                                 <Image src={passportEuropeUrl} alt="Passeport européen" />
                                             </Box>
                                         )}
                                     </VStack>
 
-                                    <Text fontWeight="bold" textTransform="uppercase" mt={4}>Attestation rédigée datée et signée de l'hébergeur</Text>
-                                    <Button as="label" variant="outline" width="100%" mt={4}>
-                                        SÉLECTIONNER MON FICHIER ATTESTATION
+                                    <Text fontWeight="bold" textTransform="uppercase" mt={4} textAlign="center">Attestation rédigée datée et signée de l'hébergeur</Text>
+                                    <Button as="label" variant="outline" width="60%" mx="auto" mt={4}>
+                                    <Icon color="blue.200" as={FaPaperclip} /> MON ATTESTATION D'HEBERGEMENT
                                         <Input type="file" display="none" onChange={handleAttestationHebergementFileUpload} />
                                     </Button>
-                                    <HStack p={3} borderRadius={5} bgColor="green.100" spacing={3} alignItems="center">
+                                    <HStack p={3} borderRadius={5} bgColor="green.100" spacing={3} alignItems="center" justifyContent="center">
                                         <Icon color="green.400" as={FaFileUpload} />
                                         <Text cursor="pointer" color="blue.500" onClick={onExampleOpen} _hover={{ textDecoration: 'underline' }}>Téléchargez un exemple d’attestation d’hébergement à compléter</Text>
                                     </HStack>
                                     {attestationHebergementUrl && (
-                                        <Box mt={4}>
+                                        <Box mt={4} mx="auto">
                                             <Image src={attestationHebergementUrl} alt="Attestation d'hébergement" />
                                         </Box>
                                     )}
-                                </>
+                                </VStack>
                             )}
                             <Text fontWeight="bold" textAlign="center">JUSTIFICATIFS DE <strong>MOINS DE 3 MOIS</strong></Text>
                             <VStack spacing={3} align="stretch" width="100%">
