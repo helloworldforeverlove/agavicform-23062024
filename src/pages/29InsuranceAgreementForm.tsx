@@ -65,6 +65,11 @@ const InsuranceAgreementForm: React.FC = () => {
     const [acknowledgedInfo, setAcknowledgedInfo] = useState(false);
     const [isEpargneModalOpen, setEpargneModalOpen] = useState(false);
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const {
+        isOpen: isInfoModalOpen,
+        onOpen: onInfoModalOpen,
+        onClose: onInfoModalClose,
+    } = useDisclosure();
     const navigate = useNavigate();
     const { uuid, getResponse } = useUuid();
 
@@ -136,7 +141,16 @@ const InsuranceAgreementForm: React.FC = () => {
                         >
                             <Box onClick={(e) => e.preventDefault()} ml={2}>
                                 Je reconnais que Yomoni m'a communiqué les{' '}
-                                <Text as="span" color="blue.500" textDecoration="underline">
+                                <Text
+                                    as="span"
+                                    color="blue.500"
+                                    textDecoration="underline"
+                                    cursor="pointer"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        onInfoModalOpen();
+                                    }}
+                                >
                                     informations détaillées
                                 </Text>
                                 {' '}sur chaque support en unités de compte disponibles sur le contrat Yomoni Vie.
@@ -259,6 +273,33 @@ const InsuranceAgreementForm: React.FC = () => {
                             height="100%"
                             style={{ border: 'none' }}
                             title="Conditions Générales"
+                        ></iframe>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
+
+            <Modal isOpen={isInfoModalOpen} onClose={onInfoModalClose} isCentered size="full">
+                <ModalOverlay />
+                <ModalContent borderRadius="md" boxShadow="lg" height="100vh">
+                    <ModalHeader textAlign="center" fontSize="lg" fontWeight="bold">
+                        <HStack justifyContent="space-between">
+                            <Box flex="1" />
+                            <Text>Informations Détaillées</Text>
+                            <IconButton
+                                icon={<FaTimes />}
+                                aria-label="Close"
+                                variant="ghost"
+                                onClick={onInfoModalClose}
+                            />
+                        </HStack>
+                    </ModalHeader>
+                    <ModalBody p={0} height="calc(100vh - 4rem)">
+                        <iframe
+                            src="https://wrzduukskbcqvxtqevpr.supabase.co/storage/v1/object/public/pdf/conditions.pdf"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 'none' }}
+                            title="Informations Détaillées"
                         ></iframe>
                     </ModalBody>
                 </ModalContent>
