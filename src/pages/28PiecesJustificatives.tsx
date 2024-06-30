@@ -173,6 +173,7 @@ const PiecesJustificatives: React.FC = () => {
     const [selectedDomicile, setSelectedDomicile] = useState<string | null>(null);
     const [ribUrl, setRibUrl] = useState<string | null>(null);
     const [mobileUrl, setMobileUrl] = useState<string | null>(null);
+    const [domicileUrl, setDomicileUrl] = useState<string | null>(null);
     const navigate = useNavigate();
     const { uuid, getResponse } = useUuid();
 
