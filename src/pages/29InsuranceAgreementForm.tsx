@@ -159,8 +159,8 @@ const InsuranceAgreementForm: React.FC = () => {
                     variant="solid"
                     size="sm"
                     position="absolute"
-                    top="100px"
-                    right="20px"
+                    top={["600px", "70px", "70px", "70px"]}
+                    right={["20px", "20px", "70px", "200px"]}
                     cursor="pointer"
                     onClick={() => setEpargneModalOpen(true)}
                     padding="8px 12px"
