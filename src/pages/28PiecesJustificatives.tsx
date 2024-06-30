@@ -179,23 +179,47 @@ const PiecesJustificatives: React.FC = () => {
 
     const handleMobileNextStep = () => setMobileStep(mobileStep + 1);
 
-    const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>, bucket: string, setUrl: React.Dispatch<React.SetStateAction<string | null>>) => {
+    const handleMobileFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files?.length) {
             const file = event.target.files[0];
             const uniqueFileName = `${uuidv4()}-${file.name}`;
             const { error } = await supabase.storage
-                .from(bucket)
+                .from('facture-mobile')
                 .upload(`public/${uuid}/${uniqueFileName}`, file);
     
             if (error) {
                 console.error('Error uploading file:', error);
             } else {
                 const { data } = supabase.storage
-                    .from(bucket)
+                    .from('facture-mobile')
                     .getPublicUrl(`public/${uuid}/${uniqueFileName}`);
     
                 if (data) {
-                    setUrl(data.publicUrl);
+                    setMobileUrl(data.publicUrl);
+                } else {
+                    console.error('Error getting public URL');
+                }
+            }
+        }
+    };
+
+    const handleRIBFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files?.length) {
+            const file = event.target.files[0];
+            const uniqueFileName = `${uuidv4()}-${file.name}`;
+            const { error } = await supabase.storage
+                .from('rib-compte-courant')
+                .upload(`public/${uuid}/${uniqueFileName}`, file);
+    
+            if (error) {
+                console.error('Error uploading file:', error);
+            } else {
+                const { data } = supabase.storage
+                    .from('rib-compte-courant')
+                    .getPublicUrl(`public/${uuid}/${uniqueFileName}`);
+    
+                if (data) {
+                    setRibUrl(data.publicUrl);
                 } else {
                     console.error('Error getting public URL');
                 }
@@ -415,14 +439,14 @@ const PiecesJustificatives: React.FC = () => {
                                                         <Text fontSize="md" mb={2}>CNI recto</Text>
                                                         <Button as="label" variant="outline" width="100%">
                                                             SÉLECTIONNER MON FICHIER
-                                                            <Input type="file" display="none" onChange={(event) => handleFileUpload(event, 'piece-identite', setMobileUrl)} />
+                                                            <Input type="file" display="none" onChange={(event) => handleMobileFileUpload(event)} />
                                                         </Button>
                                                     </VStack>
                                                     <VStack flex={1} align="stretch">
                                                         <Text fontSize="md" mb={2}>CNI verso</Text>
                                                         <Button as="label" variant="outline" width="100%">
                                                             SÉLECTIONNER MON FICHIER
-                                                            <Input type="file" display="none" onChange={(event) => handleFileUpload(event, 'piece-identite', setMobileUrl)} />
+                                                            <Input type="file" display="none" onChange={(event) => handleMobileFileUpload(event)} />
                                                         </Button>
                                                     </VStack>
                                                 </HStack>
@@ -431,7 +455,7 @@ const PiecesJustificatives: React.FC = () => {
                                                 <Text fontSize="md" mb={2}>Passeport</Text>
                                                 <Button as="label" variant="outline" width="100%">
                                                     SÉLECTIONNER MON FICHIER
-                                                    <Input type="file" display="none" onChange={(event) => handleFileUpload(event, 'piece-identite', setMobileUrl)} />
+                                                    <Input type="file" display="none" onChange={(event) => handleMobileFileUpload(event)} />
                                                 </Button>
                                             </TabPanel>
                                         </TabPanels>
@@ -467,14 +491,14 @@ const PiecesJustificatives: React.FC = () => {
                                                             <Text fontSize="md" mb={2}>CNI recto</Text>
                                                             <Button as="label" variant="outline" width="100%">
                                                                 SÉLECTIONNER MON FICHIER
-                                                                <Input type="file" display="none" onChange={(event) => handleFileUpload(event, 'piece-identite', setMobileUrl)} />
+                                                                <Input type="file" display="none" onChange={(event) => handleMobileFileUpload(event)} />
                                                             </Button>
                                                         </VStack>
                                                         <VStack flex={1} align="stretch">
                                                             <Text fontSize="md" mb={2}>CNI verso</Text>
                                                             <Button as="label" variant="outline" width="100%">
                                                                 SÉLECTIONNER MON FICHIER
-                                                                <Input type="file" display="none" onChange={(event) => handleFileUpload(event, 'piece-identite', setMobileUrl)} />
+                                                                <Input type="file" display="none" onChange={(event) => handleMobileFileUpload(event)} />
                                                             </Button>
                                                         </VStack>
                                                     </HStack>
@@ -483,7 +507,7 @@ const PiecesJustificatives: React.FC = () => {
                                                     <Text fontSize="md" mb={2}>Passeport</Text>
                                                     <Button as="label" variant="outline" width="100%">
                                                         SÉLECTIONNER MON FICHIER
-                                                        <Input type="file" display="none" onChange={(event) => handleFileUpload(event, 'piece-identite', setMobileUrl)} />
+                                                        <Input type="file" display="none" onChange={(event) => handleMobileFileUpload(event)} />
                                                     </Button>
                                                 </TabPanel>
                                             </TabPanels>
@@ -555,13 +579,13 @@ const PiecesJustificatives: React.FC = () => {
                                 {selectedOption === 'facture' && (
                                     <Button as="label" variant="outline" width="100%" mt={4}>
                                         SÉLECTIONNER MON FICHIER
-                                        <Input type="file" display="none" onChange={(event) => handleFileUpload(event, 'facture-mobile', setMobileUrl)} />
+                                        <Input type="file" display="none" onChange={handleMobileFileUpload} />
                                     </Button>
                                 )}
                                 {selectedOption === 'attestation' && (
                                     <Button as="label" variant="outline" width="100%" mt={4}>
                                         SÉLECTIONNER MON FICHIER
-                                        <Input type="file" display="none" onChange={(event) => handleFileUpload(event, 'facture-mobile', setMobileUrl)} />
+                                        <Input type="file" display="none" onChange={handleMobileFileUpload} />
                                     </Button>
                                 )}
                                 {mobileUrl && (
@@ -616,7 +640,7 @@ const PiecesJustificatives: React.FC = () => {
                                     <Text>Attestation Hébergeur</Text>
                                     <Button as="label" variant="outline" width="100%">
                                         SÉLECTIONNER MON FICHIER
-                                        <Input type="file" display="none" onChange={(event) => handleFileUpload(event, 'justificatif-domicile', setMobileUrl)} />
+                                        <Input type="file" display="none" onChange={(event) => handleMobileFileUpload(event)} />
                                     </Button>
                                 </>
                             )}
@@ -737,7 +761,7 @@ const PiecesJustificatives: React.FC = () => {
                             <Text fontWeight="bold" mt={4}>Merci de fournir un RIB</Text>
                             <Button as="label" variant="outline" width="100%">
                                 SÉLECTIONNER MON FICHIER
-                                <Input type="file" display="none" onChange={(event) => handleFileUpload(event, 'rib-compte-courant', setRibUrl)} />
+                                <Input type="file" display="none" onChange={handleRIBFileUpload} />
                             </Button>
                             {ribUrl && (
                                 <FormControl id="rib-url" mt={4}>
