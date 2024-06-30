@@ -180,6 +180,7 @@ const PiecesJustificatives: React.FC = () => {
     const [identityEuropeRectoUrl, setIdentityEuropeRectoUrl] = useState<string | null>(null);
     const [identityEuropeVersoUrl, setIdentityEuropeVersoUrl] = useState<string | null>(null);
     const [passportEuropeUrl, setPassportEuropeUrl] = useState<string | null>(null);
+    const [attestationHebergementUrl, setAttestationHebergementUrl] = useState<string | null>(null);
     const navigate = useNavigate();
     const { uuid, getResponse } = useUuid();
 
@@ -252,6 +253,30 @@ const PiecesJustificatives: React.FC = () => {
 
                 if (data) {
                     setDomicileUrl(data.publicUrl);
+                } else {
+                    console.error('Error getting public URL');
+                }
+            }
+        }
+    };
+
+    const handleAttestationHebergementFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files?.length) {
+            const file = event.target.files[0];
+            const uniqueFileName = `${uuidv4()}-${file.name}`;
+            const { error } = await supabase.storage
+                .from('attestation-hebergement')
+                .upload(`public/${uuid}/${uniqueFileName}`, file);
+
+            if (error) {
+                console.error('Error uploading file:', error);
+            } else {
+                const { data } = supabase.storage
+                    .from('attestation-hebergement')
+                    .getPublicUrl(`public/${uuid}/${uniqueFileName}`);
+
+                if (data) {
+                    setAttestationHebergementUrl(data.publicUrl);
                 } else {
                     console.error('Error getting public URL');
                 }
@@ -893,12 +918,6 @@ const PiecesJustificatives: React.FC = () => {
                                     <Text fontWeight="bold" textTransform="uppercase">Pièce d'identité de l'hébergeur</Text>
                                     <Checkbox>L'hébergeur est un résident étranger (hors communauté européenne), je dois fournir une copie de son titre de séjour et de son passeport.</Checkbox>
                                     <HStack spacing={3}>
-                                    <Text fontWeight="bold" textTransform="uppercase">Attestation rédigée datée et signée de l'hébergeur</Text>
-                                    <HStack spacing={3} alignItems="center">
-                                        <Icon as={FaFileUpload} />
-                                        <Text>Téléchargez un exemple d’attestation d’hébergement à compléter</Text>
-                                    </HStack>
-                                    <Text>Attestation Hébergeur</Text>
                                         <Button as="label" variant="outline" width="100%">
                                             SÉLECTIONNER MON FICHIER RECTO
                                             <Input type="file" display="none" onChange={handleIdentityEuropeRectoFileUpload} />
@@ -925,6 +944,21 @@ const PiecesJustificatives: React.FC = () => {
                                     {passportEuropeUrl && (
                                         <Box mt={4}>
                                             <Image src={passportEuropeUrl} alt="Passeport européen" />
+                                        </Box>
+                                    )}
+                                    <Text fontWeight="bold" textTransform="uppercase">Attestation rédigée datée et signée de l'hébergeur</Text>
+                                    <HStack spacing={3} alignItems="center">
+                                        <Icon as={FaFileUpload} />
+                                        <Text>Téléchargez un exemple d’attestation d’hébergement à compléter</Text>
+                                    </HStack>
+                                    <Text>Attestation Hébergeur</Text>
+                                    <Button as="label" variant="outline" width="100%" mt={4}>
+                                        SÉLECTIONNER MON FICHIER ATTESTATION
+                                        <Input type="file" display="none" onChange={handleAttestationHebergementFileUpload} />
+                                    </Button>
+                                    {attestationHebergementUrl && (
+                                        <Box mt={4}>
+                                            <Image src={attestationHebergementUrl} alt="Attestation d'hébergement" />
                                         </Box>
                                     )}
                                 </>
