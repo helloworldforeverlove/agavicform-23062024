@@ -228,6 +228,30 @@ const PiecesJustificatives: React.FC = () => {
         }
     };
 
+    const handleDomicileFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files?.length) {
+            const file = event.target.files[0];
+            const uniqueFileName = `${uuidv4()}-${file.name}`;
+            const { error } = await supabase.storage
+                .from('justificatif-domicile') // Assurez-vous que ce bucket existe dans votre Supabase
+                .upload(`public/${uuid}/${uniqueFileName}`, file);
+    
+            if (error) {
+                console.error('Error uploading file:', error);
+            } else {
+                const { data } = supabase.storage
+                    .from('justificatif-domicile') // Assurez-vous que ce bucket existe dans votre Supabase
+                    .getPublicUrl(`public/${uuid}/${uniqueFileName}`);
+    
+                if (data) {
+                    setDomicileUrl(data.publicUrl);
+                } else {
+                    console.error('Error getting public URL');
+                }
+            }
+        }
+    };
+
     const handleShowSecondUpload = () => {
         setShowSecondUpload(true);
     };
