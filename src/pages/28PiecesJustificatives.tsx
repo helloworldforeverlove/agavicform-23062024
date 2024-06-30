@@ -371,6 +371,7 @@ const PiecesJustificatives: React.FC = () => {
                 step70: passportUrl,
                 step71: cniRectoUrl,
                 step72: cniVersoUrl,
+                step75: domicileUrl,
             })
             .eq('id', uuid);
 
@@ -405,6 +406,7 @@ const PiecesJustificatives: React.FC = () => {
             const step70 = await getResponse(70);
             const step71 = await getResponse(71);
             const step72 = await getResponse(72);
+            const step75 = await getResponse(75);
 
             setFormValues({
                 step51: step51 || '',
@@ -429,6 +431,7 @@ const PiecesJustificatives: React.FC = () => {
                 step70: step70 || '',
                 step71: step71 || '',
                 step72: step72 || '',
+                step75: step75 || '',
             });
             setSelectedOption(step65 || '');
             setSelectedIdentity(step66 || '');
@@ -438,6 +441,7 @@ const PiecesJustificatives: React.FC = () => {
             setPassportUrl(step70 || '');
             setCniRectoUrl(step71 || '');
             setCniVersoUrl(step72 || '');
+            setDomicileUrl(step75 || '');
             setIsReferral(step58 === 'true');
         };
 
@@ -467,6 +471,7 @@ const PiecesJustificatives: React.FC = () => {
         step70: '',
         step71: '',
         step72: '',
+        step75: '',
     });
 
     return (
