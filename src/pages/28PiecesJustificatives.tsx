@@ -966,18 +966,44 @@ const PiecesJustificatives: React.FC = () => {
                                             <Input type="file" display="none" onChange={handleIdentityEuropeRectoFileUpload} />
                                         </Button>
                                         {identityEuropeRectoUrl && (
-                                            <Box mt={4} mx="auto">
-                                                <Image src={identityEuropeRectoUrl} alt="Carte d'identité européenne recto" />
-                                            </Box>
+                                            <>
+                                                <FormControl display="none" id="cni-recto-url" mt={4}>
+                                                    <FormLabel textAlign="center">URL de la CNI recto</FormLabel>
+                                                    <Input
+                                                        type="text"
+                                                        value={identityEuropeRectoUrl}
+                                                        isReadOnly
+                                                        textAlign="center"
+                                                        borderColor="green.400"
+                                                        color="green.500"
+                                                    />
+                                                </FormControl>
+                                                <Box mt={4} mx="auto">
+                                                    <Image src={identityEuropeRectoUrl} alt="Carte d'identité européenne recto" />
+                                                </Box>
+                                            </>
                                         )}
                                         <Button as="label" variant="outline" width="60%" mx="auto">
                                             <Icon as={FcViewDetails} /> CNI VERSO
                                             <Input type="file" display="none" onChange={handleIdentityEuropeVersoFileUpload} />
                                         </Button>
                                         {identityEuropeVersoUrl && (
-                                            <Box mt={4} mx="auto">
-                                                <Image src={identityEuropeVersoUrl} alt="Carte d'identité européenne verso" />
-                                            </Box>
+                                            <>
+                                                <FormControl display="none" id="cni-verso-url" mt={4}>
+                                                    <FormLabel textAlign="center">URL de la CNI verso</FormLabel>
+                                                    <Input
+                                                        type="text"
+                                                        value={identityEuropeVersoUrl}
+                                                        isReadOnly
+                                                        textAlign="center"
+                                                        borderColor="green.400"
+                                                        color="green.500"
+                                                    />
+                                                </FormControl>
+                                                <Box mt={4} mx="auto">
+                                                    <Image src={identityEuropeVersoUrl} alt="Carte d'identité européenne verso" />
+                                                </Box>
+                                            </>
                                         )}
                                     </VStack>
 
@@ -988,9 +1014,22 @@ const PiecesJustificatives: React.FC = () => {
                                             <Input type="file" display="none" onChange={handlePassportEuropeFileUpload} />
                                         </Button>
                                         {passportEuropeUrl && (
-                                            <Box mt={4} mx="auto">
-                                                <Image src={passportEuropeUrl} alt="Passeport européen" />
-                                            </Box>
+                                            <>
+                                                <FormControl display="none" id="passport-europe-url" mt={4}>
+                                                    <FormLabel textAlign="center">URL du passeport européen</FormLabel>
+                                                    <Input
+                                                        type="text"
+                                                        value={passportEuropeUrl}
+                                                        isReadOnly
+                                                        textAlign="center"
+                                                        borderColor="green.400"
+                                                        color="green.500"
+                                                    />
+                                                </FormControl>
+                                                <Box mt={4} mx="auto">
+                                                    <Image src={passportEuropeUrl} alt="Passeport européen" />
+                                                </Box>
+                                            </>
                                         )}
                                     </VStack>
 
@@ -1021,7 +1060,7 @@ const PiecesJustificatives: React.FC = () => {
                                             </Box>
                                         </>
                                     )}
-
+                                    
                                 </VStack>
                             )}
                             <Text fontWeight="bold" textAlign="center">JUSTIFICATIFS DE <strong>MOINS DE 3 MOIS</strong></Text>
