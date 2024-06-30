@@ -919,45 +919,53 @@ const PiecesJustificatives: React.FC = () => {
                                 <>
                                     <Text fontWeight="bold" textTransform="uppercase">Pièce d'identité de l'hébergeur</Text>
                                     <Checkbox>L'hébergeur est un résident étranger (hors communauté européenne), je dois fournir une copie de son titre de séjour et de son passeport.</Checkbox>
-                                    <HStack spacing={3}>
+
+                                    <Text fontWeight="bold" textTransform="uppercase" mt={4}>Ma Pièce d'identité</Text>
+                                    <VStack spacing={4} align="stretch">
+                                        <Text fontSize="md" mb={2}>CNI recto</Text>
                                         <Button as="label" variant="outline" width="100%">
-                                            SÉLECTIONNER MON FICHIER RECTO
+                                            SÉLECTIONNER MON FICHIER
                                             <Input type="file" display="none" onChange={handleIdentityEuropeRectoFileUpload} />
                                         </Button>
+                                        {identityEuropeRectoUrl && (
+                                            <Box mt={4}>
+                                                <Image src={identityEuropeRectoUrl} alt="Carte d'identité européenne recto" />
+                                            </Box>
+                                        )}
+                                        <Text fontSize="md" mb={2} mt={4}>CNI verso</Text>
                                         <Button as="label" variant="outline" width="100%">
-                                            SÉLECTIONNER MON FICHIER VERSO
+                                            SÉLECTIONNER MON FICHIER
                                             <Input type="file" display="none" onChange={handleIdentityEuropeVersoFileUpload} />
                                         </Button>
-                                    </HStack>
-                                    {identityEuropeRectoUrl && (
-                                        <Box mt={4}>
-                                            <Image src={identityEuropeRectoUrl} alt="Carte d'identité européenne recto" />
-                                        </Box>
-                                    )}
-                                    {identityEuropeVersoUrl && (
-                                        <Box mt={4}>
-                                            <Image src={identityEuropeVersoUrl} alt="Carte d'identité européenne verso" />
-                                        </Box>
-                                    )}
-                                    <Button as="label" variant="outline" width="100%" mt={4}>
-                                        SÉLECTIONNER MON FICHIER PASSEPORT
-                                        <Input type="file" display="none" onChange={handlePassportEuropeFileUpload} />
-                                    </Button>
-                                    {passportEuropeUrl && (
-                                        <Box mt={4}>
-                                            <Image src={passportEuropeUrl} alt="Passeport européen" />
-                                        </Box>
-                                    )}
-                                    <Text fontWeight="bold" textTransform="uppercase">Attestation rédigée datée et signée de l'hébergeur</Text>
-                                    <HStack p={3} borderRadius={5} bgColor="green.100" spacing={3} alignItems="center">
-                                        <Icon color="green.400" as={FaFileUpload} />
-                                        <Text cursor="pointer" color="blue.500" onClick={onExampleOpen} _hover={{ textDecoration: 'underline' }}>Téléchargez un exemple d’attestation d’hébergement à compléter</Text>
-                                    </HStack>
-                                    <Text>Attestation Hébergeur</Text>
+                                        {identityEuropeVersoUrl && (
+                                            <Box mt={4}>
+                                                <Image src={identityEuropeVersoUrl} alt="Carte d'identité européenne verso" />
+                                            </Box>
+                                        )}
+                                    </VStack>
+
+                                    <Text fontWeight="bold" textTransform="uppercase" mt={4}>Mon passeport</Text>
+                                    <VStack spacing={4} align="stretch">
+                                        <Button as="label" variant="outline" width="100%">
+                                            SÉLECTIONNER MON FICHIER PASSEPORT
+                                            <Input type="file" display="none" onChange={handlePassportEuropeFileUpload} />
+                                        </Button>
+                                        {passportEuropeUrl && (
+                                            <Box mt={4}>
+                                                <Image src={passportEuropeUrl} alt="Passeport européen" />
+                                            </Box>
+                                        )}
+                                    </VStack>
+
+                                    <Text fontWeight="bold" textTransform="uppercase" mt={4}>Attestation rédigée datée et signée de l'hébergeur</Text>
                                     <Button as="label" variant="outline" width="100%" mt={4}>
                                         SÉLECTIONNER MON FICHIER ATTESTATION
                                         <Input type="file" display="none" onChange={handleAttestationHebergementFileUpload} />
                                     </Button>
+                                    <HStack p={3} borderRadius={5} bgColor="green.100" spacing={3} alignItems="center">
+                                        <Icon color="green.400" as={FaFileUpload} />
+                                        <Text cursor="pointer" color="blue.500" onClick={onExampleOpen} _hover={{ textDecoration: 'underline' }}>Téléchargez un exemple d’attestation d’hébergement à compléter</Text>
+                                    </HStack>
                                     {attestationHebergementUrl && (
                                         <Box mt={4}>
                                             <Image src={attestationHebergementUrl} alt="Attestation d'hébergement" />
