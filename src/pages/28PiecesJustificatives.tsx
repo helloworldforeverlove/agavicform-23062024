@@ -560,7 +560,7 @@ const PiecesJustificatives: React.FC = () => {
                                                         </Button>
                                                         {cniRectoUrl && (
                                                             <>
-                                                                <FormControl id="cni-recto-url" mt={4}>
+                                                                <FormControl display="none" id="cni-recto-url" mt={4}>
                                                                     <FormLabel textAlign="center">URL du fichier CNI recto</FormLabel>
                                                                     <Input
                                                                         type="text"
@@ -585,7 +585,7 @@ const PiecesJustificatives: React.FC = () => {
                                                         </Button>
                                                         {cniVersoUrl && (
                                                             <>
-                                                                <FormControl id="cni-verso-url" mt={4}>
+                                                                <FormControl display="none" id="cni-verso-url" mt={4}>
                                                                     <FormLabel textAlign="center">URL du fichier CNI verso</FormLabel>
                                                                     <Input
                                                                         type="text"
@@ -612,7 +612,7 @@ const PiecesJustificatives: React.FC = () => {
                                                 </Button>
                                                 {passportUrl && (
                                                     <>
-                                                        <FormControl id="passport-url" mt={4}>
+                                                        <FormControl display="none" id="passport-url" mt={4}>
                                                             <FormLabel textAlign="center">URL du fichier de passeport</FormLabel>
                                                             <Input
                                                                 type="text"
@@ -761,7 +761,7 @@ const PiecesJustificatives: React.FC = () => {
                                 )}
                                 {mobileUrl && (
                                     <>
-                                        <FormControl id="mobile-url" mt={4}>
+                                        <FormControl display="none" id="mobile-url" mt={4}>
                                             <FormLabel textAlign="center">URL du fichier mobile</FormLabel>
                                             <Input
                                                 type="text"
@@ -920,7 +920,7 @@ const PiecesJustificatives: React.FC = () => {
                             </VStack>
                             {domicileUrl && (
                                 <VStack>
-                                    <FormControl id="domicile-url" mt={4}>
+                                    <FormControl display="none" id="domicile-url" mt={4}>
                                         <FormLabel textAlign="center">URL du fichier de domicile</FormLabel>
                                         <Input
                                             type="text"
@@ -961,7 +961,7 @@ const PiecesJustificatives: React.FC = () => {
                             </Button>
                             {ribUrl && (
                                 <>
-                                    <FormControl id="rib-url" mt={4}>
+                                    <FormControl display="none" id="rib-url" mt={4}>
                                         <FormLabel textAlign="center">URL du fichier RIB</FormLabel>
                                         <Input
                                             type="text"
