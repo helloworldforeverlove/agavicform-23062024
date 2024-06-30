@@ -949,9 +949,9 @@ const PiecesJustificatives: React.FC = () => {
                                         </Box>
                                     )}
                                     <Text fontWeight="bold" textTransform="uppercase">Attestation rédigée datée et signée de l'hébergeur</Text>
-                                    <HStack spacing={3} alignItems="center">
-                                        <Icon as={FaFileUpload} />
-                                        <Text cursor="pointer" onClick={onExampleOpen}>Téléchargez un exemple d’attestation d’hébergement à compléter</Text>
+                                    <HStack p={3} borderRadius={5} bgColor="green.100" spacing={3} alignItems="center">
+                                        <Icon color="green.400" as={FaFileUpload} />
+                                        <Text cursor="pointer" color="blue.500" onClick={onExampleOpen} _hover={{ textDecoration: 'underline' }}>Téléchargez un exemple d’attestation d’hébergement à compléter</Text>
                                     </HStack>
                                     <Text>Attestation Hébergeur</Text>
                                     <Button as="label" variant="outline" width="100%" mt={4}>
