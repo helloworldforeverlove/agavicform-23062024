@@ -73,6 +73,7 @@ const InsuranceAgreementForm: React.FC = () => {
         step3: '',
         step4: '',
         risk_score: 0,
+        color_code: '',
     });
     const { isOpen, onOpen, onClose } = useDisclosure();
     const {
@@ -92,7 +93,7 @@ const InsuranceAgreementForm: React.FC = () => {
             
             const { data, error } = await supabase
                 .from('form_responses')
-                .select('step2, step3, step4, risk_score')
+                .select('step2, step3, step4, risk_score, color_code')
                 .eq('id', uuid)
                 .single();
 
@@ -104,6 +105,7 @@ const InsuranceAgreementForm: React.FC = () => {
                     step3: data.step3,
                     step4: data.step4,
                     risk_score: data.risk_score,
+                    color_code: data.color_code,
                 });
             }
         };
@@ -244,11 +246,12 @@ const InsuranceAgreementForm: React.FC = () => {
                                 <HStack justifyContent="space-between" mt={2} alignItems="center">
                                     <HStack>
                                         <Box
-                                            bg="gray.200"
+                                            bg={projectData.color_code}
                                             borderRadius="md"
-                                            p={1}
+                                            p={3}
                                             fontSize="md"
                                             fontWeight="bold"
+                                            color="white"
                                         >
                                             {projectData.risk_score}
                                         </Box>
