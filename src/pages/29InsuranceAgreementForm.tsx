@@ -111,7 +111,7 @@ const InsuranceAgreementForm: React.FC = () => {
             const step74 = await getResponse(74);
             setAgreedToTerms(step73 === 'true');
             setAcknowledgedInfo(step74 === 'true');
-            
+
             const { data, error } = await supabase
                 .from('form_responses')
                 .select('step2, step3, step4, risk_score, color_code')
@@ -276,7 +276,7 @@ const InsuranceAgreementForm: React.FC = () => {
                                         >
                                             {projectData.risk_score}
                                         </Box>
-                                        
+
                                     </HStack>
                                     <Text>Profil : {getRiskDescription(projectData.risk_score)}</Text>
                                 </HStack>
@@ -346,7 +346,7 @@ const InsuranceAgreementForm: React.FC = () => {
                     </ModalHeader>
                     <ModalBody p={0} height="100%">
                         <iframe
-                            src="https://wrzduukskbcqvxtqevpr.supabase.co/storage/v1/object/public/pdf/conditions_1_.pdf"
+                            src="https://wrzduukskbcqvxtqevpr.supabase.co/storage/v1/object/public/pdf/conditions.pdf?t=2024-06-27T20%3A41%3A38.178Z"
                             width="100%"
                             height="100%"
                             style={{ border: 'none' }}
