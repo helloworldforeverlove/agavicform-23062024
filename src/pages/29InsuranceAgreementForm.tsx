@@ -6,7 +6,6 @@ import {
     Text,
     VStack,
     Checkbox,
-    Badge,
     Modal,
     ModalOverlay,
     ModalContent,
@@ -19,7 +18,7 @@ import {
     useDisclosure,
     useStyleConfig,
 } from '@chakra-ui/react';
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes, FaEye } from 'react-icons/fa';
 import Stepper from '../components/Stepper';
 import { useNavigate } from 'react-router-dom';
 import { useUuid } from '../context/UuidContext';
@@ -152,7 +151,24 @@ const InsuranceAgreementForm: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <Stepper currentStep={5} />
+            <Box position="relative">
+                <Stepper currentStep={5} />
+                <Button
+                    leftIcon={<FaEye />}
+                    colorScheme="green"
+                    variant="solid"
+                    size="sm"
+                    position="absolute"
+                    top="100px"
+                    right="20px"
+                    cursor="pointer"
+                    onClick={() => setEpargneModalOpen(true)}
+                    padding="8px 12px"
+                    borderRadius="md"
+                >
+                    Voir mon projet
+                </Button>
+            </Box>
             <Box p={5} maxW="800px" mx="auto">
                 <Section title="Ouverture d’une Assurance-vie avec un mandat d’arbitrage en profil" variant="gray">
                     <Text mb={4}>
@@ -207,15 +223,6 @@ const InsuranceAgreementForm: React.FC = () => {
                             </Box>
                         </Checkbox>
                     </VStack>
-                    <Badge
-                        colorScheme="green"
-                        variant="solid"
-                        mt={4}
-                        cursor="pointer"
-                        onClick={() => setEpargneModalOpen(true)}
-                    >
-                        Voir mon projet
-                    </Badge>
                 </Section>
                 <Button
                     colorScheme="green"
