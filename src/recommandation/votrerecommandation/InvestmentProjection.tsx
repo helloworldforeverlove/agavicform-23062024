@@ -1,8 +1,30 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import { ChartOptions, ChartScales, LinearScale } from 'chart.js';
+import { 
+  Chart as ChartJS, 
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler,
+  ChartOptions
+} from 'chart.js';
 import { ChakraProvider, extendTheme, Box, Text, HStack, Icon } from '@chakra-ui/react';
 import { FaChartLine } from 'react-icons/fa';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+);
 
 const theme = extendTheme({
   colors: {
@@ -59,30 +81,38 @@ const data = {
   ],
 };
 
-const options: ChartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      x: {
-        type: 'linear',
-        beginAtZero: true,
-        title: {
-          display: true,
-          text: 'Années',
-          color: '#718096',
-        },
-      } as LinearScale,
-      y: {
-        type: 'linear',
-        beginAtZero: true,
-        title: {
-          display: true,
-          text: 'Valeur (en k€)',
-          color: '#718096',
-        },
-      } as LinearScale,
-    } as ChartScales,
-  };
+const options: ChartOptions<'line'> = {
+  responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    x: {
+      type: 'category',
+      title: {
+        display: true,
+        text: 'Années',
+        color: '#718096',
+      },
+    },
+    y: {
+      type: 'linear',
+      beginAtZero: true,
+      title: {
+        display: true,
+        text: 'Valeur (en k€)',
+        color: '#718096',
+      },
+    },
+  },
+  plugins: {
+    legend: {
+      position: 'top' as const,
+    },
+    title: {
+      display: true,
+      text: "Projection d'investissement",
+    },
+  },
+};
 
 const InvestmentProjection: React.FC = () => {
   return (
