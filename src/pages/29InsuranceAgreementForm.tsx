@@ -178,7 +178,7 @@ const InsuranceAgreementForm: React.FC = () => {
             <Box p={5} maxW="800px" mx="auto">
                 <Section title="Ouverture d’une Assurance-vie avec un mandat d’arbitrage en profil" variant="gray">
                     <Text mb={4}>
-                        C'est la dernière étape ! Afin de finaliser l'ouverture de votre compte Yomoni, veuillez cocher les conditions générales ci-dessous, puis signer électroniquement votre contrat.
+                        C'est la dernière étape ! Afin de finaliser l'ouverture de votre compte Agavic, veuillez cocher les conditions générales ci-dessous, puis signer électroniquement votre contrat.
                     </Text>
                     <VStack align="start" spacing={3}>
                         <Checkbox
@@ -212,7 +212,7 @@ const InsuranceAgreementForm: React.FC = () => {
                             size="lg"
                         >
                             <Box onClick={(e) => e.preventDefault()} ml={2}>
-                                Je reconnais que Yomoni m'a communiqué les{' '}
+                                Je reconnais que Agavic m'a communiqué les{' '}
                                 <Text
                                     as="span"
                                     color="blue.500"
@@ -225,7 +225,7 @@ const InsuranceAgreementForm: React.FC = () => {
                                 >
                                     informations détaillées
                                 </Text>
-                                {' '}sur chaque support en unités de compte disponibles sur le contrat Yomoni Vie.
+                                {' '}sur chaque support en unités de compte disponibles sur le contrat Agavic Vie.
                             </Box>
                         </Checkbox>
                     </VStack>
