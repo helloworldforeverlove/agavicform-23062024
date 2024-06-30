@@ -107,23 +107,40 @@ const InsuranceAgreementForm: React.FC = () => {
                         <Checkbox
                             isChecked={agreedToTerms}
                             onChange={(e) => setAgreedToTerms(e.target.checked)}
+                            colorScheme="green"
+                            size="lg"
                         >
-                            <span onClick={(e) => e.stopPropagation()}>
+                            <Box onClick={(e) => e.preventDefault()} ml={2}>
                                 Je prends connaissance des{' '}
-                                <Box as="span" color="blue.500" textDecoration="underline" cursor="pointer" onClick={onOpen}>
+                                <Text
+                                    as="span"
+                                    color="blue.500"
+                                    textDecoration="underline"
+                                    cursor="pointer"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        onOpen();
+                                    }}
+                                >
                                     Conditions Générales
-                                </Box>
+                                </Text>
                                 {' '}de Signature Electronique, du Document d'Informations Clés du contrat, de la Notice et du Règlement du mandat d'arbitrage.
-                            </span>
+                            </Box>
                         </Checkbox>
+
                         <Checkbox
                             isChecked={acknowledgedInfo}
                             onChange={(e) => setAcknowledgedInfo(e.target.checked)}
+                            colorScheme="green"
+                            size="lg"
                         >
-                            <span onClick={(e) => e.stopPropagation()}>
+                            <Box onClick={(e) => e.preventDefault()} ml={2}>
                                 Je reconnais que Yomoni m'a communiqué les{' '}
-                                <Text as="u" color="blue.500">informations détaillées</Text> sur chaque support en unités de compte disponibles sur le contrat Yomoni Vie.
-                            </span>
+                                <Text as="span" color="blue.500" textDecoration="underline">
+                                    informations détaillées
+                                </Text>
+                                {' '}sur chaque support en unités de compte disponibles sur le contrat Yomoni Vie.
+                            </Box>
                         </Checkbox>
                     </VStack>
                     <Badge
