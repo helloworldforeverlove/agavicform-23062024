@@ -177,6 +177,9 @@ const PiecesJustificatives: React.FC = () => {
     const [passportUrl, setPassportUrl] = useState<string | null>(null);
     const [cniRectoUrl, setCniRectoUrl] = useState<string | null>(null);
     const [cniVersoUrl, setCniVersoUrl] = useState<string | null>(null);
+    const [identityEuropeRectoUrl, setIdentityEuropeRectoUrl] = useState<string | null>(null);
+    const [identityEuropeVersoUrl, setIdentityEuropeVersoUrl] = useState<string | null>(null);
+    const [passportEuropeUrl, setPassportEuropeUrl] = useState<string | null>(null);
     const navigate = useNavigate();
     const { uuid, getResponse } = useUuid();
 
@@ -255,6 +258,79 @@ const PiecesJustificatives: React.FC = () => {
             }
         }
     };
+
+    const handleIdentityEuropeRectoFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files?.length) {
+            const file = event.target.files[0];
+            const uniqueFileName = `${uuidv4()}-${file.name}`;
+            const { error } = await supabase.storage
+                .from('identity-europe-recto')
+                .upload(`public/${uuid}/${uniqueFileName}`, file);
+
+            if (error) {
+                console.error('Error uploading file:', error);
+            } else {
+                const { data } = supabase.storage
+                    .from('identity-europe-recto')
+                    .getPublicUrl(`public/${uuid}/${uniqueFileName}`);
+
+                if (data) {
+                    setIdentityEuropeRectoUrl(data.publicUrl);
+                } else {
+                    console.error('Error getting public URL');
+                }
+            }
+        }
+    };
+
+    const handleIdentityEuropeVersoFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files?.length) {
+            const file = event.target.files[0];
+            const uniqueFileName = `${uuidv4()}-${file.name}`;
+            const { error } = await supabase.storage
+                .from('identity-europe-verso')
+                .upload(`public/${uuid}/${uniqueFileName}`, file);
+
+            if (error) {
+                console.error('Error uploading file:', error);
+            } else {
+                const { data } = supabase.storage
+                    .from('identity-europe-verso')
+                    .getPublicUrl(`public/${uuid}/${uniqueFileName}`);
+
+                if (data) {
+                    setIdentityEuropeVersoUrl(data.publicUrl);
+                } else {
+                    console.error('Error getting public URL');
+                }
+            }
+        }
+    };
+
+    const handlePassportEuropeFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files?.length) {
+            const file = event.target.files[0];
+            const uniqueFileName = `${uuidv4()}-${file.name}`;
+            const { error } = await supabase.storage
+                .from('passport-europe')
+                .upload(`public/${uuid}/${uniqueFileName}`, file);
+
+            if (error) {
+                console.error('Error uploading file:', error);
+            } else {
+                const { data } = supabase.storage
+                    .from('passport-europe')
+                    .getPublicUrl(`public/${uuid}/${uniqueFileName}`);
+
+                if (data) {
+                    setPassportEuropeUrl(data.publicUrl);
+                } else {
+                    console.error('Error getting public URL');
+                }
+            }
+        }
+    };
+
 
     const handlePassportFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files?.length) {
@@ -372,6 +448,9 @@ const PiecesJustificatives: React.FC = () => {
                 step71: cniRectoUrl,
                 step72: cniVersoUrl,
                 step75: domicileUrl,
+                step76: passportEuropeUrl,
+                step77: identityEuropeRectoUrl,
+                step78: identityEuropeVersoUrl,
             })
             .eq('id', uuid);
 
@@ -814,19 +893,40 @@ const PiecesJustificatives: React.FC = () => {
                                     <Text fontWeight="bold" textTransform="uppercase">Pièce d'identité de l'hébergeur</Text>
                                     <Checkbox>L'hébergeur est un résident étranger (hors communauté européenne), je dois fournir une copie de son titre de séjour et de son passeport.</Checkbox>
                                     <HStack spacing={3}>
-                                        <Button variant="outline" width="100%">Carte d'identité européenne</Button>
-                                        <Button variant="outline" width="100%">Passeport européen</Button>
-                                    </HStack>
                                     <Text fontWeight="bold" textTransform="uppercase">Attestation rédigée datée et signée de l'hébergeur</Text>
                                     <HStack spacing={3} alignItems="center">
                                         <Icon as={FaFileUpload} />
                                         <Text>Téléchargez un exemple d’attestation d’hébergement à compléter</Text>
                                     </HStack>
                                     <Text>Attestation Hébergeur</Text>
-                                    <Button as="label" variant="outline" width="100%">
-                                        SÉLECTIONNER MON FICHIER
-                                        <Input type="file" display="none" onChange={handleMobileFileUpload} />
+                                        <Button as="label" variant="outline" width="100%">
+                                            SÉLECTIONNER MON FICHIER RECTO
+                                            <Input type="file" display="none" onChange={handleIdentityEuropeRectoFileUpload} />
+                                        </Button>
+                                        <Button as="label" variant="outline" width="100%">
+                                            SÉLECTIONNER MON FICHIER VERSO
+                                            <Input type="file" display="none" onChange={handleIdentityEuropeVersoFileUpload} />
+                                        </Button>
+                                    </HStack>
+                                    {identityEuropeRectoUrl && (
+                                        <Box mt={4}>
+                                            <Image src={identityEuropeRectoUrl} alt="Carte d'identité européenne recto" />
+                                        </Box>
+                                    )}
+                                    {identityEuropeVersoUrl && (
+                                        <Box mt={4}>
+                                            <Image src={identityEuropeVersoUrl} alt="Carte d'identité européenne verso" />
+                                        </Box>
+                                    )}
+                                    <Button as="label" variant="outline" width="100%" mt={4}>
+                                        SÉLECTIONNER MON FICHIER PASSEPORT
+                                        <Input type="file" display="none" onChange={handlePassportEuropeFileUpload} />
                                     </Button>
+                                    {passportEuropeUrl && (
+                                        <Box mt={4}>
+                                            <Image src={passportEuropeUrl} alt="Passeport européen" />
+                                        </Box>
+                                    )}
                                 </>
                             )}
                             <Text fontWeight="bold" textAlign="center">JUSTIFICATIFS DE <strong>MOINS DE 3 MOIS</strong></Text>
