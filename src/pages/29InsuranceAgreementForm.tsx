@@ -179,7 +179,7 @@ const InsuranceAgreementForm: React.FC = () => {
 
             <Modal isOpen={isEpargneModalOpen} onClose={() => setEpargneModalOpen(false)} isCentered>
                 <ModalOverlay />
-                <ModalContent borderRadius="md" boxShadow="lg" maxW="80%" mt="10%" height="80%">
+                <ModalContent borderRadius="md" boxShadow="lg">
                     <ModalHeader textAlign="center" fontSize="lg" fontWeight="bold">
                         <HStack justifyContent="space-between">
                             <Box flex="1" />
