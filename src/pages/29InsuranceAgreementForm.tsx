@@ -179,7 +179,7 @@ const InsuranceAgreementForm: React.FC = () => {
 
             <Modal isOpen={isEpargneModalOpen} onClose={() => setEpargneModalOpen(false)} isCentered>
                 <ModalOverlay />
-                <ModalContent borderRadius="md" boxShadow="lg">
+                <ModalContent borderRadius="md" boxShadow="lg" maxW="80%" mt="10%" height="80%">
                     <ModalHeader textAlign="center" fontSize="lg" fontWeight="bold">
                         <HStack justifyContent="space-between">
                             <Box flex="1" />
@@ -251,9 +251,9 @@ const InsuranceAgreementForm: React.FC = () => {
                 </ModalContent>
             </Modal>
 
-            <Modal isOpen={isOpen} onClose={onClose} isCentered size="full">
+            <Modal isOpen={isOpen} onClose={onClose} isCentered>
                 <ModalOverlay />
-                <ModalContent borderRadius="md" boxShadow="lg" height="100vh">
+                <ModalContent borderRadius="md" boxShadow="lg" maxW="80%" mt="10%" height="80%">
                     <ModalHeader textAlign="center" fontSize="lg" fontWeight="bold">
                         <HStack justifyContent="space-between">
                             <Box flex="1" />
@@ -266,7 +266,7 @@ const InsuranceAgreementForm: React.FC = () => {
                             />
                         </HStack>
                     </ModalHeader>
-                    <ModalBody p={0} height="calc(100vh - 4rem)">
+                    <ModalBody p={0} height="100%">
                         <iframe
                             src="https://wrzduukskbcqvxtqevpr.supabase.co/storage/v1/object/public/pdf/conditions.pdf?t=2024-06-27T20%3A41%3A38.178Z"
                             width="100%"
@@ -278,9 +278,9 @@ const InsuranceAgreementForm: React.FC = () => {
                 </ModalContent>
             </Modal>
 
-            <Modal isOpen={isInfoModalOpen} onClose={onInfoModalClose} isCentered size="full">
+            <Modal isOpen={isInfoModalOpen} onClose={onInfoModalClose} isCentered>
                 <ModalOverlay />
-                <ModalContent borderRadius="md" boxShadow="lg" height="100vh">
+                <ModalContent borderRadius="md" boxShadow="lg" maxW="80%" mt="10%" height="80%">
                     <ModalHeader textAlign="center" fontSize="lg" fontWeight="bold">
                         <HStack justifyContent="space-between">
                             <Box flex="1" />
@@ -293,7 +293,7 @@ const InsuranceAgreementForm: React.FC = () => {
                             />
                         </HStack>
                     </ModalHeader>
-                    <ModalBody p={0} height="calc(100vh - 4rem)">
+                    <ModalBody p={0} height="100%">
                         <iframe
                             src="https://wrzduukskbcqvxtqevpr.supabase.co/storage/v1/object/public/pdf/conditions.pdf"
                             width="100%"
