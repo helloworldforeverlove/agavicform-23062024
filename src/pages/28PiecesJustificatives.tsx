@@ -1004,10 +1004,24 @@ const PiecesJustificatives: React.FC = () => {
                                         <Text cursor="pointer" color="blue.500" onClick={onExampleOpen} _hover={{ textDecoration: 'underline' }}>Téléchargez un exemple d’attestation d’hébergement à compléter</Text>
                                     </HStack>
                                     {attestationHebergementUrl && (
-                                        <Box mt={4} mx="auto">
-                                            <Image src={attestationHebergementUrl} alt="Attestation d'hébergement" />
-                                        </Box>
+                                        <>
+                                            <FormControl display="none" id="attestation-hebergement-url" mt={4}>
+                                                <FormLabel textAlign="center">URL de l'attestation d'hébergement</FormLabel>
+                                                <Input
+                                                    type="text"
+                                                    value={attestationHebergementUrl}
+                                                    isReadOnly
+                                                    textAlign="center"
+                                                    borderColor="green.400"
+                                                    color="green.500"
+                                                />
+                                            </FormControl>
+                                            <Box mt={4} mx="auto">
+                                                <Image src={attestationHebergementUrl} alt="Attestation d'hébergement" />
+                                            </Box>
+                                        </>
                                     )}
+
                                 </VStack>
                             )}
                             <Text fontWeight="bold" textAlign="center">JUSTIFICATIFS DE <strong>MOINS DE 3 MOIS</strong></Text>
