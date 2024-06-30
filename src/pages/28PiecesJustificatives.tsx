@@ -160,7 +160,6 @@ const PiecesJustificatives: React.FC = () => {
     const { isOpen: isMobileOpen, onOpen: onMobileOpen, onClose: onMobileClose } = useDisclosure();
     const { isOpen: isDomicileOpen, onOpen: onDomicileOpen, onClose: onDomicileClose } = useDisclosure();
     const { isOpen: isRIBOpen, onOpen: onRIBOpen, onClose: onRIBClose } = useDisclosure();
-    const { isOpen: isPassportOpen, onOpen: onPassportOpen, onClose: onPassportClose } = useDisclosure();
     const [step, setStep] = useState(1);
     const [mobileStep, setMobileStep] = useState(1);
     // eslint-disable-next-line
@@ -176,6 +175,8 @@ const PiecesJustificatives: React.FC = () => {
     const [mobileUrl, setMobileUrl] = useState<string | null>(null);
     const [domicileUrl, setDomicileUrl] = useState<string | null>(null);
     const [passportUrl, setPassportUrl] = useState<string | null>(null);
+    const [cniRectoUrl, setCniRectoUrl] = useState<string | null>(null);
+    const [cniVersoUrl, setCniVersoUrl] = useState<string | null>(null);
     const navigate = useNavigate();
     const { uuid, getResponse } = useUuid();
 
@@ -279,6 +280,54 @@ const PiecesJustificatives: React.FC = () => {
         }
     };
 
+    const handleCniRectoFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files?.length) {
+            const file = event.target.files[0];
+            const uniqueFileName = `${uuidv4()}-${file.name}`;
+            const { error } = await supabase.storage
+                .from('cni-recto') // Assurez-vous que ce bucket existe dans votre Supabase
+                .upload(`public/${uuid}/${uniqueFileName}`, file);
+
+            if (error) {
+                console.error('Error uploading file:', error);
+            } else {
+                const { data } = supabase.storage
+                    .from('cni-recto') // Assurez-vous que ce bucket existe dans votre Supabase
+                    .getPublicUrl(`public/${uuid}/${uniqueFileName}`);
+
+                if (data) {
+                    setCniRectoUrl(data.publicUrl);
+                } else {
+                    console.error('Error getting public URL');
+                }
+            }
+        }
+    };
+
+    const handleCniVersoFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files?.length) {
+            const file = event.target.files[0];
+            const uniqueFileName = `${uuidv4()}-${file.name}`;
+            const { error } = await supabase.storage
+                .from('cni-verso') // Assurez-vous que ce bucket existe dans votre Supabase
+                .upload(`public/${uuid}/${uniqueFileName}`, file);
+
+            if (error) {
+                console.error('Error uploading file:', error);
+            } else {
+                const { data } = supabase.storage
+                    .from('cni-verso') // Assurez-vous que ce bucket existe dans votre Supabase
+                    .getPublicUrl(`public/${uuid}/${uniqueFileName}`);
+
+                if (data) {
+                    setCniVersoUrl(data.publicUrl);
+                } else {
+                    console.error('Error getting public URL');
+                }
+            }
+        }
+    };
+
     const handleShowSecondUpload = () => {
         setShowSecondUpload(true);
     };
@@ -320,6 +369,8 @@ const PiecesJustificatives: React.FC = () => {
                 step68: ribUrl,
                 step69: mobileUrl,
                 step70: passportUrl,
+                step71: cniRectoUrl,
+                step72: cniVersoUrl,
             })
             .eq('id', uuid);
 
@@ -352,6 +403,8 @@ const PiecesJustificatives: React.FC = () => {
             const step68 = await getResponse(68);
             const step69 = await getResponse(69);
             const step70 = await getResponse(70);
+            const step71 = await getResponse(71);
+            const step72 = await getResponse(72);
 
             setFormValues({
                 step51: step51 || '',
@@ -374,6 +427,8 @@ const PiecesJustificatives: React.FC = () => {
                 step68: step68 || '',
                 step69: step69 || '',
                 step70: step70 || '',
+                step71: step71 || '',
+                step72: step72 || '',
             });
             setSelectedOption(step65 || '');
             setSelectedIdentity(step66 || '');
@@ -381,6 +436,8 @@ const PiecesJustificatives: React.FC = () => {
             setRibUrl(step68 || '');
             setMobileUrl(step69 || '');
             setPassportUrl(step70 || '');
+            setCniRectoUrl(step71 || '');
+            setCniVersoUrl(step72 || '');
             setIsReferral(step58 === 'true');
         };
 
@@ -408,6 +465,8 @@ const PiecesJustificatives: React.FC = () => {
         step68: '',
         step69: '',
         step70: '',
+        step71: '',
+        step72: '',
     });
 
     return (
@@ -428,7 +487,7 @@ const PiecesJustificatives: React.FC = () => {
                     <FileUploadButton label="Facture de mobile" icon={FaMobileAlt} onClick={onMobileOpen} />
                     <FileUploadButton label="Justificatif de domicile" icon={FaHome} onClick={onDomicileOpen} />
                     <FileUploadButton label="RIB compte courant" icon={FaUniversity} onClick={onRIBOpen} />
-                    <FileUploadButton label="Passeport" icon={FaPassport} onClick={onPassportOpen} />
+
                 </HStack>
             </Box>
 
@@ -497,15 +556,51 @@ const PiecesJustificatives: React.FC = () => {
                                                         <Text fontSize="md" mb={2}>CNI recto</Text>
                                                         <Button as="label" variant="outline" width="100%">
                                                             SÉLECTIONNER MON FICHIER
-                                                            <Input type="file" display="none" onChange={handleMobileFileUpload} />
+                                                            <Input type="file" display="none" onChange={handleCniRectoFileUpload} />
                                                         </Button>
+                                                        {cniRectoUrl && (
+                                                            <>
+                                                                <FormControl id="cni-recto-url" mt={4}>
+                                                                    <FormLabel textAlign="center">URL du fichier CNI recto</FormLabel>
+                                                                    <Input
+                                                                        type="text"
+                                                                        value={cniRectoUrl}
+                                                                        isReadOnly
+                                                                        textAlign="center"
+                                                                        borderColor="green.400"
+                                                                        color="green.500"
+                                                                    />
+                                                                </FormControl>
+                                                                <Box mt={4}>
+                                                                    <Image src={cniRectoUrl} alt="CNI Recto" />
+                                                                </Box>
+                                                            </>
+                                                        )}
                                                     </VStack>
                                                     <VStack flex={1} align="stretch">
                                                         <Text fontSize="md" mb={2}>CNI verso</Text>
                                                         <Button as="label" variant="outline" width="100%">
                                                             SÉLECTIONNER MON FICHIER
-                                                            <Input type="file" display="none" onChange={handleMobileFileUpload} />
+                                                            <Input type="file" display="none" onChange={handleCniVersoFileUpload} />
                                                         </Button>
+                                                        {cniVersoUrl && (
+                                                            <>
+                                                                <FormControl id="cni-verso-url" mt={4}>
+                                                                    <FormLabel textAlign="center">URL du fichier CNI verso</FormLabel>
+                                                                    <Input
+                                                                        type="text"
+                                                                        value={cniVersoUrl}
+                                                                        isReadOnly
+                                                                        textAlign="center"
+                                                                        borderColor="green.400"
+                                                                        color="green.500"
+                                                                    />
+                                                                </FormControl>
+                                                                <Box mt={4}>
+                                                                    <Image src={cniVersoUrl} alt="CNI Verso" />
+                                                                </Box>
+                                                            </>
+                                                        )}
                                                     </VStack>
                                                 </HStack>
                                             </TabPanel>
@@ -515,6 +610,24 @@ const PiecesJustificatives: React.FC = () => {
                                                     SÉLECTIONNER MON FICHIER
                                                     <Input type="file" display="none" onChange={handlePassportFileUpload} />
                                                 </Button>
+                                                {passportUrl && (
+                                                    <>
+                                                        <FormControl id="passport-url" mt={4}>
+                                                            <FormLabel textAlign="center">URL du fichier de passeport</FormLabel>
+                                                            <Input
+                                                                type="text"
+                                                                value={passportUrl}
+                                                                isReadOnly
+                                                                textAlign="center"
+                                                                borderColor="green.400"
+                                                                color="green.500"
+                                                            />
+                                                        </FormControl>
+                                                        <Box mt={4}>
+                                                            <Image src={passportUrl} alt="Passeport" />
+                                                        </Box>
+                                                    </>
+                                                )}
                                             </TabPanel>
                                         </TabPanels>
                                     </Tabs>
@@ -549,14 +662,14 @@ const PiecesJustificatives: React.FC = () => {
                                                             <Text fontSize="md" mb={2}>CNI recto</Text>
                                                             <Button as="label" variant="outline" width="100%">
                                                                 SÉLECTIONNER MON FICHIER
-                                                                <Input type="file" display="none" onChange={handleMobileFileUpload} />
+                                                                <Input type="file" display="none" onChange={handleCniRectoFileUpload} />
                                                             </Button>
                                                         </VStack>
                                                         <VStack flex={1} align="stretch">
                                                             <Text fontSize="md" mb={2}>CNI verso</Text>
                                                             <Button as="label" variant="outline" width="100%">
                                                                 SÉLECTIONNER MON FICHIER
-                                                                <Input type="file" display="none" onChange={handleMobileFileUpload} />
+                                                                <Input type="file" display="none" onChange={handleCniVersoFileUpload} />
                                                             </Button>
                                                         </VStack>
                                                     </HStack>
@@ -567,24 +680,6 @@ const PiecesJustificatives: React.FC = () => {
                                                         SÉLECTIONNER MON FICHIER
                                                         <Input type="file" display="none" onChange={handlePassportFileUpload} />
                                                     </Button>
-                                                    {passportUrl && (
-                                                        <>
-                                                            <FormControl id="passport-url" mt={4}>
-                                                                <FormLabel textAlign="center">URL du fichier de passeport</FormLabel>
-                                                                <Input
-                                                                    type="text"
-                                                                    value={passportUrl}
-                                                                    isReadOnly
-                                                                    textAlign="center"
-                                                                    borderColor="green.400"
-                                                                    color="green.500"
-                                                                />
-                                                            </FormControl>
-                                                            <Box mt={4}>
-                                                                <Image src={passportUrl} alt="Passeport" />
-                                                            </Box>
-                                                        </>
-                                                    )}
                                                 </TabPanel>
                                             </TabPanels>
                                         </Tabs>
