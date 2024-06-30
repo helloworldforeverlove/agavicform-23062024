@@ -20,8 +20,8 @@ const steps: Step[] = [
 
 const Stepper: React.FC<StepperProps> = ({ currentStep }) => {
   return (
-    <Box bg="white" borderRadius="md" boxShadow="md" padding="4" width="100%">
-      <HStack spacing="4" justify="center">
+    <Box bg="white" borderRadius="md" boxShadow="md" padding="4" width="100%" mb={50} position="relative">
+      <HStack spacing="4" justify="center" mb="4" wrap="wrap">
         {steps.map((step) => (
           <Flex key={step.number} align="center">
             <Circle
