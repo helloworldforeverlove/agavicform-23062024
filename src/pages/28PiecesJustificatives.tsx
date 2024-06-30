@@ -32,9 +32,10 @@ import {
     Select,
     FormControl,
     FormLabel,
-    Image
+    Image,
+    IconButton
 } from '@chakra-ui/react';
-import { FaIdCard, FaHome, FaUniversity, FaMobileAlt, FaFileUpload, FaPassport } from 'react-icons/fa';
+import { FaIdCard, FaTimes, FaHome, FaUniversity, FaMobileAlt, FaFileUpload, FaPassport } from 'react-icons/fa';
 import { FcManager } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
 import Stepper from '../components/Stepper';
@@ -181,6 +182,7 @@ const PiecesJustificatives: React.FC = () => {
     const [identityEuropeVersoUrl, setIdentityEuropeVersoUrl] = useState<string | null>(null);
     const [passportEuropeUrl, setPassportEuropeUrl] = useState<string | null>(null);
     const [attestationHebergementUrl, setAttestationHebergementUrl] = useState<string | null>(null);
+    const { isOpen: isExampleOpen, onOpen: onExampleOpen, onClose: onExampleClose } = useDisclosure();
     const navigate = useNavigate();
     const { uuid, getResponse } = useUuid();
 
@@ -949,7 +951,7 @@ const PiecesJustificatives: React.FC = () => {
                                     <Text fontWeight="bold" textTransform="uppercase">Attestation rédigée datée et signée de l'hébergeur</Text>
                                     <HStack spacing={3} alignItems="center">
                                         <Icon as={FaFileUpload} />
-                                        <Text>Téléchargez un exemple d’attestation d’hébergement à compléter</Text>
+                                        <Text cursor="pointer" onClick={onExampleOpen}>Téléchargez un exemple d’attestation d’hébergement à compléter</Text>
                                     </HStack>
                                     <Text>Attestation Hébergeur</Text>
                                     <Button as="label" variant="outline" width="100%" mt={4}>
@@ -1323,6 +1325,32 @@ const PiecesJustificatives: React.FC = () => {
                         </FormControl>
                     )}
                 </Section>
+                <Modal isOpen={isExampleOpen} onClose={onExampleClose} isCentered>
+                    <ModalOverlay />
+                    <ModalContent borderRadius="md" boxShadow="lg" maxW="80%" mt="10%" height="80%">
+                        <ModalHeader textAlign="center" fontSize="lg" fontWeight="bold">
+                            <HStack justifyContent="space-between">
+                                <Box flex="1" />
+                                <Text>Exemple de lettre d'hébergement</Text>
+                                <IconButton
+                                    icon={<FaTimes />}
+                                    aria-label="Close"
+                                    variant="ghost"
+                                    onClick={onExampleClose}
+                                />
+                            </HStack>
+                        </ModalHeader>
+                        <ModalBody p={0} height="100%">
+                            <iframe
+                                src="https://wrzduukskbcqvxtqevpr.supabase.co/storage/v1/object/public/pdf/conditions.pdf?t=2024-06-27T20%3A41%3A38.178Z"
+                                width="100%"
+                                height="100%"
+                                style={{ border: 'none' }}
+                                title="Exemple de lettre d'hebergeur"
+                            ></iframe>
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
 
                 <Box mt={8} display="flex" justifyContent="space-between">
                     <Button
