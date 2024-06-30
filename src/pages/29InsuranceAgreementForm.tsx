@@ -15,6 +15,7 @@ import {
     IconButton,
     HStack,
     Button,
+    Input,
     useDisclosure,
     useStyleConfig,
 } from '@chakra-ui/react';
@@ -88,6 +89,7 @@ const InsuranceAgreementForm: React.FC = () => {
     const [acknowledgedInfo, setAcknowledgedInfo] = useState(false);
     const [isEpargneModalOpen, setEpargneModalOpen] = useState(false);
     const [showPdf, setShowPdf] = useState(false); // Nouvel état pour contrôler l'affichage du PDF
+    const [signature, setSignature] = useState(''); // Nouvel état pour gérer la signature
     const [projectData, setProjectData] = useState({
         step2: '',
         step3: '',
@@ -146,6 +148,11 @@ const InsuranceAgreementForm: React.FC = () => {
         } else {
             setShowPdf(true); // Afficher la fenêtre PDF après la soumission
         }
+    };
+
+    const handleSignatureSubmit = () => {
+        console.log("Signature submitted:", signature);
+        // Ajouter la logique pour traiter la signature ici
     };
 
     return (
@@ -241,6 +248,23 @@ const InsuranceAgreementForm: React.FC = () => {
                             style={{ border: 'none' }}
                             title="Conditions Générales"
                         ></iframe>
+                        <Box mt={4}>
+                            <Input
+                                placeholder="Signez ici"
+                                value={signature}
+                                onChange={(e) => setSignature(e.target.value)}
+                                size="lg"
+                                borderColor="gray.300"
+                                _hover={{ borderColor: 'gray.400' }}
+                            />
+                            <Button
+                                colorScheme="blue"
+                                mt={2}
+                                onClick={handleSignatureSubmit}
+                            >
+                                Soumettre la signature
+                            </Button>
+                        </Box>
                     </Box>
                 )}
             </Box>
