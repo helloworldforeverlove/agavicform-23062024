@@ -60,10 +60,20 @@ const Section: React.FC<{ title: string; variant: string; children: React.ReactN
     );
 };
 
+const formatNumber = (number: string) => {
+    return parseInt(number, 10).toLocaleString('fr-FR');
+};
+
 const InsuranceAgreementForm: React.FC = () => {
     const [agreedToTerms, setAgreedToTerms] = useState(false);
     const [acknowledgedInfo, setAcknowledgedInfo] = useState(false);
     const [isEpargneModalOpen, setEpargneModalOpen] = useState(false);
+    const [projectData, setProjectData] = useState({
+        step2: '',
+        step3: '',
+        step4: '',
+        risk_score: 0,
+    });
     const { isOpen, onOpen, onClose } = useDisclosure();
     const {
         isOpen: isInfoModalOpen,
@@ -79,10 +89,27 @@ const InsuranceAgreementForm: React.FC = () => {
             const step74 = await getResponse(74);
             setAgreedToTerms(step73 === 'true');
             setAcknowledgedInfo(step74 === 'true');
+            
+            const { data, error } = await supabase
+                .from('form_responses')
+                .select('step2, step3, step4, risk_score')
+                .eq('id', uuid)
+                .single();
+
+            if (error) {
+                console.error('Error fetching project data:', error);
+            } else {
+                setProjectData({
+                    step2: data.step2,
+                    step3: data.step3,
+                    step4: data.step4,
+                    risk_score: data.risk_score,
+                });
+            }
         };
 
         fetchResponse();
-    }, [getResponse]);
+    }, [getResponse, uuid]);
 
     const handleSubmit = async () => {
         const { error } = await supabase
@@ -198,18 +225,18 @@ const InsuranceAgreementForm: React.FC = () => {
                                 <Text fontSize="sm" color="gray.500" fontWeight="bold">VOS OBJECTIFS</Text>
                                 <HStack justifyContent="space-between" mt={2}>
                                     <Text>Durée de votre placement</Text>
-                                    <Text>2 ans</Text>
+                                    <Text>{formatNumber(projectData.step4)} ans</Text>
                                 </HStack>
                             </Box>
                             <Box>
                                 <Text fontSize="sm" color="gray.500" fontWeight="bold">VOS VERSEMENTS</Text>
                                 <HStack justifyContent="space-between" mt={2}>
                                     <Text>Versement de départ</Text>
-                                    <Text>5 000 €</Text>
+                                    <Text>{formatNumber(projectData.step2)} €</Text>
                                 </HStack>
                                 <HStack justifyContent="space-between" mt={2}>
                                     <Text>Versements mensuels</Text>
-                                    <Text>100 € / mois</Text>
+                                    <Text>{formatNumber(projectData.step3)} € / mois</Text>
                                 </HStack>
                             </Box>
                             <Box>
@@ -223,7 +250,7 @@ const InsuranceAgreementForm: React.FC = () => {
                                             fontSize="md"
                                             fontWeight="bold"
                                         >
-                                            3
+                                            {projectData.risk_score}
                                         </Box>
                                         <Text>Profil</Text>
                                     </HStack>
