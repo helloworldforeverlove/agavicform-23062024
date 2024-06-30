@@ -64,6 +64,27 @@ const formatNumber = (number: string) => {
     return parseInt(number, 10).toLocaleString('fr-FR');
 };
 
+const getRiskDescription = (riskScore: number) => {
+    switch (riskScore) {
+        case 1:
+            return 'Sécurité';
+        case 2:
+            return 'Prudent';
+        case 3:
+            return 'Prudent';
+        case 4:
+            return 'Équilibré';
+        case 5:
+            return 'Équilibré';
+        case 6:
+            return 'Dynamique';
+        case 7:
+            return 'Dynamique';
+        default:
+            return 'Unknown';
+    }
+};
+
 const InsuranceAgreementForm: React.FC = () => {
     const [agreedToTerms, setAgreedToTerms] = useState(false);
     const [acknowledgedInfo, setAcknowledgedInfo] = useState(false);
@@ -255,9 +276,9 @@ const InsuranceAgreementForm: React.FC = () => {
                                         >
                                             {projectData.risk_score}
                                         </Box>
-                                        <Text>Profil</Text>
+                                        
                                     </HStack>
-                                    <Text>Très peu de prise de risques</Text>
+                                    <Text>Profil : {getRiskDescription(projectData.risk_score)}</Text>
                                 </HStack>
                             </Box>
                         </VStack>
@@ -325,7 +346,7 @@ const InsuranceAgreementForm: React.FC = () => {
                     </ModalHeader>
                     <ModalBody p={0} height="100%">
                         <iframe
-                            src="https://wrzduukskbcqvxtqevpr.supabase.co/storage/v1/object/public/pdf/conditions.pdf"
+                            src="https://wrzduukskbcqvxtqevpr.supabase.co/storage/v1/object/public/pdf/conditions_1_.pdf"
                             width="100%"
                             height="100%"
                             style={{ border: 'none' }}
