@@ -11,7 +11,7 @@ const theme = extendTheme({
     },
     white: '#FFFFFF',
     orange: '#FF8C00',
-    green: {
+    yellow: {
       400: '#38A169',
     },
     blue: {
@@ -42,15 +42,15 @@ const FeesInfo: React.FC = () => {
             <Text fontSize="4xl" fontWeight="bold" color="orange">0,9%</Text>
             <Text fontSize="sm" fontWeight="bold" color="gray.500">max. par an, tout compris</Text>
             <HStack spacing={2}>
-              <Icon as={FaCheckCircle} color="green.400" />
+              <Icon as={FaCheckCircle} color="yellow.400" />
               <Text fontSize="md" color="gray.600">0,21% pour la gestion Agavic</Text>
             </HStack>
             <HStack spacing={2}>
-              <Icon as={FaCheckCircle} color="green.400" />
+              <Icon as={FaCheckCircle} color="yellow.400" />
               <Text fontSize="md" color="gray.600">0,60% pour votre enveloppe d’investissement</Text>
             </HStack>
             <HStack spacing={2}>
-              <Icon as={FaCheckCircle} color="green.400" />
+              <Icon as={FaCheckCircle} color="yellow.400" />
               <Text fontSize="md" color="gray.600">0,09% de gestion indiciels</Text>
             </HStack>
           </VStack>
@@ -59,19 +59,19 @@ const FeesInfo: React.FC = () => {
             <Text fontSize="4xl" fontWeight="bold" color="blue.500">0 €</Text>
             <Text fontSize="sm" fontWeight="bold" color="gray.500">de frais d’entrée</Text>
             <HStack spacing={2}>
-              <Icon as={FaCheckCircle} color="green.400" />
+              <Icon as={FaCheckCircle} color="yellow.400" />
               <Text fontSize="md" color="gray.600">de frais d’entrée</Text>
             </HStack>
             <HStack spacing={2}>
-              <Icon as={FaCheckCircle} color="green.400" />
+              <Icon as={FaCheckCircle} color="yellow.400" />
               <Text fontSize="md" color="gray.600">de frais de dossier</Text>
             </HStack>
             <HStack spacing={2}>
-              <Icon as={FaCheckCircle} color="green.400" />
+              <Icon as={FaCheckCircle} color="yellow.400" />
               <Text fontSize="md" color="gray.600">de frais de versements</Text>
             </HStack>
             <HStack spacing={2}>
-              <Icon as={FaCheckCircle} color="green.400" />
+              <Icon as={FaCheckCircle} color="yellow.400" />
               <Text fontSize="md" color="gray.600">de frais d’arbitrages</Text>
             </HStack>
           </VStack>

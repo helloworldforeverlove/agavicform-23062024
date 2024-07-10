@@ -22,8 +22,8 @@ import { supabase } from './../../supabaseClient';
 import { useUuid } from './../../context/UuidContext';
 
 const colorMap: { [key: number]: string } = {
-  1: 'green.400',
-  2: 'green.500',
+  1: 'yellow.400',
+  2: 'yellow.500',
   3: 'yellow.300',
   4: 'yellow.400',
   5: 'yellow.500',
@@ -119,7 +119,7 @@ const ProfileSelection: React.FC = () => {
             <Icon as={FaInfoCircle} color="gray.500" ml={2} />
           </span>
         </Tooltip>
-        <Icon as={RiLeafLine} color="green.400" ml={2} />
+        <Icon as={RiLeafLine} color="yellow.400" ml={2} />
       </Flex>
       <Box bg="gray.100" p={3} mb={4} borderRadius="md" borderWidth="1px">
         <Text>
@@ -142,7 +142,7 @@ const ProfileSelection: React.FC = () => {
                   <Text fontWeight="bold">{profile.label}</Text>
                 </HStack>
                 {isRecommended && (
-                  <Text color="green.500" fontWeight="bold">
+                  <Text color="yellow.500" fontWeight="bold">
                     Notre recommandation
                   </Text>
                 )}
@@ -158,7 +158,7 @@ const ProfileSelection: React.FC = () => {
           </Text>
         )
       ))}
-      <Button mt={4} colorScheme="green" w="100%">
+      <Button mt={4} colorScheme="yellow" w="100%">
         Valider
       </Button>
     </Box>

@@ -125,8 +125,8 @@ const calculateRiskScore = (response: Response): number => {
 };
 
 const colorMap: { [key: number]: string } = {
-  1: 'green.400',
-  2: 'green.500',
+  1: 'yellow.400',
+  2: 'yellow.500',
   3: 'yellow.300',
   4: 'yellow.400',
   5: 'yellow.500',

@@ -84,13 +84,13 @@ const NombreEnfantsACharge: React.FC = () => {
                             key={option.value}
                             variant="outline"
                             size="lg"
-                            colorScheme={selectedOption === option.value ? 'green' : 'blue'}
+                            colorScheme={selectedOption === option.value ? 'yellow' : 'blue'}
                             onClick={() => handleSelect(option.value)}
                             px={6}
                             py={6}
                             textAlign="center"
                             _hover={{ bg: 'gray.200' }}
-                            borderColor={selectedOption === option.value ? 'green.400' : 'gray.200'}
+                            borderColor={selectedOption === option.value ? 'yellow.400' : 'gray.200'}
                         >
                             {option.label}
                         </Button>
@@ -100,7 +100,7 @@ const NombreEnfantsACharge: React.FC = () => {
                     <Button colorScheme="gray" variant="outline" onClick={() => navigate(-1)} px={6} py={6} size="lg">
                         Retour
                     </Button>
-                    <Button colorScheme="green" onClick={handleNext} px={6} py={6} size="lg">
+                    <Button colorScheme="yellow" onClick={handleNext} px={6} py={6} size="lg">
                         Suivant
                     </Button>
                 </Stack>

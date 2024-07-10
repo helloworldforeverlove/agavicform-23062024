@@ -12,7 +12,7 @@ const theme = extendTheme({
     },
     white: '#FFFFFF',
     orange: '#FF8C00',
-    green: {
+    yellow: {
       400: '#38A169',
     },
     blue: {
@@ -55,7 +55,7 @@ const ActionButtons: React.FC = () => {
             <Text fontSize="lg" color="navy">04 78 34 26 23</Text>
           </HStack>
           <Button
-            colorScheme="green"
+            colorScheme="yellow"
             onClick={handleNext}
             px={6}
             py={6}

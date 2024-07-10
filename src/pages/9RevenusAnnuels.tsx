@@ -87,22 +87,22 @@ const RevenusAnnuels: React.FC = () => {
                             key={option.value}
                             variant="outline"
                             size="xxl"
-                            colorScheme={selectedOption === option.value ? 'green' : 'blue'}
+                            colorScheme={selectedOption === option.value ? 'yellow' : 'blue'}
                             onClick={() => handleSelect(option.value)}
                             px={6}
                             py={6}
                             textAlign="left"
                             justifyContent="flex-start"
                             _hover={{ bg: 'gray.200' }}
-                            borderColor={selectedOption === option.value ? 'green.400' : 'gray.200'}
+                            borderColor={selectedOption === option.value ? 'yellow.400' : 'gray.200'}
                         >
                             {option.label}
                         </Button>
                     ))}
                 </HStack>
                 {selectedOption !== undefined && (
-                    <Box borderWidth="1px" borderRadius="md" p={4} mt={4} textAlign="center" borderColor="green.400">
-                        <Text fontSize="2xl" color="green.500">
+                    <Box borderWidth="1px" borderRadius="md" p={4} mt={4} textAlign="center" borderColor="yellow.400">
+                        <Text fontSize="2xl" color="yellow.500">
                             {incomeOptions.find(option => option.value === selectedOption)?.label}
                         </Text>
                     </Box>
@@ -111,7 +111,7 @@ const RevenusAnnuels: React.FC = () => {
                     <Button colorScheme="gray" variant="outline" onClick={() => navigate(-1)} px={6} py={6} size="lg">
                         Retour
                     </Button>
-                    <Button colorScheme="green" onClick={handleNext} px={6} py={6} size="lg">
+                    <Button colorScheme="yellow" onClick={handleNext} px={6} py={6} size="lg">
                         Suivant
                     </Button>
                 </HStack>

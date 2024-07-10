@@ -185,7 +185,7 @@ const RiskProfile: React.FC = () => {
         <HStack justifyContent="space-between" alignItems="center">
           <HStack>
             <Text>Investissement responsable</Text>
-            <FaLeaf color="green" />
+            <FaLeaf color="yellow" />
           </HStack>
           <Switch colorScheme="blue" isChecked={esgPreference} onChange={handleEsgPreferenceChange} />
         </HStack>

@@ -33,7 +33,7 @@ const theme = extendTheme({
         },
         white: '#FFFFFF',
         blue: '#3182CE',
-        green: {
+        yellow: {
             100: '#C6F6D5',
             200: '#9AE6B4',
             400: '#48BB78',
@@ -161,7 +161,7 @@ const InsuranceAgreementForm: React.FC = () => {
                 <Stepper currentStep={5} />
                 <Button
                     leftIcon={<FaEye />}
-                    colorScheme="green"
+                    colorScheme="yellow"
                     variant="solid"
                     size="sm"
                     position="absolute"
@@ -184,7 +184,7 @@ const InsuranceAgreementForm: React.FC = () => {
                         <Checkbox
                             isChecked={agreedToTerms}
                             onChange={(e) => setAgreedToTerms(e.target.checked)}
-                            colorScheme="green"
+                            colorScheme="yellow"
                             size="lg"
                         >
                             <Box onClick={(e) => e.preventDefault()} ml={2}>
@@ -208,7 +208,7 @@ const InsuranceAgreementForm: React.FC = () => {
                         <Checkbox
                             isChecked={acknowledgedInfo}
                             onChange={(e) => setAcknowledgedInfo(e.target.checked)}
-                            colorScheme="green"
+                            colorScheme="yellow"
                             size="lg"
                         >
                             <Box onClick={(e) => e.preventDefault()} ml={2}>
@@ -231,7 +231,7 @@ const InsuranceAgreementForm: React.FC = () => {
                     </VStack>
                 </Section>
                 <Button
-                    colorScheme="green"
+                    colorScheme="yellow"
                     mt={4}
                     onClick={handleSubmit}
                     isDisabled={!agreedToTerms || !acknowledgedInfo}

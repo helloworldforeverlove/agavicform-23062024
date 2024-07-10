@@ -84,22 +84,22 @@ const QuelMontantRegulierSouhaitezVousPlacer: React.FC = () => {
                             key={amount}
                             variant="outline"
                             size="lg"
-                            colorScheme={selectedAmount === amount ? 'green' : 'blue'}
+                            colorScheme={selectedAmount === amount ? 'yellow' : 'blue'}
                             onClick={() => handleSelect(amount)}
                             px={6}
                             py={6}
                             textAlign="left"
                             justifyContent="flex-start"
                             _hover={{ bg: 'gray.200' }}
-                            borderColor={selectedAmount === amount ? 'green.400' : 'gray.200'}
+                            borderColor={selectedAmount === amount ? 'yellow.400' : 'gray.200'}
                         >
                             {amount.toLocaleString('fr-FR')} € / mois
                         </Button>
                     ))}
                 </HStack>
                 {selectedAmount !== null && (
-                    <Box borderWidth="1px" borderRadius="md" p={4} mt={4} textAlign="center" borderColor="green.400">
-                        <Text fontSize="2xl" color="green.500">
+                    <Box borderWidth="1px" borderRadius="md" p={4} mt={4} textAlign="center" borderColor="yellow.400">
+                        <Text fontSize="2xl" color="yellow.500">
                             {selectedAmount.toLocaleString('fr-FR')} € / mois
                         </Text>
                     </Box>
@@ -118,7 +118,7 @@ const QuelMontantRegulierSouhaitezVousPlacer: React.FC = () => {
                         Retour
                     </Button>
                     <Button
-                        colorScheme="green"
+                        colorScheme="yellow"
                         onClick={handleNext}
                         px={6}
                         py={6}

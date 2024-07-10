@@ -90,7 +90,7 @@ const QuelEstVotreProjetDInvestissement: React.FC = () => {
                             key={button.key}
                             leftIcon={<Icon as={button.icon} boxSize={5} />}
                             variant={selected === button.key ? 'solid' : 'outline'}
-                            colorScheme={selected === button.key ? 'green' : 'blue'}
+                            colorScheme={selected === button.key ? 'yellow' : 'blue'}
                             onClick={() => handleSelect(button.key)}
                             justifyContent="flex-start"
                             px={6}
@@ -105,7 +105,7 @@ const QuelEstVotreProjetDInvestissement: React.FC = () => {
                     ))}
                 </SimpleGrid>
                 <Box textAlign="right">
-                    <Button colorScheme="green" size="xxl" mt={5} px={6} py={6} onClick={handleNext}>Suivant</Button>
+                    <Button colorScheme="yellow" size="xxl" mt={5} px={6} py={6} onClick={handleNext}>Suivant</Button>
                 </Box>
             </Box>
 

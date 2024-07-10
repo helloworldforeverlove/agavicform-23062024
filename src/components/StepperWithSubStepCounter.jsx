@@ -31,16 +31,16 @@ const StepperWithSubStepCounter: React.FC<StepperProps> = ({ currentStep, curren
           <Flex key={step.number} align="center">
             <Circle
               size="30px"
-              bg={currentStep === step.number ? 'navy' : 'white'}
-              color={currentStep === step.number ? 'white' : 'navy'}
+              bg={currentStep === step.number ? '#602A1D' : 'white'}
+              color={currentStep === step.number ? 'white' : '#602A1D'}
               border="2px solid"
-              borderColor="navy"
+              borderColor="#602A1D"
             >
               {step.number}
             </Circle>
             <Text
               ml="2"
-              color={currentStep === step.number ? 'navy' : 'gray.500'}
+              color={currentStep === step.number ? '#602A1D' : 'gray.500'}
               fontWeight={currentStep === step.number ? 'bold' : 'normal'}
             >
               {step.label}
@@ -49,7 +49,7 @@ const StepperWithSubStepCounter: React.FC<StepperProps> = ({ currentStep, curren
               <Box
                 w="50px"
                 h="2px"
-                bg={currentStep > step.number ? 'navy' : 'gray.200'}
+                bg={currentStep > step.number ? '#602A1D' : 'gray.200'}
                 mx="2"
               />
             )}
@@ -70,7 +70,7 @@ const StepperWithSubStepCounter: React.FC<StepperProps> = ({ currentStep, curren
           <Text fontWeight="bold" color="gray.500" mr="2">
             Question {currentSubStep}/{totalSubSteps}
           </Text>
-          <Progress value={progressPercentage} size="sm" colorScheme="green" width="100px" />
+          <Progress value={progressPercentage} size="sm" colorScheme="yellow" width="100px" />
         </Flex>
       </Flex>
     </Box>

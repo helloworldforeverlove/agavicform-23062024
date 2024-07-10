@@ -77,8 +77,8 @@ const EtesVousResidentFiscalFrancais: React.FC = () => {
                 <HStack justifyContent="center" spacing="4">
                     <Button
                         variant="outline"
-                        colorScheme={residentFiscal === 'oui' ? 'green' : 'gray'}
-                        borderColor={residentFiscal === 'oui' ? 'green.400' : 'gray.200'}
+                        colorScheme={residentFiscal === 'oui' ? 'yellow' : 'gray'}
+                        borderColor={residentFiscal === 'oui' ? 'yellow.400' : 'gray.200'}
                         onClick={() => handleSelect('oui')}
                         px={10}
                         py={6}
@@ -89,8 +89,8 @@ const EtesVousResidentFiscalFrancais: React.FC = () => {
                     </Button>
                     <Button
                         variant="outline"
-                        colorScheme={residentFiscal === 'non' ? 'green' : 'gray'}
-                        borderColor={residentFiscal === 'non' ? 'green.400' : 'gray.200'}
+                        colorScheme={residentFiscal === 'non' ? 'yellow' : 'gray'}
+                        borderColor={residentFiscal === 'non' ? 'yellow.400' : 'gray.200'}
                         onClick={() => handleSelect('non')}
                         px={10}
                         py={6}
@@ -113,7 +113,7 @@ const EtesVousResidentFiscalFrancais: React.FC = () => {
                         Retour
                     </Button>
                     <Button
-                        colorScheme="green"
+                        colorScheme="yellow"
                         onClick={handleNext}
                         px={6}
                         py={6}

@@ -122,8 +122,8 @@ const QuelEstVotreHorizonDInvestissement: React.FC = () => {
                 )}
 
                 {selectedHorizon !== null && (
-                    <Box borderWidth="1px" borderRadius="md" p={4} mt={4} textAlign="center" borderColor="green.400">
-                        <Text fontSize="2xl" color="green.500">
+                    <Box borderWidth="1px" borderRadius="md" p={4} mt={4} textAlign="center" borderColor="yellow.400">
+                        <Text fontSize="2xl" color="yellow.500">
                             {selectedHorizon} ans
                         </Text>
                     </Box>
@@ -132,7 +132,7 @@ const QuelEstVotreHorizonDInvestissement: React.FC = () => {
                     <Button colorScheme="gray" variant="outline" onClick={() => navigate(-1)} px={6} py={6} size="lg">
                         Retour
                     </Button>
-                    <Button colorScheme="green" onClick={handleNext} px={6} py={6} size="lg">
+                    <Button colorScheme="yellow" onClick={handleNext} px={6} py={6} size="lg">
                         Suivant
                     </Button>
                 </HStack>

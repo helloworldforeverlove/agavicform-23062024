@@ -90,13 +90,13 @@ const PertePlacements: React.FC = () => {
                             key={option.value}
                             variant="outline"
                             size="lg"
-                            colorScheme={selectedOption === option.value ? 'green' : 'gray'}
+                            colorScheme={selectedOption === option.value ? 'yellow' : 'gray'}
                             onClick={() => handleSelect(option.value)}
                             px={10}
                             py={8}
                             textAlign="center"
                             _hover={{ bg: 'gray.200' }}
-                            borderColor={selectedOption === option.value ? 'green.400' : 'gray.200'}
+                            borderColor={selectedOption === option.value ? 'yellow.400' : 'gray.200'}
                             whiteSpace="normal"
                             overflowWrap="break-word"
                             lineHeight={{ base: '1.5', md: 'normal' }} 
@@ -118,7 +118,7 @@ const PertePlacements: React.FC = () => {
                         Retour
                     </Button>
                     <Button
-                        colorScheme="green"
+                        colorScheme="yellow"
                         onClick={handleNext}
                         px={6}
                         py={6}

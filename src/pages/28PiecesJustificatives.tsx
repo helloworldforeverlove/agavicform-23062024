@@ -69,9 +69,9 @@ const theme = extendTheme({
                 enclosed: {
                     tab: {
                         _selected: {
-                            bg: 'green.100',
-                            color: 'green.900',
-                            borderColor: 'green.200',
+                            bg: 'yellow.100',
+                            color: 'yellow.900',
+                            borderColor: 'yellow.200',
                             borderBottom: '2px solid',
                         },
                         _focus: {
@@ -115,10 +115,10 @@ const theme = extendTheme({
                     bg: 'navy',
                     color: 'white',
                 },
-                green: {
-                    bg: 'green.100',
+                yellow: {
+                    bg: 'yellow.100',
                     border: '1px',
-                    borderColor: 'green.400',
+                    borderColor: 'yellow.400',
                 },
                 gray: {
                     bg: 'gray.100',
@@ -148,12 +148,12 @@ const Section: React.FC<SectionProps> = ({ title, variant, children }) => {
 };
 
 const CustomCheckbox = (props: CheckboxProps) => {
-    const checkedColor = useColorModeValue("green.300", "green.100");
+    const checkedColor = useColorModeValue("yellow.300", "yellow.100");
 
     return (
         <Checkbox
             {...props}
-            colorScheme="green"
+            colorScheme="yellow"
             iconColor="white"
             borderColor="gray.300"
             _checked={{
@@ -622,7 +622,7 @@ const PiecesJustificatives: React.FC = () => {
                 <Text fontSize="md" mb={4} textAlign="center">
                     Veuillez joindre les pièces justificatives ci-dessous (numérisées ou photographiées en vous servant de votre mobile). Vous pouvez revenir à tout moment pour finaliser votre parcours. Vos pièces sont sauvegardées. Poids maximum de 3Mo pour les fichiers PDF.
                 </Text>
-                <Box bg="green.900" color="white" px={4} py={1} borderRadius="md" mb={6} maxW="fit-content" mx="auto">
+                <Box bg="yellow.900" color="white" px={4} py={1} borderRadius="md" mb={6} maxW="fit-content" mx="auto">
                     <Text>HBKJ GG</Text>
                 </Box>
                 <HStack spacing={6} justifyContent="center">
@@ -637,7 +637,7 @@ const PiecesJustificatives: React.FC = () => {
             <Modal isOpen={isOpen} onClose={onClose} size="xl">
                 <ModalOverlay />
                 <ModalContent borderRadius="md" boxShadow="lg">
-                    <ModalHeader display="flex" justifyContent="space-between" alignItems="center" bg="green.900" color="white" borderTopRadius="md">
+                    <ModalHeader display="flex" justifyContent="space-between" alignItems="center" bg="yellow.900" color="white" borderTopRadius="md">
                         <HStack>
                             <Icon as={FcManager} w={6} h={6} />
                             <Text ml={2}>PIÈCE D'IDENTITÉ</Text>
@@ -647,27 +647,27 @@ const PiecesJustificatives: React.FC = () => {
                     <ModalBody p={6}>
                         {step === 1 && (
                             <VStack spacing={4} align="start">
-                                <Alert status="info" borderRadius="md" bg="green.100">
+                                <Alert status="info" borderRadius="md" bg="yellow.100">
                                     <AlertIcon />
                                     <AlertDescription>La pièce d'identité doit être <strong>EN COULEUR</strong>.</AlertDescription>
                                 </Alert>
-                                <Alert status="info" borderRadius="md" bg="green.100">
+                                <Alert status="info" borderRadius="md" bg="yellow.100">
                                     <AlertIcon />
                                     <AlertDescription>La pièce d'identité doit être <strong>ENTIÈRE</strong> (non coupée et pas de doigt visible).</AlertDescription>
                                 </Alert>
-                                <Alert status="info" borderRadius="md" bg="green.100">
+                                <Alert status="info" borderRadius="md" bg="yellow.100">
                                     <AlertIcon />
                                     <AlertDescription>La première pièce d'identité doit être <strong>EN COURS DE VALIDITÉ</strong>.</AlertDescription>
                                 </Alert>
-                                <Alert status="info" borderRadius="md" bg="green.100">
+                                <Alert status="info" borderRadius="md" bg="yellow.100">
                                     <AlertIcon />
                                     <AlertDescription>La pièce d'identité doit comprendre le <strong>RECTO et le VERSO</strong>.</AlertDescription>
                                 </Alert>
-                                <Alert status="info" borderRadius="md" bg="green.100">
+                                <Alert status="info" borderRadius="md" bg="yellow.100">
                                     <AlertIcon />
                                     <AlertDescription>Vous pouvez déposer un fichier unique contenant à la fois le recto et le verso de la carte nationale d'identité (CNI) en tant que "CNI recto".</AlertDescription>
                                 </Alert>
-                                <Alert status="info" borderRadius="md" bg="green.100">
+                                <Alert status="info" borderRadius="md" bg="yellow.100">
                                     <AlertIcon />
                                     <AlertDescription>Le passeport doit comprendre la <strong>page SIGNATURE</strong> avec la <strong>page PHOTO</strong>.</AlertDescription>
                                 </Alert>
@@ -679,13 +679,13 @@ const PiecesJustificatives: React.FC = () => {
                                 <VStack spacing={4} align="start">
                                     <Tabs isFitted variant="enclosed" index={selectedIdentity === 'piece_identite' ? 0 : 1}>
                                         <TabList mb="1em">
-                                            <Tab _selected={{ bg: 'green.100' }} onClick={() => handleIdentitySelect('piece_identite')}>
+                                            <Tab _selected={{ bg: 'yellow.100' }} onClick={() => handleIdentitySelect('piece_identite')}>
                                                 <HStack spacing={2}>
                                                     <Icon as={FaIdCard} />
                                                     <Text>PIÈCE D'IDENTITÉ</Text>
                                                 </HStack>
                                             </Tab>
-                                            <Tab _selected={{ bg: 'green.100' }} onClick={() => handleIdentitySelect('passeport')}>
+                                            <Tab _selected={{ bg: 'yellow.100' }} onClick={() => handleIdentitySelect('passeport')}>
                                                 <HStack spacing={2}>
                                                     <Icon as={FaPassport} />
                                                     <Text>PASSEPORT</Text>
@@ -710,8 +710,8 @@ const PiecesJustificatives: React.FC = () => {
                                                                         value={cniRectoUrl}
                                                                         isReadOnly
                                                                         textAlign="center"
-                                                                        borderColor="green.400"
-                                                                        color="green.500"
+                                                                        borderColor="yellow.400"
+                                                                        color="yellow.500"
                                                                     />
                                                                 </FormControl>
                                                                 <Box mt={4}>
@@ -735,8 +735,8 @@ const PiecesJustificatives: React.FC = () => {
                                                                         value={cniVersoUrl}
                                                                         isReadOnly
                                                                         textAlign="center"
-                                                                        borderColor="green.400"
-                                                                        color="green.500"
+                                                                        borderColor="yellow.400"
+                                                                        color="yellow.500"
                                                                     />
                                                                 </FormControl>
                                                                 <Box mt={4}>
@@ -762,8 +762,8 @@ const PiecesJustificatives: React.FC = () => {
                                                                 value={passportUrl}
                                                                 isReadOnly
                                                                 textAlign="center"
-                                                                borderColor="green.400"
-                                                                color="green.500"
+                                                                borderColor="yellow.400"
+                                                                color="yellow.500"
                                                             />
                                                         </FormControl>
                                                         <Box mt={4}>
@@ -777,7 +777,7 @@ const PiecesJustificatives: React.FC = () => {
                                 </VStack>
 
                                 {firstUploadCompleted && (
-                                    <Button mt={4} colorScheme="green" onClick={handleShowSecondUpload}>Ajouter une deuxième pièce d'identité</Button>
+                                    <Button mt={4} colorScheme="yellow" onClick={handleShowSecondUpload}>Ajouter une deuxième pièce d'identité</Button>
                                 )}
 
                                 {showSecondUpload && (
@@ -785,13 +785,13 @@ const PiecesJustificatives: React.FC = () => {
                                         <Text fontSize="lg" fontWeight="bold">Deuxième Pièce d'Identité</Text>
                                         <Tabs isFitted variant="enclosed">
                                             <TabList mb="1em">
-                                                <Tab _selected={{ bg: 'green.100' }}>
+                                                <Tab _selected={{ bg: 'yellow.100' }}>
                                                     <HStack spacing={2}>
                                                         <Icon as={FaIdCard} />
                                                         <Text>PIÈCE D'IDENTITÉ</Text>
                                                     </HStack>
                                                 </Tab>
-                                                <Tab _selected={{ bg: 'green.100' }}>
+                                                <Tab _selected={{ bg: 'yellow.100' }}>
                                                     <HStack spacing={2}>
                                                         <Icon as={FaPassport} />
                                                         <Text>PASSEPORT</Text>
@@ -833,9 +833,9 @@ const PiecesJustificatives: React.FC = () => {
                     </ModalBody>
                     <ModalFooter>
                         {step === 1 ? (
-                            <Button colorScheme="green" onClick={handleNextStep} width="100%">J'AI LU ET COMPRIS</Button>
+                            <Button colorScheme="yellow" onClick={handleNextStep} width="100%">J'AI LU ET COMPRIS</Button>
                         ) : (
-                            <Button colorScheme="green" onClick={onClose} width="100%">FERMER</Button>
+                            <Button colorScheme="yellow" onClick={onClose} width="100%">FERMER</Button>
                         )}
                     </ModalFooter>
                 </ModalContent>
@@ -844,7 +844,7 @@ const PiecesJustificatives: React.FC = () => {
             <Modal isOpen={isMobileOpen} onClose={onMobileClose} size="xl">
                 <ModalOverlay />
                 <ModalContent borderRadius="md" boxShadow="lg">
-                    <ModalHeader display="flex" justifyContent="space-between" alignItems="center" bg="green.900" color="white" borderTopRadius="md">
+                    <ModalHeader display="flex" justifyContent="space-between" alignItems="center" bg="yellow.900" color="white" borderTopRadius="md">
                         <HStack>
                             <Icon as={FaMobileAlt} w={6} h={6} />
                             <Text ml={2}>FACTURE DE MOBILE</Text>
@@ -858,7 +858,7 @@ const PiecesJustificatives: React.FC = () => {
                                 <Text>Si vous n’avez pas de facture à votre nom, vous pouvez simplement nous fournir une attestation sur papier libre et la scanner ou la prendre en photo avec votre smartphone.</Text>
                                 <Text>Voir un exemple</Text>
                                 <Text>La facture doit dater de moins de 3 mois.</Text>
-                                <Button mt={4} colorScheme="green" onClick={handleMobileNextStep}>Sélectionner une option</Button>
+                                <Button mt={4} colorScheme="yellow" onClick={handleMobileNextStep}>Sélectionner une option</Button>
                             </VStack>
                         )}
 
@@ -867,8 +867,8 @@ const PiecesJustificatives: React.FC = () => {
                                 <HStack spacing={4}>
                                     <Button
                                         variant="outline"
-                                        colorScheme={selectedOption === 'facture' ? 'green' : 'gray'}
-                                        borderColor={selectedOption === 'facture' ? 'green.400' : 'gray.200'}
+                                        colorScheme={selectedOption === 'facture' ? 'yellow' : 'gray'}
+                                        borderColor={selectedOption === 'facture' ? 'yellow.400' : 'gray.200'}
                                         onClick={() => handleOptionSelect('facture')}
                                         px={10}
                                         py={6}
@@ -879,8 +879,8 @@ const PiecesJustificatives: React.FC = () => {
                                     </Button>
                                     <Button
                                         variant="outline"
-                                        colorScheme={selectedOption === 'attestation' ? 'green' : 'gray'}
-                                        borderColor={selectedOption === 'attestation' ? 'green.400' : 'gray.200'}
+                                        colorScheme={selectedOption === 'attestation' ? 'yellow' : 'gray'}
+                                        borderColor={selectedOption === 'attestation' ? 'yellow.400' : 'gray.200'}
                                         onClick={() => handleOptionSelect('attestation')}
                                         px={10}
                                         py={6}
@@ -911,8 +911,8 @@ const PiecesJustificatives: React.FC = () => {
                                                 value={mobileUrl}
                                                 isReadOnly
                                                 textAlign="center"
-                                                borderColor="green.400"
-                                                color="green.500"
+                                                borderColor="yellow.400"
+                                                color="yellow.500"
                                             />
                                         </FormControl>
                                         <Box mt={4}>
@@ -924,7 +924,7 @@ const PiecesJustificatives: React.FC = () => {
                         )}
                     </ModalBody>
                     <ModalFooter>
-                        <Button colorScheme="green" onClick={onMobileClose} width="100%">FERMER</Button>
+                        <Button colorScheme="yellow" onClick={onMobileClose} width="100%">FERMER</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
@@ -932,7 +932,7 @@ const PiecesJustificatives: React.FC = () => {
             <Modal isOpen={isDomicileOpen} onClose={onDomicileClose} size="xl">
                 <ModalOverlay />
                 <ModalContent borderRadius="md" boxShadow="lg">
-                    <ModalHeader display="flex" justifyContent="space-between" alignItems="center" bg="green.900" color="white" borderTopRadius="md">
+                    <ModalHeader display="flex" justifyContent="space-between" alignItems="center" bg="yellow.900" color="white" borderTopRadius="md">
                         <HStack>
                             <Icon as={FaHome} w={6} h={6} />
                             <Text ml={2}>JUSTIFICATIF DE DOMICILE</Text>
@@ -974,8 +974,8 @@ const PiecesJustificatives: React.FC = () => {
                                                         value={identityEuropeRectoUrl}
                                                         isReadOnly
                                                         textAlign="center"
-                                                        borderColor="green.400"
-                                                        color="green.500"
+                                                        borderColor="yellow.400"
+                                                        color="yellow.500"
                                                     />
                                                 </FormControl>
                                                 <Box mt={4} mx="auto">
@@ -996,8 +996,8 @@ const PiecesJustificatives: React.FC = () => {
                                                         value={identityEuropeVersoUrl}
                                                         isReadOnly
                                                         textAlign="center"
-                                                        borderColor="green.400"
-                                                        color="green.500"
+                                                        borderColor="yellow.400"
+                                                        color="yellow.500"
                                                     />
                                                 </FormControl>
                                                 <Box mt={4} mx="auto">
@@ -1022,8 +1022,8 @@ const PiecesJustificatives: React.FC = () => {
                                                         value={passportEuropeUrl}
                                                         isReadOnly
                                                         textAlign="center"
-                                                        borderColor="green.400"
-                                                        color="green.500"
+                                                        borderColor="yellow.400"
+                                                        color="yellow.500"
                                                     />
                                                 </FormControl>
                                                 <Box mt={4} mx="auto">
@@ -1038,8 +1038,8 @@ const PiecesJustificatives: React.FC = () => {
                                         <Icon color="blue.200" as={FaPaperclip} /> MON ATTESTATION D'HEBERGEMENT
                                         <Input type="file" display="none" onChange={handleAttestationHebergementFileUpload} />
                                     </Button>
-                                    <HStack p={3} borderRadius={5} bgColor="green.100" spacing={3} alignItems="center" justifyContent="center">
-                                        <Icon color="green.400" as={FaFileUpload} />
+                                    <HStack p={3} borderRadius={5} bgColor="yellow.100" spacing={3} alignItems="center" justifyContent="center">
+                                        <Icon color="yellow.400" as={FaFileUpload} />
                                         <Text cursor="pointer" color="blue.500" onClick={onExampleOpen} _hover={{ textDecoration: 'underline' }}>Téléchargez un exemple d’attestation d’hébergement à compléter</Text>
                                     </HStack>
                                     {attestationHebergementUrl && (
@@ -1051,8 +1051,8 @@ const PiecesJustificatives: React.FC = () => {
                                                     value={attestationHebergementUrl}
                                                     isReadOnly
                                                     textAlign="center"
-                                                    borderColor="green.400"
-                                                    color="green.500"
+                                                    borderColor="yellow.400"
+                                                    color="yellow.500"
                                                 />
                                             </FormControl>
                                             <Box mt={4} mx="auto">
@@ -1067,44 +1067,44 @@ const PiecesJustificatives: React.FC = () => {
                             <VStack spacing={3} align="stretch" width="100%">
                                 <Button
                                     variant="outline"
-                                    colorScheme={selectedDomicile === 'energie' ? 'green' : 'gray'}
+                                    colorScheme={selectedDomicile === 'energie' ? 'yellow' : 'gray'}
                                     onClick={() => handleDomicileSelect('energie')}
-                                    borderColor={selectedDomicile === 'energie' ? 'green.400' : 'gray.200'}
-                                    color={selectedDomicile === 'energie' ? 'green.500' : 'inherit'}
-                                    _hover={{ borderColor: 'green.300', color: 'green.500' }}
+                                    borderColor={selectedDomicile === 'energie' ? 'yellow.400' : 'gray.200'}
+                                    color={selectedDomicile === 'energie' ? 'yellow.500' : 'inherit'}
+                                    _hover={{ borderColor: 'yellow.300', color: 'yellow.500' }}
                                     bg="transparent"
                                 >
                                     Facture d’énergie, internet, câble, téléphonie fixe ou mobile
                                 </Button>
                                 <Button
                                     variant="outline"
-                                    colorScheme={selectedDomicile === 'bulletin_salaire' ? 'green' : 'gray'}
+                                    colorScheme={selectedDomicile === 'bulletin_salaire' ? 'yellow' : 'gray'}
                                     onClick={() => handleDomicileSelect('bulletin_salaire')}
-                                    borderColor={selectedDomicile === 'bulletin_salaire' ? 'green.400' : 'gray.200'}
-                                    color={selectedDomicile === 'bulletin_salaire' ? 'green.500' : 'inherit'}
-                                    _hover={{ borderColor: 'green.300', color: 'green.500' }}
+                                    borderColor={selectedDomicile === 'bulletin_salaire' ? 'yellow.400' : 'gray.200'}
+                                    color={selectedDomicile === 'bulletin_salaire' ? 'yellow.500' : 'inherit'}
+                                    _hover={{ borderColor: 'yellow.300', color: 'yellow.500' }}
                                     bg="transparent"
                                 >
                                     Bulletin de salaire
                                 </Button>
                                 <Button
                                     variant="outline"
-                                    colorScheme={selectedDomicile === 'quittance_loyer' ? 'green' : 'gray'}
+                                    colorScheme={selectedDomicile === 'quittance_loyer' ? 'yellow' : 'gray'}
                                     onClick={() => handleDomicileSelect('quittance_loyer')}
-                                    borderColor={selectedDomicile === 'quittance_loyer' ? 'green.400' : 'gray.200'}
-                                    color={selectedDomicile === 'quittance_loyer' ? 'green.500' : 'inherit'}
-                                    _hover={{ borderColor: 'green.300', color: 'green.500' }}
+                                    borderColor={selectedDomicile === 'quittance_loyer' ? 'yellow.400' : 'gray.200'}
+                                    color={selectedDomicile === 'quittance_loyer' ? 'yellow.500' : 'inherit'}
+                                    _hover={{ borderColor: 'yellow.300', color: 'yellow.500' }}
                                     bg="transparent"
                                 >
                                     Quittance de loyer d’un professionnel de l’immobilier
                                 </Button>
                                 <Button
                                     variant="outline"
-                                    colorScheme={selectedDomicile === 'contrat_edf' ? 'green' : 'gray'}
+                                    colorScheme={selectedDomicile === 'contrat_edf' ? 'yellow' : 'gray'}
                                     onClick={() => handleDomicileSelect('contrat_edf')}
-                                    borderColor={selectedDomicile === 'contrat_edf' ? 'green.400' : 'gray.200'}
-                                    color={selectedDomicile === 'contrat_edf' ? 'green.500' : 'inherit'}
-                                    _hover={{ borderColor: 'green.300', color: 'green.500' }}
+                                    borderColor={selectedDomicile === 'contrat_edf' ? 'yellow.400' : 'gray.200'}
+                                    color={selectedDomicile === 'contrat_edf' ? 'yellow.500' : 'inherit'}
+                                    _hover={{ borderColor: 'yellow.300', color: 'yellow.500' }}
                                     bg="transparent"
                                 >
                                     Attestation de détention d’un contrat EDF (avec QR code)
@@ -1114,44 +1114,44 @@ const PiecesJustificatives: React.FC = () => {
                             <VStack spacing={3} align="stretch" width="100%">
                                 <Button
                                     variant="outline"
-                                    colorScheme={selectedDomicile === 'echeancier_energie' ? 'green' : 'gray'}
+                                    colorScheme={selectedDomicile === 'echeancier_energie' ? 'yellow' : 'gray'}
                                     onClick={() => handleDomicileSelect('echeancier_energie')}
-                                    borderColor={selectedDomicile === 'echeancier_energie' ? 'green.400' : 'gray.200'}
-                                    color={selectedDomicile === 'echeancier_energie' ? 'green.500' : 'inherit'}
-                                    _hover={{ borderColor: 'green.300', color: 'green.500' }}
+                                    borderColor={selectedDomicile === 'echeancier_energie' ? 'yellow.400' : 'gray.200'}
+                                    color={selectedDomicile === 'echeancier_energie' ? 'yellow.500' : 'inherit'}
+                                    _hover={{ borderColor: 'yellow.300', color: 'yellow.500' }}
                                     bg="transparent"
                                 >
                                     Échéancier d’un fournisseur d’énergie
                                 </Button>
                                 <Button
                                     variant="outline"
-                                    colorScheme={selectedDomicile === 'impot_revenu' ? 'green' : 'gray'}
+                                    colorScheme={selectedDomicile === 'impot_revenu' ? 'yellow' : 'gray'}
                                     onClick={() => handleDomicileSelect('impot_revenu')}
-                                    borderColor={selectedDomicile === 'impot_revenu' ? 'green.400' : 'gray.200'}
-                                    color={selectedDomicile === 'impot_revenu' ? 'green.500' : 'inherit'}
-                                    _hover={{ borderColor: 'green.300', color: 'green.500' }}
+                                    borderColor={selectedDomicile === 'impot_revenu' ? 'yellow.400' : 'gray.200'}
+                                    color={selectedDomicile === 'impot_revenu' ? 'yellow.500' : 'inherit'}
+                                    _hover={{ borderColor: 'yellow.300', color: 'yellow.500' }}
                                     bg="transparent"
                                 >
                                     Dernier avis d’impôt sur le revenu
                                 </Button>
                                 <Button
                                     variant="outline"
-                                    colorScheme={selectedDomicile === 'taxe_habitation' ? 'green' : 'gray'}
+                                    colorScheme={selectedDomicile === 'taxe_habitation' ? 'yellow' : 'gray'}
                                     onClick={() => handleDomicileSelect('taxe_habitation')}
-                                    borderColor={selectedDomicile === 'taxe_habitation' ? 'green.400' : 'gray.200'}
-                                    color={selectedDomicile === 'taxe_habitation' ? 'green.500' : 'inherit'}
-                                    _hover={{ borderColor: 'green.300', color: 'green.500' }}
+                                    borderColor={selectedDomicile === 'taxe_habitation' ? 'yellow.400' : 'gray.200'}
+                                    color={selectedDomicile === 'taxe_habitation' ? 'yellow.500' : 'inherit'}
+                                    _hover={{ borderColor: 'yellow.300', color: 'yellow.500' }}
                                     bg="transparent"
                                 >
                                     Dernier avis de taxe d’habitation
                                 </Button>
                                 <Button
                                     variant="outline"
-                                    colorScheme={selectedDomicile === 'assurance_habitation' ? 'green' : 'gray'}
+                                    colorScheme={selectedDomicile === 'assurance_habitation' ? 'yellow' : 'gray'}
                                     onClick={() => handleDomicileSelect('assurance_habitation')}
-                                    borderColor={selectedDomicile === 'assurance_habitation' ? 'green.400' : 'gray.200'}
-                                    color={selectedDomicile === 'assurance_habitation' ? 'green.500' : 'inherit'}
-                                    _hover={{ borderColor: 'green.300', color: 'green.500' }}
+                                    borderColor={selectedDomicile === 'assurance_habitation' ? 'yellow.400' : 'gray.200'}
+                                    color={selectedDomicile === 'assurance_habitation' ? 'yellow.500' : 'inherit'}
+                                    _hover={{ borderColor: 'yellow.300', color: 'yellow.500' }}
                                     bg="transparent"
                                 >
                                     Attestation d’un contrat d’assurance habitation
@@ -1166,8 +1166,8 @@ const PiecesJustificatives: React.FC = () => {
                                             value={domicileUrl}
                                             isReadOnly
                                             textAlign="center"
-                                            borderColor="green.400"
-                                            color="green.500"
+                                            borderColor="yellow.400"
+                                            color="yellow.500"
                                         />
                                     </FormControl>
                                     <img src={domicileUrl} alt="Justificatif de domicile" width="100%" />
@@ -1181,7 +1181,7 @@ const PiecesJustificatives: React.FC = () => {
             <Modal isOpen={isRIBOpen} onClose={onRIBClose} size="xl">
                 <ModalOverlay />
                 <ModalContent borderRadius="md" boxShadow="lg">
-                    <ModalHeader display="flex" justifyContent="space-between" alignItems="center" bg="green.900" color="white" borderTopRadius="md">
+                    <ModalHeader display="flex" justifyContent="space-between" alignItems="center" bg="yellow.900" color="white" borderTopRadius="md">
                         <HStack>
                             <Icon as={FaUniversity} w={6} h={6} />
                             <Text ml={2}>RIB COMPTE COURANT</Text>
@@ -1207,8 +1207,8 @@ const PiecesJustificatives: React.FC = () => {
                                             value={ribUrl}
                                             isReadOnly
                                             textAlign="center"
-                                            borderColor="green.400"
-                                            color="green.500"
+                                            borderColor="yellow.400"
+                                            color="yellow.500"
                                         />
                                     </FormControl>
                                     <Box mt={4}>
@@ -1230,9 +1230,9 @@ const PiecesJustificatives: React.FC = () => {
                             value={formValues.step51}
                             onChange={(e) => setFormValues({ ...formValues, step51: e.target.value })}
                             textAlign="center"
-                            borderColor={formValues.step51 ? 'green.400' : 'gray.200'}
-                            _hover={{ borderColor: formValues.step51 ? 'green.500' : 'gray.300' }}
-                            color={formValues.step51 ? 'green.500' : 'inherit'}
+                            borderColor={formValues.step51 ? 'yellow.400' : 'gray.200'}
+                            _hover={{ borderColor: formValues.step51 ? 'yellow.500' : 'gray.300' }}
+                            color={formValues.step51 ? 'yellow.500' : 'inherit'}
                         />
                     </FormControl>
                 </Section>
@@ -1250,9 +1250,9 @@ const PiecesJustificatives: React.FC = () => {
                                     placeholder="Entrez une valeur"
                                     size="lg"
                                     textAlign="center"
-                                    borderColor={formValues.step52 ? 'green.400' : 'gray.200'}
-                                    _hover={{ borderColor: formValues.step52 ? 'green.500' : 'gray.300' }}
-                                    color={formValues.step52 ? 'green.500' : 'inherit'}
+                                    borderColor={formValues.step52 ? 'yellow.400' : 'gray.200'}
+                                    _hover={{ borderColor: formValues.step52 ? 'yellow.500' : 'gray.300' }}
+                                    color={formValues.step52 ? 'yellow.500' : 'inherit'}
                                 />
                                 <InputRightAddon children="€" />
                             </InputGroup>
@@ -1269,8 +1269,8 @@ const PiecesJustificatives: React.FC = () => {
                         <HStack justifyContent="center" spacing={4}>
                             <Button
                                 variant="outline"
-                                colorScheme={!isRecurring ? 'green' : 'gray'}
-                                borderColor={!isRecurring ? 'green.400' : 'gray.200'}
+                                colorScheme={!isRecurring ? 'yellow' : 'gray'}
+                                borderColor={!isRecurring ? 'yellow.400' : 'gray.200'}
                                 onClick={() => setIsRecurring(false)}
                                 px={10}
                                 py={6}
@@ -1281,8 +1281,8 @@ const PiecesJustificatives: React.FC = () => {
                             </Button>
                             <Button
                                 variant="outline"
-                                colorScheme={isRecurring ? 'green' : 'gray'}
-                                borderColor={isRecurring ? 'green.400' : 'gray.200'}
+                                colorScheme={isRecurring ? 'yellow' : 'gray'}
+                                borderColor={isRecurring ? 'yellow.400' : 'gray.200'}
                                 onClick={() => setIsRecurring(true)}
                                 px={10}
                                 py={6}
@@ -1307,9 +1307,9 @@ const PiecesJustificatives: React.FC = () => {
                                             placeholder="Entrez une valeur"
                                             size="lg"
                                             textAlign="center"
-                                            borderColor={formValues.step53 ? 'green.400' : 'gray.200'}
-                                            _hover={{ borderColor: formValues.step53 ? 'green.500' : 'gray.300' }}
-                                            color={formValues.step53 ? 'green.500' : 'inherit'}
+                                            borderColor={formValues.step53 ? 'yellow.400' : 'gray.200'}
+                                            _hover={{ borderColor: formValues.step53 ? 'yellow.500' : 'gray.300' }}
+                                            color={formValues.step53 ? 'yellow.500' : 'inherit'}
                                         />
                                         <InputRightAddon children="€" />
                                     </InputGroup>
@@ -1324,9 +1324,9 @@ const PiecesJustificatives: React.FC = () => {
                                     placeholder="Veuillez sélectionner"
                                     value={formValues.step54}
                                     onChange={(e) => setFormValues({ ...formValues, step54: e.target.value })}
-                                    borderColor={formValues.step54 ? 'green.400' : 'gray.200'}
-                                    color={formValues.step54 ? 'green.500' : 'inherit'}
-                                    _hover={{ borderColor: formValues.step54 ? 'green.500' : 'gray.300' }}
+                                    borderColor={formValues.step54 ? 'yellow.400' : 'gray.200'}
+                                    color={formValues.step54 ? 'yellow.500' : 'inherit'}
+                                    _hover={{ borderColor: formValues.step54 ? 'yellow.500' : 'gray.300' }}
                                 >
                                     <option value="monthly">Par mois</option>
                                     <option value="quarterly">Par trimestre</option>
@@ -1340,9 +1340,9 @@ const PiecesJustificatives: React.FC = () => {
                                     placeholder="Veuillez sélectionner"
                                     value={formValues.step55}
                                     onChange={(e) => setFormValues({ ...formValues, step55: e.target.value })}
-                                    borderColor={formValues.step55 ? 'green.400' : 'gray.200'}
-                                    color={formValues.step55 ? 'green.500' : 'inherit'}
-                                    _hover={{ borderColor: formValues.step55 ? 'green.500' : 'gray.300' }}
+                                    borderColor={formValues.step55 ? 'yellow.400' : 'gray.200'}
+                                    color={formValues.step55 ? 'yellow.500' : 'inherit'}
+                                    _hover={{ borderColor: formValues.step55 ? 'yellow.500' : 'gray.300' }}
                                 >
                                     <option value="1">1er</option>
                                     <option value="8">8</option>
@@ -1363,9 +1363,9 @@ const PiecesJustificatives: React.FC = () => {
                             placeholder="Veuillez sélectionner"
                             value={formValues.step56}
                             onChange={(e) => setFormValues({ ...formValues, step56: e.target.value })}
-                            borderColor={formValues.step56 ? 'green.400' : 'gray.200'}
-                            color={formValues.step56 ? 'green.500' : 'inherit'}
-                            _hover={{ borderColor: formValues.step56 ? 'green.500' : 'gray.300' }}
+                            borderColor={formValues.step56 ? 'yellow.400' : 'gray.200'}
+                            color={formValues.step56 ? 'yellow.500' : 'inherit'}
+                            _hover={{ borderColor: formValues.step56 ? 'yellow.500' : 'gray.300' }}
                         >
                             <option value="savings">Épargne déjà constituée (dont revenus)</option>
                             <option value="property-sale">Cession de bien</option>
@@ -1384,8 +1384,8 @@ const PiecesJustificatives: React.FC = () => {
                         <HStack justifyContent="center" spacing={4}>
                             <Button
                                 variant="outline"
-                                colorScheme={!isReferral ? 'green' : 'gray'}
-                                borderColor={!isReferral ? 'green.400' : 'gray.200'}
+                                colorScheme={!isReferral ? 'yellow' : 'gray'}
+                                borderColor={!isReferral ? 'yellow.400' : 'gray.200'}
                                 onClick={() => setIsReferral(false)}
                                 px={10}
                                 py={6}
@@ -1396,8 +1396,8 @@ const PiecesJustificatives: React.FC = () => {
                             </Button>
                             <Button
                                 variant="outline"
-                                colorScheme={isReferral ? 'green' : 'gray'}
-                                borderColor={isReferral ? 'green.400' : 'gray.200'}
+                                colorScheme={isReferral ? 'yellow' : 'gray'}
+                                borderColor={isReferral ? 'yellow.400' : 'gray.200'}
                                 onClick={() => setIsReferral(true)}
                                 px={10}
                                 py={6}
@@ -1416,9 +1416,9 @@ const PiecesJustificatives: React.FC = () => {
                                 value={formValues.step57}
                                 onChange={(e) => setFormValues({ ...formValues, step57: e.target.value })}
                                 textAlign="center"
-                                borderColor={formValues.step57 ? 'green.400' : 'gray.200'}
-                                _hover={{ borderColor: formValues.step57 ? 'green.500' : 'gray.300' }}
-                                color={formValues.step57 ? 'green.500' : 'inherit'}
+                                borderColor={formValues.step57 ? 'yellow.400' : 'gray.200'}
+                                _hover={{ borderColor: formValues.step57 ? 'yellow.500' : 'gray.300' }}
+                                color={formValues.step57 ? 'yellow.500' : 'inherit'}
                             />
                         </FormControl>
                     )}
@@ -1462,7 +1462,7 @@ const PiecesJustificatives: React.FC = () => {
                         Retour
                     </Button>
                     <Button
-                        colorScheme="green"
+                        colorScheme="yellow"
                         onClick={handleSubmit}
                         px={6}
                         py={6}

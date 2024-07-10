@@ -16,7 +16,7 @@ const SubStepCounter: React.FC<SubStepCounterProps> = ({ currentSubStep, totalSu
         <Text fontWeight="bold" color="gray.500">{title}</Text>
         <Flex align="center">
           <Text fontWeight="bold" color="gray.500" mr="2">Question {currentSubStep}/{totalSubSteps}</Text>
-          <Progress value={progressPercentage} size="sm" colorScheme="green" width="100px" />
+          <Progress value={progressPercentage} size="sm" colorScheme="yellow" width="100px" />
         </Flex>
       </Flex>
     </Box>

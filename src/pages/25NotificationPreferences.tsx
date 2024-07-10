@@ -104,11 +104,11 @@ const NotificationPreferences: React.FC = () => {
                         <Box
                             p={4}
                             border="1px"
-                            borderColor={preferences.news === 'oui' ? "green.400" : "gray.200"}
+                            borderColor={preferences.news === 'oui' ? "yellow.400" : "gray.200"}
                             borderRadius="md"
                             boxShadow="sm"
                             w="100%"
-                            bg={preferences.news === 'oui' ? "green.50" : "white"}
+                            bg={preferences.news === 'oui' ? "yellow.50" : "white"}
                         >
                             <Checkbox
                                 isChecked={preferences.news === 'oui'}
@@ -117,7 +117,7 @@ const NotificationPreferences: React.FC = () => {
                                 <HStack spacing={3} align="flex-start">
                                     <BiNews size="24px" />
                                     <Box>
-                                        <Text fontWeight="bold" color={preferences.news === 'oui' ? "green.500" : "black"}>
+                                        <Text fontWeight="bold" color={preferences.news === 'oui' ? "yellow.500" : "black"}>
                                             Les actualités et nos conseils
                                         </Text>
                                         <Text fontSize="sm">Une newsletter mensuelle de nos experts pour décrypter l'actualité financière et mieux gérer votre épargne.</Text>
@@ -128,11 +128,11 @@ const NotificationPreferences: React.FC = () => {
                         <Box
                             p={4}
                             border="1px"
-                            borderColor={preferences.promo === 'oui' ? "green.400" : "gray.200"}
+                            borderColor={preferences.promo === 'oui' ? "yellow.400" : "gray.200"}
                             borderRadius="md"
                             boxShadow="sm"
                             w="100%"
-                            bg={preferences.promo === 'oui' ? "green.50" : "white"}
+                            bg={preferences.promo === 'oui' ? "yellow.50" : "white"}
                         >
                             <Checkbox
                                 isChecked={preferences.promo === 'oui'}
@@ -141,7 +141,7 @@ const NotificationPreferences: React.FC = () => {
                                 <HStack spacing={3} align="flex-start">
                                     <MdDiscount size="24px" />
                                     <Box>
-                                        <Text fontWeight="bold" color={preferences.promo === 'oui' ? "green.500" : "black"}>
+                                        <Text fontWeight="bold" color={preferences.promo === 'oui' ? "yellow.500" : "black"}>
                                             Nos offres promotionnelles
                                         </Text>
                                         <Text fontSize="sm">Les bons plans Agavic adaptés à votre projet d’épargne une à deux fois par mois.</Text>
@@ -163,7 +163,7 @@ const NotificationPreferences: React.FC = () => {
                         Retour
                     </Button>
                     <Button
-                        colorScheme="green"
+                        colorScheme="yellow"
                         onClick={handleNext}
                         px={6}
                         py={6}

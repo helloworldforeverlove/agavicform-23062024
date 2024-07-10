@@ -3,7 +3,7 @@ import { Box, Text, Button, Flex, Image, extendTheme, ChakraProvider, Center } f
 
 const theme = extendTheme({
   colors: {
-    navy: '#0A1128',
+    navy: '#004aad',
     white: '#FFFFFF',
   },
 });
@@ -11,7 +11,7 @@ const theme = extendTheme({
 const Header: React.FC = () => {
   return (
     <ChakraProvider theme={theme}>
-      <Box bg="navy" paddingY="2" paddingX="4">
+      <Box bg="#004aad" paddingY="2" paddingX="4">
         <Center>
           <Flex width="full" maxWidth="1200px" align="center" justify="space-between">
             <Flex align="center">

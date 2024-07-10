@@ -126,7 +126,7 @@ const MontantCreditImmobilierMensuel: React.FC = () => {
                 <Box display="flex" justifyContent="center" mb={6}>
                     <Button
                         variant="outline"
-                        colorScheme="green"
+                        colorScheme="yellow"
                         onClick={handleNoCredit}
                         px={10}
                         py={6}
@@ -146,8 +146,8 @@ const MontantCreditImmobilierMensuel: React.FC = () => {
                 )}
 
                 {credit !== null && (
-                    <Box borderWidth="1px" borderRadius="md" p={4} mt={4} textAlign="center" borderColor="green.400">
-                        <Text fontSize="2xl" color="green.500">
+                    <Box borderWidth="1px" borderRadius="md" p={4} mt={4} textAlign="center" borderColor="yellow.400">
+                        <Text fontSize="2xl" color="yellow.500">
                             {credit} € / mois
                         </Text>
                     </Box>
@@ -157,7 +157,7 @@ const MontantCreditImmobilierMensuel: React.FC = () => {
                     <Button colorScheme="gray" variant="outline" onClick={() => navigate(-1)} px={6} py={6} size="lg">
                         Retour
                     </Button>
-                    <Button colorScheme="green" onClick={handleNext} px={6} py={6} size="lg">
+                    <Button colorScheme="yellow" onClick={handleNext} px={6} py={6} size="lg">
                         Suivant
                     </Button>
                 </HStack>

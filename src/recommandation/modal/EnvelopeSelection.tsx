@@ -119,7 +119,7 @@ const EnvelopeSelection: React.FC<EnvelopeSelectionProps> = ({ isOpen, onClose, 
                 <Box as="span" bg="orange.400" p={2} borderRadius="md" color="white" fontWeight="bold">AV</Box>
                 <Text fontSize="lg" fontWeight="bold">Assurance-vie</Text>
               </HStack>
-              <Text color="green.400">Notre recommandation au vu de votre profil</Text>
+              <Text color="yellow.400">Notre recommandation au vu de votre profil</Text>
               <VStack align="start" spacing={1}>
                 <Text>✓ Argent disponible à tout moment (sans clôture du contrat)</Text>
                 <Text>✓ Fiscalité réduite à partir de la 8ème année en cas de rachat</Text>

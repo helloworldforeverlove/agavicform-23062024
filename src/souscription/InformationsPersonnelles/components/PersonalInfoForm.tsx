@@ -39,7 +39,7 @@ const theme = extendTheme({
         },
         white: '#FFFFFF',
         orange: '#FF8C00',
-        green: {
+        yellow: {
             400: '#38A169',
             500: '#2F855A',
         },
@@ -66,9 +66,9 @@ const theme = extendTheme({
 const CustomInput: React.FC<InputProps> = (props) => {
     const styles = useStyleConfig("CustomInput");
     const filledStyles = props.value ? {
-        borderColor: 'green.500',
-        color: 'green.500',
-        boxShadow: '0 0 0 1px green.500',
+        borderColor: 'yellow.500',
+        color: 'yellow.500',
+        boxShadow: '0 0 0 1px yellow.500',
     } : {};
 
     return (
@@ -85,9 +85,9 @@ const CustomInput: React.FC<InputProps> = (props) => {
 const CustomSelect: React.FC<SelectProps> = (props) => {
     const styles = useStyleConfig("CustomInput");
     const filledStyles = props.value ? {
-        borderColor: 'green.500',
-        color: 'green.500',
-        boxShadow: '0 0 0 1px green.500',
+        borderColor: 'yellow.500',
+        color: 'yellow.500',
+        boxShadow: '0 0 0 1px yellow.500',
     } : {};
 
     return (
@@ -386,13 +386,13 @@ const PersonalInfoForm: React.FC = () => {
                                 type="button"
                                 variant="outline"
                                 size="lg"
-                                colorScheme={formValues.civilite === 'Monsieur' ? 'green' : 'gray'}
+                                colorScheme={formValues.civilite === 'Monsieur' ? 'yellow' : 'gray'}
                                 onClick={() => handleCiviliteChange('Monsieur')}
                                 px={10}
                                 py={6}
                                 textAlign="center"
                                 _hover={{ bg: 'gray.200' }}
-                                borderColor={formValues.civilite === 'Monsieur' ? 'green.400' : 'gray.200'}
+                                borderColor={formValues.civilite === 'Monsieur' ? 'yellow.400' : 'gray.200'}
                             >
                                 Monsieur
                             </Button>
@@ -400,13 +400,13 @@ const PersonalInfoForm: React.FC = () => {
                                 type="button"
                                 variant="outline"
                                 size="lg"
-                                colorScheme={formValues.civilite === 'Madame' ? 'green' : 'gray'}
+                                colorScheme={formValues.civilite === 'Madame' ? 'yellow' : 'gray'}
                                 onClick={() => handleCiviliteChange('Madame')}
                                 px={10}
                                 py={6}
                                 textAlign="center"
                                 _hover={{ bg: 'gray.200' }}
-                                borderColor={formValues.civilite === 'Madame' ? 'green.400' : 'gray.200'}
+                                borderColor={formValues.civilite === 'Madame' ? 'yellow.400' : 'gray.200'}
                             >
                                 Madame
                             </Button>
@@ -448,9 +448,9 @@ const PersonalInfoForm: React.FC = () => {
                                     value={formValues.nom}
                                     onChange={handleInputChange}
                                 />
-                                <Alert status="warning" mt={2} backgroundColor="green.100" borderRadius="md">
-                                    <AlertIcon color="green.400" />
-                                    <AlertDescription color="green.600">Le nom doit être écrit en entier comme sur votre pièce d'identité.</AlertDescription>
+                                <Alert status="warning" mt={2} backgroundColor="yellow.100" borderRadius="md">
+                                    <AlertIcon color="yellow.400" />
+                                    <AlertDescription color="yellow.600">Le nom doit être écrit en entier comme sur votre pièce d'identité.</AlertDescription>
                                 </Alert>
                             </FormControl>
                         </VStack>
@@ -464,9 +464,9 @@ const PersonalInfoForm: React.FC = () => {
                                     value={formValues.prenom}
                                     onChange={handleInputChange}
                                 />
-                                <Alert status="warning" mt={2} backgroundColor="green.100" borderRadius="md">
-                                    <AlertIcon color="green.400" />
-                                    <AlertDescription color="green.600">Uniquement le 1er prénom de votre pièce d'identité.</AlertDescription>
+                                <Alert status="warning" mt={2} backgroundColor="yellow.100" borderRadius="md">
+                                    <AlertIcon color="yellow.400" />
+                                    <AlertDescription color="yellow.600">Uniquement le 1er prénom de votre pièce d'identité.</AlertDescription>
                                 </Alert>
                             </FormControl>
                         </VStack>
@@ -501,9 +501,9 @@ const PersonalInfoForm: React.FC = () => {
                                     onChange={handleInputChange}
                                     mb={4}
                                 />
-                                <Alert status="warning" mt={2} backgroundColor="green.100" borderRadius="md">
-                                    <AlertIcon color="green.400" />
-                                    <AlertDescription color="green.600">Le lieu de naissance doit être orthographié comme sur votre pièce d'identité.</AlertDescription>
+                                <Alert status="warning" mt={2} backgroundColor="yellow.100" borderRadius="md">
+                                    <AlertIcon color="yellow.400" />
+                                    <AlertDescription color="yellow.600">Le lieu de naissance doit être orthographié comme sur votre pièce d'identité.</AlertDescription>
                                 </Alert>
                             </FormControl>
                         </VStack>
@@ -569,13 +569,13 @@ const PersonalInfoForm: React.FC = () => {
                                 type="button"
                                 variant="outline"
                                 size="lg"
-                                colorScheme={formValues.nationalite === 'Non' ? 'green' : 'gray'}
+                                colorScheme={formValues.nationalite === 'Non' ? 'yellow' : 'gray'}
                                 onClick={() => setFormValues({ ...formValues, nationalite: 'Non' })}
                                 px={10}
                                 py={6}
                                 textAlign="center"
                                 _hover={{ bg: 'gray.200' }}
-                                borderColor={formValues.nationalite === 'Non' ? 'green.400' : 'gray.200'}
+                                borderColor={formValues.nationalite === 'Non' ? 'yellow.400' : 'gray.200'}
                             >
                                 Non
                             </Button>
@@ -583,13 +583,13 @@ const PersonalInfoForm: React.FC = () => {
                                 type="button"
                                 variant="outline"
                                 size="lg"
-                                colorScheme={formValues.nationalite === 'Oui' ? 'green' : 'gray'}
+                                colorScheme={formValues.nationalite === 'Oui' ? 'yellow' : 'gray'}
                                 onClick={() => setFormValues({ ...formValues, nationalite: 'Oui' })}
                                 px={10}
                                 py={6}
                                 textAlign="center"
                                 _hover={{ bg: 'gray.200' }}
-                                borderColor={formValues.nationalite === 'Oui' ? 'green.400' : 'gray.200'}
+                                borderColor={formValues.nationalite === 'Oui' ? 'yellow.400' : 'gray.200'}
                             >
                                 Oui
                             </Button>
@@ -757,13 +757,13 @@ const PersonalInfoForm: React.FC = () => {
                                             type="button"
                                             variant="outline"
                                             size="lg"
-                                            colorScheme={formValues.tns === 'Non' ? 'green' : 'gray'}
+                                            colorScheme={formValues.tns === 'Non' ? 'yellow' : 'gray'}
                                             onClick={() => setFormValues({ ...formValues, tns: 'Non' })}
                                             px={10}
                                             py={6}
                                             textAlign="center"
                                             _hover={{ bg: 'gray.200' }}
-                                            borderColor={formValues.tns === 'Non' ? 'green.400' : 'gray.200'}
+                                            borderColor={formValues.tns === 'Non' ? 'yellow.400' : 'gray.200'}
                                         >
                                             Non
                                         </Button>
@@ -771,13 +771,13 @@ const PersonalInfoForm: React.FC = () => {
                                             type="button"
                                             variant="outline"
                                             size="lg"
-                                            colorScheme={formValues.tns === 'Oui' ? 'green' : 'gray'}
+                                            colorScheme={formValues.tns === 'Oui' ? 'yellow' : 'gray'}
                                             onClick={() => setFormValues({ ...formValues, tns: 'Oui' })}
                                             px={10}
                                             py={6}
                                             textAlign="center"
                                             _hover={{ bg: 'gray.200' }}
-                                            borderColor={formValues.tns === 'Oui' ? 'green.400' : 'gray.200'}
+                                            borderColor={formValues.tns === 'Oui' ? 'yellow.400' : 'gray.200'}
                                         >
                                             Oui
                                         </Button>
@@ -881,13 +881,13 @@ const PersonalInfoForm: React.FC = () => {
                                         type="button"
                                         variant="outline"
                                         size="lg"
-                                        colorScheme={formValues.dirigeantSocieteCotee === 'Non' ? 'green' : 'gray'}
+                                        colorScheme={formValues.dirigeantSocieteCotee === 'Non' ? 'yellow' : 'gray'}
                                         onClick={() => setFormValues({ ...formValues, dirigeantSocieteCotee: 'Non' })}
                                         px={10}
                                         py={6}
                                         textAlign="center"
                                         _hover={{ bg: 'gray.200' }}
-                                        borderColor={formValues.dirigeantSocieteCotee === 'Non' ? 'green.400' : 'gray.200'}
+                                        borderColor={formValues.dirigeantSocieteCotee === 'Non' ? 'yellow.400' : 'gray.200'}
                                     >
                                         Non
                                     </Button>
@@ -895,13 +895,13 @@ const PersonalInfoForm: React.FC = () => {
                                         type="button"
                                         variant="outline"
                                         size="lg"
-                                        colorScheme={formValues.dirigeantSocieteCotee === 'Oui' ? 'green' : 'gray'}
+                                        colorScheme={formValues.dirigeantSocieteCotee === 'Oui' ? 'yellow' : 'gray'}
                                         onClick={() => setFormValues({ ...formValues, dirigeantSocieteCotee: 'Oui' })}
                                         px={10}
                                         py={6}
                                         textAlign="center"
                                         _hover={{ bg: 'gray.200' }}
-                                        borderColor={formValues.dirigeantSocieteCotee === 'Oui' ? 'green.400' : 'gray.200'}
+                                        borderColor={formValues.dirigeantSocieteCotee === 'Oui' ? 'yellow.400' : 'gray.200'}
                                     >
                                         Oui
                                     </Button>
@@ -922,13 +922,13 @@ const PersonalInfoForm: React.FC = () => {
                                         type="button"
                                         variant="outline"
                                         size="lg"
-                                        colorScheme={formValues.fonctionPolitiquementExposee === 'Non' ? 'green' : 'gray'}
+                                        colorScheme={formValues.fonctionPolitiquementExposee === 'Non' ? 'yellow' : 'gray'}
                                         onClick={() => setFormValues({ ...formValues, fonctionPolitiquementExposee: 'Non' })}
                                         px={10}
                                         py={6}
                                         textAlign="center"
                                         _hover={{ bg: 'gray.200' }}
-                                        borderColor={formValues.fonctionPolitiquementExposee === 'Non' ? 'green.400' : 'gray.200'}
+                                        borderColor={formValues.fonctionPolitiquementExposee === 'Non' ? 'yellow.400' : 'gray.200'}
                                     >
                                         Non
                                     </Button>
@@ -936,13 +936,13 @@ const PersonalInfoForm: React.FC = () => {
                                         type="button"
                                         variant="outline"
                                         size="lg"
-                                        colorScheme={formValues.fonctionPolitiquementExposee === 'Oui' ? 'green' : 'gray'}
+                                        colorScheme={formValues.fonctionPolitiquementExposee === 'Oui' ? 'yellow' : 'gray'}
                                         onClick={() => setFormValues({ ...formValues, fonctionPolitiquementExposee: 'Oui' })}
                                         px={10}
                                         py={6}
                                         textAlign="center"
                                         _hover={{ bg: 'gray.200' }}
-                                        borderColor={formValues.fonctionPolitiquementExposee === 'Oui' ? 'green.400' : 'gray.200'}
+                                        borderColor={formValues.fonctionPolitiquementExposee === 'Oui' ? 'yellow.400' : 'gray.200'}
                                     >
                                         Oui
                                     </Button>
@@ -962,13 +962,13 @@ const PersonalInfoForm: React.FC = () => {
                                         type="button"
                                         variant="outline"
                                         size="lg"
-                                        colorScheme={formValues.entourageFonctionPolitiquementExposee === 'Non' ? 'green' : 'gray'}
+                                        colorScheme={formValues.entourageFonctionPolitiquementExposee === 'Non' ? 'yellow' : 'gray'}
                                         onClick={() => setFormValues({ ...formValues, entourageFonctionPolitiquementExposee: 'Non' })}
                                         px={10}
                                         py={6}
                                         textAlign="center"
                                         _hover={{ bg: 'gray.200' }}
-                                        borderColor={formValues.entourageFonctionPolitiquementExposee === 'Non' ? 'green.400' : 'gray.200'}
+                                        borderColor={formValues.entourageFonctionPolitiquementExposee === 'Non' ? 'yellow.400' : 'gray.200'}
                                     >
                                         Non
                                     </Button>
@@ -976,13 +976,13 @@ const PersonalInfoForm: React.FC = () => {
                                         type="button"
                                         variant="outline"
                                         size="lg"
-                                        colorScheme={formValues.entourageFonctionPolitiquementExposee === 'Oui' ? 'green' : 'gray'}
+                                        colorScheme={formValues.entourageFonctionPolitiquementExposee === 'Oui' ? 'yellow' : 'gray'}
                                         onClick={() => setFormValues({ ...formValues, entourageFonctionPolitiquementExposee: 'Oui' })}
                                         px={10}
                                         py={6}
                                         textAlign="center"
                                         _hover={{ bg: 'gray.200' }}
-                                        borderColor={formValues.entourageFonctionPolitiquementExposee === 'Oui' ? 'green.400' : 'gray.200'}
+                                        borderColor={formValues.entourageFonctionPolitiquementExposee === 'Oui' ? 'yellow.400' : 'gray.200'}
                                     >
                                         Oui
                                     </Button>
@@ -1010,7 +1010,7 @@ const PersonalInfoForm: React.FC = () => {
                         Retour
                     </Button>
                     <Button
-                        colorScheme="green"
+                        colorScheme="yellow"
                         onClick={handleSubmit}
                         px={6}
                         py={6}

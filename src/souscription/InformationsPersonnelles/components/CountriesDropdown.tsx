@@ -32,9 +32,9 @@ const countries = [
 const CountriesDropdown: React.FC<SelectProps> = (props) => {
     const styles = useStyleConfig("CustomInput");
     const filledStyles = props.value ? {
-        borderColor: 'green.500',
-        color: 'green.500',
-        boxShadow: '0 0 0 1px green.500',
+        borderColor: 'yellow.500',
+        color: 'yellow.500',
+        boxShadow: '0 0 0 1px yellow.500',
     } : {};
 
     return (

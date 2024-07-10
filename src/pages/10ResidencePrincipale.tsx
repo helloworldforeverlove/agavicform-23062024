@@ -81,8 +81,8 @@ const ResidencePrincipale: React.FC = () => {
                 <HStack justifyContent="center" spacing="4">
                     <Button
                         variant="outline"
-                        colorScheme={residenceStatus === 'oui' ? 'green' : 'gray'}
-                        borderColor={residenceStatus === 'oui' ? 'green.400' : 'gray.200'}
+                        colorScheme={residenceStatus === 'oui' ? 'yellow' : 'gray'}
+                        borderColor={residenceStatus === 'oui' ? 'yellow.400' : 'gray.200'}
                         onClick={() => setResidenceStatus('oui')}
                         px={10}
                         py={6}
@@ -93,8 +93,8 @@ const ResidencePrincipale: React.FC = () => {
                     </Button>
                     <Button
                         variant="outline"
-                        colorScheme={residenceStatus === 'non' ? 'green' : 'gray'}
-                        borderColor={residenceStatus === 'non' ? 'green.400' : 'gray.200'}
+                        colorScheme={residenceStatus === 'non' ? 'yellow' : 'gray'}
+                        borderColor={residenceStatus === 'non' ? 'yellow.400' : 'gray.200'}
                         onClick={() => setResidenceStatus('non')}
                         px={10}
                         py={6}
@@ -117,7 +117,7 @@ const ResidencePrincipale: React.FC = () => {
                         Retour
                     </Button>
                     <Button
-                        colorScheme="green"
+                        colorScheme="yellow"
                         onClick={handleNext}
                         px={6}
                         py={6}

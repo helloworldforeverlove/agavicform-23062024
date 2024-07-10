@@ -83,8 +83,8 @@ const ESGPreference: React.FC = () => {
                 <Stack justifyContent="center" spacing="4" direction={{ base: 'column', md: 'row' }}>
                     <Button
                         variant="outline"
-                        colorScheme={esgPreference === 'ESG' ? 'green' : 'gray'}
-                        borderColor={esgPreference === 'ESG' ? 'green.400' : 'gray.200'}
+                        colorScheme={esgPreference === 'ESG' ? 'yellow' : 'gray'}
+                        borderColor={esgPreference === 'ESG' ? 'yellow.400' : 'gray.200'}
                         onClick={() => handleSelect('ESG')}
                         px={10}
                         py={6}
@@ -95,8 +95,8 @@ const ESGPreference: React.FC = () => {
                     </Button>
                     <Button
                         variant="outline"
-                        colorScheme={esgPreference === 'Non-ESG' ? 'green' : 'gray'}
-                        borderColor={esgPreference === 'Non-ESG' ? 'green.400' : 'gray.200'}
+                        colorScheme={esgPreference === 'Non-ESG' ? 'yellow' : 'gray'}
+                        borderColor={esgPreference === 'Non-ESG' ? 'yellow.400' : 'gray.200'}
                         onClick={() => handleSelect('Non-ESG')}
                         px={10}
                         py={6}
@@ -119,7 +119,7 @@ const ESGPreference: React.FC = () => {
                         Retour
                     </Button>
                     <Button
-                        colorScheme="green"
+                        colorScheme="yellow"
                         onClick={handleNext}
                         px={6}
                         py={6}
