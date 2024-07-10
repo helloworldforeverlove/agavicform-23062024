@@ -6,6 +6,7 @@ import {
   LinearScale,
   PointElement,
   LineElement,
+  ArcElement,
   Title,
   Tooltip,
   Legend,
@@ -15,11 +16,13 @@ import {
 import { ChakraProvider, extendTheme, Box, Text, HStack, Icon } from '@chakra-ui/react';
 import { FaChartLine } from 'react-icons/fa';
 
+// Register Chart.js elements
 ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
+  ArcElement,
   Title,
   Tooltip,
   Legend,
@@ -35,7 +38,7 @@ const theme = extendTheme({
     },
     white: '#FFFFFF',
     orange: '#FF8C00',
-    yellow: {
+    green: {
       400: '#38A169',
     },
     blue: {
@@ -48,7 +51,7 @@ const theme = extendTheme({
   },
 });
 
-const data = {
+const lineData = {
   labels: [
     '2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035',
   ],
@@ -81,7 +84,7 @@ const data = {
   ],
 };
 
-const options: ChartOptions<'line'> = {
+const lineOptions: ChartOptions<'line'> = {
   responsive: true,
   maintainAspectRatio: false,
   scales: {
@@ -125,7 +128,7 @@ const InvestmentProjection: React.FC = () => {
           </Text>
         </HStack>
         <Box height="400px">
-          <Line data={data} options={options} />
+          <Line data={lineData} options={lineOptions} />
         </Box>
         <Text fontSize="sm" mt={5} color="gray.500">
           Les supports d’investissement présentent un risque de perte en capital. Les performances passées ne préjugent pas des performances futures.
