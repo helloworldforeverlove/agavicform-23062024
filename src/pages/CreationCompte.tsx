@@ -155,7 +155,7 @@ const CreationCompte: React.FC = () => {
                         </Link>
                     </Checkbox>
                     <Button
-                        colorScheme="blue"
+                        colorScheme="yellow"
                         width="100%"
                         onClick={handleCreateAccount}
                         isDisabled={!isEmailValid || email === '' || !isPasswordValid || password === '' || !isTermsAccepted}
