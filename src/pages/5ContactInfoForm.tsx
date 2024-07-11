@@ -4,11 +4,11 @@ import {
     Text,
     Button,
     VStack,
-    HStack,
     FormControl,
     Alert,
     AlertIcon,
-    AlertDescription,
+    AlertTitle,
+    CloseButton,
     Input,
     useStyleConfig,
     ChakraProvider,
@@ -27,10 +27,6 @@ const theme = extendTheme({
         },
         white: '#FFFFFF',
         orange: '#FF8C00',
-        yellow: {
-            400: '#38A169',
-            500: '#2F855A',
-        },
         blue: {
             400: '#3182CE',
         },
@@ -133,40 +129,50 @@ const ContactInfoForm: React.FC = () => {
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Informations de contact
                 </Text>
+                <Text fontSize="md" textAlign="center" mb={6}>
+                    Veuillez entrer votre adresse e-mail et votre numéro de téléphone mobile pour que nous puissions vous contacter.
+                </Text>
                 <VStack spacing={4} align="stretch" mx="auto">
                     <Box mt={8}>
                         <VStack spacing={4} align="stretch">
-                            <HStack spacing={4}>
-                                <FormControl isInvalid={errors.email}>
-                                    <Text fontSize="md" mb={2}>Adresse e-mail</Text>
-                                    <CustomInput
-                                        name="email"
-                                        value={formValues.email}
-                                        onChange={handleInputChange}
-                                    />
-                                    {errors.email && (
-                                        <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
-                                            <AlertIcon color="orange.400" />
-                                            <AlertDescription color="orange.600">Veuillez entrer une adresse e-mail valide.</AlertDescription>
-                                        </Alert>
-                                    )}
-                                </FormControl>
-                                <FormControl isInvalid={errors.phoneNumber}>
-                                    <Text fontSize="md" mb={2}>Numéro de téléphone mobile</Text>
-                                    <CustomInput
-                                        name="phoneNumber"
-                                        placeholder="06 10 00 00 00"
-                                        value={formValues.phoneNumber}
-                                        onChange={handleInputChange}
-                                    />
-                                    {errors.phoneNumber && (
-                                        <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
-                                            <AlertIcon color="orange.400" />
-                                            <AlertDescription color="orange.600">Veuillez entrer un numéro de téléphone valide.</AlertDescription>
-                                        </Alert>
-                                    )}
-                                </FormControl>
-                            </HStack>
+                            <FormControl isInvalid={errors.email}>
+                                <Text fontSize="md" mb={2}>Adresse e-mail</Text>
+                                <CustomInput
+                                    name="email"
+                                    value={formValues.email}
+                                    onChange={handleInputChange}
+                                    placeholder="exemple@domaine.com"
+                                    size="lg"
+                                    textAlign="center"
+                                />
+                                {errors.email && (
+                                    <Alert status="error" mt={4} borderRadius="md">
+                                        <AlertIcon />
+                                        <AlertTitle mr={2}></AlertTitle>
+                                        Veuillez entrer une adresse e-mail valide.
+                                        <CloseButton position="absolute" right="8px" top="8px" onClick={() => setErrors({ ...errors, email: false })} />
+                                    </Alert>
+                                )}
+                            </FormControl>
+                            <FormControl isInvalid={errors.phoneNumber}>
+                                <Text fontSize="md" mb={2}>Numéro de téléphone mobile</Text>
+                                <CustomInput
+                                    name="phoneNumber"
+                                    placeholder="06 10 00 00 00"
+                                    value={formValues.phoneNumber}
+                                    onChange={handleInputChange}
+                                    size="lg"
+                                    textAlign="center"
+                                />
+                                {errors.phoneNumber && (
+                                    <Alert status="error" mt={4} borderRadius="md">
+                                        <AlertIcon />
+                                        <AlertTitle mr={2}></AlertTitle>
+                                        Veuillez entrer un numéro de téléphone valide.
+                                        <CloseButton position="absolute" right="8px" top="8px" onClick={() => setErrors({ ...errors, phoneNumber: false })} />
+                                    </Alert>
+                                )}
+                            </FormControl>
                         </VStack>
                     </Box>
 
