@@ -36,9 +36,10 @@ import Recommandation from '../recommandation/Recommandation';
 import InformationsPersonnelles from '../souscription/InformationsPersonnelles/index'; 
 import PiecesJustificatives from '../pages/28PiecesJustificatives'; // Import the new component
 import InsuranceAgreementForm from '../pages/29InsuranceAgreementForm';
+import ContactInfoForm from '../pages/5ContactInfoForm'; // Import the ContactInfoForm component
 
 export const routes = [
-    { path: '/', name: 'Home', component: <Home />, hidden: true },
+  { path: '/', name: 'Home', component: <Home />, hidden: true },
   { path: '/quel-est-votre-projet-d-investissement', name: 'QuelEstVotreProjetDInvestissement', component: <QuelEstVotreProjetDInvestissement />, hidden: true },
   { path: '/quel-montant-souhaitez-vous-placer', name: 'QuelMontantSouhaitezVousPlacer', component: <QuelMontantSouhaitezVousPlacer />, hidden: true },
   { path: '/quel-montant-regulier-souhaitez-vous-placer', name: 'QuelMontantRegulierSouhaitezVousPlacer', component: <QuelMontantRegulierSouhaitezVousPlacer />, hidden: true },
@@ -70,8 +71,9 @@ export const routes = [
   { path: '/combined-risk-score', name: 'CombinedRiskScoreComponent', component: <CombinedRiskScoreComponent />, hidden: true },
   { path: '/recommandation', name: 'Recommandation', component: <Recommandation />, hidden: true },
   { path: '/informations-personnelles', name: 'InformationsPersonnelles', component: <InformationsPersonnelles />, hidden: true },
-  { path: '/pieces-justificatives', name: 'PiecesJustificatives', component: <PiecesJustificatives />, hidden: true }, 
+  { path: '/pieces-justificatives', name: 'PiecesJustificatives', component: <PiecesJustificatives />, hidden: true },
   { path: '/insurance-agreement', name: 'InsuranceAgreement', component: <InsuranceAgreementForm />, hidden: true },
+  { path: '/email-et-telephone-contact-formulaire', name: 'ContactInfoForm', component: <ContactInfoForm />, hidden: true }, // Add new route here
 ];
 
 const Routes: React.FC = () => {

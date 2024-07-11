@@ -101,7 +101,7 @@ const QuelEstVotreDateDeNaissance: React.FC = () => {
     const handleNext = async () => {
         if (birthDate !== null) {
             await updateResponse(5, birthDate);
-            navigate('/etes-vous-resident-fiscal-francais');
+            navigate('/email-et-telephone-contact-formulaire');
         } else {
             setIsAlertOpen(true);
         }
