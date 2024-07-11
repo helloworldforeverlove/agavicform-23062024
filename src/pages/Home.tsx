@@ -7,7 +7,7 @@ const Home: React.FC = () => {
     <Flex align="center" justify="center" height="100vh" direction="column">
       <Heading mb={6}>Bienvenue chez AGAVIC</Heading>
       <Link to="/quel-est-votre-projet-d-investissement">
-        <Button colorScheme="teal" size="lg">Commence ton projet</Button>
+        <Button colorScheme="yellow" size="lg">Commence ton projet</Button>
       </Link>
     </Flex>
   );
