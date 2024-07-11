@@ -37,7 +37,7 @@ const ArbitrationMandate: React.FC = () => {
               qui vous permet de déléguer la responsabilité de vos choix d’investissement et la réalisation des opérations à des professionnels.
             </Text>
             <Text fontSize="md" color="gray.500">
-              Les experts Agavic gèrent alors vos investissements en fonction de votre profil et de votre situation personnelle 
+              Les experts PatriLife gèrent alors vos investissements en fonction de votre profil et de votre situation personnelle 
               (horizon de placement, tolérance au risque…).
             </Text>
             <Text fontSize="md" color="gray.500">

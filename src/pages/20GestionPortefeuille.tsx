@@ -116,7 +116,7 @@ const GestionPortefeuille: React.FC = () => {
                             <Box flex="1">
                                 <AlertTitle>Réponse :</AlertTitle>
                                 <AlertDescription>
-                                    Confier votre portefeuille à Agavic revient à laisser les manettes à nos gérants. C'est à eux que revient la charge de concevoir vos allocations, de les investir et de réaliser les arbitrages dans votre portefeuille. Les dépôts et retraits restent à votre main.
+                                    Confier votre portefeuille à PatriLife revient à laisser les manettes à nos gérants. C'est à eux que revient la charge de concevoir vos allocations, de les investir et de réaliser les arbitrages dans votre portefeuille. Les dépôts et retraits restent à votre main.
                                 </AlertDescription>
                             </Box>
                         </Alert>
@@ -130,7 +130,7 @@ const GestionPortefeuille: React.FC = () => {
                             <Box flex="1">
                                 <AlertTitle>Bonne réponse :</AlertTitle>
                                 <AlertDescription>
-                                    Confier votre portefeuille à Agavic revient à laisser les manettes à nos gérants. C'est à eux que revient la charge de concevoir vos allocations, de les investir et de réaliser les arbitrages dans votre portefeuille. Les dépôts et retraits restent à votre main.
+                                    Confier votre portefeuille à PatriLife revient à laisser les manettes à nos gérants. C'est à eux que revient la charge de concevoir vos allocations, de les investir et de réaliser les arbitrages dans votre portefeuille. Les dépôts et retraits restent à votre main.
                                 </AlertDescription>
                             </Box>
                         </Alert>

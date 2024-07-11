@@ -33,7 +33,7 @@ const FeesInfo: React.FC = () => {
         </Text>
         <Text fontSize="md" color="gray.500" mb={6}>
           Contrairement aux gestionnaires privés qui pratiquent des frais de <Text as="span" fontWeight="bold" color="orange">3,6% en moyenne</Text>, 
-          les frais Agavic sont personnalisés en fonction de votre projet. 
+          les frais PatriLife sont personnalisés en fonction de votre projet. 
           <br />
           <Text fontSize="sm" color="gray.500">*Frais moyens des gérants privés (<a href="https" style={{color: 'blue'}}>étude AMF</a>)</Text>
         </Text>
@@ -43,7 +43,7 @@ const FeesInfo: React.FC = () => {
             <Text fontSize="sm" fontWeight="bold" color="gray.500">max. par an, tout compris</Text>
             <HStack spacing={2}>
               <Icon as={FaCheckCircle} color="yellow.400" />
-              <Text fontSize="md" color="gray.600">0,21% pour la gestion Agavic</Text>
+              <Text fontSize="md" color="gray.600">0,21% pour la gestion PatriLife</Text>
             </HStack>
             <HStack spacing={2}>
               <Icon as={FaCheckCircle} color="yellow.400" />

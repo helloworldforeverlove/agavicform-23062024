@@ -35,7 +35,7 @@ const Banner: React.FC = () => {
           <AlertDescription>
             Vous avez déjà réalisé une simulation ou initié une ouverture de compte?{' '}
             <Link href="#" color="#D69E2E" fontWeight="bold">Reprenez votre parcours ici.</Link>
-            {' '}Déjà client Agavic ?{' '}
+            {' '}Déjà client PatriLife ?{' '}
             <Link href="#" color="#D69E2E" fontWeight="bold">Connectez-vous en cliquant ici.</Link>
           </AlertDescription>
         </Box>
@@ -44,7 +44,7 @@ const Banner: React.FC = () => {
           <AlertDescription flex="1">
             Vous avez déjà réalisé une simulation ou initié une ouverture de compte?{' '}
             <Link href="#" color="#D69E2E" fontWeight="bold">Reprenez votre parcours ici.</Link>
-            {' '}Déjà client Agavic ?{' '}
+            {' '}Déjà client PatriLife ?{' '}
             <Link href="#" color="#D69E2E" fontWeight="bold">Connectez-vous en cliquant ici.</Link>
           </AlertDescription>
           <CloseButton position="absolute" right="8px" top="8px" color="#D69E2E" onClick={handleClose} />

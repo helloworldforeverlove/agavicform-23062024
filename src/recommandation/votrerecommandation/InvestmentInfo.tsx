@@ -35,7 +35,7 @@ const InvestmentInfo: React.FC = () => {
               Votre investissement sera hébergé dans une assurance-vie
             </Text>
             <Text fontSize="md" color="gray.500">
-              Nous vous proposons d’investir au sein de <Text as="span" fontWeight="bold" color="navy">Agavic Vie</Text>,
+              Nous vous proposons d’investir au sein de <Text as="span" fontWeight="bold" color="navy">PatriLife Vie</Text>,
               un contrat d’assurance-vie de groupe de type multisupport géré par notre partenaire Suravenir.
             </Text>
           </VStack>

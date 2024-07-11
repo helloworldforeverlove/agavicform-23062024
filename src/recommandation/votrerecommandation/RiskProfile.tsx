@@ -180,7 +180,7 @@ const RiskProfile: React.FC = () => {
           Profil de risque
         </Text>
         <Text mb={4}>
-          Un profil de risque {riskScore !== null ? riskScore : 'N/A'} chez Agavic correspond à un profil de risque de {riskScore !== null ? Math.ceil((riskScore / 10) * 7) : 'N/A'} sur l'échelle du SRI, l’indicateur européen de référence du risque.
+          Un profil de risque {riskScore !== null ? riskScore : 'N/A'} chez PatriLife correspond à un profil de risque de {riskScore !== null ? Math.ceil((riskScore / 10) * 7) : 'N/A'} sur l'échelle du SRI, l’indicateur européen de référence du risque.
         </Text>
         <HStack justifyContent="space-between" alignItems="center">
           <HStack>

@@ -28,19 +28,19 @@ const theme = extendTheme({
     },
 });
 
-const AgavicRecommendation: React.FC = () => {
+const PatriLifeRecommendation: React.FC = () => {
     return (
         <ChakraProvider theme={theme}>
             <Box p={5} maxW="600px" mx="auto" bg="white" borderRadius="md">
                 <Text fontSize="xl" fontWeight="bold" mb={2} color="blue.700">
-                    La recommandation Agavic
+                    La recommandation PatriLife
                 </Text>
                 <Text fontSize="md" color="gray.700">
-                    Suite à l’analyse de vos informations, nos experts vous proposent un investissement adapté à vos besoins, <Box as="span" fontWeight="bold" color="blue.700">d’ailleurs plus de 87% de nos utilisateurs ont suivi la recommandation de Agavic.</Box>
+                    Suite à l’analyse de vos informations, nos experts vous proposent un investissement adapté à vos besoins, <Box as="span" fontWeight="bold" color="blue.700">d’ailleurs plus de 87% de nos utilisateurs ont suivi la recommandation de PatriLife.</Box>
                 </Text>
             </Box>
         </ChakraProvider>
     );
 };
 
-export default AgavicRecommendation;
+export default PatriLifeRecommendation;

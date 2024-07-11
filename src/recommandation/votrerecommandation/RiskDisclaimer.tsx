@@ -41,7 +41,7 @@ const RiskDisclaimer: React.FC = () => {
                         Le mot de Thomas
                     </Text>
                     <Text fontSize="sm" color="gray.500">
-                        Responsable conformité chez Agavic
+                        Responsable conformité chez PatriLife
                     </Text>
                 </VStack>
             </Box>

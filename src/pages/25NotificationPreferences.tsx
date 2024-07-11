@@ -144,7 +144,7 @@ const NotificationPreferences: React.FC = () => {
                                         <Text fontWeight="bold" color={preferences.promo === 'oui' ? "yellow.500" : "black"}>
                                             Nos offres promotionnelles
                                         </Text>
-                                        <Text fontSize="sm">Les bons plans Agavic adaptés à votre projet d’épargne une à deux fois par mois.</Text>
+                                        <Text fontSize="sm">Les bons plans PatriLife adaptés à votre projet d’épargne une à deux fois par mois.</Text>
                                     </Box>
                                 </HStack>
                             </Checkbox>

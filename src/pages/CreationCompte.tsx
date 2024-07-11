@@ -150,7 +150,7 @@ const CreationCompte: React.FC = () => {
                         onChange={(e) => setIsTermsAccepted(e.target.checked)}
                     >
                         J'accepte les{' '}
-                        <Link color="blue.500" href="https://www.Agavic.fr/politique-de-confidentialite">
+                        <Link color="blue.500" href="https://www.PatriLife.fr/politique-de-confidentialite">
                             conditions d'utilisation et la politique de confidentialité
                         </Link>
                     </Checkbox>

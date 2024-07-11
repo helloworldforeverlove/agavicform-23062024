@@ -113,7 +113,7 @@ const PersonalInfoForm: React.FC = () => {
         capaciteJuridique: '',
         nationalite: '',
         paysNationalite: '',
-        connuAgavic: '',
+        connuPatriLife: '',
         street: '',
         additionalInfo: '',
         postalCode: '',
@@ -141,7 +141,7 @@ const PersonalInfoForm: React.FC = () => {
         capaciteJuridique: false,
         nationalite: false,
         paysNationalite: false,
-        connuAgavic: false,
+        connuPatriLife: false,
         street: false,
         postalCode: false,
         city: false,
@@ -185,7 +185,7 @@ const PersonalInfoForm: React.FC = () => {
             const capaciteJuridique = await getResponse(33); // 'capaciteJuridique' is step 33
             const nationalite = await getResponse(34); // 'nationalite' is step 34
             const paysNationalite = await getResponse(35); // 'paysNationalite' is step 35
-            const connuAgavic = await getResponse(36); // 'connuAgavic' is step 36
+            const connuPatriLife = await getResponse(36); // 'connuPatriLife' is step 36
             const street = await getResponse(37); // 'street' is step 37
             const additionalInfo = await getResponse(38); // 'additionalInfo' is step 38
             const postalCode = await getResponse(39); // 'postalCode' is step 39
@@ -212,7 +212,7 @@ const PersonalInfoForm: React.FC = () => {
                 capaciteJuridique: capaciteJuridique || '',
                 nationalite: nationalite || '',
                 paysNationalite: paysNationalite || '',
-                connuAgavic: connuAgavic || '',
+                connuPatriLife: connuPatriLife || '',
                 street: street || '',
                 additionalInfo: additionalInfo || '',
                 postalCode: postalCode || '',
@@ -264,7 +264,7 @@ const PersonalInfoForm: React.FC = () => {
             capaciteJuridique: formValues.capaciteJuridique === '',
             nationalite: formValues.nationalite === '',
             paysNationalite: formValues.paysNationalite === '',
-            connuAgavic: formValues.connuAgavic === '',
+            connuPatriLife: formValues.connuPatriLife === '',
             street: formValues.street === '',
             postalCode: formValues.postalCode === '',
             city: formValues.city === '',
@@ -320,7 +320,7 @@ const PersonalInfoForm: React.FC = () => {
             await updateResponse(33, formValues.capaciteJuridique);
             await updateResponse(34, formValues.nationalite);
             await updateResponse(35, formValues.paysNationalite);
-            await updateResponse(36, formValues.connuAgavic);
+            await updateResponse(36, formValues.connuPatriLife);
             await updateResponse(37, formValues.street);
             await updateResponse(38, formValues.additionalInfo);
             await updateResponse(39, formValues.postalCode);
@@ -348,7 +348,7 @@ const PersonalInfoForm: React.FC = () => {
                 step33: formValues.capaciteJuridique,
                 step34: formValues.nationalite,
                 step35: formValues.paysNationalite,
-                step36: formValues.connuAgavic,
+                step36: formValues.connuPatriLife,
                 step37: formValues.street,
                 step38: formValues.additionalInfo,
                 step39: formValues.postalCode,
@@ -612,11 +612,11 @@ const PersonalInfoForm: React.FC = () => {
                         )}
                     </FormControl>
 
-                    <FormControl isInvalid={errors.connuAgavic}>
-                        <Text fontSize="md" mb={2}>Comment avez-vous connu Agavic ?</Text>
+                    <FormControl isInvalid={errors.connuPatriLife}>
+                        <Text fontSize="md" mb={2}>Comment avez-vous connu PatriLife ?</Text>
                         <CustomSelect
-                            name="connuAgavic"
-                            value={formValues.connuAgavic}
+                            name="connuPatriLife"
+                            value={formValues.connuPatriLife}
                             onChange={handleInputChange}
                             mb={4}
                         >
@@ -631,10 +631,10 @@ const PersonalInfoForm: React.FC = () => {
                             <option value="Réseaux sociaux, Podcasts">Réseaux sociaux, Podcasts</option>
                             <option value="Télévision">Télévision</option>
                         </CustomSelect>
-                        {errors.connuAgavic && (
+                        {errors.connuPatriLife && (
                             <Alert status="warning" mt={2} backgroundColor="orange.100" borderRadius="md">
                                 <AlertIcon color="orange.400" />
-                                <AlertDescription color="orange.600">Veuillez sélectionner une option pour Comment avez-vous connu Agavic ?.</AlertDescription>
+                                <AlertDescription color="orange.600">Veuillez sélectionner une option pour Comment avez-vous connu PatriLife ?.</AlertDescription>
                             </Alert>
                         )}
                     </FormControl>

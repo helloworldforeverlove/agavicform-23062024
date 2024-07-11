@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, Button, Flex, Image, extendTheme, ChakraProvider, Center } from '@chakra-ui/react';
+import { Box, Button, Flex, Image, extendTheme, ChakraProvider, Center } from '@chakra-ui/react';
 
 const theme = extendTheme({
   colors: {
@@ -16,12 +16,8 @@ const Header: React.FC = () => {
           <Flex width="full" maxWidth="1200px" align="center" justify="space-between">
             <Flex align="center">
               {/* Logo Section */}
-              <Image src="/agaviclogo.png" alt="Logo" height="30px" />
+              <Image src="/patrilifelogo.png" alt="Logo" height="30px" />
               
-              {/* Text Section */}
-              <Text color="white" fontSize="lg" ml="2">
-                AGAVIC
-              </Text>
             </Flex>
 
             {/* Button Section */}

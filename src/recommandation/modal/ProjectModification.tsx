@@ -82,7 +82,7 @@ const ProjectModification: React.FC<{ isOpen: boolean, onClose: () => void }> = 
             <VStack spacing={4} align="stretch">
               <Box>
                 <Text fontWeight="bold">Versement initial</Text>
-                <Text color="gray.500" mb={2}>Il s'agit du 1er versement réalisé sur votre contrat Agavic.</Text>
+                <Text color="gray.500" mb={2}>Il s'agit du 1er versement réalisé sur votre contrat PatriLife.</Text>
                 <Input
                   value={initialPayment}
                   onChange={(e) => setInitialPayment(e.target.value)}

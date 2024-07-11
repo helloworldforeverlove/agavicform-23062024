@@ -35,13 +35,13 @@ const RegulatoryInfo: React.FC = () => {
             <Text fontWeight="bold" color="navy">Sur notre mandat de gestion :</Text>
             <Link href="#" color="blue.500">Lire le mandat d'arbitrage pour l'Assurance-vie</Link>
             <Text fontWeight="bold" color="navy" mt={4}>Sur votre enveloppe fiscale et la signature du contrat :</Text>
-            <Link href="#" color="blue.500">Lire la notice du contrat d'Assurance-vie Agavic Vie</Link>
-            <Link href="#" color="blue.500">Lire le document d’informations clés du contrat Agavic Vie</Link>
+            <Link href="#" color="blue.500">Lire la notice du contrat d'Assurance-vie PatriLife Vie</Link>
+            <Link href="#" color="blue.500">Lire le document d’informations clés du contrat PatriLife Vie</Link>
             <Link href="#" color="blue.500">Lire les conditions générales d'accès à la signature électronique</Link>
           </VStack>
           <VStack align="start" spacing={3}>
             <Text fontWeight="bold" color="navy">Sur nos tarifs :</Text>
-            <Link href="#" color="blue.500">En savoir plus sur les tarifs Agavic</Link>
+            <Link href="#" color="blue.500">En savoir plus sur les tarifs PatriLife</Link>
             <Text fontWeight="bold" color="navy" mt={4}>Sur les risques de vos placements :</Text>
             <Link href="#" color="blue.500">En savoir plus sur les risques financiers</Link>
             <Link href="#" color="blue.500">En savoir plus sur les informations relatives aux réclamations et à la médiation</Link>
@@ -54,7 +54,7 @@ const RegulatoryInfo: React.FC = () => {
               <Avatar name="Thomas" src="/path/to/avatar.jpg" size="sm" />
               <VStack align="start" spacing={0}>
                 <Text fontWeight="bold" color="navy">Le mot de Thomas</Text>
-                <Text fontSize="sm" color="gray.600">Responsable conformité chez Agavic</Text>
+                <Text fontSize="sm" color="gray.600">Responsable conformité chez PatriLife</Text>
               </VStack>
             </HStack>
           </VStack>
