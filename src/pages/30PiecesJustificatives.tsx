@@ -583,6 +583,10 @@ const PiecesJustificatives: React.FC = () => {
         fetchResponse();
     }, [getResponse]);
 
+    const formatNumberWithSpaces = (num: number): string => {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    };
+
     const [formValues, setFormValues] = useState({
         step51: '',
         step52: '',
@@ -1243,10 +1247,10 @@ const PiecesJustificatives: React.FC = () => {
                         <Box justifyContent="center" mb={6} maxWidth={400} mx="auto">
                             <InputGroup size="lg" width="auto">
                                 <Input
-                                    type="number"
+                                    type="text" // Change input type to text to format with spaces
                                     min={0}
-                                    value={formValues.step52}
-                                    onChange={(e) => setFormValues({ ...formValues, step52: e.target.value })}
+                                    value={formValues.step52 ? formatNumberWithSpaces(Number(formValues.step52)) : ''}
+                                    onChange={(e) => setFormValues({ ...formValues, step52: e.target.value.replace(/\s+/g, '') })}
                                     placeholder="Entrez une valeur"
                                     size="lg"
                                     textAlign="center"
@@ -1300,10 +1304,10 @@ const PiecesJustificatives: React.FC = () => {
                                 <Box justifyContent="center" mb={6} maxWidth={400} mx="auto">
                                     <InputGroup size="lg" width="auto">
                                         <Input
-                                            type="number"
+                                            type="text" // Change input type to text to format with spaces
                                             min={0}
-                                            value={formValues.step53}
-                                            onChange={(e) => setFormValues({ ...formValues, step53: e.target.value })}
+                                            value={formValues.step53 ? formatNumberWithSpaces(Number(formValues.step53)) : ''}
+                                            onChange={(e) => setFormValues({ ...formValues, step53: e.target.value.replace(/\s+/g, '') })}
                                             placeholder="Entrez une valeur"
                                             size="lg"
                                             textAlign="center"
