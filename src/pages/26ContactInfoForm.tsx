@@ -17,6 +17,7 @@ import {
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { useUuid } from '../context/UuidContext';
+import StepperWithSubStepCounter from '../components/StepperWithSubStepCounter';
 
 const theme = extendTheme({
     colors: {
@@ -125,6 +126,7 @@ const ContactInfoForm: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={25} totalSubSteps={24} title="Parlons de votre projet" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Informations de contact

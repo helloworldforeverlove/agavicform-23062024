@@ -72,7 +72,7 @@ const ESGPreference: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={7} totalSubSteps={24} title="Préférence pour les investissements ESG" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={6} totalSubSteps={24} title="Préférence pour les investissements ESG" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Avez-vous une préférence pour des investissements respectant les critères environnementaux, sociaux et de gouvernance (ESG) ?

@@ -79,7 +79,7 @@ const BesoinInvestissement: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={16} totalSubSteps={24} title="Pourriez-vous avoir besoin de la moitié de votre investissement avant 25 ans ?" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={15} totalSubSteps={24} title="Pourriez-vous avoir besoin de la moitié de votre investissement avant 25 ans ?" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Pourriez-vous avoir besoin de la moitié de votre investissement avant 25 ans ?

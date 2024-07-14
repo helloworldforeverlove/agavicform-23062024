@@ -73,7 +73,7 @@ const ResidencePrincipale: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={10} totalSubSteps={24} title="Êtes-vous propriétaire de votre résidence principale ?" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={9} totalSubSteps={24} title="Êtes-vous propriétaire de votre résidence principale ?" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Êtes-vous propriétaire de votre résidence principale ?

@@ -94,7 +94,7 @@ const ValeurPatrimoineImmobilierNet: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={12} totalSubSteps={24} title="Quelle est la valeur de votre patrimoine immobilier NET ?" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={11} totalSubSteps={24} title="Quelle est la valeur de votre patrimoine immobilier NET ?" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Quelle est la valeur de votre patrimoine immobilier NET ?

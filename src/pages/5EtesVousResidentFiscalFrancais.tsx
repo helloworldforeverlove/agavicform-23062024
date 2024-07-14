@@ -66,7 +66,7 @@ const EtesVousResidentFiscalFrancais: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={6} totalSubSteps={24} title="Parlons de votre résidence fiscale" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={5} totalSubSteps={24} title="Parlons de votre résidence fiscale" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Êtes-vous résident fiscal français ?
