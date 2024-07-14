@@ -119,7 +119,7 @@ const ContactInfoForm: React.FC = () => {
             await updateResponse(42, formValues.email);
             await updateResponse(43, formValues.phoneNumber);
 
-            navigate('/etes-vous-resident-fiscal-francais'); // Replace with the actual next step
+            navigate('/notification-preferences'); // Replace with the actual next step
         }
     };
 

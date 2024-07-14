@@ -72,7 +72,7 @@ const PerteValeurInvestissement: React.FC = () => {
     const handleNext = async () => {
         if (selectedOption !== undefined) {
             await updateResponse(24, selectedOption);
-            navigate('/creation-compte'); // Replace with the appropriate next route
+            navigate('/quel-est-votre-date-de-naissance'); // Replace with the appropriate next route
         } else {
             setIsAlertOpen(true);
         }

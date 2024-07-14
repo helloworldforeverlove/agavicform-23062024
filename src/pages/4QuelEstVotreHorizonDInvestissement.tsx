@@ -79,7 +79,7 @@ const QuelEstVotreHorizonDInvestissement: React.FC = () => {
     const handleNext = async () => {
         if (selectedHorizon !== null) {
             await updateResponse(4, selectedHorizon.toString());
-            navigate('/quel-est-votre-date-de-naissance'); // Remplacez '/quel-est-votre-date-de-naissance' par la route suivante appropriée
+            navigate('/etes-vous-resident-fiscal-francais'); // Remplacez '/quel-est-votre-date-de-naissance' par la route suivante appropriée
         } else {
             setIsAlertOpen(true);
         }

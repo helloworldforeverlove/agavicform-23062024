@@ -7,14 +7,14 @@ import QuelEstVotreProjetDInvestissement from '../pages/1QuelEstVotreProjetDInve
 import QuelMontantSouhaitezVousPlacer from '../pages/2QuelMontantSouhaitezVousPlacer';
 import QuelMontantRegulierSouhaitezVousPlacer from '../pages/3QuelMontantRegulierSouhaitezVousPlacer';
 import QuelEstVotreHorizonDInvestissement from '../pages/4QuelEstVotreHorizonDInvestissement';
-import ESGPreference from '../pages/7ESGPreference';
-import QuelEstVotreDateDeNaissance from '../pages/5QuelEstVotreDateDeNaissance';
-import EtesVousResidentFiscalFrancais from '../pages/6EtesVousResidentFiscalFrancais';
-import NombreEnfantsACharge from '../pages/8NombreEnfantsACharge';
-import RevenusAnnuels from '../pages/9RevenusAnnuels';
-import ResidencePrincipale from '../pages/10ResidencePrincipale';
+import ESGPreference from '../pages/6ESGPreference';
+import QuelEstVotreDateDeNaissance from '../pages/25QuelEstVotreDateDeNaissance';
+import EtesVousResidentFiscalFrancais from '../pages/5EtesVousResidentFiscalFrancais';
+import NombreEnfantsACharge from '../pages/7NombreEnfantsACharge';
+import RevenusAnnuels from '../pages/8RevenusAnnuels';
+import ResidencePrincipale from '../pages/9ResidencePrincipale';
 import MontantLoyerMensuel from '../pages/11MontantLoyerMensuel';
-import MontantCreditImmobilierMensuel from '../pages/11MontantCreditImmobilierMensuel';
+import MontantCreditImmobilierMensuel from '../pages/10MontantCreditImmobilierMensuel';
 import ValeurPatrimoineImmobilierNet from '../pages/12ValeurPatrimoineImmobilierNet';
 import MontantPatrimoineFinancier from '../pages/13MontantPatrimoineFinancier';
 import MontantEpargneMensuel from '../pages/14MontantEpargneMensuel';
@@ -30,13 +30,13 @@ import RapportGainsPertes10Ans from '../pages/23RapportGainsPertes10Ans';
 import PerteValeurInvestissement from '../pages/24PerteValeurInvestissement';
 import SimulationReady from '../pages/CreationCompte';
 import CreationCompte from '../pages/CreationCompte';
-import NotificationPreferences from '../pages/25NotificationPreferences';
-import CombinedRiskScoreComponent from '../pages/26CombinedRiskScoreComponent';
+import NotificationPreferences from '../pages/27NotificationPreferences';
+import CombinedRiskScoreComponent from '../pages/28CombinedRiskScoreComponent';
 import Recommandation from '../recommandation/Recommandation';
 import InformationsPersonnelles from '../souscription/InformationsPersonnelles/index'; 
-import PiecesJustificatives from '../pages/28PiecesJustificatives'; // Import the new component
+import PiecesJustificatives from '../pages/30PiecesJustificatives'; // Import the new component
 import InsuranceAgreementForm from '../pages/29InsuranceAgreementForm';
-import ContactInfoForm from '../pages/5ContactInfoForm'; // Import the ContactInfoForm component
+import ContactInfoForm from '../pages/26ContactInfoForm'; // Import the ContactInfoForm component
 
 export const routes = [
   { path: '/', name: 'Home', component: <Home />, hidden: true },
