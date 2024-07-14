@@ -1,6 +1,6 @@
 // src/App.tsx
 import React, { useState } from 'react';
-import { ChakraProvider, extendTheme, Modal, ModalOverlay, ModalContent, ModalCloseButton } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody } from '@chakra-ui/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
 import Banner from './components/Banner';
@@ -33,11 +33,16 @@ const App: React.FC = () => {
                     <Header openModal={openModal} />
                     <Banner />
                     <Routes />
-                    <Modal isOpen={isModalOpen} onClose={closeModal}>
+                    <Modal isOpen={isModalOpen} onClose={closeModal} size="xl">
                         <ModalOverlay />
                         <ModalContent>
-                            <ModalCloseButton />
-                            <AccompagnementSurMesure onClose={closeModal} />
+                            <ModalHeader>
+                                Accompagnement sur mesure
+                                <ModalCloseButton />
+                            </ModalHeader>
+                            <ModalBody>
+                                <AccompagnementSurMesure onClose={closeModal} />
+                            </ModalBody>
                         </ModalContent>
                     </Modal>
                 </Router>
