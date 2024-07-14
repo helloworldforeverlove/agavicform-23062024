@@ -1,6 +1,6 @@
 // src/recommandation/modal/AccompagnementSurMesure.tsx
 import React from 'react';
-import { Box, Text, VStack, HStack, Input, Button, InputGroup, InputLeftElement, ChakraProvider, extendTheme} from '@chakra-ui/react';
+import { Box, Text, VStack, HStack, Input, Button, InputGroup, InputLeftElement, ChakraProvider, extendTheme } from '@chakra-ui/react';
 
 const theme = extendTheme({
     colors: {
@@ -25,6 +25,10 @@ const theme = extendTheme({
 });
 
 const AccompagnementSurMesure: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+    const handleClose = () => {
+        onClose();
+    };
+
     return (
         <ChakraProvider theme={theme}>
             <Box
@@ -51,7 +55,7 @@ const AccompagnementSurMesure: React.FC<{ onClose: () => void }> = ({ onClose })
                         </InputGroup>
                     </HStack>
                     <HStack spacing={4} width="100%" justify="center">
-                        <Button variant="outline" size="lg" colorScheme="blue" flex="1" whiteSpace="normal" px={4}>
+                        <Button variant="outline" size="lg" colorScheme="blue" flex="1" whiteSpace="normal" px={4} onClick={handleClose}>
                             Continuer en autonomie
                         </Button>
                         <Button size="lg" colorScheme="blue" flex="1" whiteSpace="normal" px={4}>
