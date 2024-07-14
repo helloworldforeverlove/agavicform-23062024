@@ -72,10 +72,15 @@ const MontantCreditImmobilierMensuel: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const formatNumberWithSpaces = (num: number): string => {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    };
+
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = parseInt(event.target.value, 10);
-        if (!isNaN(value) && value >= 0) {
-            setCredit(value);
+        const value = event.target.value.replace(/\s+/g, '');
+        const parsedValue = parseInt(value, 10);
+        if (!isNaN(parsedValue) && parsedValue >= 0) {
+            setCredit(parsedValue);
             setIsInvalidInput(false);
         } else {
             setCredit(null);
@@ -111,9 +116,9 @@ const MontantCreditImmobilierMensuel: React.FC = () => {
                 <Box justifyContent="center" mb={6} maxWidth={400} mx="auto">
                     <InputGroup size="lg" width="auto">
                         <Input
-                            type="number"
+                            type="text"
                             min={0}
-                            value={credit !== null ? credit : ''}
+                            value={credit !== null ? formatNumberWithSpaces(credit) : ''}
                             onChange={handleInputChange}
                             placeholder="Entrez une valeur"
                             size="lg"
@@ -148,7 +153,7 @@ const MontantCreditImmobilierMensuel: React.FC = () => {
                 {credit !== null && (
                     <Box borderWidth="1px" borderRadius="md" p={4} mt={4} textAlign="center" borderColor="yellow.400">
                         <Text fontSize="2xl" color="yellow.500">
-                            {credit} € / mois
+                            {formatNumberWithSpaces(credit)} € / mois
                         </Text>
                     </Box>
                 )}
