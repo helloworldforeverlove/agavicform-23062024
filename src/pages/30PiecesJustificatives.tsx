@@ -587,6 +587,10 @@ const PiecesJustificatives: React.FC = () => {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     };
 
+    const formatIbanWithSpaces = (iban: string): string => {
+        return iban.replace(/(.{4})(?!$)/g, '$1 ');
+    };
+
     const [formValues, setFormValues] = useState({
         step51: '',
         step52: '',
@@ -1226,13 +1230,13 @@ const PiecesJustificatives: React.FC = () => {
             </Modal>
 
             <Box p={5} maxW="1000px" mx="auto">
-                <Section title="SAISIE DE VOS COORDONNÉES BANCAIRES">
+            <Section title="SAISIE DE VOS COORDONNÉES BANCAIRES">
                     <FormControl id="iban">
                         <FormLabel textAlign="center">Votre IBAN</FormLabel>
                         <Input
                             type="text"
-                            value={formValues.step51}
-                            onChange={(e) => setFormValues({ ...formValues, step51: e.target.value })}
+                            value={formValues.step51 ? formatIbanWithSpaces(formValues.step51) : ''}
+                            onChange={(e) => setFormValues({ ...formValues, step51: e.target.value.replace(/\s+/g, '') })}
                             textAlign="center"
                             borderColor={formValues.step51 ? 'yellow.400' : 'gray.200'}
                             _hover={{ borderColor: formValues.step51 ? 'yellow.500' : 'gray.300' }}
