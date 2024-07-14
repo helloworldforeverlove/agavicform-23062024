@@ -1241,6 +1241,7 @@ const PiecesJustificatives: React.FC = () => {
                             borderColor={formValues.step51 ? 'yellow.400' : 'gray.200'}
                             _hover={{ borderColor: formValues.step51 ? 'yellow.500' : 'gray.300' }}
                             color={formValues.step51 ? 'yellow.500' : 'inherit'}
+                            maxLength={30} // Assuming the max length for IBANs in general (34 characters)
                         />
                     </FormControl>
                 </Section>
