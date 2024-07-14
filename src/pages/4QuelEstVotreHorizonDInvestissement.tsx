@@ -87,7 +87,7 @@ const QuelEstVotreHorizonDInvestissement: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={4} totalSubSteps={24} title="Parlons de votre projet" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={4} totalSubSteps={25} title="Parlons de votre projet" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Dans combien de temps souhaitez-vous profiter de cet investissement ?

@@ -76,7 +76,7 @@ const RevenusAnnuels: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={8} totalSubSteps={24} title="Quels sont les revenus annuels bruts de votre foyer ?" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={8} totalSubSteps={25} title="Quels sont les revenus annuels bruts de votre foyer ?" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Quels sont les revenus annuels bruts de votre foyer ?

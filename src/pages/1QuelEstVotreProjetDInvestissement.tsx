@@ -81,7 +81,7 @@ const QuelEstVotreProjetDInvestissement: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={1} totalSubSteps={24} title="Parlons de votre projet" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={1} totalSubSteps={25} title="Parlons de votre projet" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">Quel est votre projet d’investissement ?</Text>
                 <SimpleGrid columns={[1, 2]} spacing={5}>

@@ -82,7 +82,7 @@ const PerceptionGainRisque: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={17} totalSubSteps={24} title='"Une perspective de gain élevé implique un risque de perte en capital fort"' />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={17} totalSubSteps={25} title='"Une perspective de gain élevé implique un risque de perte en capital fort"' />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     "Une perspective de gain élevé implique un risque de perte en capital fort"

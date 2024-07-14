@@ -94,7 +94,7 @@ const MontantPatrimoineFinancier: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={12} totalSubSteps={24} title="Quel est le montant estimé de votre patrimoine financier ?" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={12} totalSubSteps={25} title="Quel est le montant estimé de votre patrimoine financier ?" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Quel est le montant estimé de votre patrimoine financier ?

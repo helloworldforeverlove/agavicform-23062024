@@ -79,7 +79,7 @@ const PertePlacements: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={20} totalSubSteps={24} title="Avez-vous déjà subi des pertes sur vos placements financiers ?" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={20} totalSubSteps={25} title="Avez-vous déjà subi des pertes sur vos placements financiers ?" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Avez-vous déjà subi des pertes sur vos placements financiers ?

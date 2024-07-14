@@ -79,7 +79,7 @@ const RapportGainsPertes: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={21} totalSubSteps={24} title="Quel rapport gains / pertes êtes-vous prêt à accepter en investissant 10 000 € sur 5 ans ?" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={21} totalSubSteps={25} title="Quel rapport gains / pertes êtes-vous prêt à accepter en investissant 10 000 € sur 5 ans ?" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Quel rapport gains / pertes êtes-vous prêt à accepter en investissant 10 000 € sur 5 ans ?

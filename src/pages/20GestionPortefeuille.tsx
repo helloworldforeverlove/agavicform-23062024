@@ -82,7 +82,7 @@ const GestionPortefeuille: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={19} totalSubSteps={24} title='"En déléguant la gestion de mon portefeuille à une société de gestion, je renonce à prendre moi-même les décisions d’investissement sur celui-ci"' />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={19} totalSubSteps={25} title='"En déléguant la gestion de mon portefeuille à une société de gestion, je renonce à prendre moi-même les décisions d’investissement sur celui-ci"' />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     "En déléguant la gestion de mon portefeuille à une société de gestion, je renonce à prendre moi-même les décisions d’investissement sur celui-ci"

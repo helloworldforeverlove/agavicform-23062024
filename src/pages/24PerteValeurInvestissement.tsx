@@ -80,7 +80,7 @@ const PerteValeurInvestissement: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={23} totalSubSteps={24} title="Si votre investissement perd 10% de sa valeur en 3 mois. Que faites-vous ?" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={23} totalSubSteps={25} title="Si votre investissement perd 10% de sa valeur en 3 mois. Que faites-vous ?" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Si votre investissement perd 10% de sa valeur en 3 mois. Que faites-vous ?

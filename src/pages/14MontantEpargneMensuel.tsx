@@ -81,7 +81,7 @@ const MontantEpargneMensuel: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={13} totalSubSteps={24} title="Combien arrivez-vous à mettre de côté en fin de mois ?" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={13} totalSubSteps={25} title="Combien arrivez-vous à mettre de côté en fin de mois ?" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Combien arrivez-vous à mettre de côté en fin de mois ?

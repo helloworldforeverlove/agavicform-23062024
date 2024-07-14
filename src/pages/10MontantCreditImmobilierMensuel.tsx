@@ -103,7 +103,7 @@ const MontantCreditImmobilierMensuel: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={10} totalSubSteps={24} title="Combien remboursez-vous chaque mois pour votre crédit immobilier ?" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={10} totalSubSteps={25} title="Combien remboursez-vous chaque mois pour votre crédit immobilier ?" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Combien remboursez-vous chaque mois pour votre crédit immobilier ?

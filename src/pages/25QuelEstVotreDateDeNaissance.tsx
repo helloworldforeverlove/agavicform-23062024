@@ -109,7 +109,7 @@ const QuelEstVotreDateDeNaissance: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={24} totalSubSteps={24} title="Parlons de votre projet" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={24} totalSubSteps={25} title="Parlons de votre projet" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
                     Quelle est votre date de naissance ?
