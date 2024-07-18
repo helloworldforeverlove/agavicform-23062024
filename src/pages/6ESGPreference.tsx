@@ -57,8 +57,10 @@ const ESGPreference: React.FC = () => {
         fetchResponse();
     }, [getResponse]);
 
-    const handleSelect = (value: string) => {
+    const handleSelect = async (value: string) => {
         setEsgPreference(value);
+        await updateResponse(7, value);
+        navigate('/nombre-enfants-a-charge');
     };
 
     const handleNext = async () => {
