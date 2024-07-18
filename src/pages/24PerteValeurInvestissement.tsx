@@ -65,14 +65,16 @@ const PerteValeurInvestissement: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleSelect = (value: string) => {
+    const handleSelect = async (value: string) => {
         setSelectedOption(value);
+        await updateResponse(24, value);
+        navigate('/quel-est-votre-date-de-naissance');
     };
 
     const handleNext = async () => {
         if (selectedOption !== undefined) {
             await updateResponse(24, selectedOption);
-            navigate('/quel-est-votre-date-de-naissance'); // Replace with the appropriate next route
+            navigate('/quel-est-votre-date-de-naissance');
         } else {
             setIsAlertOpen(true);
         }

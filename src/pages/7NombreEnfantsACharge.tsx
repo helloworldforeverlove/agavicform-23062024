@@ -58,14 +58,16 @@ const NombreEnfantsACharge: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleSelect = (value: string) => {
+    const handleSelect = async (value: string) => {
         setSelectedOption(value);
+        await updateResponse(8, value);
+        navigate('/revenus-annuels');
     };
 
     const handleNext = async () => {
         if (selectedOption !== undefined) {
             await updateResponse(8, selectedOption);
-            navigate('/revenus-annuels'); // Replace '/revenus-annuels' with the appropriate next route
+            navigate('/revenus-annuels');
         } else {
             setIsAlertOpen(true);
         }

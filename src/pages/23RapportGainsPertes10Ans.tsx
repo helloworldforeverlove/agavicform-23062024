@@ -64,8 +64,10 @@ const RapportGainsPertes10Ans: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleSelect = (value: string) => {
+    const handleSelect = async (value: string) => {
         setSelectedOption(value);
+        await updateResponse(23, value);
+        navigate('/perte-valeur-investissement');
     };
 
     const handleNext = async () => {

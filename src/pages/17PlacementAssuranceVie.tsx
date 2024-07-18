@@ -65,14 +65,18 @@ const PlacementAssuranceVie: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleSelect = (value: string) => {
+    const handleSelect = async (value: string) => {
         setSelectedOption(value);
+        await updateResponse(17, value);
+        setTimeout(() => {
+            navigate('/perception-gain-risque');
+        }, 5000); // Delay navigation by 5 seconds
     };
 
     const handleNext = async () => {
         if (selectedOption !== undefined) {
             await updateResponse(17, selectedOption);
-            navigate('/perception-gain-risque');
+                navigate('/perception-gain-risque');
         } else {
             setIsAlertOpen(true);
         }

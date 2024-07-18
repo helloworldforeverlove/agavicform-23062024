@@ -1,4 +1,3 @@
-// src/pages/MontantEpargneMensuel.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import {
     ChakraProvider,
@@ -66,8 +65,10 @@ const MontantEpargneMensuel: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleSelect = (value: string) => {
+    const handleSelect = async (value: string) => {
         setSelectedOption(value);
+        await updateResponse(14, value);
+        navigate('/besoin-epargne');
     };
 
     const handleNext = async () => {

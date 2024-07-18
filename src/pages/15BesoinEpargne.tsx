@@ -64,8 +64,10 @@ const BesoinEpargne: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleSelect = (value: string) => {
+    const handleSelect = async (value: string) => {
         setSelectedOption(value);
+        await updateResponse(15, value);
+        navigate('/besoin-investissement');
     };
 
     const handleNext = async () => {

@@ -1,4 +1,3 @@
-// src/pages/ResidencePrincipale.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import {
     ChakraProvider,
@@ -58,6 +57,16 @@ const ResidencePrincipale: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const handleSelect = async (value: string) => {
+        setResidenceStatus(value);
+        await updateResponse(10, value);
+        if (value === 'oui') {
+            navigate('/montant-credit-immobilier-mensuel');
+        } else {
+            navigate('/montant-loyer-mensuel');
+        }
+    };
+
     const handleNext = async () => {
         if (residenceStatus !== undefined) {
             await updateResponse(10, residenceStatus);
@@ -83,7 +92,7 @@ const ResidencePrincipale: React.FC = () => {
                         variant="outline"
                         colorScheme={residenceStatus === 'oui' ? 'yellow' : 'gray'}
                         borderColor={residenceStatus === 'oui' ? 'yellow.400' : 'gray.200'}
-                        onClick={() => setResidenceStatus('oui')}
+                        onClick={() => handleSelect('oui')}
                         px={10}
                         py={6}
                         size="xxl"
@@ -95,7 +104,7 @@ const ResidencePrincipale: React.FC = () => {
                         variant="outline"
                         colorScheme={residenceStatus === 'non' ? 'yellow' : 'gray'}
                         borderColor={residenceStatus === 'non' ? 'yellow.400' : 'gray.200'}
-                        onClick={() => setResidenceStatus('non')}
+                        onClick={() => handleSelect('non')}
                         px={10}
                         py={6}
                         size="xxl"

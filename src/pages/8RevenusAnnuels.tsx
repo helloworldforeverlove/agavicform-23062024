@@ -1,4 +1,3 @@
-// src/pages/RevenusAnnuels.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import {
     ChakraProvider,
@@ -61,8 +60,10 @@ const RevenusAnnuels: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleSelect = (value: string) => {
+    const handleSelect = async (value: string) => {
         setSelectedOption(value);
+        await updateResponse(9, value);
+        navigate('/residence-principale');
     };
 
     const handleNext = async () => {

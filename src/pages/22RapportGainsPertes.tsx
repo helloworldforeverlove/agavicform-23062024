@@ -64,8 +64,10 @@ const RapportGainsPertes: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleSelect = (value: string) => {
+    const handleSelect = async (value: string) => {
         setSelectedOption(value);
+        await updateResponse(22, value);
+        navigate('/rapport-gains-pertes-10-ans');
     };
 
     const handleNext = async () => {

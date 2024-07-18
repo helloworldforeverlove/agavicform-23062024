@@ -64,8 +64,10 @@ const BesoinInvestissement: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleSelect = (value: string) => {
+    const handleSelect = async (value: string) => {
         setSelectedOption(value);
+        await updateResponse(16, value);
+        navigate('/placement-assurance-vie');
     };
 
     const handleNext = async () => {
