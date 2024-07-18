@@ -54,8 +54,10 @@ const QuelMontantSouhaitezVousPlacer: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleSelect = (amount: number) => {
+    const handleSelect = async (amount: number) => {
         setSelectedAmount(amount);
+        await updateResponse(2, amount.toString());
+        navigate('/quel-montant-regulier-souhaitez-vous-placer');
     };
 
     const handleNext = async () => {

@@ -1,4 +1,3 @@
-// src/pages/EtesVousResidentFiscalFrancais.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import {
     ChakraProvider,
@@ -51,8 +50,10 @@ const EtesVousResidentFiscalFrancais: React.FC = () => {
         fetchResponse();
     }, [getResponse]);
 
-    const handleSelect = (value: string) => {
+    const handleSelect = async (value: string) => {
         setResidentFiscal(value);
+        await updateResponse(6, value);
+        navigate('/esg-preference');
     };
 
     const handleNext = async () => {

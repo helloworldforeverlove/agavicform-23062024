@@ -1,4 +1,3 @@
-// src/pages/QuelMontantRegulierSouhaitezVousPlacer.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import {
     ChakraProvider,
@@ -56,8 +55,10 @@ const QuelMontantRegulierSouhaitezVousPlacer: React.FC = () => {
         fetchResponse();
     }, [getResponse]);
 
-    const handleSelect = (amount: number) => {
+    const handleSelect = async (amount: number) => {
         setSelectedAmount(amount);
+        await updateResponse(3, amount.toString());
+        navigate('/quel-est-votre-horizon-d-investissement');
     };
 
     const handleNext = async () => {
