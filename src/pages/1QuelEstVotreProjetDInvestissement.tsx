@@ -56,8 +56,10 @@ const QuelEstVotreProjetDInvestissement: React.FC = () => {
     const onClose = () => setIsAlertOpen(false);
     const cancelRef = useRef<HTMLButtonElement>(null);
 
-    const handleSelect = (option: string) => {
+    const handleSelect = async (option: string) => {
         setSelected(option);
+        await updateResponse(1, option);
+        navigate('/quel-montant-souhaitez-vous-placer');
     };
 
     const handleNext = async () => {
