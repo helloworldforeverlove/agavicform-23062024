@@ -19,6 +19,7 @@ import {
     InputProps,
     SelectProps,
     FormControl,
+    SimpleGrid, 
 } from '@chakra-ui/react';
 import { WarningIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
@@ -219,83 +220,87 @@ const InvestorProfileForm: React.FC = () => {
                 </Text>
                 <form onSubmit={handleSubmit}>
                     <VStack spacing={4} align="stretch">
-                        <Box>
-                            <Text fontSize="md" mb={2}>Civilité</Text>
-                            <HStack justifyContent="center" mb={6}>
-                                <Button
-                                    type="button"
-                                    variant="outline"
-                                    size="lg"
-                                    colorScheme={formData.civilite === 'Monsieur' ? 'yellow' : 'gray'}
-                                    onClick={() => setFormData({ ...formData, civilite: 'Monsieur' })}
-                                    px={10}
-                                    py={6}
-                                    textAlign="center"
-                                    _hover={{ bg: 'gray.200' }}
-                                    borderColor={formData.civilite === 'Monsieur' ? 'yellow.400' : 'gray.200'}
-                                >
-                                    Monsieur
-                                </Button>
-                                <Button
-                                    type="button"
-                                    variant="outline"
-                                    size="lg"
-                                    colorScheme={formData.civilite === 'Madame' ? 'yellow' : 'gray'}
-                                    onClick={() => setFormData({ ...formData, civilite: 'Madame' })}
-                                    px={10}
-                                    py={6}
-                                    textAlign="center"
-                                    _hover={{ bg: 'gray.200' }}
-                                    borderColor={formData.civilite === 'Madame' ? 'yellow.400' : 'gray.200'}
-                                >
-                                    Madame
-                                </Button>
-                            </HStack>
-                        </Box>
+                        <SimpleGrid columns={{ sm: 1, md: 3 }} spacing={4}>
+                            <FormControl isInvalid={errors.civilite}>
+                                <Text fontSize="md" mb={2}>Civilité</Text>
+                                <HStack>
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="lg"
+                                        colorScheme={formData.civilite === 'Monsieur' ? 'yellow' : 'gray'}
+                                        onClick={() => setFormData({ ...formData, civilite: 'Monsieur' })}
+                                        px={10}
+                                        py={6}
+                                        textAlign="center"
+                                        _hover={{ bg: 'gray.200' }}
+                                        borderColor={formData.civilite === 'Monsieur' ? 'yellow.400' : 'gray.200'}
+                                    >
+                                        Monsieur
+                                    </Button>
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="lg"
+                                        colorScheme={formData.civilite === 'Madame' ? 'yellow' : 'gray'}
+                                        onClick={() => setFormData({ ...formData, civilite: 'Madame' })}
+                                        px={10}
+                                        py={6}
+                                        textAlign="center"
+                                        _hover={{ bg: 'gray.200' }}
+                                        borderColor={formData.civilite === 'Madame' ? 'yellow.400' : 'gray.200'}
+                                    >
+                                        Madame
+                                    </Button>
+                                </HStack>
+                            </FormControl>
 
-                        <FormControl isInvalid={errors.lastName}>
-                            <Text fontSize="md" mb={2}>Nom</Text>
-                            <CustomInput
-                                type="text"
-                                name="lastName"
-                                value={formData.lastName}
-                                onChange={handleChange}
-                                style={{ marginBottom: 16 }}
-                            />
-                        </FormControl>
+                            <FormControl isInvalid={errors.lastName}>
+                                <Text fontSize="md" mb={2}>Nom</Text>
+                                <CustomInput
+                                    type="text"
+                                    name="lastName"
+                                    value={formData.lastName}
+                                    onChange={handleChange}
+                                    style={{ marginBottom: 16 }}
+                                />
+                            </FormControl>
 
-                        <FormControl isInvalid={errors.firstName}>
-                            <Text fontSize="md" mb={2}>Prénom</Text>
-                            <CustomInput
-                                type="text"
-                                name="firstName"
-                                value={formData.firstName}
-                                onChange={handleChange}
-                                style={{ marginBottom: 16 }}
-                            />
-                        </FormControl>
+                            <FormControl isInvalid={errors.firstName}>
+                                <Text fontSize="md" mb={2}>Prénom</Text>
+                                <CustomInput
+                                    type="text"
+                                    name="firstName"
+                                    value={formData.firstName}
+                                    onChange={handleChange}
+                                    style={{ marginBottom: 16 }}
+                                />
+                            </FormControl>
+                        </SimpleGrid>
 
-                        <FormControl isInvalid={errors.phone}>
-                            <Text fontSize="md" mb={2}>Téléphone</Text>
-                            <CustomInput
-                                type="text"
-                                name="phone"
-                                value={formData.phone}
-                                onChange={handleChange}
-                                style={{ marginBottom: 16 }}
-                            />
-                        </FormControl>
+                        <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={4}>
+                            <FormControl isInvalid={errors.phone}>
+                                <Text fontSize="md" mb={2}>Téléphone</Text>
+                                <CustomInput
+                                    type="text"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    style={{ marginBottom: 16 }}
+                                />
+                            </FormControl>
 
-                        <FormControl isInvalid={errors.profession}>
-                            <Text fontSize="md" mb={2}>Profession</Text>
-                            <CustomInput
-                                type="text"
-                                name="profession"
-                                value={formData.profession}
-                                onChange={handleChange}
-                                style={{ marginBottom: 16 }}
-                            />
-                        </FormControl>
+                            <FormControl isInvalid={errors.profession}>
+                                <Text fontSize="md" mb={2}>Profession</Text>
+                                <CustomInput
+                                    type="text"
+                                    name="profession"
+                                    value={formData.profession}
+                                    onChange={handleChange}
+                                    style={{ marginBottom: 16 }}
+                                />
+                            </FormControl>
+                        </SimpleGrid>
 
                         <FormControl isInvalid={errors.address}>
                             <Text fontSize="md" mb={2}>Votre adresse</Text>
@@ -308,44 +313,46 @@ const InvestorProfileForm: React.FC = () => {
                             />
                         </FormControl>
 
-                        <FormControl isInvalid={errors.postalCode}>
-                            <Text fontSize="md" mb={2}>Code Postal</Text>
-                            <CustomInput
-                                type="text"
-                                name="postalCode"
-                                value={formData.postalCode}
-                                onChange={handleChange}
-                                style={{ marginBottom: 16 }}
-                            />
-                        </FormControl>
+                        <SimpleGrid columns={{ sm: 1, md: 3 }} spacing={4}>
+                            <FormControl isInvalid={errors.postalCode}>
+                                <Text fontSize="md" mb={2}>Code Postal</Text>
+                                <CustomInput
+                                    type="text"
+                                    name="postalCode"
+                                    value={formData.postalCode}
+                                    onChange={handleChange}
+                                    style={{ marginBottom: 16 }}
+                                />
+                            </FormControl>
 
-                        <FormControl isInvalid={errors.city}>
-                            <Text fontSize="md" mb={2}>Ville</Text>
-                            <CustomInput
-                                type="text"
-                                name="city"
-                                value={formData.city}
-                                onChange={handleChange}
-                                style={{ marginBottom: 16 }}
-                            />
-                        </FormControl>
+                            <FormControl isInvalid={errors.city}>
+                                <Text fontSize="md" mb={2}>Ville</Text>
+                                <CustomInput
+                                    type="text"
+                                    name="city"
+                                    value={formData.city}
+                                    onChange={handleChange}
+                                    style={{ marginBottom: 16 }}
+                                />
+                            </FormControl>
 
-                        <FormControl isInvalid={errors.country}>
-                            <Text fontSize="md" mb={2}>Pays</Text>
-                            <CustomSelect
-                                name="country"
-                                value={formData.country}
-                                onChange={handleChange}
-                                style={{ marginBottom: 16 }}
-                            >
-                                <option value="">Sélectionner</option>
-                                <option value="France">France</option>
-                                <option value="Belgium">Belgique</option>
-                                <option value="Switzerland">Suisse</option>
-                                <option value="Luxembourg">Luxembourg</option>
-                                {/* Add other options as needed */}
-                            </CustomSelect>
-                        </FormControl>
+                            <FormControl isInvalid={errors.country}>
+                                <Text fontSize="md" mb={2}>Pays</Text>
+                                <CustomSelect
+                                    name="country"
+                                    value={formData.country}
+                                    onChange={handleChange}
+                                    style={{ marginBottom: 16 }}
+                                >
+                                    <option value="">Sélectionner</option>
+                                    <option value="France">France</option>
+                                    <option value="Belgium">Belgique</option>
+                                    <option value="Switzerland">Suisse</option>
+                                    <option value="Luxembourg">Luxembourg</option>
+                                    {/* Add other options as needed */}
+                                </CustomSelect>
+                            </FormControl>
+                        </SimpleGrid>
 
                         <Box>
                             <Text fontSize="md" mb={2}>Vous ou un membre de votre famille est une Personne Politiquement exposée?</Text>
