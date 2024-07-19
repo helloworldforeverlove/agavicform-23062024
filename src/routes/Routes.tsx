@@ -34,9 +34,10 @@ import NotificationPreferences from '../pages/27NotificationPreferences';
 import CombinedRiskScoreComponent from '../pages/28CombinedRiskScoreComponent';
 import Recommandation from '../recommandation/Recommandation';
 import InformationsPersonnelles from '../souscription/InformationsPersonnelles/index'; 
-import PiecesJustificatives from '../pages/30PiecesJustificatives'; // Import the new component
+import PiecesJustificatives from '../pages/30PiecesJustificatives'; 
 import InsuranceAgreementForm from '../pages/29InsuranceAgreementForm';
-import ContactInfoForm from '../pages/26ContactInfoForm'; // Import the ContactInfoForm component
+import ContactInfoForm from '../pages/26ContactInfoForm'; 
+import InvestorProfileForm from '../pages/31InvestorProfileForm'; // Import the new component
 
 export const routes = [
   { path: '/', name: 'Home', component: <Home />, hidden: true },
@@ -73,7 +74,8 @@ export const routes = [
   { path: '/informations-personnelles', name: 'InformationsPersonnelles', component: <InformationsPersonnelles />, hidden: true },
   { path: '/pieces-justificatives', name: 'PiecesJustificatives', component: <PiecesJustificatives />, hidden: true },
   { path: '/insurance-agreement', name: 'InsuranceAgreement', component: <InsuranceAgreementForm />, hidden: true },
-  { path: '/email-et-telephone-contact-formulaire', name: 'ContactInfoForm', component: <ContactInfoForm />, hidden: true }, // Add new route here
+  { path: '/email-et-telephone-contact-formulaire', name: 'ContactInfoForm', component: <ContactInfoForm />, hidden: true },
+  { path: '/profil-investisseur', name: 'InvestorProfileForm', component: <InvestorProfileForm />, hidden: true }, // Add new route here
 ];
 
 const Routes: React.FC = () => {
