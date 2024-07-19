@@ -10,6 +10,8 @@ import {
   extendTheme,
   ChakraProvider,
   SimpleGrid,
+  FormControl,
+  FormLabel,
 } from '@chakra-ui/react';
 
 interface Option {
@@ -86,70 +88,85 @@ const InvestorProfileCustom: React.FC = () => {
           Mon profil investisseur personnalisé
         </Heading>
         <VStack spacing={4} align="stretch">
-          <SimpleGrid columns={[1, 1, 3]} spacing={4}>
-            {personalityOptions.map((option) => (
-              <Button
-                key={option.value}
-                variant={selectedOptions.personality === option.value ? 'solid' : 'outline'}
-                colorScheme={selectedOptions.personality === option.value ? 'blue' : 'gray'}
-                onClick={() => handleOptionChange('personality', option.value)}
-              >
-                {option.label}
-              </Button>
-            ))}
-          </SimpleGrid>
-          <SimpleGrid columns={[1, 1, 3]} spacing={4}>
-            {horizonOptions.map((option) => (
-              <Button
-                key={option.value}
-                variant={selectedOptions.investmentHorizon === option.value ? 'solid' : 'outline'}
-                colorScheme={selectedOptions.investmentHorizon === option.value ? 'blue' : 'gray'}
-                onClick={() => handleOptionChange('investmentHorizon', option.value)}
-              >
-                {option.label}
-              </Button>
-            ))}
-          </SimpleGrid>
-          <SimpleGrid columns={[1, 1, 3]} spacing={4}>
-            {investmentAmountOptions.map((option) => (
-              <Button
-                key={option.value}
-                variant={selectedOptions.investmentAmount === option.value ? 'solid' : 'outline'}
-                colorScheme={selectedOptions.investmentAmount === option.value ? 'blue' : 'gray'}
-                onClick={() => handleOptionChange('investmentAmount', option.value)}
-              >
-                {option.label}
-              </Button>
-            ))}
-          </SimpleGrid>
-          <HStack spacing={4} justifyContent="space-between">
-            <Text>En cas de dépense imprévue, je conserve mon placement</Text>
+          <FormControl>
+            <FormLabel>Je me considère plutôt *</FormLabel>
+            <SimpleGrid columns={[1, 3]} spacing={4}>
+              {personalityOptions.map((option) => (
+                <Button
+                  key={option.value}
+                  variant={selectedOptions.personality === option.value ? 'solid' : 'outline'}
+                  colorScheme={selectedOptions.personality === option.value ? 'blue' : 'gray'}
+                  onClick={() => handleOptionChange('personality', option.value)}
+                >
+                  {option.label}
+                </Button>
+              ))}
+            </SimpleGrid>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Mon horizon d'investissement s'établit *</FormLabel>
+            <SimpleGrid columns={[1, 3]} spacing={4}>
+              {horizonOptions.map((option) => (
+                <Button
+                  key={option.value}
+                  variant={selectedOptions.investmentHorizon === option.value ? 'solid' : 'outline'}
+                  colorScheme={selectedOptions.investmentHorizon === option.value ? 'blue' : 'gray'}
+                  onClick={() => handleOptionChange('investmentHorizon', option.value)}
+                >
+                  {option.label}
+                </Button>
+              ))}
+            </SimpleGrid>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Ce placement représenterait *</FormLabel>
+            <SimpleGrid columns={[1, 3]} spacing={4}>
+              {investmentAmountOptions.map((option) => (
+                <Button
+                  key={option.value}
+                  variant={selectedOptions.investmentAmount === option.value ? 'solid' : 'outline'}
+                  colorScheme={selectedOptions.investmentAmount === option.value ? 'blue' : 'gray'}
+                  onClick={() => handleOptionChange('investmentAmount', option.value)}
+                >
+                  {option.label}
+                </Button>
+              ))}
+            </SimpleGrid>
+          </FormControl>
+          <FormControl display="flex" alignItems="center" justifyContent="space-between">
+            <FormLabel>En cas de dépense imprévue, je conserve mon placement</FormLabel>
             <Switch isChecked={selectedOptions.retainInvestment} onChange={handleSwitchChange} />
-          </HStack>
-          <SimpleGrid columns={[1, 1, 3]} spacing={4}>
-            {incomeStabilityOptions.map((option) => (
-              <Button
-                key={option.value}
-                variant={selectedOptions.incomeStability === option.value ? 'solid' : 'outline'}
-                colorScheme={selectedOptions.incomeStability === option.value ? 'blue' : 'gray'}
-                onClick={() => handleOptionChange('incomeStability', option.value)}
-              >
-                {option.label}
-              </Button>
-            ))}
-          </SimpleGrid>
-          <SimpleGrid columns={[1, 1, 3]} spacing={4}>
-            {trackingFrequencyOptions.map((option) => (
-              <Button
-                key={option.value}
-                variant={selectedOptions.trackingFrequency === option.value ? 'solid' : 'outline'}
-                colorScheme={selectedOptions.trackingFrequency === option.value ? 'blue' : 'gray'}
-                onClick={() => handleOptionChange('trackingFrequency', option.value)}
-              >
-                {option.label}
-              </Button>
-            ))}
-          </SimpleGrid>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Dans les trois prochaines années, comment vos revenus vont-ils se comporter ? *</FormLabel>
+            <SimpleGrid columns={[1, 4]} spacing={4}>
+              {incomeStabilityOptions.map((option) => (
+                <Button
+                  key={option.value}
+                  variant={selectedOptions.incomeStability === option.value ? 'solid' : 'outline'}
+                  colorScheme={selectedOptions.incomeStability === option.value ? 'blue' : 'gray'}
+                  onClick={() => handleOptionChange('incomeStability', option.value)}
+                >
+                  {option.label}
+                </Button>
+              ))}
+            </SimpleGrid>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Vous suivez vos placements selon quelle fréquence ? *</FormLabel>
+            <SimpleGrid columns={[1, 4]} spacing={4}>
+              {trackingFrequencyOptions.map((option) => (
+                <Button
+                  key={option.value}
+                  variant={selectedOptions.trackingFrequency === option.value ? 'solid' : 'outline'}
+                  colorScheme={selectedOptions.trackingFrequency === option.value ? 'blue' : 'gray'}
+                  onClick={() => handleOptionChange('trackingFrequency', option.value)}
+                >
+                  {option.label}
+                </Button>
+              ))}
+            </SimpleGrid>
+          </FormControl>
         </VStack>
       </Box>
     </ChakraProvider>
