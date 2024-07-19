@@ -132,6 +132,9 @@ const InvestorProfileSelector: React.FC = () => {
   const handleSelect = async (option: string) => {
     setSelectedProfile(option);
     await updateResponse(90, option); // Save the response for step 90
+    setTimeout(() => {
+      navigate('/next-step'); // Replace with the actual next step route
+    }, 5000); // Delay navigation by 5 seconds
   };
 
   const handleNext = async () => {
