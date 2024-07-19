@@ -233,7 +233,7 @@ const InvestorProfileForm: React.FC = () => {
             await updateResponse(89, formData.isUSPerson);
 
             // Navigate to the next step
-            navigate('/next-step'); // Replace with the actual next step
+            navigate('/profil-investisseur-selector'); // Replace with the actual next step
         } else {
             setIsAlertOpen(true);
         }
