@@ -19,12 +19,9 @@ import {
     InputProps,
     SelectProps,
     FormControl,
-    Alert,
-    AlertIcon,
-    AlertDescription,
 } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
 import { WarningIcon } from '@chakra-ui/icons';
+import { useNavigate } from 'react-router-dom';
 import { useUuid } from './../context/UuidContext';
 
 const theme = extendTheme({
@@ -131,7 +128,7 @@ const InvestorProfileForm: React.FC = () => {
     const onClose = () => setIsAlertOpen(false);
     const cancelRef = useRef<HTMLButtonElement>(null);
     const navigate = useNavigate();
-    const { uuid, updateResponse, getResponse } = useUuid();
+    const { updateResponse, getResponse } = useUuid();
 
     useEffect(() => {
         const fetchResponse = async () => {
@@ -442,18 +439,15 @@ const InvestorProfileForm: React.FC = () => {
                     </VStack>
                 </form>
 
-                <AlertDialog
-                    isOpen={isAlertOpen}
-                    leastDestructiveRef={cancelRef}
-                    onClose={onClose}
-                >
+                <AlertDialog isOpen={isAlertOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
                     <AlertDialogOverlay>
                         <AlertDialogContent>
                             <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                                <WarningIcon color="orange" mr={2} />
                                 Sélection requise
                             </AlertDialogHeader>
                             <AlertDialogBody>
-                                Veuillez remplir tous les champs avant de continuer.
+                                Veuillez remplir tous les champs avant de continuer. 😊
                             </AlertDialogBody>
                             <AlertDialogFooter>
                                 <Button ref={cancelRef} onClick={onClose}>
