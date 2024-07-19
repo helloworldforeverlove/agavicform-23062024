@@ -31,12 +31,16 @@ const ProfileCard: React.FC<ProfileOption> = ({
 
   return (
     <Box
+      as="button"
+      onClick={onSelect}
       border="1px"
       borderColor={isSelected ? selectedBorderColor : borderColor}
       borderRadius="md"
       p={4}
       bg={isSelected ? selectedBgColor : 'white'}
       textAlign="center"
+      _hover={{ bg: useColorModeValue('gray.50', 'gray.800') }}
+      _focus={{ boxShadow: 'outline' }}
     >
       <Heading size="md" mb={2}>
         {title}
