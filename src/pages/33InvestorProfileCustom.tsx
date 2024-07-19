@@ -3,9 +3,7 @@ import {
   Box,
   Button,
   Heading,
-  Text,
   VStack,
-  HStack,
   Switch,
   extendTheme,
   ChakraProvider,
@@ -27,6 +25,14 @@ const theme = extendTheme({
     gray: {
       200: '#EDF2F7',
       500: '#718096',
+    },
+  },
+  components: {
+    Button: {
+      baseStyle: {
+        whiteSpace: 'normal',
+        wordWrap: 'break-word',
+      },
     },
   },
 });
@@ -90,7 +96,7 @@ const InvestorProfileCustom: React.FC = () => {
         <VStack spacing={4} align="stretch">
           <FormControl>
             <FormLabel>Je me considère plutôt *</FormLabel>
-            <SimpleGrid columns={[1, 3]} spacing={4}>
+            <SimpleGrid columns={[1, 1, 3]} spacing={4}>
               {personalityOptions.map((option) => (
                 <Button
                   key={option.value}
@@ -105,7 +111,7 @@ const InvestorProfileCustom: React.FC = () => {
           </FormControl>
           <FormControl>
             <FormLabel>Mon horizon d'investissement s'établit *</FormLabel>
-            <SimpleGrid columns={[1, 3]} spacing={4}>
+            <SimpleGrid columns={[1, 1, 3]} spacing={4}>
               {horizonOptions.map((option) => (
                 <Button
                   key={option.value}
@@ -120,7 +126,7 @@ const InvestorProfileCustom: React.FC = () => {
           </FormControl>
           <FormControl>
             <FormLabel>Ce placement représenterait *</FormLabel>
-            <SimpleGrid columns={[1, 3]} spacing={4}>
+            <SimpleGrid columns={[1, 1, 3]} spacing={4}>
               {investmentAmountOptions.map((option) => (
                 <Button
                   key={option.value}
@@ -139,7 +145,7 @@ const InvestorProfileCustom: React.FC = () => {
           </FormControl>
           <FormControl>
             <FormLabel>Dans les trois prochaines années, comment vos revenus vont-ils se comporter ? *</FormLabel>
-            <SimpleGrid columns={[1, 4]} spacing={4}>
+            <SimpleGrid columns={[1, 1, 2]} spacing={4}>
               {incomeStabilityOptions.map((option) => (
                 <Button
                   key={option.value}
