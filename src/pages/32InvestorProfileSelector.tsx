@@ -133,14 +133,14 @@ const InvestorProfileSelector: React.FC = () => {
     setSelectedProfile(option);
     await updateResponse(90, option); // Save the response for step 90
     setTimeout(() => {
-      navigate('/next-step'); // Replace with the actual next step route
+      navigate('/profil-investisseur-custom'); // Replace with the actual next step route
     }, 5000); // Delay navigation by 5 seconds
   };
 
   const handleNext = async () => {
     if (selectedProfile) {
       await updateResponse(90, selectedProfile);
-      navigate('/next-step'); // Replace with the actual next step route
+      navigate('/profil-investisseur-custom'); // Replace with the actual next step route
     } else {
       setIsAlertOpen(true);
     }
