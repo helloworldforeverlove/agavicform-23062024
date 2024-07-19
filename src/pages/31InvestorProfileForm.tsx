@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     ChakraProvider,
     extendTheme,
@@ -15,10 +15,17 @@ import {
     Input,
     Select,
     HStack,
-    FormControl,
+    useStyleConfig,
     InputProps,
     SelectProps,
+    FormControl,
+    Alert,
+    AlertIcon,
+    AlertDescription,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
+import { WarningIcon } from '@chakra-ui/icons';
+import { useUuid } from './../context/UuidContext';
 
 const theme = extendTheme({
     colors: {
@@ -53,35 +60,47 @@ const theme = extendTheme({
     },
 });
 
-interface FormData {
-    civility: string;
-    lastName: string;
-    firstName: string;
-    phone: string;
-    profession: string;
-    address: string;
-    postalCode: string;
-    city: string;
-    country: string;
-    isPoliticallyExposed: string;
-    isUSPerson: string;
-}
-
 const CustomInput: React.FC<InputProps> = (props) => {
+    const styles = useStyleConfig("CustomInput");
+    const filledStyles = props.value ? {
+        borderColor: 'yellow.500',
+        color: 'yellow.500',
+        boxShadow: '0 0 0 1px yellow.500',
+    } : {};
+
     return (
-        <Input {...props} />
+        <Input
+            sx={{
+                ...styles,
+                ...filledStyles,
+            }}
+            {...props}
+        />
     );
 };
 
 const CustomSelect: React.FC<SelectProps> = (props) => {
+    const styles = useStyleConfig("CustomInput");
+    const filledStyles = props.value ? {
+        borderColor: 'yellow.500',
+        color: 'yellow.500',
+        boxShadow: '0 0 0 1px yellow.500',
+    } : {};
+
     return (
-        <Select {...props} />
+        <Select
+            sx={{
+                ...styles,
+                ...filledStyles,
+            }}
+            {...props}
+        />
     );
 };
 
 const InvestorProfileForm: React.FC = () => {
-    const [formData, setFormData] = useState<FormData>({
-        civility: 'Monsieur',
+    const [formData, setFormData] = useState({
+        civilite: 'Monsieur',
         lastName: '',
         firstName: '',
         phone: '',
@@ -95,7 +114,7 @@ const InvestorProfileForm: React.FC = () => {
     });
 
     const [errors, setErrors] = useState({
-        civility: false,
+        civilite: false,
         lastName: false,
         firstName: false,
         phone: false,
@@ -109,7 +128,42 @@ const InvestorProfileForm: React.FC = () => {
     });
 
     const [isAlertOpen, setIsAlertOpen] = useState(false);
+    const onClose = () => setIsAlertOpen(false);
     const cancelRef = useRef<HTMLButtonElement>(null);
+    const navigate = useNavigate();
+    const { uuid, updateResponse, getResponse } = useUuid();
+
+    useEffect(() => {
+        const fetchResponse = async () => {
+            const civilite = await getResponse(79);
+            const lastName = await getResponse(80);
+            const firstName = await getResponse(81);
+            const phone = await getResponse(82);
+            const profession = await getResponse(83);
+            const address = await getResponse(84);
+            const postalCode = await getResponse(85);
+            const city = await getResponse(86);
+            const country = await getResponse(87);
+            const isPoliticallyExposed = await getResponse(88);
+            const isUSPerson = await getResponse(89);
+
+            setFormData({
+                civilite: civilite || 'Monsieur',
+                lastName: lastName || '',
+                firstName: firstName || '',
+                phone: phone || '',
+                profession: profession || '',
+                address: address || '',
+                postalCode: postalCode || '',
+                city: city || '',
+                country: country || '',
+                isPoliticallyExposed: isPoliticallyExposed || 'Non',
+                isUSPerson: isUSPerson || 'Non',
+            });
+        };
+
+        fetchResponse();
+    }, [getResponse]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -121,7 +175,7 @@ const InvestorProfileForm: React.FC = () => {
 
     const validateForm = () => {
         const newErrors = {
-            civility: formData.civility === '',
+            civilite: formData.civilite === '',
             lastName: formData.lastName === '',
             firstName: formData.firstName === '',
             phone: formData.phone === '',
@@ -138,16 +192,27 @@ const InvestorProfileForm: React.FC = () => {
         return !Object.values(newErrors).some((error) => error);
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (validateForm()) {
-            console.log(formData);
+            await updateResponse(79, formData.civilite);
+            await updateResponse(80, formData.lastName);
+            await updateResponse(81, formData.firstName);
+            await updateResponse(82, formData.phone);
+            await updateResponse(83, formData.profession);
+            await updateResponse(84, formData.address);
+            await updateResponse(85, formData.postalCode);
+            await updateResponse(86, formData.city);
+            await updateResponse(87, formData.country);
+            await updateResponse(88, formData.isPoliticallyExposed);
+            await updateResponse(89, formData.isUSPerson);
+
+            // Navigate to the next step
+            navigate('/next-step'); // Replace with the actual next step
         } else {
             setIsAlertOpen(true);
         }
     };
-
-    const onClose = () => setIsAlertOpen(false);
 
     return (
         <ChakraProvider theme={theme}>
@@ -164,13 +229,13 @@ const InvestorProfileForm: React.FC = () => {
                                     type="button"
                                     variant="outline"
                                     size="lg"
-                                    colorScheme={formData.civility === 'Monsieur' ? 'yellow' : 'gray'}
-                                    onClick={() => setFormData({ ...formData, civility: 'Monsieur' })}
+                                    colorScheme={formData.civilite === 'Monsieur' ? 'yellow' : 'gray'}
+                                    onClick={() => setFormData({ ...formData, civilite: 'Monsieur' })}
                                     px={10}
                                     py={6}
                                     textAlign="center"
                                     _hover={{ bg: 'gray.200' }}
-                                    borderColor={formData.civility === 'Monsieur' ? 'yellow.400' : 'gray.200'}
+                                    borderColor={formData.civilite === 'Monsieur' ? 'yellow.400' : 'gray.200'}
                                 >
                                     Monsieur
                                 </Button>
@@ -178,13 +243,13 @@ const InvestorProfileForm: React.FC = () => {
                                     type="button"
                                     variant="outline"
                                     size="lg"
-                                    colorScheme={formData.civility === 'Madame' ? 'yellow' : 'gray'}
-                                    onClick={() => setFormData({ ...formData, civility: 'Madame' })}
+                                    colorScheme={formData.civilite === 'Madame' ? 'yellow' : 'gray'}
+                                    onClick={() => setFormData({ ...formData, civilite: 'Madame' })}
                                     px={10}
                                     py={6}
                                     textAlign="center"
                                     _hover={{ bg: 'gray.200' }}
-                                    borderColor={formData.civility === 'Madame' ? 'yellow.400' : 'gray.200'}
+                                    borderColor={formData.civilite === 'Madame' ? 'yellow.400' : 'gray.200'}
                                 >
                                     Madame
                                 </Button>
@@ -246,29 +311,27 @@ const InvestorProfileForm: React.FC = () => {
                             />
                         </FormControl>
 
-                        <HStack spacing={4} mb={4}>
-                            <FormControl isInvalid={errors.postalCode}>
-                                <Text fontSize="md" mb={2}>Code Postal</Text>
-                                <CustomInput
-                                    type="text"
-                                    name="postalCode"
-                                    value={formData.postalCode}
-                                    onChange={handleChange}
-                                    style={{ marginBottom: 16 }}
-                                />
-                            </FormControl>
+                        <FormControl isInvalid={errors.postalCode}>
+                            <Text fontSize="md" mb={2}>Code Postal</Text>
+                            <CustomInput
+                                type="text"
+                                name="postalCode"
+                                value={formData.postalCode}
+                                onChange={handleChange}
+                                style={{ marginBottom: 16 }}
+                            />
+                        </FormControl>
 
-                            <FormControl isInvalid={errors.city}>
-                                <Text fontSize="md" mb={2}>Ville</Text>
-                                <CustomInput
-                                    type="text"
-                                    name="city"
-                                    value={formData.city}
-                                    onChange={handleChange}
-                                    style={{ marginBottom: 16 }}
-                                />
-                            </FormControl>
-                        </HStack>
+                        <FormControl isInvalid={errors.city}>
+                            <Text fontSize="md" mb={2}>Ville</Text>
+                            <CustomInput
+                                type="text"
+                                name="city"
+                                value={formData.city}
+                                onChange={handleChange}
+                                style={{ marginBottom: 16 }}
+                            />
+                        </FormControl>
 
                         <FormControl isInvalid={errors.country}>
                             <Text fontSize="md" mb={2}>Pays</Text>
