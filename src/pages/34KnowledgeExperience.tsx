@@ -147,7 +147,7 @@ const KnowledgeExperience: React.FC = () => {
       )
     );
     await updateResponse(106, selectedOptions.step106);
-    navigate('/next-step'); // Replace with the actual next step route
+    navigate('/risk-tolerance'); // Replace with the actual next step route
   };
 
   const handleBack = () => {
