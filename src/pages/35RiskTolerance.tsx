@@ -92,7 +92,7 @@ const RiskTolerance: React.FC = () => {
           updateResponse(parseInt(key.replace('step', '')), value)
         )
       );
-      navigate('/next-step'); // Replace with the actual next step route
+      navigate('/investment-curve-selection'); // Replace with the actual next step route
     } else {
       setIsAlertOpen(true);
     }
