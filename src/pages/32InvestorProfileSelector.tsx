@@ -146,6 +146,10 @@ const InvestorProfileSelector: React.FC = () => {
     }
   };
 
+  const handleBack = () => {
+    navigate(-1); // Go back to the previous step
+  };
+
   const onClose = () => setIsAlertOpen(false);
 
   return (
@@ -165,8 +169,13 @@ const InvestorProfileSelector: React.FC = () => {
           plus réaliste de votre profil d'investisseur. Cela vous aide à choisir des placements qui vous conviennent.
           Rappelez-vous qu'un placement qui convient à une personne que vous connaissez ne vous convient pas automatiquement!
         </Text>
-        <Box textAlign="right">
-          <Button colorScheme="yellow" size="xxl" mt={5} px={6} py={6} onClick={handleNext}>Suivant</Button>
+        <Box display="flex" justifyContent="space-between" mt={5}>
+          <Button colorScheme="gray" variant="outline" onClick={handleBack} px={6} py={6} size="lg">
+            Retour
+          </Button>
+          <Button colorScheme="yellow" size="xxl" onClick={handleNext} px={6} py={6}>
+            Suivant
+          </Button>
         </Box>
       </Box>
 
