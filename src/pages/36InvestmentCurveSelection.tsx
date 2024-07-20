@@ -101,6 +101,8 @@ const InvestmentCurveSelection: React.FC = () => {
                   borderColor={selectedCurve === option.value ? 'blue.500' : 'gray.200'}
                   boxShadow={selectedCurve === option.value ? '0 0 10px rgba(0, 0, 255, 0.5)' : 'none'}
                   transition="all 0.2s"
+                  onClick={() => handleOptionChange(option.value)}
+                  cursor="pointer"
                 >
                   <Box p={4} textAlign="center">
                     <Text fontWeight="bold" mb={2} color={selectedCurve === option.value ? 'blue.500' : 'gray.500'}>
@@ -143,7 +145,6 @@ const InvestmentCurveSelection: React.FC = () => {
                       width="100%"
                       variant={selectedCurve === option.value ? 'solid' : 'outline'}
                       colorScheme={selectedCurve === option.value ? 'blue' : 'gray'}
-                      onClick={() => handleOptionChange(option.value)}
                     >
                       Je choisis
                     </Button>
