@@ -79,7 +79,7 @@ const InvestorProfileCustom: React.FC = () => {
         investmentAmount: investmentAmount || '',
         incomeStability: incomeStability || '',
         trackingFrequency: trackingFrequency || '',
-        retainInvestment: retainInvestment === 'true' || retainInvestment === true,
+        retainInvestment: retainInvestment === 'true' || retainInvestment === '1',
       });
       setLoading(false);
     };
