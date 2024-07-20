@@ -8,16 +8,19 @@ import {
   SimpleGrid,
   ChakraProvider,
   extendTheme,
-  Image,
   Text,
 } from '@chakra-ui/react';
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { useNavigate } from 'react-router-dom';
 import { useUuid } from '../context/UuidContext';
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 interface Option {
   value: string;
   label: string;
-  image: string; // URL de l'image de la courbe
+  data: number[]; // Données de la courbe
 }
 
 const theme = extendTheme({
@@ -70,10 +73,10 @@ const InvestmentCurveSelection: React.FC = () => {
   };
 
   const options: Option[] = [
-    { value: 'A', label: 'Courbe A', image: '/path/to/imageA.png' },
-    { value: 'B', label: 'Courbe B', image: '/path/to/imageB.png' },
-    { value: 'C', label: 'Courbe C', image: '/path/to/imageC.png' },
-    { value: 'D', label: 'Courbe D', image: '/path/to/imageD.png' },
+    { value: 'A', label: 'Courbe A', data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
+    { value: 'B', label: 'Courbe B', data: [0, 0.5, 1, 1.5, 2, 1.5, 1, 1.5, 2, 2.5, 3] },
+    { value: 'C', label: 'Courbe C', data: [0, -0.5, 0, 0.5, 1, 0.5, 0, 0.5, 1, 1.5, 2] },
+    { value: 'D', label: 'Courbe D', data: [0, -1, 0, 1, 2, 1, 0, -1, 0, 1, 2] },
   ];
 
   if (loading) {
@@ -103,7 +106,39 @@ const InvestmentCurveSelection: React.FC = () => {
                     <Text fontWeight="bold" mb={2} color={selectedCurve === option.value ? 'blue.500' : 'gray.500'}>
                       {option.label}
                     </Text>
-                    <Image src={option.image} alt={option.label} mb={2} />
+                    <Box height="200px">
+                      <Line
+                        data={{
+                          labels: Array.from({ length: option.data.length }, (_, i) => i.toString()),
+                          datasets: [
+                            {
+                              data: option.data,
+                              borderColor: selectedCurve === option.value ? 'blue' : 'gray',
+                              borderWidth: 2,
+                              fill: false,
+                              tension: 0.1,
+                            },
+                          ],
+                        }}
+                        options={{
+                          responsive: true,
+                          maintainAspectRatio: false,
+                          plugins: {
+                            legend: {
+                              display: false,
+                            },
+                          },
+                          scales: {
+                            x: {
+                              display: false,
+                            },
+                            y: {
+                              display: false,
+                            },
+                          },
+                        }}
+                      />
+                    </Box>
                     <Button
                       width="100%"
                       variant={selectedCurve === option.value ? 'solid' : 'outline'}
