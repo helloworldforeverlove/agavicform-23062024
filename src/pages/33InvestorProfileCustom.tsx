@@ -111,7 +111,7 @@ const InvestorProfileCustom: React.FC = () => {
         updateResponse(95, trackingFrequency),
         updateResponse(96, retainInvestment.toString())
       ]);
-      navigate('/next-step'); // Replace with the actual next step route
+      navigate('/knowledge-experience'); // Replace with the actual next step route
     } else {
       setIsAlertOpen(true);
     }

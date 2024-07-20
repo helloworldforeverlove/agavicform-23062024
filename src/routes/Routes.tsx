@@ -39,7 +39,8 @@ import InsuranceAgreementForm from '../pages/29InsuranceAgreementForm';
 import ContactInfoForm from '../pages/26ContactInfoForm'; 
 import InvestorProfileForm from '../pages/31InvestorProfileForm'; 
 import InvestorProfileSelector from '../pages/32InvestorProfileSelector'; 
-import InvestorProfileCustom from '../pages/33InvestorProfileCustom'; // Import the new component
+import InvestorProfileCustom from '../pages/33InvestorProfileCustom'; 
+import KnowledgeExperience from '../pages/34KnowledgeExperience'; // Import the new component
 
 export const routes = [
   { path: '/', name: 'Home', component: <Home />, hidden: true },
@@ -79,7 +80,8 @@ export const routes = [
   { path: '/email-et-telephone-contact-formulaire', name: 'ContactInfoForm', component: <ContactInfoForm />, hidden: true },
   { path: '/profil-investisseur', name: 'InvestorProfileForm', component: <InvestorProfileForm />, hidden: true },
   { path: '/profil-investisseur-selector', name: 'InvestorProfileSelector', component: <InvestorProfileSelector />, hidden: true },
-  { path: '/profil-investisseur-custom', name: 'InvestorProfileCustom', component: <InvestorProfileCustom />, hidden: true }, // Add new route here
+  { path: '/profil-investisseur-custom', name: 'InvestorProfileCustom', component: <InvestorProfileCustom />, hidden: true },
+  { path: '/knowledge-experience', name: 'KnowledgeExperience', component: <KnowledgeExperience />, hidden: true }, // Add new route here
 ];
 
 const Routes: React.FC = () => {
