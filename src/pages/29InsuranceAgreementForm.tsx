@@ -20,6 +20,7 @@ import {
     useStyleConfig,
 } from '@chakra-ui/react';
 import { FaTimes, FaEye } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import Stepper from '../components/Stepper';
 import { useUuid } from '../context/UuidContext';
 import { supabase } from '../supabaseClient';
@@ -88,8 +89,8 @@ const InsuranceAgreementForm: React.FC = () => {
     const [agreedToTerms, setAgreedToTerms] = useState(false);
     const [acknowledgedInfo, setAcknowledgedInfo] = useState(false);
     const [isEpargneModalOpen, setEpargneModalOpen] = useState(false);
-    const [showPdf, setShowPdf] = useState(false); // Nouvel état pour contrôler l'affichage du PDF
-    const [signature, setSignature] = useState(''); // Nouvel état pour gérer la signature
+    const [showPdf, setShowPdf] = useState(false);
+    const [signature, setSignature] = useState('');
     const [projectData, setProjectData] = useState({
         step2: '',
         step3: '',
@@ -104,6 +105,7 @@ const InsuranceAgreementForm: React.FC = () => {
         onClose: onInfoModalClose,
     } = useDisclosure();
     const { uuid, getResponse } = useUuid();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchResponse = async () => {
@@ -146,13 +148,18 @@ const InsuranceAgreementForm: React.FC = () => {
         if (error) {
             console.error('Error updating form responses:', error);
         } else {
-            setShowPdf(true); // Afficher la fenêtre PDF après la soumission
+            setShowPdf(true);
         }
     };
 
     const handleSignatureSubmit = () => {
         console.log("Signature submitted:", signature);
         // Ajouter la logique pour traiter la signature ici
+    };
+
+    const handleValidate = () => {
+        handleSignatureSubmit();
+        navigate('/profil-investisseur');
     };
 
     return (
@@ -263,6 +270,13 @@ const InsuranceAgreementForm: React.FC = () => {
                                 onClick={handleSignatureSubmit}
                             >
                                 Soumettre la signature
+                            </Button>
+                            <Button
+                                colorScheme="green"
+                                mt={2}
+                                onClick={handleValidate}
+                            >
+                                Valider
                             </Button>
                         </Box>
                     </Box>
