@@ -17,7 +17,7 @@ const Header: React.FC<{ openModal: () => void }> = ({ openModal }) => {
         <Flex width="full" maxWidth="1200px" align="center" justify="space-between">
           <Flex align="center">
             {/* Logo Section */}
-            <Image src="/patrilifelogo.png" alt="Logo" height="30px" />
+            <Image src="/epargneplus.png" alt="Logo" height="30px" />
               
           </Flex>
 
