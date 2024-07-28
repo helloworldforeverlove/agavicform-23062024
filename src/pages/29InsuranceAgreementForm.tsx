@@ -249,7 +249,7 @@ const InsuranceAgreementForm: React.FC = () => {
                 {showPdf && (
                     <Box mt={4}>
                         <iframe
-                            src="https://wrzduukskbcqvxtqevpr.supabase.co/storage/v1/object/public/pdf/conditions.pdf?t=2024-06-27T20%3A41%3A38.178Z"
+                            src="/pdf/souscription.pdf"
                             width="100%"
                             height="600px"
                             style={{ border: 'none' }}
@@ -375,7 +375,7 @@ const InsuranceAgreementForm: React.FC = () => {
                     </ModalHeader>
                     <ModalBody p={0} height="100%">
                         <iframe
-                            src="https://wrzduukskbcqvxtqevpr.supabase.co/storage/v1/object/public/pdf/conditions.pdf?t=2024-06-27T20%3A41%3A38.178Z"
+                            src="/pdf/conditions.pdf"
                             width="100%"
                             height="100%"
                             style={{ border: 'none' }}
@@ -402,7 +402,7 @@ const InsuranceAgreementForm: React.FC = () => {
                     </ModalHeader>
                     <ModalBody p={0} height="100%">
                         <iframe
-                            src="https://wrzduukskbcqvxtqevpr.supabase.co/storage/v1/object/public/pdf/conditions.pdf?t=2024-06-27T20%3A41%3A38.178Z"
+                            src="/pdf/informationsdetaillee.pdf"
                             width="100%"
                             height="100%"
                             style={{ border: 'none' }}
