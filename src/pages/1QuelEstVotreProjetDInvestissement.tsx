@@ -77,8 +77,8 @@ const QuelEstVotreProjetDInvestissement: React.FC = () => {
         { label: 'Acheter un bien immobilier', icon: FcProcess, key: 'achat' },
         { label: 'Préparer ma retraite', icon: FcBusinessContact, key: 'retraite' },
         { label: 'Transmettre mon patrimoine', icon: FcReadingEbook, key: 'patrimoine' },
-        { label: 'Ouvrir un compte enfant', icon: FcManager, key: 'compte' },
-        { label: 'Organiser ma trésorerie pro', icon: FcParallelTasks, key: 'tresorerie' },
+        { label: 'Démarrer une épargne enfant', icon: FcManager, key: 'compte' },
+        { label: 'Placer ma trésorerie', icon: FcParallelTasks, key: 'tresorerie' },
     ];
 
     return (
