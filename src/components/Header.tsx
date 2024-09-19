@@ -39,7 +39,7 @@ const Header: React.FC<{ openModal: () => void }> = ({ openModal }) => {
               {/* Phone Number Section */}
               <Flex align="center" color="white" fontWeight="bold" fontSize="lg">
                 <FcPhone size="24px" />
-                <Text marginLeft="2" fontSize="lg">04 78 34 73 09</Text>
+                <Text marginLeft="2" fontSize="lg">04 78 347 309</Text>
               </Flex>
             </Flex>
           </Flex>
