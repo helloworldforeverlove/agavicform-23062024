@@ -74,8 +74,8 @@ const QuelEstVotreProjetDInvestissement: React.FC = () => {
     const buttons = [
         { label: 'Faire fructifier mon épargne', icon: FcApproval, key: 'fructifier' },
         { label: 'Épargner en cas de coup dur', icon: FcDisapprove, key: 'epargner' },
-        { label: 'Préparer un achat important', icon: FcProcess, key: 'achat' },
-        { label: 'Prévoir ma retraite', icon: FcBusinessContact, key: 'retraite' },
+        { label: 'Acheter un bien immobilier', icon: FcProcess, key: 'achat' },
+        { label: 'Préparer ma retraite', icon: FcBusinessContact, key: 'retraite' },
         { label: 'Transmettre mon patrimoine', icon: FcReadingEbook, key: 'patrimoine' },
         { label: 'Ouvrir un compte enfant', icon: FcManager, key: 'compte' },
         { label: 'Organiser ma trésorerie pro', icon: FcParallelTasks, key: 'tresorerie' },

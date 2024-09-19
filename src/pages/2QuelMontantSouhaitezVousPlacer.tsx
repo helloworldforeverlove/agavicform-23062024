@@ -73,7 +73,7 @@ const QuelMontantSouhaitezVousPlacer: React.FC = () => {
         <ChakraProvider theme={theme}>
             <StepperWithSubStepCounter currentStep={1} currentSubStep={2} totalSubSteps={25} title="Parlons de votre projet" />
             <Box p={5} maxW="1000px" mx="auto">
-                <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">Quel montant souhaitez-vous placer chez AGAVIC ?</Text>
+                <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">Quel montant souhaitez-vous placer chez EPARGNE+ ?</Text>
                 <Text fontSize="md" textAlign="center" mb={6}>Sélectionnez parmi les choix suivants :</Text>
                 <HStack justifyContent="center" spacing="4" flexWrap="wrap">
                     {investmentOptions.map((amount) => (
@@ -110,7 +110,7 @@ const QuelMontantSouhaitezVousPlacer: React.FC = () => {
                             alt="Dan Abramov"
                         />
                         <Text>
-                            Avec AGAVIC, votre épargne n'est pas bloquée : vous pouvez continuer d'investir dès votre compte ouvert et retirer à tout moment.
+                            Avec EPARGNE+, votre épargne n'est pas bloquée : vous pouvez continuer d'investir dès votre compte ouvert et retirer à tout moment.
                         </Text>
                     </HStack>
                 </Box>
