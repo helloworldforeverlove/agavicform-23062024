@@ -14,6 +14,7 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
+  HStack,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { WarningIcon } from '@chakra-ui/icons';
@@ -45,7 +46,7 @@ const EstimationPatrimoineFoyer: React.FC = () => {
     const fetchResponse = async () => {
       const response = await getResponse(13);
       if (response !== null) {
-        // Ici, nous supposons que la réponse est enregistrée comme une chaîne correspondant à la clé sélectionnée
+        // On suppose que la réponse est enregistrée comme une chaîne correspondant à la clé sélectionnée
         setSelected(response);
       }
     };
@@ -129,7 +130,7 @@ const EstimationPatrimoineFoyer: React.FC = () => {
               textAlign="left"
             >
               <Box flex="1" overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap">
-              {option.label}
+                {option.label}
               </Box>
             </Button>
           ))}
@@ -144,11 +145,21 @@ const EstimationPatrimoineFoyer: React.FC = () => {
             />
           </Box>
         )}
-        <Box textAlign="right">
-          <Button colorScheme="yellow" size="xxl" mt={5} px={6} py={6} onClick={handleNext}>
+        <HStack justifyContent="flex-end" mt="8" spacing="4">
+          <Button
+            colorScheme="gray"
+            variant="outline"
+            onClick={() => navigate(-1)}
+            px={6}
+            py={6}
+            size="xxl"
+          >
+            Retour
+          </Button>
+          <Button colorScheme="yellow" size="xxl" px={6} py={6} onClick={handleNext}>
             Suivant
           </Button>
-        </Box>
+        </HStack>
       </Box>
 
       <AlertDialog isOpen={isAlertOpen} leastDestructiveRef={cancelRef} onClose={() => setIsAlertOpen(false)}>

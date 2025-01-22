@@ -109,10 +109,10 @@ const RevenusAnnuels: React.FC = () => {
                     </Box>
                 )}
                 <HStack justifyContent="flex-end" mt="8" spacing="4">
-                    <Button colorScheme="gray" variant="outline" onClick={() => navigate(-1)} px={6} py={6} size="lg">
+                    <Button colorScheme="gray" variant="outline" onClick={() => navigate(-1)} px={6} py={6} size="xxl">
                         Retour
                     </Button>
-                    <Button colorScheme="yellow" onClick={handleNext} px={6} py={6} size="lg">
+                    <Button colorScheme="yellow" onClick={handleNext} px={6} py={6} size="xxl">
                         Suivant
                     </Button>
                 </HStack>

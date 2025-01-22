@@ -16,6 +16,7 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
+  HStack,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { WarningIcon } from '@chakra-ui/icons';
@@ -176,11 +177,14 @@ const RepartitionPatrimoine: React.FC = () => {
             </InputGroup>
           </Box>
         </SimpleGrid>
-        <Box textAlign="right">
-          <Button colorScheme="yellow" size="lg" mt={5} px={6} py={6} onClick={handleNext}>
+        <HStack justifyContent="flex-end" mt="8" spacing="4">
+          <Button colorScheme="gray" variant="outline" onClick={() => navigate(-1)} px={6} py={6} size="xxl">
+            Retour
+          </Button>
+          <Button colorScheme="yellow" onClick={handleNext} px={6} py={6} size="xxl">
             Suivant
           </Button>
-        </Box>
+        </HStack>
       </Box>
 
       <AlertDialog

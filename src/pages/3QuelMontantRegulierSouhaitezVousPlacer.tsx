@@ -89,7 +89,7 @@ const QuelMontantRegulierSouhaitezVousPlacer: React.FC = () => {
                         <Button
                             key={amount}
                             variant="outline"
-                            size="lg"
+                            size="xxl"
                             colorScheme={selectedAmount === amount ? 'yellow' : 'blue'}
                             onClick={() => handleSelect(amount)}
                             px={6}
@@ -119,7 +119,7 @@ const QuelMontantRegulierSouhaitezVousPlacer: React.FC = () => {
                         onClick={() => navigate(-1)}
                         px={6}
                         py={6}
-                        size="lg">
+                        size="xxl">
                         Retour
                     </Button>
                     <Button
@@ -127,7 +127,7 @@ const QuelMontantRegulierSouhaitezVousPlacer: React.FC = () => {
                         onClick={handleNext}
                         px={6}
                         py={6}
-                        size="lg">
+                        size="xxl">
                         Suivant
                     </Button>
                 </HStack>
