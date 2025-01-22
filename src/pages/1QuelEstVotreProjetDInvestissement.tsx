@@ -7,6 +7,7 @@ import {
     Button,
     SimpleGrid,
     Icon,
+    Input,
     AlertDialog,
     AlertDialogBody,
     AlertDialogFooter,
@@ -34,6 +35,7 @@ const theme = extendTheme({
 
 const QuelEstVotreProjetDInvestissement: React.FC = () => {
     const [selected, setSelected] = useState<string | null>(null);
+    const [otherText, setOtherText] = useState<string>('');
     const navigate = useNavigate();
     // eslint-disable-next-line
     const { uuid, updateResponse, getResponse } = useUuid();
@@ -56,13 +58,21 @@ const QuelEstVotreProjetDInvestissement: React.FC = () => {
 
     const handleSelect = async (option: string) => {
         setSelected(option);
-        await updateResponse(1, option);
-        navigate('/quel-montant-souhaitez-vous-placer');
+        if (option !== 'autre') {
+            await updateResponse(1, option);
+            navigate('/quel-montant-souhaitez-vous-placer');
+        }
+    };
+
+    const handleOtherChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.value.length <= 50) {
+            setOtherText(event.target.value);
+        }
     };
 
     const handleNext = async () => {
         if (selected) {
-            await updateResponse(1, selected);
+            await updateResponse(1, selected === 'autre' ? otherText : selected);
             navigate('/quel-montant-souhaitez-vous-placer');
         } else {
             setIsAlertOpen(true);
@@ -102,6 +112,16 @@ const QuelEstVotreProjetDInvestissement: React.FC = () => {
                         </Button>
                     ))}
                 </SimpleGrid>
+                {selected === 'autre' && (
+                    <Box mt={4}>
+                        <Input
+                            placeholder="Précisez votre projet (max 50 caractères)"
+                            value={otherText}
+                            onChange={handleOtherChange}
+                            maxLength={50}
+                        />
+                    </Box>
+                )}
                 <Box textAlign="right">
                     <Button colorScheme="yellow" size="xxl" mt={5} px={6} py={6} onClick={handleNext}>Suivant</Button>
                 </Box>
