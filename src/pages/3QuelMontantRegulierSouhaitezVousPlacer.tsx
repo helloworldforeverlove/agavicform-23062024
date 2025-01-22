@@ -61,13 +61,13 @@ const QuelMontantRegulierSouhaitezVousPlacer: React.FC = () => {
     const handleSelect = async (amount: string) => {
         setSelectedAmount(amount);
         await updateResponse(3, amount);
-        navigate('/quel-est-votre-horizon-d-investissement');
+        navigate('/revenus-annuels');
     };
 
     const handleNext = async () => {
         if (selectedAmount !== null) {
             await updateResponse(3, selectedAmount);
-            navigate('/quel-est-votre-horizon-d-investissement');
+            navigate('/revenus-annuels');
         } else {
             setIsAlertOpen(true);
         }

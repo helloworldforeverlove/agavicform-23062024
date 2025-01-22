@@ -31,12 +31,12 @@ const theme = extendTheme({
 });
 
 const incomeOptions = [
-    { value: 'lessThan30000', label: 'Moins de 30 000€' },
-    { value: '30000to45000', label: '30 000€ à 45 000€' },
-    { value: '45000to60000', label: '45 000€ à 60 000€' },
-    { value: '60000to100000', label: '60 000€ à 100 000€' },
-    { value: '100000to150000', label: '100 000€ à 150 000€' },
-    { value: 'moreThan150000', label: 'Plus de 150 000€' },
+    { value: 'lessThan30000', label: 'Moins de 30 000 €' },
+    { value: '30000to45000', label: '30 000 € à 45 000 €' },
+    { value: '45001to60000', label: '45 001 € à 60 000 €' },
+    { value: '60001to100000', label: '60 001 € à 100 000 €' },
+    { value: '100001to150000', label: '100 001 € à 150 000 €' },
+    { value: 'moreThan150000', label: 'Plus de 150 000 €' },
 ];
 
 const RevenusAnnuels: React.FC = () => {
@@ -63,13 +63,13 @@ const RevenusAnnuels: React.FC = () => {
     const handleSelect = async (value: string) => {
         setSelectedOption(value);
         await updateResponse(9, value);
-        navigate('/residence-principale');
+        navigate('/montant-patrimoine-foyer');
     };
 
     const handleNext = async () => {
         if (selectedOption !== undefined) {
             await updateResponse(9, selectedOption);
-            navigate('/residence-principale');
+            navigate('/montant-patrimoine-foyer');
         } else {
             setIsAlertOpen(true);
         }
@@ -77,10 +77,10 @@ const RevenusAnnuels: React.FC = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={8} totalSubSteps={25} title="Quels sont les revenus annuels bruts de votre foyer ?" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={8} totalSubSteps={25} title="Quels sont vos revenus annuels bruts de votre foyer ?" />
             <Box p={5} maxW="1000px" mx="auto">
                 <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
-                    Quels sont les revenus annuels bruts de votre foyer ?
+                    Quels sont vos revenus annuels bruts de votre foyer ?
                 </Text>
                 <HStack justifyContent="center" spacing="4" flexWrap="wrap">
                     {incomeOptions.map((option) => (

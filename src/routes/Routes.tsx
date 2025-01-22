@@ -11,7 +11,7 @@ import ESGPreference from '../pages/6ESGPreference';
 import QuelEstVotreDateDeNaissance from '../pages/25QuelEstVotreDateDeNaissance';
 import EtesVousResidentFiscalFrancais from '../pages/5EtesVousResidentFiscalFrancais';
 import NombreEnfantsACharge from '../pages/7NombreEnfantsACharge';
-import RevenusAnnuels from '../pages/8RevenusAnnuels';
+import RevenusAnnuels from '../pages/4RevenusAnnuels';
 import ResidencePrincipale from '../pages/9ResidencePrincipale';
 import MontantLoyerMensuel from '../pages/11MontantLoyerMensuel';
 import MontantCreditImmobilierMensuel from '../pages/10MontantCreditImmobilierMensuel';
@@ -43,6 +43,7 @@ import InvestorProfileCustom from '../pages/33InvestorProfileCustom';
 import KnowledgeExperience from '../pages/34KnowledgeExperience'; 
 import RiskTolerance from '../pages/35RiskTolerance'; 
 import InvestmentCurveSelection from '../pages/36InvestmentCurveSelection'; // Import the new component
+import MontantPatrimoineFoyer from '../pages/4MontantPatrimoineFoyer';
 
 export const routes = [
   { path: '/', name: 'Home', component: <Home />, hidden: true },
@@ -86,6 +87,7 @@ export const routes = [
   { path: '/knowledge-experience', name: 'KnowledgeExperience', component: <KnowledgeExperience />, hidden: true },
   { path: '/risk-tolerance', name: 'RiskTolerance', component: <RiskTolerance />, hidden: true },
   { path: '/investment-curve-selection', name: 'InvestmentCurveSelection', component: <InvestmentCurveSelection />, hidden: true }, // Add new route here
+  { path: '/montant-patrimoine-foyer', name: 'MontantPatrimoineFoyer', component: <MontantPatrimoineFoyer/>, hidden: true },
 ];
 
 const Routes: React.FC = () => {
