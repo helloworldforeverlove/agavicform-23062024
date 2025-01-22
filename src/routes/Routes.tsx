@@ -44,6 +44,7 @@ import KnowledgeExperience from '../pages/34KnowledgeExperience';
 import RiskTolerance from '../pages/35RiskTolerance'; 
 import InvestmentCurveSelection from '../pages/36InvestmentCurveSelection'; // Import the new component
 import MontantPatrimoineFoyer from '../pages/4MontantPatrimoineFoyer';
+import RepartitionPatrimoine from '../pages/4RepartitionPatrimoine';
 
 export const routes = [
   { path: '/', name: 'Home', component: <Home />, hidden: true },
@@ -88,6 +89,7 @@ export const routes = [
   { path: '/risk-tolerance', name: 'RiskTolerance', component: <RiskTolerance />, hidden: true },
   { path: '/investment-curve-selection', name: 'InvestmentCurveSelection', component: <InvestmentCurveSelection />, hidden: true }, // Add new route here
   { path: '/montant-patrimoine-foyer', name: 'MontantPatrimoineFoyer', component: <MontantPatrimoineFoyer/>, hidden: true },
+  { path: '/repartition-patrimoine', name: 'RepartitionPatrimoine', component: <RepartitionPatrimoine/>, hidden: true },
 ];
 
 const Routes: React.FC = () => {

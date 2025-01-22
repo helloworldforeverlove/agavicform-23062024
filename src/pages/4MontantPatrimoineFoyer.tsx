@@ -59,7 +59,7 @@ const EstimationPatrimoineFoyer: React.FC = () => {
     // Si l'option sélectionnée n'est pas "autre" (requérant une précision), on enregistre et navigue directement
     if (option !== 'autre') {
       await updateResponse(13, option);
-      navigate('/prochaine-etape');
+      navigate('/repartition-patrimoine');
     }
   };
 
@@ -74,7 +74,7 @@ const EstimationPatrimoineFoyer: React.FC = () => {
     if (selected) {
       // Pour l'option "autre", on enregistre la précision saisie ; sinon, on enregistre directement l'option
       await updateResponse(13, selected === 'autre' ? otherText : selected);
-      navigate('/prochaine-etape');
+      navigate('/repartition-patrimoine');
     } else {
       setIsAlertOpen(true);
     }
