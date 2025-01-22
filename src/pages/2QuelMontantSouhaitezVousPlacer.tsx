@@ -30,6 +30,7 @@ const theme = extendTheme({
     },
 });
 
+// Ajout d'une entrée spécifique pour 150 000 et +
 const investmentOptions = [5000, 10000, 30000, 50000, 150000];
 
 const QuelMontantSouhaitezVousPlacer: React.FC = () => {
@@ -89,14 +90,14 @@ const QuelMontantSouhaitezVousPlacer: React.FC = () => {
                             _hover={{ bg: 'gray.200' }}
                             borderColor={selectedAmount === amount ? 'yellow.400' : 'gray.200'}
                         >
-                            {amount.toLocaleString('fr-FR')} €
+                            {amount === 150000 ? '150 000 et + €' : `${amount.toLocaleString('fr-FR')} €`}
                         </Button>
                     ))}
                 </HStack>
                 {selectedAmount !== null && (
                     <Box borderWidth="1px" borderRadius="md" p={4} mt={4} textAlign="center" borderColor="yellow.400">
                         <Text fontSize="2xl" color="yellow.500">
-                            {selectedAmount.toLocaleString('fr-FR')} €
+                            {selectedAmount === 150000 ? '150 000 et + €' : `${selectedAmount.toLocaleString('fr-FR')} €`}
                         </Text>
                     </Box>
                 )}
