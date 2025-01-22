@@ -16,9 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { WarningIcon } from '@chakra-ui/icons';
-import {
-    FcApproval, FcDisapprove, FcProcess, FcBusinessContact, FcReadingEbook, FcManager, FcParallelTasks
-} from 'react-icons/fc';
+import { FcGenealogy, FcMoneyTransfer, FcHome, FcCalculator, FcIdea } from 'react-icons/fc';
 import StepperWithSubStepCounter from '../components/StepperWithSubStepCounter';
 import { useUuid } from '../context/UuidContext';
 
@@ -72,20 +70,18 @@ const QuelEstVotreProjetDInvestissement: React.FC = () => {
     };
 
     const buttons = [
-        { label: 'Faire fructifier mon épargne', icon: FcApproval, key: 'fructifier' },
-        { label: 'Épargner en cas de coup dur', icon: FcDisapprove, key: 'epargner' },
-        { label: 'Acheter un bien immobilier', icon: FcProcess, key: 'achat' },
-        { label: 'Préparer ma retraite', icon: FcBusinessContact, key: 'retraite' },
-        { label: 'Transmettre mon patrimoine', icon: FcReadingEbook, key: 'patrimoine' },
-        { label: 'Démarrer une épargne enfant', icon: FcManager, key: 'compte' },
-        { label: 'Placer ma trésorerie', icon: FcParallelTasks, key: 'tresorerie' },
+        { label: 'Constituer un patrimoine', icon: FcGenealogy, key: 'patrimoine' },
+        { label: 'Préparer ma retraite', icon: FcMoneyTransfer, key: 'retraite' },
+        { label: 'Financer des projets (études des enfants, immobilier)', icon: FcHome, key: 'projets' },
+        { label: 'Limiter ma fiscalité', icon: FcCalculator, key: 'fiscalite' },
+        { label: 'Autre (préciser)', icon: FcIdea, key: 'autre' },
     ];
 
     return (
         <ChakraProvider theme={theme}>
-            <StepperWithSubStepCounter currentStep={1} currentSubStep={1} totalSubSteps={25} title="Parlons de votre projet" />
+            <StepperWithSubStepCounter currentStep={1} currentSubStep={1} totalSubSteps={25} title="Quel est votre projet ?" />
             <Box p={5} maxW="1000px" mx="auto">
-                <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">Quel est votre projet d’investissement ?</Text>
+                <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">Quel est votre projet ?</Text>
                 <SimpleGrid columns={[1, 2]} spacing={5}>
                     {buttons.map(button => (
                         <Button
@@ -111,11 +107,7 @@ const QuelEstVotreProjetDInvestissement: React.FC = () => {
                 </Box>
             </Box>
 
-            <AlertDialog
-                isOpen={isAlertOpen}
-                leastDestructiveRef={cancelRef}
-                onClose={onClose}
-            >
+            <AlertDialog isOpen={isAlertOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
                 <AlertDialogOverlay>
                     <AlertDialogContent>
                         <AlertDialogHeader fontSize="lg" fontWeight="bold">
@@ -126,9 +118,7 @@ const QuelEstVotreProjetDInvestissement: React.FC = () => {
                             Veuillez sélectionner une option avant de continuer. 😊
                         </AlertDialogBody>
                         <AlertDialogFooter>
-                            <Button ref={cancelRef} onClick={onClose}>
-                                OK
-                            </Button>
+                            <Button ref={cancelRef} onClick={onClose}>OK</Button>
                         </AlertDialogFooter>
                     </AlertDialogContent>
                 </AlertDialogOverlay>
