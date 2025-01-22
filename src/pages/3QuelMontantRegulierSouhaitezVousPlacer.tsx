@@ -30,10 +30,16 @@ const theme = extendTheme({
     },
 });
 
-const monthlyInvestmentOptions = [50, 100, 200, 500, 1000];
+const monthlyInvestmentOptions = [
+    "< 250 €",
+    "250 € à 500 €",
+    "500 € à 1 000 €",
+    "1 000 € à 2 500 €",
+    "> 2 500 €"
+];
 
 const QuelMontantRegulierSouhaitezVousPlacer: React.FC = () => {
-    const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
+    const [selectedAmount, setSelectedAmount] = useState<string | null>(null);
     const [isAlertOpen, setIsAlertOpen] = useState(false);
     const onClose = () => setIsAlertOpen(false);
     const cancelRef = useRef<HTMLButtonElement>(null);
@@ -44,26 +50,23 @@ const QuelMontantRegulierSouhaitezVousPlacer: React.FC = () => {
     useEffect(() => {
         const fetchResponse = async () => {
             const response = await getResponse(3);
-            if (response !== null) {
-                const amount = parseInt(response, 10);
-                if (monthlyInvestmentOptions.includes(amount)) {
-                    setSelectedAmount(amount);
-                }
+            if (response !== null && monthlyInvestmentOptions.includes(response)) {
+                setSelectedAmount(response);
             }
         };
 
         fetchResponse();
     }, [getResponse]);
 
-    const handleSelect = async (amount: number) => {
+    const handleSelect = async (amount: string) => {
         setSelectedAmount(amount);
-        await updateResponse(3, amount.toString());
+        await updateResponse(3, amount);
         navigate('/quel-est-votre-horizon-d-investissement');
     };
 
     const handleNext = async () => {
         if (selectedAmount !== null) {
-            await updateResponse(3, selectedAmount.toString());
+            await updateResponse(3, selectedAmount);
             navigate('/quel-est-votre-horizon-d-investissement');
         } else {
             setIsAlertOpen(true);
@@ -74,9 +77,11 @@ const QuelMontantRegulierSouhaitezVousPlacer: React.FC = () => {
         <ChakraProvider theme={theme}>
             <StepperWithSubStepCounter currentStep={1} currentSubStep={3} totalSubSteps={25} title="Parlons de votre projet" />
             <Box p={5} maxW="1000px" mx="auto">
-                <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">Quel montant régulier souhaitez-vous placer chaque mois ?</Text>
+                <Text fontSize="xl" fontWeight="bold" mb={5} textAlign="center">
+                    Combien pouvez-vous épargner chaque mois ?
+                </Text>
                 <Text fontSize="md" textAlign="center" mb={6}>
-                    Placer de l'argent tous les mois pourrait faire une grande différence dans quelques années. 55 % de nos clients ont fait ce choix et placent en moyenne 200 € par mois.
+                    Placer de l'argent tous les mois pourrait faire une grande différence dans quelques années.
                 </Text>
                 <Text fontSize="md" textAlign="center" mb={6}>Sélectionnez parmi les choix suivants :</Text>
                 <HStack justifyContent="center" spacing="4" flexWrap="wrap">
@@ -94,20 +99,19 @@ const QuelMontantRegulierSouhaitezVousPlacer: React.FC = () => {
                             _hover={{ bg: 'gray.200' }}
                             borderColor={selectedAmount === amount ? 'yellow.400' : 'gray.200'}
                         >
-                            {amount.toLocaleString('fr-FR')} € / mois
+                            {amount}
                         </Button>
                     ))}
                 </HStack>
                 {selectedAmount !== null && (
                     <Box borderWidth="1px" borderRadius="md" p={4} mt={4} textAlign="center" borderColor="yellow.400">
                         <Text fontSize="2xl" color="yellow.500">
-                            {selectedAmount.toLocaleString('fr-FR')} € / mois
+                            {selectedAmount}
                         </Text>
                     </Box>
                 )}
                 <Text textAlign="center" mt="8">
-                    Les versements sont modulables : placez le montant que vous souhaitez, à la fréquence que vous souhaitez. Ils sont modifiables à tout moment, et toujours sans frais !
-                </Text>
+                    Les versements sont modulables : placez le montant que vous souhaitez, à la fréquence que vous souhaitez. Ils sont modifiables à tout moment.               </Text>
                 <HStack justifyContent="flex-end" mt="8" spacing="4">
                     <Button
                         colorScheme="gray"
