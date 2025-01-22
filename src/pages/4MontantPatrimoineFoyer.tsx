@@ -7,7 +7,6 @@ import {
   Text,
   Button,
   SimpleGrid,
-  Icon,
   Input,
   AlertDialog,
   AlertDialogBody,
@@ -18,13 +17,6 @@ import {
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { WarningIcon } from '@chakra-ui/icons';
-import {
-  FcMoneyTransfer,
-  FcGenealogy,
-  FcHome,
-  FcCalculator,
-  FcIdea,
-} from 'react-icons/fc';
 import StepperWithSubStepCounter from '../components/StepperWithSubStepCounter';
 import { useUuid } from '../context/UuidContext';
 
@@ -64,7 +56,7 @@ const EstimationPatrimoineFoyer: React.FC = () => {
 
   const handleSelect = async (option: string) => {
     setSelected(option);
-    // Si l'option sélectionnée n'est pas "autre" (requérant une précision), on peut enregistrer et naviguer directement
+    // Si l'option sélectionnée n'est pas "autre" (requérant une précision), on enregistre et navigue directement
     if (option !== 'autre') {
       await updateResponse(13, option);
       navigate('/prochaine-etape');
@@ -91,27 +83,22 @@ const EstimationPatrimoineFoyer: React.FC = () => {
   const options = [
     {
       label: 'Entre 0 et 100 000 €',
-      icon: FcMoneyTransfer,
       key: 'range1',
     },
     {
       label: 'Entre 100 000 et 300 000 €',
-      icon: FcGenealogy,
       key: 'range2',
     },
     {
       label: 'Entre 300 000 et 500 000 €',
-      icon: FcHome,
       key: 'range3',
     },
     {
       label: 'Entre 500 000 et 1 000 000 €',
-      icon: FcCalculator,
       key: 'range4',
     },
     {
       label: "Plus d'un million (précisez)",
-      icon: FcIdea,
       key: 'autre',
     },
   ];
@@ -132,7 +119,6 @@ const EstimationPatrimoineFoyer: React.FC = () => {
           {options.map((option) => (
             <Button
               key={option.key}
-              leftIcon={<Icon as={option.icon} boxSize={5} />}
               variant={selected === option.key ? 'solid' : 'outline'}
               colorScheme={selected === option.key ? 'yellow' : 'blue'}
               onClick={() => handleSelect(option.key)}
@@ -143,7 +129,7 @@ const EstimationPatrimoineFoyer: React.FC = () => {
               textAlign="left"
             >
               <Box flex="1" overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap">
-                {option.label}
+              {option.label}
               </Box>
             </Button>
           ))}
